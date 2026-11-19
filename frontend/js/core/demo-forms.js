@@ -1,117 +1,41 @@
-/* TalentBridge AI authentication bridge.
-   Real authentication always belongs to Django on port 8000/8001.
-   Static hosts (file://, Live Server, GitHub Pages) must not POST to missing
-   /auth/social/google/ routes — intercept and guide the user instead. */
+/* TalentBridge AI auth bridge — dual mode
+   - Local Django (:8000 / :8001): real server auth + Google OAuth (this script exits).
+   - GitHub Pages / static hosts: browser demo auth, no localhost required. */
 (() => {
   const DEMO_SESSION_KEY = "talentbridge.demo.auth.v1";
   const localHosts = ["localhost", "127.0.0.1", "[::1]", "::1"];
-  const isLocalHost = localHosts.includes(window.location.hostname);
+  const host = (window.location.hostname || "").toLowerCase();
   const port = window.location.port || "";
+  const isLocalHost = localHosts.includes(host);
   const isDjangoLocal =
-    isLocalHost && (port === "8000" || port === "8001" || port === "");
+    isLocalHost && (port === "8000" || port === "8001");
+
+  // Local folder usage via Django — leave real login/OAuth alone.
+  if (isDjangoLocal) return;
+
   const markedStatic =
     document.documentElement.getAttribute("data-static-preview") === "1" ||
     document.body?.hasAttribute("data-static-preview");
-  const isStaticPreview =
+  const isStaticHost =
     window.location.protocol === "file:" ||
     markedStatic ||
-    (isLocalHost && !isDjangoLocal && port !== "8000" && port !== "8001");
-  const demoExplicitlyEnabled =
-    new URLSearchParams(window.location.search).get("demo") === "1";
+    !isLocalHost ||
+    (isLocalHost && port !== "8000" && port !== "8001");
 
-  if (!isStaticPreview) return;
+  if (!isStaticHost) return;
 
-  function backendPage() {
-    const path = window.location.pathname.toLowerCase();
-    if (path.includes("company-signup") || path.includes("employer-signup")) {
-      return "http://127.0.0.1:8000/signup/employer/";
-    }
-    if (path.includes("jobseeker-signup")) {
-      return "http://127.0.0.1:8000/signup/job-seeker/";
-    }
-    if (path.includes("dashboard/cdashboard")) {
-      return "http://127.0.0.1:8000/pages/dashboard/cdashboard.html";
-    }
-    if (path.includes("dashboard/jdashboard")) {
-      return "http://127.0.0.1:8000/pages/dashboard/jdashboard.html";
-    }
-    return "http://127.0.0.1:8000/login/";
-  }
-
-  function showStaticAuthNotice(kind) {
-    const existing = document.getElementById("tb-static-auth-notice");
-    if (existing) {
-      existing.focus();
-      return;
-    }
-    const note = document.createElement("div");
-    note.id = "tb-static-auth-notice";
-    note.setAttribute("role", "status");
-    note.tabIndex = -1;
-    note.style.cssText =
-      "margin:12px 0;padding:12px 14px;border-radius:12px;background:#eef5ff;border:1px solid #bfd3ff;color:#102a56;font:500 14px/1.45 system-ui,sans-serif;";
-    const localHint = isLocalHost
-      ? ' Open the Django app at <a href="http://127.0.0.1:8000/login/">http://127.0.0.1:8000/login/</a> for Google sign-in.'
-      : " Run TalentBridge locally with Django (:8000) to use Google sign-in and account forms.";
-    note.innerHTML =
-      kind === "google"
-        ? "<strong>Google sign-in needs the live Django app.</strong>" + localHint
-        : "<strong>This is a static website preview.</strong>" + localHint;
-    const form =
-      document.querySelector("form[data-oauth-provider='google']") ||
-      document.querySelector("form[data-auth-login]") ||
-      document.querySelector(".login-content") ||
-      document.querySelector("main");
-    if (form && form.parentNode) {
-      form.parentNode.insertBefore(note, form);
-    } else {
-      document.body.prepend(note);
-    }
-    note.focus();
-  }
-
-  if (!demoExplicitlyEnabled) {
-    document.addEventListener(
-      "submit",
-      (event) => {
-        const form = event.target;
-        if (!(form instanceof HTMLFormElement)) return;
-        if (
-          form.matches(
-            "[data-auth-login], [data-oauth-provider], #jobSeekerForm, #employerForm"
-          )
-        ) {
-          event.preventDefault();
-          if (isLocalHost) {
-            window.location.assign(backendPage());
-            return;
-          }
-          showStaticAuthNotice(
-            form.matches("[data-oauth-provider]") ? "google" : "auth"
-          );
-        }
-      },
-      true
+  function dashboardHref(role) {
+    return (
+      (role === "employer"
+        ? "/pages/dashboard/cdashboard.html"
+        : "/pages/dashboard/jdashboard.html") + "?demo=1"
     );
-    document.addEventListener(
-      "click",
-      (event) => {
-        const link = event.target.closest(
-          'a[href*="login.html"], a[href*="signup"]'
-        );
-        if (!link || !isStaticPreview || !isLocalHost) return;
-        const href = link.getAttribute("href") || "";
-        if (/login|signup/i.test(href)) {
-          event.preventDefault();
-          window.location.assign(backendPage());
-        }
-      },
-      true
-    );
-    return;
   }
 
-  // Explicit static-preview demo only. It never runs on Django port 8000.
+  function loginHref() {
+    return "/pages/login.html?demo=1";
+  }
+
   function makeDemoSession({ email, name, role, provider }) {
     const normalizedRole = role === "employer" ? "employer" : "job_seeker";
     const normalizedEmail = String(
@@ -144,22 +68,40 @@
   }
 
   function openDashboard(role) {
-    window.location.assign(
-      role === "employer"
-        ? "dashboard/cdashboard.html?demo=1"
-        : "dashboard/jdashboard.html?demo=1"
-    );
+    window.location.assign(dashboardHref(role));
+  }
+
+  function ensureDemoBadge() {
+    if (document.getElementById("tb-static-demo-badge")) return;
+    const badge = document.createElement("div");
+    badge.id = "tb-static-demo-badge";
+    badge.setAttribute("role", "status");
+    badge.textContent =
+      "GitHub Pages demo — sign-in stays in this browser (no local server)";
+    badge.style.cssText =
+      "position:fixed;z-index:9999;left:12px;bottom:12px;max-width:min(340px,calc(100vw - 24px));" +
+      "padding:8px 12px;border-radius:999px;background:#102a56;color:#fff;" +
+      "font:600 12px/1.35 system-ui,sans-serif;box-shadow:0 8px 24px rgba(16,42,86,.25);";
+    document.body.appendChild(badge);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", ensureDemoBadge);
+  } else {
+    ensureDemoBadge();
   }
 
   document.addEventListener("submit", (event) => {
     const form = event.target;
     if (!(form instanceof HTMLFormElement)) return;
+
     if (form.matches("[data-logout-form]")) {
       event.preventDefault();
       window.sessionStorage.removeItem(DEMO_SESSION_KEY);
-      window.location.assign("../login.html?demo=1");
+      window.location.assign(loginHref());
       return;
     }
+
     if (form.matches("[data-auth-login]")) {
       event.preventDefault();
       const email = String(new FormData(form).get("email") || "").trim();
@@ -167,6 +109,7 @@
       if (user) openDashboard(user.role);
       return;
     }
+
     if (form.dataset.oauthProvider === "google") {
       event.preventDefault();
       const roleValue =
@@ -184,6 +127,7 @@
       if (user) openDashboard(user.role);
       return;
     }
+
     if (form.id === "jobSeekerForm" || form.id === "employerForm") {
       event.preventDefault();
       const data = new FormData(form);

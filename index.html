@@ -12,14 +12,15 @@
 </head>
 <body>
   <h1>TalentBridge AI</h1>
-  <p id="msg">Opening local TalentBridge AI…</p>
+  <p id="msg">Opening TalentBridge AI…</p>
   <p>
-    Local Django:
+    <strong>Local (this folder):</strong>
     <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a>
-    ·
-    <a href="http://127.0.0.1:8001/">http://127.0.0.1:8001/</a>
   </p>
-  <p>Live site (only if local server is off): <a href="https://talentbridge.qd.je/">talentbridge.qd.je</a></p>
+  <p>
+    <strong>GitHub live (no local server):</strong>
+    <a href="https://talentbridge.qd.je/">https://talentbridge.qd.je/</a>
+  </p>
   <script>
     (function () {
       var host = (location.hostname || "").toLowerCase();
@@ -27,27 +28,29 @@
       var isLocalHost = host === "127.0.0.1" || host === "localhost";
       var msg = document.getElementById("msg");
 
-      // GitHub Pages / custom domain: never trap on this stub.
+      // Already on GitHub Pages / custom domain → stay on live static site.
       if (!isLocalFile && !isLocalHost) {
         window.location.replace("https://talentbridge.qd.je/");
         return;
       }
 
-      // Local: keep retrying both managed ports so brief Django autoreload
-      // gaps never strand the browser on an error page or the live domain.
+      // Opening from this folder: prefer local Django, else fall back to live GitHub site.
       var candidates = [
         "http://127.0.0.1:8000/",
-        "http://127.0.0.1:8001/"
+        "http://127.0.0.1:8001/",
+        "https://talentbridge.qd.je/"
       ];
       var attempt = 0;
-      var maxAttempts = 120; // ~60s of retries
+      var maxAttempts = 40;
 
       function setMsg(text) {
         if (msg) msg.textContent = text;
       }
 
       function probe(url) {
-        // file:// cannot read CORS responses; no-cors still fails hard if the port is down.
+        if (url.indexOf("https://talentbridge.qd.je") === 0) {
+          return Promise.resolve(url);
+        }
         if (isLocalFile) {
           return fetch(url, { method: "GET", mode: "no-cors", cache: "no-store" })
             .then(function () { return url; });
@@ -64,20 +67,19 @@
 
       function tryNext() {
         attempt += 1;
-        var url = candidates[(attempt - 1) % candidates.length];
-        setMsg("Connecting to local TalentBridge… (" + url + ")");
+        var url = candidates[Math.min(attempt - 1, candidates.length - 1)];
+        if (attempt > 20) url = "https://talentbridge.qd.je/";
+        setMsg("Connecting… (" + url + ")");
         probe(url)
           .then(function (live) {
             window.location.replace(live);
           })
           .catch(function () {
             if (attempt >= maxAttempts) {
-              setMsg(
-                "Django is not responding on :8000 or :8001. Start it with scripts/startup/START_TALENTBRIDGEAI.bat, then refresh this page."
-              );
+              window.location.replace("https://talentbridge.qd.je/");
               return;
             }
-            setTimeout(tryNext, 500);
+            setTimeout(tryNext, 400);
           });
       }
 

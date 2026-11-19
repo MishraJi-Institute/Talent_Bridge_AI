@@ -36,13 +36,18 @@ jobs:
         with:
           python-version: "3.x"
       - name: Build static site
-        run: python tools/build_static.py
+        run: |
+          python tools/build_static.py
+          test -f site/index.html
+          test -f site/CNAME
+          test -f site/.nojekyll
+          echo "Static build OK"
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './site'
+          path: 'site'
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@v4

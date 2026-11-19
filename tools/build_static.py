@@ -52,6 +52,7 @@ STATIC_ROUTE_PAGES = {
     "application-success": "pages/application-success.html",
     "saved-jobs": "pages/saved-jobs.html",
     "toggle-saved-job": "pages/saved-jobs.html",
+    "recommended-jobs": "pages/recommended-jobs.html",
     "applied-jobs": "pages/applied-jobs.html",
     "profile": "pages/profile.html",
     "edit-profile": "pages/edit-profile.html",
@@ -187,9 +188,14 @@ def _render_static_preview(text, from_page):
         elif command == "url":
             if visible:
                 match = re.match(r"""['"]([^'"]+)['"]""", argument)
-                if not match or match.group(1) not in STATIC_ROUTE_PAGES:
+                if not match:
                     raise RuntimeError(f"Unsupported Django URL tag in {from_page}: {tag}")
-                output.append(_static_link(STATIC_ROUTE_PAGES[match.group(1)], from_page))
+                route_name = match.group(1)
+                # Static preview: map known routes; unknown routes become inert anchors.
+                if route_name in STATIC_ROUTE_PAGES:
+                    output.append(_static_link(STATIC_ROUTE_PAGES[route_name], from_page))
+                else:
+                    output.append("#")
         elif command == "static":
             if visible:
                 match = re.fullmatch(r"""['"]([^'"]+)['"]""", argument)
@@ -208,8 +214,20 @@ def _render_static_preview(text, from_page):
                         candidate = src_root / asset
                         if candidate.is_file():
                             matches.append(f"{directory}/{asset.as_posix()}")
+                    # Fallback: unique basename search (e.g. static 'site-header.css')
+                    if not matches and asset.name == asset.as_posix():
+                        for directory, src_root in PUBLIC_DIR_MAP.items():
+                            if not src_root.is_dir():
+                                continue
+                            for candidate in src_root.rglob(asset.name):
+                                if candidate.is_file():
+                                    rel = candidate.relative_to(src_root).as_posix()
+                                    matches.append(f"{directory}/{rel}")
                     if len(matches) != 1:
-                        raise RuntimeError(f"Could not uniquely resolve Django static asset in {from_page}: {tag}")
+                        raise RuntimeError(
+                            f"Could not uniquely resolve Django static asset in {from_page}: {tag} "
+                            f"(matches={matches})"
+                        )
                     target = matches[0]
                     found = True
                 if not found:
@@ -296,6 +314,8 @@ def build():
     cname_src = ROOT / "CNAME"
     if cname_src.is_file():
         shutil.copy2(cname_src, OUTPUT / "CNAME")
+    # Prevent GitHub Pages from running Jekyll on the uploaded artifact.
+    (OUTPUT / ".nojekyll").write_text("", encoding="utf-8")
 
     print(f"Static site built in {OUTPUT.relative_to(ROOT)}")
 

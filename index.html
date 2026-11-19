@@ -3,9 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TalentBridge AI — Opening…</title>
+  <title>TalentBridge AI</title>
   <script>
     (function () {
+      var host = (location.hostname || "").toLowerCase();
+      var isLocalFile = location.protocol === "file:";
+      var isLocalHost = host === "127.0.0.1" || host === "localhost";
+
+      // GitHub Pages / custom domain should be served from the Actions-built site/.
+      // If this stub is ever served from the repository root, send visitors to the live domain.
+      if (!isLocalFile && !isLocalHost) {
+        window.location.replace("https://talentbridge.qd.je/");
+        return;
+      }
+
       var candidates = [
         "http://127.0.0.1:8000/",
         "http://127.0.0.1:8001/"
@@ -14,7 +25,7 @@
       function tryNext() {
         if (i >= candidates.length) {
           document.getElementById("msg").innerHTML =
-            "Django is not running. Start it with <code>scripts/startup/START_TALENTBRIDGEAI.bat</code> or the VS Code/Cursor auto-start task, then open <a href=\"http://127.0.0.1:8000/\">http://127.0.0.1:8000/</a> or <a href=\"http://127.0.0.1:8001/\">http://127.0.0.1:8001/</a>.";
+            "Django is not running. Start it with <code>scripts/startup/START_TALENTBRIDGEAI.bat</code>, or build a static preview with <code>python tools/build_static.py</code> and open <a href=\"./site/index.html\">site/index.html</a>.";
           return;
         }
         var url = candidates[i++];
@@ -22,12 +33,11 @@
           .then(function () { window.location.replace(url); })
           .catch(function () { setTimeout(tryNext, 120); });
       }
-      // Prefer :8000 (bookmarks); bridge redirects to the live Django port when needed.
       window.location.replace(candidates[0]);
       setTimeout(tryNext, 900);
     })();
   </script>
-  <meta http-equiv="refresh" content="2; url=http://127.0.0.1:8000/">
+  <meta http-equiv="refresh" content="4; url=https://talentbridge.qd.je/">
   <style>
     body { font-family: system-ui, sans-serif; max-width: 40rem; margin: 3rem auto; padding: 0 1rem; color: #102a56; line-height: 1.5; }
     a { color: #155eef; }
@@ -36,7 +46,10 @@
 </head>
 <body>
   <h1>TalentBridge AI</h1>
-  <p id="msg">Opening the local Django site… Prefer <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a> (also works on <a href="http://127.0.0.1:8001/">:8001</a>).</p>
-  <p>Login: <a href="http://127.0.0.1:8000/login/">/login/</a> (not a raw HTML file path).</p>
+  <p id="msg">Opening TalentBridge AI…</p>
+  <p>
+    Local Django: <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a>
+    · Live site: <a href="https://talentbridge.qd.je/">talentbridge.qd.je</a>
+  </p>
 </body>
 </html>

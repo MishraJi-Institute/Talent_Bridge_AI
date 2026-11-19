@@ -306,3 +306,21 @@ AUTHENTICATION_BACKENDS = [
 # TalentBridgeAI Google Login compatibility
 SOCIALACCOUNT_LOGIN_ON_GET = True
 
+# Render / reverse-proxy HTTPS termination
+if os.environ.get("RENDER") or os.environ.get("DJANGO_BEHIND_PROXY", "").lower() in {
+    "1",
+    "true",
+    "yes",
+    "on",
+}:
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    USE_X_FORWARDED_HOST = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = os.environ.get("DJANGO_SECURE_SSL_REDIRECT", "true").lower() in {
+        "1",
+        "true",
+        "yes",
+        "on",
+    }
+

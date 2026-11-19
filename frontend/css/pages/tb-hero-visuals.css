@@ -47,14 +47,16 @@ body[data-public-page] .hero-section .tb-match-scene,
   animation: tb-team-ring 4.2s ease-in-out infinite;
 }
 
-/* External orbit: avatars travel OUTSIDE the main profile card perimeter. */
+/* External orbit: true circular path OUTSIDE the main profile card perimeter.
+   Must beat tb-homepage-coherence.css (max-width:560 + overflow:hidden). */
 body[data-public-page] .hero-section .tb-match-scene,
 .hero-section .tb-match-scene {
   overflow: visible !important;
-  /* Extra padding so external orbit avatars stay outside the profile card. */
-  padding: 52px 48px 44px;
-  width: min(680px, 100%);
-  max-width: 680px;
+  /* Room for equal-radius 360° orbit outside the profile card. */
+  padding: 56px 52px 52px !important;
+  width: min(700px, 100%) !important;
+  max-width: 700px !important;
+  min-height: 0;
 }
 
 .tb-match-orbit {
@@ -69,6 +71,15 @@ body[data-public-page] .tb-match-profile,
   position: relative;
   z-index: 8;
   overflow: hidden !important; /* keep card interior clean; orbit stays outside */
+  /* Compact card so true outside circle stays on-screen in the hero. */
+  max-width: 300px;
+  width: 100%;
+  justify-self: center;
+}
+
+body[data-public-page] .hero-section .tb-match-profile__photo,
+.hero-section .tb-match-profile__photo {
+  aspect-ratio: 5 / 3 !important;
 }
 
 .tb-match-side {
@@ -1002,6 +1013,12 @@ body[data-public-page] .tb-match-profile__photo img,
 }
 
 @media (max-width: 768px) {
+  body[data-public-page] .hero-section .tb-match-scene,
+  .hero-section .tb-match-scene {
+    padding: 48px 36px 40px;
+    width: min(100%, 560px);
+  }
+
   .tb-hero-visuals {
     padding: 32px 0 40px;
   }

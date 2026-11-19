@@ -8,7 +8,8 @@
 
   var SCENE_SEL = "[data-tb-match-showcase]";
 
-  var ORBIT_PERIOD_MS = 15000;
+  // True 360° circular revolution (equal radius). Keep 14–18s per lap.
+  var ORBIT_PERIOD_MS = 16000;
   var APPROACH_MS = 1000;
   var FADE_MS = 600;
   var ZOOM_IN_MS = 2800;
@@ -248,7 +249,7 @@
     var tablet = window.innerWidth <= 1024;
     var nodeSize = mobile ? 38 : tablet ? 44 : 50;
 
-    // Orbit center = main PROFILE CARD center (not the photo alone).
+    // Orbit centre = main PROFILE CARD centre (not the photo alone).
     var cx = profileRect
       ? profileRect.left - rect.left + profileRect.width / 2
       : rect.width * 0.28;
@@ -256,24 +257,33 @@
       ? profileRect.top - rect.top + profileRect.height / 2
       : rect.height * 0.42;
 
-    // Clearance so avatars travel OUTSIDE the rectangular card edges.
+    // Outside-card clearance (corner of rectangle + avatar half-size + gap).
     var halfW = profileRect ? profileRect.width / 2 : 110;
     var halfH = profileRect ? profileRect.height / 2 : 160;
-    // Mandatory outside clearance: avatars must clear the profile CARD, not sit inside it.
-    var pad = nodeSize / 2 + (mobile ? 22 : tablet ? 26 : 34);
+    var pad = nodeSize / 2 + (mobile ? 16 : tablet ? 18 : 22);
     var clearR = Math.sqrt(halfW * halfW + halfH * halfH) + pad;
-    var rx = clearR * (mobile ? 1.06 : 1.14);
-    var ry = clearR * (mobile ? 0.96 : 1.05);
 
-    // Only shrink if the scene is too small; never shrink below card-clearance.
-    var maxRx = Math.max(clearR, rect.width / 2 - nodeSize / 2 - 6);
-    var maxRy = Math.max(clearR * 0.9, rect.height / 2 - nodeSize / 2 - 6);
-    rx = Math.min(rx, maxRx);
-    ry = Math.min(ry, maxRy);
-    if (rx < clearR) rx = clearR;
-    if (ry < clearR * 0.88) ry = clearR * 0.88;
+    // TRUE CIRCLE: equal horizontal and vertical radius (never elliptical).
+    // Keep just outside the card so the full 360° path stays readable in-hero.
+    var r = clearR * (mobile ? 1.01 : tablet ? 1.02 : 1.03);
 
-    // Approach target remains the portrait frame center.
+    // Prefer fitting inside the scene when the scene is large enough to keep
+    // avatars outside the card. If not, keep clearR and rely on overflow:visible
+    // so the path stays a real circle outside the card (no edge clamping).
+    var inset = nodeSize / 2 + 4;
+    var maxR = Math.min(
+      Math.max(0, cx - inset),
+      Math.max(0, rect.width - cx - inset),
+      Math.max(0, cy - inset),
+      Math.max(0, rect.height - cy - inset)
+    );
+    if (maxR >= clearR) {
+      r = Math.min(r, maxR);
+    } else {
+      r = clearR;
+    }
+
+    // Approach target remains the portrait frame centre.
     var targetX = photoRect
       ? photoRect.left - rect.left + photoRect.width / 2
       : cx;
@@ -288,17 +298,19 @@
       targetY: targetY,
       sceneW: rect.width,
       sceneH: rect.height,
-      rx: rx,
-      ry: ry,
+      r: r,
+      rx: r,
+      ry: r,
       nodeSize: nodeSize,
       maxNodes: mobile ? 3 : 4
     };
   }
 
   function orbitPoint(metrics, angle) {
+    var radius = metrics.r != null ? metrics.r : metrics.rx;
     return {
-      x: metrics.cx + metrics.rx * Math.cos(angle),
-      y: metrics.cy + metrics.ry * Math.sin(angle)
+      x: metrics.cx + radius * Math.cos(angle),
+      y: metrics.cy + radius * Math.sin(angle)
     };
   }
 
@@ -334,14 +346,15 @@
     var point = orbitPoint(metrics, angle);
     var size = metrics.nodeSize * (opts.scale || 1);
     var half = size / 2;
-    var maxX = Math.max(half + 4, (metrics.sceneW || 560) - half - 4);
-    var maxY = Math.max(half + 4, (metrics.sceneH || 420) - half - 4);
-    var x = Math.min(maxX, Math.max(half + 4, point.x));
-    var y = Math.min(maxY, Math.max(half + 4, point.y));
+    // Exact circular coordinates — do not clamp (would flatten the circle).
+    var x = point.x;
+    var y = point.y;
     node.style.width = size + "px";
     node.style.height = size + "px";
     node.style.left = x - half + "px";
     node.style.top = y - half + "px";
+    // Keep photographs upright (position-only orbit; no rotate on the node).
+    node.style.transform = "none";
     node.style.opacity = opts.opacity == null ? "1" : String(opts.opacity);
     node._orbitAngle = angle;
     node._orbitPoint = { x: x, y: y };

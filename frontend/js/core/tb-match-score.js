@@ -259,16 +259,19 @@
     // Clearance so avatars travel OUTSIDE the rectangular card edges.
     var halfW = profileRect ? profileRect.width / 2 : 110;
     var halfH = profileRect ? profileRect.height / 2 : 160;
-    var pad = nodeSize / 2 + (mobile ? 18 : tablet ? 22 : 28);
+    // Mandatory outside clearance: avatars must clear the profile CARD, not sit inside it.
+    var pad = nodeSize / 2 + (mobile ? 22 : tablet ? 26 : 34);
     var clearR = Math.sqrt(halfW * halfW + halfH * halfH) + pad;
-    var rx = clearR * (mobile ? 1.02 : 1.08);
-    var ry = clearR * (mobile ? 0.92 : 0.98);
+    var rx = clearR * (mobile ? 1.06 : 1.14);
+    var ry = clearR * (mobile ? 0.96 : 1.05);
 
-    // Keep ellipse inside the scene with a small inset.
-    var maxRx = Math.max(60, rect.width / 2 - nodeSize / 2 - 8);
-    var maxRy = Math.max(70, rect.height / 2 - nodeSize / 2 - 8);
+    // Only shrink if the scene is too small; never shrink below card-clearance.
+    var maxRx = Math.max(clearR, rect.width / 2 - nodeSize / 2 - 6);
+    var maxRy = Math.max(clearR * 0.9, rect.height / 2 - nodeSize / 2 - 6);
     rx = Math.min(rx, maxRx);
     ry = Math.min(ry, maxRy);
+    if (rx < clearR) rx = clearR;
+    if (ry < clearR * 0.88) ry = clearR * 0.88;
 
     // Approach target remains the portrait frame center.
     var targetX = photoRect

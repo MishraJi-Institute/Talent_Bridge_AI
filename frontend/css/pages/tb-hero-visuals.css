@@ -51,9 +51,10 @@ body[data-public-page] .hero-section .tb-match-scene,
 body[data-public-page] .hero-section .tb-match-scene,
 .hero-section .tb-match-scene {
   overflow: visible !important;
-  padding: 36px 34px 28px;
-  width: min(620px, 100%);
-  max-width: 620px;
+  /* Extra padding so external orbit avatars stay outside the profile card. */
+  padding: 52px 48px 44px;
+  width: min(680px, 100%);
+  max-width: 680px;
 }
 
 .tb-match-orbit {

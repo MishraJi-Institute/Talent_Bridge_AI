@@ -108,6 +108,32 @@ STATIC_PATH_PAGES = {
     "/privacy/": "pages/privacy.html",
     "/terms/": "pages/terms.html",
     "/contact/": "pages/contact.html",
+    "/posting-job/": "pages/posting-job.html",
+    "/categories/": "pages/categories.html",
+    "/customer-stories/": "pages/customer-stories.html",
+    "/trust-center/": "pages/trust-center.html",
+    "/platform-status/": "pages/platform-status.html",
+    "/cookie-preferences/": "pages/cookie-preferences.html",
+    "/ai-audit-center/": "pages/ai-audit-center.html",
+    "/salary-calculator/": "pages/salary-calculator.html",
+    "/remote-work-guide/": "pages/remote-work-guide.html",
+    "/recommended-jobs/": "pages/recommended-jobs.html",
+    "/job-search/": "pages/job-search.html",
+    "/saved-jobs/": "pages/saved-jobs.html",
+    "/applied-jobs/": "pages/applied-jobs.html",
+    "/profile/": "pages/profile.html",
+    "/edit-profile/": "pages/edit-profile.html",
+    "/resume-management/": "pages/resume-management.html",
+    "/resume-builder/": "pages/resume-builder.html",
+    "/manage-jobs/": "pages/manage-jobs.html",
+    "/manage-applications/": "pages/manage-applications.html",
+    "/candidate-search/": "pages/candidate-search.html",
+    "/candidate-details/": "pages/candidate-details.html",
+    "/notifications/": "pages/notifications.html",
+    "/interviews/": "pages/interviews.html",
+    "/employer-profile/": "pages/employer-profile.html",
+    "/company-details/": "pages/company-details.html",
+    "/employer/pending/": "pages/employer-pending.html",
     "/auth/social/google/": "pages/login.html",
     "/accounts/google/login/": "pages/login.html",
     "/accounts/google/login/callback/": "pages/login.html",
@@ -357,13 +383,26 @@ def build():
 
 def _write_pretty_route_indexes():
     """Create /route/index.html redirects for GitHub Pages pretty URLs."""
-    for route_path, target in STATIC_PATH_PAGES.items():
+    routes = dict(STATIC_PATH_PAGES)
+    # Auto-map every public HTML page so /posting-job/ etc. never 404 on Pages.
+    pages_dir = OUTPUT / "pages"
+    if pages_dir.is_dir():
+        for html_file in pages_dir.glob("*.html"):
+            if html_file.name.lower() == "404.html":
+                continue
+            slug = html_file.stem
+            routes.setdefault(f"/{slug}/", f"pages/{html_file.name}")
+
+    for route_path, target in routes.items():
         slug = route_path.strip("/")
         if not slug:
             continue
+        target_path = OUTPUT / target
+        if not target_path.is_file():
+            continue
         dest_dir = OUTPUT / Path(slug)
         dest_dir.mkdir(parents=True, exist_ok=True)
-        relative = os.path.relpath(OUTPUT / target, dest_dir).replace("\\", "/")
+        relative = os.path.relpath(target_path, dest_dir).replace("\\", "/")
         (dest_dir / "index.html").write_text(
             (
                 "<!DOCTYPE html>\n"

@@ -1,16 +1,13 @@
 /* TalentBridge AI auth bridge — dual mode
-   - Local Django (:8000 / :8001): real server auth + Google OAuth (this script exits).
-   - GitHub Pages / static hosts: browser demo auth, no localhost required. */
+   - Local folder Django (:8000 / :8001): real Google OAuth (script exits).
+   - GitHub Pages: Google / email / signup work in-browser demo — no Django needed. */
 (() => {
   const DEMO_SESSION_KEY = "talentbridge.demo.auth.v1";
-  const localHosts = ["localhost", "127.0.0.1", "[::1]", "::1"];
+  const localHosts = new Set(["localhost", "127.0.0.1", "[::1]", "::1"]);
   const host = (window.location.hostname || "").toLowerCase();
   const port = window.location.port || "";
-  const isLocalHost = localHosts.includes(host);
-  const isDjangoLocal =
-    isLocalHost && (port === "8000" || port === "8001");
+  const isDjangoLocal = localHosts.has(host) && (port === "8000" || port === "8001");
 
-  // Local folder usage via Django — leave real login/OAuth alone.
   if (isDjangoLocal) return;
 
   const markedStatic =
@@ -19,8 +16,7 @@
   const isStaticHost =
     window.location.protocol === "file:" ||
     markedStatic ||
-    !isLocalHost ||
-    (isLocalHost && port !== "8000" && port !== "8001");
+    !localHosts.has(host);
 
   if (!isStaticHost) return;
 
@@ -77,68 +73,94 @@
     badge.id = "tb-static-demo-badge";
     badge.setAttribute("role", "status");
     badge.textContent =
-      "GitHub Pages demo — sign-in stays in this browser (no local server)";
+      "GitHub demo sign-in — continues in this browser (no server required)";
     badge.style.cssText =
-      "position:fixed;z-index:9999;left:12px;bottom:12px;max-width:min(340px,calc(100vw - 24px));" +
+      "position:fixed;z-index:9999;left:12px;bottom:12px;max-width:min(360px,calc(100vw - 24px));" +
       "padding:8px 12px;border-radius:999px;background:#102a56;color:#fff;" +
       "font:600 12px/1.35 system-ui,sans-serif;box-shadow:0 8px 24px rgba(16,42,86,.25);";
     document.body.appendChild(badge);
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", ensureDemoBadge);
-  } else {
-    ensureDemoBadge();
+  function wireGoogleButtons() {
+    document.querySelectorAll('form[data-oauth-provider="google"]').forEach((form) => {
+      form.setAttribute("action", "#");
+      const btn = form.querySelector('button[type="submit"], .social-btn');
+      if (btn) {
+        btn.disabled = false;
+        btn.removeAttribute("aria-describedby");
+      }
+      const notice = form.parentElement?.querySelector("#google-oauth-notice");
+      if (notice) notice.remove();
+    });
   }
 
-  document.addEventListener("submit", (event) => {
-    const form = event.target;
-    if (!(form instanceof HTMLFormElement)) return;
+  function boot() {
+    ensureDemoBadge();
+    wireGoogleButtons();
+  }
 
-    if (form.matches("[data-logout-form]")) {
-      event.preventDefault();
-      window.sessionStorage.removeItem(DEMO_SESSION_KEY);
-      window.location.assign(loginHref());
-      return;
-    }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else {
+    boot();
+  }
 
-    if (form.matches("[data-auth-login]")) {
-      event.preventDefault();
-      const email = String(new FormData(form).get("email") || "").trim();
-      const user = makeDemoSession({ email, role: "job_seeker" });
-      if (user) openDashboard(user.role);
-      return;
-    }
+  document.addEventListener(
+    "submit",
+    (event) => {
+      const form = event.target;
+      if (!(form instanceof HTMLFormElement)) return;
 
-    if (form.dataset.oauthProvider === "google") {
-      event.preventDefault();
-      const roleValue =
-        form.querySelector('input[name="role"]')?.value || "job_seeker";
-      const role = roleValue === "employer" ? "employer" : "job_seeker";
-      const user = makeDemoSession({
-        email:
-          role === "employer"
-            ? "demo.employer@talentbridge.local"
-            : "demo.google@talentbridge.local",
-        name: role === "employer" ? "Demo Employer" : "Google Demo User",
-        role,
-        provider: "google-demo",
-      });
-      if (user) openDashboard(user.role);
-      return;
-    }
+      if (form.matches("[data-logout-form]")) {
+        event.preventDefault();
+        event.stopPropagation();
+        window.sessionStorage.removeItem(DEMO_SESSION_KEY);
+        window.location.assign(loginHref());
+        return;
+      }
 
-    if (form.id === "jobSeekerForm" || form.id === "employerForm") {
-      event.preventDefault();
-      const data = new FormData(form);
-      const role = form.id === "employerForm" ? "employer" : "job_seeker";
-      const user = makeDemoSession({
-        email: String(data.get("email") || "").trim(),
-        name: `${data.get("firstName") || ""} ${data.get("lastName") || ""}`,
-        role,
-        provider: "signup-demo",
-      });
-      if (user) openDashboard(user.role);
-    }
-  });
+      if (form.matches("[data-auth-login]")) {
+        event.preventDefault();
+        event.stopPropagation();
+        const email = String(new FormData(form).get("email") || "").trim();
+        const user = makeDemoSession({ email, role: "job_seeker" });
+        if (user) openDashboard(user.role);
+        return;
+      }
+
+      if (form.dataset.oauthProvider === "google") {
+        event.preventDefault();
+        event.stopPropagation();
+        const roleValue =
+          form.querySelector('input[name="role"]')?.value || "job_seeker";
+        const role = roleValue === "employer" ? "employer" : "job_seeker";
+        const user = makeDemoSession({
+          email:
+            role === "employer"
+              ? "demo.employer@talentbridge.local"
+              : "demo.google@talentbridge.local",
+          name: role === "employer" ? "Demo Employer" : "Google Demo User",
+          role,
+          provider: "google-demo",
+        });
+        if (user) openDashboard(user.role);
+        return;
+      }
+
+      if (form.id === "jobSeekerForm" || form.id === "employerForm") {
+        event.preventDefault();
+        event.stopPropagation();
+        const data = new FormData(form);
+        const role = form.id === "employerForm" ? "employer" : "job_seeker";
+        const user = makeDemoSession({
+          email: String(data.get("email") || "").trim(),
+          name: `${data.get("firstName") || ""} ${data.get("lastName") || ""}`,
+          role,
+          provider: "signup-demo",
+        });
+        if (user) openDashboard(user.role);
+      }
+    },
+    true
+  );
 })();

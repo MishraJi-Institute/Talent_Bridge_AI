@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Add company information that helps candidates understand your team and workplace.">
+<title>Company Details | TalentBridge AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base/portal-pages.css">
+  <link rel="stylesheet" href="../css/base/redesign.css">
+<link rel="stylesheet" href="../css/components/site-experience.css">
+  <style id="fix-all-navbar-strikethrough">
+header a,
+header nav a,
+nav a,
+.navbar a,
+.nav-links a,
+.site-header a,
+header a *,
+nav a *,
+.navbar a *,
+.nav-links a *,
+.site-header a * {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    text-decoration-style: none !important;
+}
+</style>
+</head>
+<body>
+<div class="tb-wrap" aria-live="polite">{% if messages %}{% for message in messages %}<div class="tb-alert tb-alert--{{ message.tags|default:'info' }}" role="status">{{ message }}</div>{% endfor %}{% endif %}</div>
+
+<header class="tb-header"><div class="tb-nav"><a class="tb-brand" href="../index.html">TalentBridge AI<span>:</span></a><nav class="tb-links" aria-label="Main navigation"><a href="../index.html">Home</a><a href="job-listings.html">Browse Jobs</a><a href="categories.html">Categories</a><a href="about.html">About</a><a href="help.html">Help</a><a href="login.html">Sign in</a><a class="tb-button" href="signup-role.html">Get started</a></nav></div></header>
+<main><div class="tb-wrap auth-messages" role="status"><p></p></div><section class="tb-hero"><div class="tb-wrap"><span class="tb-eyebrow">EMPLOYER WORKSPACE</span><h1>Tell candidates about your organization.</h1><p>Add company information that helps candidates understand your team and workplace.</p></div></section>
+<section class="tb-content"><div class="tb-wrap">
+<div class="tb-grid">
+<article class="tb-card"><span class="tb-pill">Be specific</span><h2>Describe the work</h2><p>Explain what your organization does, the kinds of teams you build, and the work a new hire may contribute to.</p></article>
+<article class="tb-card"><span class="tb-pill">Help candidates assess fit</span><h2>Share practical details</h2><p>Keep location, work arrangement, website, and industry information current. Only publish details you are authorized to share.</p></article>
+<article class="tb-card"><span class="tb-pill">Build confidence</span><h2>Use accurate information</h2><p>Avoid claims that cannot be verified. A clear, realistic company profile helps candidates make an informed choice.</p></article>
+</div>
+<article class="tb-card" style="margin-top:20px"><div class="tb-row"><div><span class="tb-pill">Example only</span><h2 style="margin-top:8px">Northstar Studio</h2><p>Product design · Bhopal, Madhya Pradesh · Hybrid</p></div><span class="tb-status-pill">Fictional profile</span></div><p>A sample company introduction could explain what the team builds, how it collaborates, and what candidates can expect during the hiring process. Use verified company details in a real profile.</p><div class="tb-demo-record__meta"><span class="tb-pill">Industry: Design &amp; product</span><span class="tb-pill">Location: Bhopal</span><span class="tb-pill">Website: example.test</span></div></article>
+<div class="tb-card" style="margin-top:20px"><form class="tb-form" method="post" action="{% url 'company-details' %}">{% csrf_token %}<label>Company name<input name="company_name" value="{{ company.name|default:'' }}" maxlength="200" autocomplete="organization" required></label><div class="tb-two"><label>Location<input name="location" value="{{ company.location|default:'' }}" maxlength="100" autocomplete="address-level2"></label><label>Industry<input name="industry" value="{{ company.industry|default:'' }}" maxlength="100"></label></div><label>Website<input name="website" type="url" value="{{ company.website|default:'' }}" placeholder="https://"></label><label>Company description<textarea name="description" maxlength="5000" placeholder="Describe your team, mission and what candidates can expect.">{{ company.description|default:'' }}</textarea></label><div class="tb-workspace-actions"><button class="tb-button" type="submit">Save company details</button><a class="tb-button secondary" href="company-signup.html">Create an employer account</a></div></form></div>
+</div></section></main>
+<footer class="tb-footer"><div class="tb-wrap tb-footer-inner"><span>© TalentBridge AI. Built to connect people with opportunity.</span><span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a></span></div></footer>
+<script src="../js/core/site-experience.js"></script>
+  </body></html>

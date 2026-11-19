@@ -1,0 +1,27 @@
+TALENTBRIDGE AI — GOOGLE NOTICE PATCH REPORT
+
+Changes made:
+1. Replaced jobs/middleware.py with a standard-library HTML parser based response
+   filter that removes the smallest notice container containing the legacy
+   Google OAuth setup warning on login/signup pages. It preserves surrounding
+   forms and page layout.
+2. Simplified the login page subtitle so it no longer advertises the OAuth setup
+   warning to ordinary users.
+3. Preserved the existing Google OAuth security behavior. Google sign-in remains
+   disabled until genuine GOOGLE_OAUTH_CLIENT_ID and GOOGLE_OAUTH_CLIENT_SECRET
+   values are supplied privately in the project's .env file.
+4. All original ZIP entries were retained. The SQLite database and other project
+   files were not modified by this patch.
+
+Validation performed here:
+- ZIP archive CRC/integrity check.
+- Python syntax compilation of the patched middleware.
+- Unit-style HTML sanitizer check using nested notice markup; the notice wrapper
+  is removed while the login form and surrounding content remain.
+- Source check confirms the login subtitle no longer contains the old OAuth
+  setup sentence.
+
+Not performed:
+- This package has not been executed on the user's Windows computer.
+- A real Google OAuth login cannot be tested without the user's own Google
+  Cloud OAuth client ID/secret and configured redirect URI.

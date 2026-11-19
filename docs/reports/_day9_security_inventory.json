@@ -1,0 +1,669 @@
+{
+  "project_root": "E:\\Job POrtal\\TalentBridgeAI",
+  "django_version": "5.2.19",
+  "python_version": "3.12.10",
+  "settings": {
+    "DEBUG": false,
+    "ALLOWED_HOSTS": [
+      "localhost",
+      "127.0.0.1",
+      "[::1]"
+    ],
+    "SECRET_KEY_len": 50,
+    "SECRET_KEY_prefix_insecure": false,
+    "MEDIA_ROOT": "E:\\Job POrtal\\TalentBridgeAI\\private_media",
+    "MEDIA_URL": "'/'",
+    "DATA_UPLOAD_MAX_MEMORY_SIZE": 2621440,
+    "FILE_UPLOAD_MAX_MEMORY_SIZE": 2621440,
+    "CSRF_TRUSTED_ORIGINS": [
+      "http://127.0.0.1:8000",
+      "http://127.0.0.1:8001",
+      "http://localhost:8000",
+      "http://localhost:8001"
+    ],
+    "SESSION_COOKIE_SECURE": false,
+    "CSRF_COOKIE_SECURE": false,
+    "SESSION_COOKIE_HTTPONLY": true,
+    "SESSION_COOKIE_SAMESITE": "Lax",
+    "CSRF_COOKIE_HTTPONLY": false,
+    "SECURE_SSL_REDIRECT": false,
+    "SECURE_HSTS_SECONDS": 0,
+    "SECURE_CONTENT_TYPE_NOSNIFF": true,
+    "SECURE_REFERRER_POLICY": "same-origin",
+    "X_FRAME_OPTIONS": "DENY",
+    "MIDDLEWARE": [
+      "django.middleware.security.SecurityMiddleware",
+      "django.contrib.sessions.middleware.SessionMiddleware",
+      "django.middleware.common.CommonMiddleware",
+      "django.middleware.csrf.CsrfViewMiddleware",
+      "django.contrib.auth.middleware.AuthenticationMiddleware",
+      "allauth.account.middleware.AccountMiddleware",
+      "django.contrib.messages.middleware.MessageMiddleware",
+      "django.middleware.clickjacking.XFrameOptionsMiddleware",
+      "jobs.middleware.RemoveObsoleteGoogleOAuthNoticeMiddleware"
+    ],
+    "INSTALLED_APPS": [
+      "django.contrib.admin",
+      "django.contrib.auth",
+      "django.contrib.contenttypes",
+      "django.contrib.sessions",
+      "django.contrib.messages",
+      "django.contrib.staticfiles",
+      "django.contrib.sites",
+      "allauth",
+      "allauth.account",
+      "allauth.socialaccount",
+      "allauth.socialaccount.providers.google",
+      "jobs.apps.JobsConfig"
+    ],
+    "AUTH_PASSWORD_VALIDATORS_count": 4,
+    "EMAIL_BACKEND": "django.core.mail.backends.console.EmailBackend",
+    "DATABASE_ENGINE": "django.db.backends.sqlite3",
+    "DATABASE_NAME": "E:\\Job POrtal\\TalentBridgeAI\\database\\TalentBridgeAI.sqlite3"
+  },
+  "env_presence": {
+    "DJANGO_SECRET_KEY": "SET(len=50)",
+    "DJANGO_DEBUG": "SET(len=4)",
+    "DJANGO_ENV": "UNSET",
+    "DJANGO_ALLOWED_HOSTS": "SET(len=25)",
+    "GOOGLE_CLIENT_ID": "UNSET",
+    "GOOGLE_CLIENT_SECRET": "UNSET",
+    "EMAIL_HOST": "UNSET",
+    "EMAIL_HOST_PASSWORD": "UNSET",
+    "DB_PASSWORD": "UNSET",
+    "DB_USER": "UNSET",
+    "DB_NAME": "SET(len=14)",
+    "DB_ENGINE": "SET(len=6)"
+  },
+  "upload_fields": [
+    {
+      "model": "jobs.Company",
+      "field": "logo",
+      "class": "ImageField",
+      "upload_to": "company_logos"
+    },
+    {
+      "model": "jobs.Profile",
+      "field": "resume",
+      "class": "FileField",
+      "upload_to": "resumes/"
+    }
+  ],
+  "hardcoded_pattern_hits": [
+    {
+      "file": "tools/bootstrap_env.py",
+      "line": 13,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "if not any(line.strip().startswith(\"DJANGO_SECRET_KEY"
+    },
+    {
+      "file": "tools/bootstrap_env.py",
+      "line": 17,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "handle.write(\"DJANGO_SECRET_KEY"
+    },
+    {
+      "file": "tools/windows_manager.py",
+      "line": 226,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "f.write('\\n# Generated once locally; do not share this file.\\nDJANGO_SECRET_KEY"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 51,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "GOOGLE_OAUTH_CLIENT_SECRET"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 84,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 113,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 175,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 492,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "GOOGLE_OAUTH_CLIENT_SECRET"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 569,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 707,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "GOOGLE_OAUTH_CLIENT_SECRET"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 720,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "GOOGLE_OAUTH_CLIENT_SECRET"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 737,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "GOOGLE_OAUTH_CLIENT_SECRET"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 765,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "GOOGLE_OAUTH_CLIENT_SECRET"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 792,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "GOOGLE_OAUTH_CLIENT_SECRET"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 801,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 935,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 1169,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 1194,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 1212,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 1257,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 1274,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 1347,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "candidate"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 1576,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 1580,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 1586,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 1673,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 1727,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 1745,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 1765,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 1772,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 1787,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 1804,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 1820,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 1885,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 1898,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 1934,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 2056,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 2112,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 2165,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 2219,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 2251,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 2269,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 2349,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 2425,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 2434,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 2461,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 2498,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 2532,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 2585,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 2598,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 2719,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 2755,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 2813,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 2908,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 2932,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "owner"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 2958,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "employer"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 2975,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "seeker"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 2980,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 2985,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/tests.py",
+      "line": 2994,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/test_acceptance_flows.py",
+      "line": 23,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/test_acceptance_flows.py",
+      "line": 104,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/test_acceptance_flows.py",
+      "line": 215,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/test_acceptance_flows.py",
+      "line": 289,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/test_acceptance_flows.py",
+      "line": 305,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/test_acceptance_flows.py",
+      "line": 323,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/test_acceptance_flows.py",
+      "line": 353,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/test_email_login_backend.py",
+      "line": 14,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "username"
+    },
+    {
+      "file": "backend/legacy-django/jobs/test_email_login_backend.py",
+      "line": 17,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "username"
+    },
+    {
+      "file": "backend/legacy-django/jobs/test_email_login_backend.py",
+      "line": 21,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "None, username"
+    },
+    {
+      "file": "backend/legacy-django/jobs/test_email_login_backend.py",
+      "line": 27,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "username"
+    },
+    {
+      "file": "backend/legacy-django/jobs/test_email_login_backend.py",
+      "line": 30,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "username"
+    },
+    {
+      "file": "backend/legacy-django/jobs/test_email_login_backend.py",
+      "line": 34,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "None, username"
+    },
+    {
+      "file": "backend/legacy-django/jobs/test_email_login_backend.py",
+      "line": 40,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "username"
+    },
+    {
+      "file": "backend/legacy-django/jobs/test_email_login_backend.py",
+      "line": 43,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "None, username"
+    },
+    {
+      "file": "backend/legacy-django/jobs/test_new_quality_features.py",
+      "line": 22,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/test_new_quality_features.py",
+      "line": 32,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/test_new_quality_features.py",
+      "line": 131,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/test_new_quality_features.py",
+      "line": 163,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    },
+    {
+      "file": "backend/legacy-django/jobs/test_new_quality_features.py",
+      "line": 179,
+      "kind": "hardcoded_assign_pattern",
+      "lhs": "password"
+    }
+  ],
+  "hardcoded_hit_count": 159,
+  "code_risk_counts": {
+    "mark_safe": 4,
+    "safe_filter": 1,
+    "raw_sql": 2,
+    "csrf_exempt": 3,
+    "open_redirect_next": 4
+  },
+  "code_risk": {
+    "mark_safe": [
+      {
+        "file": "tools/_day9_security_inventory.py",
+        "line": 167,
+        "snip": "# mark_safe / |safe / RawSQL"
+      },
+      {
+        "file": "tools/_day9_security_inventory.py",
+        "line": 168,
+        "snip": "code_risk = {\"mark_safe\": [], \"safe_filter\": [], \"raw_sql\": [], \"csrf_exempt\": [], \"open_redirect_next\": []}"
+      },
+      {
+        "file": "tools/_day9_security_inventory.py",
+        "line": 177,
+        "snip": "if \"mark_safe\" in line or \"SafeString\" in line:"
+      },
+      {
+        "file": "tools/_day9_security_inventory.py",
+        "line": 178,
+        "snip": "code_risk[\"mark_safe\"].append({\"file\": rel, \"line\": i, \"snip\": line.strip()[:120]})"
+      }
+    ],
+    "safe_filter": [
+      {
+        "file": "frontend/pages/account-security.html",
+        "line": 48,
+        "snip": "{% if form.new_password1.help_text %}<div class=\"tb-small\">{{ form.new_password1.help_text|safe }}</div>{% endif %}"
+      }
+    ],
+    "raw_sql": [
+      {
+        "file": "tools/_day9_security_inventory.py",
+        "line": 167,
+        "snip": "# mark_safe / |safe / RawSQL"
+      },
+      {
+        "file": "tools/_day9_security_inventory.py",
+        "line": 179,
+        "snip": "if \"RawSQL\" in line or \"cursor.execute\" in line or \".raw(\" in line:"
+      }
+    ],
+    "csrf_exempt": [
+      {
+        "file": "tools/_day9_security_inventory.py",
+        "line": 168,
+        "snip": "code_risk = {\"mark_safe\": [], \"safe_filter\": [], \"raw_sql\": [], \"csrf_exempt\": [], \"open_redirect_next\": []}"
+      },
+      {
+        "file": "tools/_day9_security_inventory.py",
+        "line": 181,
+        "snip": "if \"csrf_exempt\" in line:"
+      },
+      {
+        "file": "tools/_day9_security_inventory.py",
+        "line": 182,
+        "snip": "code_risk[\"csrf_exempt\"].append({\"file\": rel, \"line\": i, \"snip\": line.strip()[:120]})"
+      }
+    ],
+    "open_redirect_next": [
+      {
+        "file": "backend/legacy-django/jobs/views.py",
+        "line": 2033,
+        "snip": "return redirect(next_url or settings.LOGIN_REDIRECT_URL)"
+      },
+      {
+        "file": "backend/legacy-django/jobs/views.py",
+        "line": 2076,
+        "snip": "return redirect(next_url or settings.LOGIN_REDIRECT_URL)"
+      },
+      {
+        "file": "backend/legacy-django/jobs/views.py",
+        "line": 2192,
+        "snip": "return redirect(next_url)"
+      },
+      {
+        "file": "tools/_day9_security_inventory.py",
+        "line": 183,
+        "snip": "if \"redirect(\" in line and (\"next\" in line or \"request.GET.get\" in line):"
+      }
+    ]
+  },
+  "dotenv_example_exists": true,
+  "dotenv_exists": true,
+  "django_secret_file_exists": false,
+  "private_media_exists": true,
+  "git_dir_exists": false
+}

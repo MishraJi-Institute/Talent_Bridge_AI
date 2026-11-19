@@ -1,0 +1,48 @@
+# Python virtual environments and bytecode
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+
+# Local and generated data
+*.sqlite3
+staticfiles/
+media/
+/site/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Editor and OS files
+.vscode/*
+!.vscode/tasks.json
+.DS_Store
+Thumbs.db
+
+# User uploads and local runtime files
+private_media/
+*.log
+*.backup
+
+# Local/private runtime files
+.env
+.django_secret_key
+legacy-django/.venv/
+logs/
+backups/
+releases/
+private_media/
+*.sqlite3
+*.db
+.talentbridge_django.pid
+.talentbridge_django.port
+.talentbridge_port_bridge.pid
+
+# Compatibility junctions (canonical trees are frontend/ and backend/)
+/css/
+/js/
+/images/
+/pages/
+/legacy-django/

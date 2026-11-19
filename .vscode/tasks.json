@@ -1,0 +1,44 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "TalentBridgeAI: auto-start Django",
+      "type": "shell",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}\\.vscode\\start-talentbridge.ps1"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": false,
+        "focus": false
+      },
+      "detail": "Starts managed Django through the lifecycle manager, which selects a safe port and waits for HTTP health checks."
+    },
+    {
+      "label": "TalentBridgeAI: check Django",
+      "type": "shell",
+      "command": "cmd.exe",
+      "args": [
+        "/c",
+        "scripts\\diagnostics\\CHECK_DJANGO_SERVER.bat"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

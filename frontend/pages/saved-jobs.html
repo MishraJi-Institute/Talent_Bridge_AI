@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Review and manage the jobs you have saved to your TalentBridge AI account.">
+<title>Saved Jobs | TalentBridge AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base/portal-pages.css">
+  <link rel="stylesheet" href="../css/base/redesign.css">
+<link rel="stylesheet" href="../css/components/site-experience.css">
+  
+<style>
+.backend-panel{max-width:1120px;margin:28px auto;padding:24px;background:#fff;border:1px solid #e5eaf2;border-radius:18px;box-shadow:0 8px 28px rgba(20,40,80,.06);color:#17233d}
+.backend-panel h2{margin:0 0 16px;font-size:1.45rem}.backend-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.backend-card{border:1px solid #e5eaf2;border-radius:12px;padding:16px;background:#fbfdff}.backend-card p{margin:7px 0;line-height:1.5}.backend-muted{color:#64748b;font-size:.92rem}.backend-btn{display:inline-block;border:0;border-radius:9px;padding:10px 14px;background:#145cff;color:#fff;text-decoration:none;font-weight:650;cursor:pointer}.backend-btn.secondary{background:#eef4ff;color:#145cff}.backend-field{display:block;width:100%;max-width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid #cbd5e1;border-radius:8px;margin:6px 0 12px}.backend-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.backend-table-wrap{overflow-x:auto}.backend-table{width:100%;border-collapse:collapse;min-width:600px}.backend-table th,.backend-table td{text-align:left;padding:12px;border-bottom:1px solid #e5eaf2}.backend-empty{padding:18px;border-radius:12px;background:#f8fafc;color:#64748b}
+@media(max-width:600px){.backend-panel{margin:16px 10px;padding:16px}.backend-row>*{max-width:100%}}
+</style>
+
+<style id="fix-all-navbar-strikethrough">
+header a,
+header nav a,
+nav a,
+.navbar a,
+.nav-links a,
+.site-header a,
+header a *,
+nav a *,
+.navbar a *,
+.nav-links a *,
+.site-header a * {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    text-decoration-style: none !important;
+}
+</style>
+</head>
+<body>
+<header class="tb-header"><div class="tb-nav"><a class="tb-brand" href="../index.html">TalentBridge AI<span>:</span></a><nav class="tb-links" aria-label="Main navigation"><a href="/dashboard/">Dashboard</a><a href="/jobs/">Browse Jobs</a><a href="/profile/">Profile</a><a href="/resume-management/">Resume Library</a></nav></div></header>
+<main><section class="tb-hero"><div class="tb-wrap"><span class="tb-eyebrow">YOUR JOB SEARCH</span><h1>Keep promising opportunities close.</h1><p>Save a role while you compare options, then come back when you are ready to take the next step.</p></div></section>
+<section class="tb-content tb-workspace-content"><div class="tb-wrap">
+{% if not saved_jobs %}
+<div class="tb-demo-notice" role="note"><span class="tb-demo-notice__icon" aria-hidden="true">i</span><div><strong>Sample shortlist · fictional preview data</strong>These examples are not live vacancies or account-saved jobs. They appear only while your account shortlist is empty.</div></div>
+<div class="tb-demo-stats" aria-label="Sample shortlist summary"><div class="tb-demo-stat"><strong>3</strong><span>Sample roles</span></div><div class="tb-demo-stat"><strong>2</strong><span>Remote or hybrid</span></div><div class="tb-demo-stat"><strong>3</strong><span>Career fields</span></div><div class="tb-demo-stat"><strong>Demo</strong><span>Static preview</span></div></div>
+<div class="tb-demo-records" aria-label="Example saved jobs">
+<article class="tb-demo-record"><div class="tb-demo-record__top"><div><h2>Frontend Developer</h2><p>Google · Remote</p></div><span class="tb-status-pill tb-status-pill--green">Sample saved</span></div><p>Build accessible web experiences with a product and engineering team.</p><div class="tb-demo-record__meta"><span class="tb-pill">JavaScript</span><span class="tb-pill">React</span><span class="tb-pill">₹8–14 LPA</span></div><p><a href="job-detail.html?role=frontend-developer">Review sample role →</a></p></article>
+<article class="tb-demo-record"><div class="tb-demo-record__top"><div><h2>UI/UX Designer</h2><p>Northstar Studio · Hybrid · Bhopal</p></div><span class="tb-status-pill tb-status-pill--green">Sample saved</span></div><p>Shape product journeys from user research through high-fidelity design.</p><div class="tb-demo-record__meta"><span class="tb-pill">Figma</span><span class="tb-pill">UI/UX</span><span class="tb-pill">₹6–10 LPA</span></div><p><a href="job-detail.html?role=ui-ux-designer">Review sample role →</a></p></article>
+<article class="tb-demo-record"><div class="tb-demo-record__top"><div><h2>Business Analyst</h2><p>ClearPath Consulting · Hybrid · Mumbai</p></div><span class="tb-status-pill tb-status-pill--green">Sample saved</span></div><p>Gather requirements, analyze information, and help teams improve processes.</p><div class="tb-demo-record__meta"><span class="tb-pill">Analysis</span><span class="tb-pill">Reporting</span><span class="tb-pill">₹7–11 LPA</span></div><p><a href="job-detail.html?role=business-analyst">Review sample role →</a></p></article>
+</div>
+<div class="tb-workspace-actions" style="margin-top:20px"><a class="tb-button" href="/jobs/">Explore opportunities <span aria-hidden="true">→</span></a><a class="tb-button secondary" href="/job-search/">Search by skill or location</a></div>
+<div class="tb-workflow-grid"><article class="tb-workflow-card"><span class="tb-workflow-card__number">01</span><h3>Explore roles</h3><p>Start with a job title, a skill you enjoy using, or a location that works for you.</p></article><article class="tb-workflow-card"><span class="tb-workflow-card__number">02</span><h3>Compare the details</h3><p>Review each role's responsibilities, work arrangement and listed qualifications.</p></article><article class="tb-workflow-card"><span class="tb-workflow-card__number">03</span><h3>Keep your next step clear</h3><p>Save a live role from its job page; account-saved jobs are listed separately below.</p></article></div>
+{% endif %}
+<section class="backend-panel" aria-labelledby="saved-jobs-heading"><h2 id="saved-jobs-heading">Your account-saved jobs</h2>
+{% if messages %}{% for message in messages %}<p class="backend-empty" role="status">{{ message }}</p>{% endfor %}{% endif %}
+{% if saved_jobs %}<div class="backend-grid">{% for saved in saved_jobs %}<article class="backend-card"><h3>{{ saved.job.title }}</h3><p>{{ saved.job.company.name }} · {{ saved.job.location }}</p><p class="backend-muted">{{ saved.job.get_job_type_display }} · {{ saved.job.work_mode }}</p><div class="backend-row"><a class="backend-btn" href="{% url 'job_detail' saved.job.id %}">View job</a><form method="post" action="{% url 'toggle-saved-job' saved.job.id %}">{% csrf_token %}<input type="hidden" name="next" value="/saved-jobs/"><button class="backend-btn secondary" type="submit">Remove saved job</button></form></div></article>{% endfor %}</div>{% else %}<div class="backend-empty">There are no account-saved jobs yet. <a href="{% url 'jobs' %}">Browse live jobs</a> and save a role to add it here. Sample examples above are fictional and are not saved.</div>{% endif %}</section>
+</div></section></main>
+<footer class="tb-footer"><div class="tb-wrap tb-footer-inner"><span>© TalentBridge AI. Built to connect people with opportunity.</span><span><a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · <a href="/contact/">Contact</a></span></div></footer>
+<script src="../js/core/site-experience.js"></script>
+</body></html>

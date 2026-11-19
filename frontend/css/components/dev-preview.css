@@ -1,0 +1,54 @@
+:root {
+  color-scheme: light;
+  font-family: Inter, "Segoe UI", sans-serif;
+  color: #17233c;
+  background: #f3f6fb;
+}
+
+* { box-sizing: border-box; }
+
+body { margin: 0; min-height: 100vh; }
+
+.preview-shell {
+  width: min(100% - 32px, 1040px);
+  margin: 48px auto;
+}
+
+.preview-heading {
+  padding: 28px 32px;
+  color: #fff;
+  background: linear-gradient(120deg, #102d54, #176b83);
+  border-radius: 18px;
+  box-shadow: 0 16px 38px #12345120;
+}
+
+.brand { color: #fff; font-size: 19px; font-weight: 750; text-decoration: none; }
+.brand span { color: #6de0cf; }
+.mode-badge { float: right; padding: 7px 11px; border: 1px solid #ffffff60; border-radius: 999px; font-size: 12px; }
+h1 { margin: 34px 0 8px; font-size: clamp(30px, 5vw, 42px); }
+.preview-heading p { margin: 0; color: #d7e8f4; }
+
+.status-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 18px 0; }
+.status-card, .error-card { padding: 20px; background: #fff; border: 1px solid #e1e8f1; border-radius: 14px; }
+.status-card h2, .error-card h2 { margin: 0 0 12px; color: #68758a; font-size: 13px; font-weight: 650; text-transform: uppercase; letter-spacing: .06em; }
+.status-value { display: block; margin: 0; color: #17233c; font-size: 16px; font-weight: 650; overflow-wrap: anywhere; }
+.status-value[data-state="ok"] { color: #16835d; }
+.status-value[data-state="error"] { color: #bd3348; }
+.error-card { border-left: 4px solid #20a879; }
+.error-card.has-errors { border-left-color: #d94d5e; }
+.error-card ul { margin: 0; padding-left: 20px; }
+.error-card li + li { margin-top: 8px; }
+footer { display: flex; justify-content: space-between; gap: 12px; padding: 20px 4px; color: #68758a; font-size: 13px; }
+footer a { color: #176b83; font-weight: 650; }
+
+@media (max-width: 720px) {
+  .preview-shell { margin: 20px auto; }
+  .preview-heading { padding: 22px; }
+  .status-grid { grid-template-columns: 1fr 1fr; }
+  footer { flex-direction: column; }
+}
+
+@media (max-width: 480px) {
+  .status-grid { grid-template-columns: 1fr; }
+  .mode-badge { font-size: 10px; }
+}

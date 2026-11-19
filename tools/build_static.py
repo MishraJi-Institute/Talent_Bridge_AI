@@ -1,0 +1,304 @@
+from pathlib import Path
+import os
+import re
+import shutil
+from urllib.parse import urlsplit
+
+
+ROOT = Path(__file__).resolve().parents[1]  # repo root (script lives in tools/)
+OUTPUT = ROOT / "site"
+# Repo-root names remain the static publish layout. After Step 1 organization these
+# paths are compatibility junctions into frontend/ (pages, css, js, assets/...).
+FRONTEND = ROOT / "frontend"
+PUBLIC_DIR_MAP = {
+    "css": FRONTEND / "css",
+    "js": FRONTEND / "js",
+    "pages": FRONTEND / "pages",
+    "images": FRONTEND / "assets" / "images",
+    "videos": FRONTEND / "assets" / "videos",
+}
+STATIC_ROUTE_PAGES = {
+    "home": "index.html",
+    "signup": "pages/signup-role.html",
+    "company-signup": "pages/company-signup.html",
+    "employer_signup": "pages/company-signup.html",
+    "jobseeker_signup": "pages/jobseeker-signup.html",
+    "jobseeker_signup_page": "pages/jobseeker-signup.html",
+    "employer_signup_page": "pages/company-signup.html",
+    "employer": "pages/employer.html",
+    "employee": "pages/employee.html",
+    "login": "pages/login.html",
+    "login_page": "pages/login.html",
+    "pricing": "pages/pricing.html",
+    "posting-job": "pages/posting-job.html",
+    "create_job": "pages/posting-job.html",
+    "companies": "pages/companies.html",
+    "candidate-search": "pages/candidate-search.html",
+    "dashboard-profile-save": "pages/dashboard/jdashboard.html",
+    "edit-job": "pages/manage-jobs.html",
+    "resume_delete": "pages/resume-management.html",
+    "resume_preview": "pages/resume-management.html",
+    "terms": "pages/terms.html",
+    "privacy": "pages/privacy.html",
+    "about": "pages/about.html",
+    "contact": "pages/contact.html",
+    "contact_submit": "pages/contact.html",
+    "help": "pages/help.html",
+    "faq": "pages/faq.html",
+    "categories": "pages/categories.html",
+    "jobs": "pages/job-listings.html",
+    "job_detail": "pages/job-detail.html",
+    "apply_job": "pages/application-form.html",
+    "application-success": "pages/application-success.html",
+    "saved-jobs": "pages/saved-jobs.html",
+    "toggle-saved-job": "pages/saved-jobs.html",
+    "applied-jobs": "pages/applied-jobs.html",
+    "profile": "pages/profile.html",
+    "edit-profile": "pages/edit-profile.html",
+    "account-security": "pages/account-security.html",
+    "company-details": "pages/company-details.html",
+    "resume-management": "pages/resume-management.html",
+    "resume-builder": "pages/resume-builder.html",
+    "resume_download": "pages/resume-management.html",
+    "manage-jobs": "pages/manage-jobs.html",
+    "toggle-job-active": "pages/manage-jobs.html",
+    "manage-applications": "pages/manage-applications.html",
+    "update-application-status": "pages/manage-applications.html",
+    "candidate-details": "pages/candidate-details.html",
+    "notifications": "pages/notifications.html",
+    "interviews": "pages/interviews.html",
+    "admin-dashboard": "pages/admin-dashboard.html",
+    "approve-company": "pages/admin-dashboard.html",
+    "employer_pending": "pages/employer-pending.html",
+    "forgot-password": "pages/forgot-password.html",
+    "password-reset": "pages/password-reset.html",
+    "password-reset-confirm": "pages/password-reset-confirm.html",
+    "password-reset-complete": "pages/password-reset-complete.html",
+    "logout": "pages/login.html",
+    "social-login-start": "pages/login.html",
+    "socialaccount_signup": "pages/socialaccount/signup.html",
+    "admin:index": "pages/admin-dashboard.html",
+}
+STATIC_PATH_PAGES = {
+    "/dashboard/": "pages/dashboard/jdashboard.html",
+    "/companies/": "pages/companies.html",
+    "/login/": "pages/login.html",
+    "/jobs/": "pages/job-listings.html",
+    "/jobseaker/": "pages/jobseaker.html",
+    "/signup/job-seeker/": "pages/jobseeker-signup.html",
+    "/signup/employer/": "pages/company-signup.html",
+    "/forgot-password/": "pages/forgot-password.html",
+    "/password-reset/": "pages/password-reset.html",
+    "/help/": "pages/help.html",
+    "/privacy/": "pages/privacy.html",
+    "/terms/": "pages/terms.html",
+    "/contact/": "pages/contact.html",
+}
+TEMPLATE_TOKEN = re.compile(r"(\{%.*?%\}|{{.*?}})", re.DOTALL)
+STATIC_TEMPLATE_VALUES = {
+    "active_job_count": "—",
+    "approved_company_count": "—",
+    "candidate_count": "—",
+}
+
+
+def _static_link(target, from_page):
+    destination = OUTPUT / target
+    relative = os.path.relpath(destination, (OUTPUT / from_page).parent)
+    return relative.replace("\\", "/")
+
+
+def _static_condition(expression):
+    expression = expression.strip()
+    if expression == "validlink":
+        return True
+    # The static preview cannot inspect the server's OAuth credentials. Keep
+    # provider buttons active so demo-forms.js can forward them to Django,
+    # where the live configuration is checked before OAuth starts.
+    if expression == "google_login_enabled":
+        return True
+    if expression == "demo_role":
+        return True
+    if expression.lower() in {"true", "1"}:
+        return True
+    if expression.startswith("not "):
+        return not _static_condition(expression[4:])
+    return False
+
+
+def _render_static_preview(text, from_page):
+    output = []
+    stack = []
+    visible = True
+
+    for token in TEMPLATE_TOKEN.split(text):
+        if not token:
+            continue
+        if token.startswith("{{"):
+            if visible:
+                output.append(STATIC_TEMPLATE_VALUES.get(token[2:-2].strip(), ""))
+            continue
+        if not token.startswith("{%"):
+            if visible:
+                output.append(token)
+            continue
+
+        tag = token[2:-2].strip()
+        command, _, argument = tag.partition(" ")
+        argument = argument.strip()
+        if command == "if":
+            condition = _static_condition(argument)
+            stack.append({"kind": "if", "parent": visible, "matched": condition})
+            visible = visible and condition
+        elif command == "elif":
+            if not stack or stack[-1]["kind"] != "if":
+                raise RuntimeError(f"Unmatched Django elif tag in {from_page}")
+            frame = stack[-1]
+            condition = _static_condition(argument)
+            visible = frame["parent"] and not frame["matched"] and condition
+            frame["matched"] = frame["matched"] or condition
+        elif command == "else":
+            if not stack or stack[-1]["kind"] != "if":
+                raise RuntimeError(f"Unmatched Django else tag in {from_page}")
+            frame = stack[-1]
+            visible = frame["parent"] and not frame["matched"]
+            frame["matched"] = True
+        elif command == "endif":
+            if not stack or stack[-1]["kind"] != "if":
+                raise RuntimeError(f"Unmatched Django endif tag in {from_page}")
+            visible = stack.pop()["parent"]
+        elif command == "for":
+            stack.append({"kind": "for", "parent": visible})
+            visible = False
+        elif command == "empty":
+            if not stack or stack[-1]["kind"] != "for":
+                raise RuntimeError(f"Unmatched Django empty tag in {from_page}")
+            visible = stack[-1]["parent"]
+        elif command == "endfor":
+            if not stack or stack[-1]["kind"] != "for":
+                raise RuntimeError(f"Unmatched Django endfor tag in {from_page}")
+            visible = stack.pop()["parent"]
+        elif command == "with":
+            stack.append({"kind": "with", "parent": visible})
+        elif command == "endwith":
+            if not stack or stack[-1]["kind"] != "with":
+                raise RuntimeError(f"Unmatched Django endwith tag in {from_page}")
+            visible = stack.pop()["parent"]
+        elif command == "url":
+            if visible:
+                match = re.match(r"""['"]([^'"]+)['"]""", argument)
+                if not match or match.group(1) not in STATIC_ROUTE_PAGES:
+                    raise RuntimeError(f"Unsupported Django URL tag in {from_page}: {tag}")
+                output.append(_static_link(STATIC_ROUTE_PAGES[match.group(1)], from_page))
+        elif command == "static":
+            if visible:
+                match = re.fullmatch(r"""['"]([^'"]+)['"]""", argument)
+                if not match:
+                    raise RuntimeError(f"Unsupported Django static tag in {from_page}: {tag}")
+                asset = Path(match.group(1))
+                if asset.is_absolute() or ".." in asset.parts:
+                    raise RuntimeError(f"Invalid Django static asset in {from_page}: {tag}")
+                if asset.parts and asset.parts[0] in PUBLIC_DIR_MAP:
+                    mapped = PUBLIC_DIR_MAP[asset.parts[0]] / Path(*asset.parts[1:])
+                    target = asset.as_posix()
+                    found = mapped.is_file()
+                else:
+                    matches = []
+                    for directory, src_root in PUBLIC_DIR_MAP.items():
+                        candidate = src_root / asset
+                        if candidate.is_file():
+                            matches.append(f"{directory}/{asset.as_posix()}")
+                    if len(matches) != 1:
+                        raise RuntimeError(f"Could not uniquely resolve Django static asset in {from_page}: {tag}")
+                    target = matches[0]
+                    found = True
+                if not found:
+                    raise RuntimeError(f"Missing Django static asset in {from_page}: {tag}")
+                output.append(_static_link(target, from_page))
+        elif command not in {"csrf_token", "load", "block", "endblock"}:
+            raise RuntimeError(f"Unsupported Django template tag in {from_page}: {tag}")
+
+    if stack:
+        raise RuntimeError(f"Unclosed Django template block in {from_page}")
+
+    rendered = "".join(output)
+
+    def rewrite_path(match):
+        prefix, quote, path, _ = match.groups()
+        route = urlsplit(path)
+        target = STATIC_PATH_PAGES.get(route.path)
+        if target is None:
+            return match.group(0)
+        suffix = f"?{route.query}" if route.query else ""
+        if route.fragment:
+            suffix += f"#{route.fragment}"
+        return f"{prefix}{quote}{_static_link(target, from_page)}{suffix}{quote}"
+
+    return re.sub(
+        r"""((?:href|action)\s*=\s*)(["'])(/[^"']*)(\2)""",
+        lambda match: rewrite_path(match),
+        rendered,
+        flags=re.IGNORECASE,
+    )
+
+
+def build():
+    # `site/` is generated output. Remove stale files before copying current sources,
+    # so deleted/renamed assets and templates cannot linger in the static preview.
+    if OUTPUT.exists():
+        shutil.rmtree(OUTPUT)
+    OUTPUT.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(FRONTEND / "index.html", OUTPUT / "index.html")
+    favicon_src = FRONTEND / "assets" / "images" / "talentbridge-mark.svg"
+    if favicon_src.is_file():
+        shutil.copy2(favicon_src, OUTPUT / "favicon.svg")
+    for directory, source in PUBLIC_DIR_MAP.items():
+        if source.is_dir():
+            shutil.copytree(source, OUTPUT / directory, dirs_exist_ok=True)
+    shutil.copy2(FRONTEND / "pages" / "404.html", OUTPUT / "404.html")
+    for html_file in OUTPUT.rglob("*.html"):
+        text = html_file.read_text(encoding="utf-8-sig")
+        from_page = html_file.relative_to(OUTPUT)
+        text = _render_static_preview(text, from_page)
+        if re.search(r"\{%|{{", text):
+            raise RuntimeError(f"Unrendered Django template syntax in {html_file.relative_to(OUTPUT)}")
+
+        relative_stylesheet = Path(
+            *([".."] * len(from_page.parent.parts)), "css", "site-experience.css"
+        )
+        relative_script = Path(
+            *([".."] * len(from_page.parent.parts)), "js", "site-experience.js"
+        )
+        relative_favicon = Path(
+            *([".."] * len(from_page.parent.parts)), "favicon.svg"
+        )
+        if 'rel="icon"' not in text and "rel='icon'" not in text:
+            favicon = f'<link rel="icon" type="image/svg+xml" href="{relative_favicon.as_posix()}">\n'
+            text = re.sub(r"</head>", favicon + "</head>", text, count=1, flags=re.IGNORECASE)
+        if "site-experience.css" not in text:
+            stylesheet = f'<link rel="stylesheet" href="{relative_stylesheet.as_posix()}">\n'
+            text = re.sub(r"</head>", stylesheet + "</head>", text, count=1, flags=re.IGNORECASE)
+        if "site-experience.js" not in text:
+            script = f'<script src="{relative_script.as_posix()}"></script>\n'
+            text = re.sub(r"</body>", script + "</body>", text, count=1, flags=re.IGNORECASE)
+
+        if "</body>" in text and "js/core/demo-forms.js" not in text:
+            relative_script = Path("js/core/demo-forms.js")
+            script_path = Path(
+                *([".."] * len(from_page.parent.parts)), relative_script
+            )
+            text = text.replace("</body>", f'<script src="{script_path.as_posix()}"></script>\n</body>')
+            html_file.write_text(text, encoding="utf-8")
+        else:
+            html_file.write_text(text, encoding="utf-8")
+
+    # Custom domain for GitHub Pages (committed at repo root; copied into publish output).
+    cname_src = ROOT / "CNAME"
+    if cname_src.is_file():
+        shutil.copy2(cname_src, OUTPUT / "CNAME")
+
+    print(f"Static site built in {OUTPUT.relative_to(ROOT)}")
+
+
+if __name__ == "__main__":
+    build()

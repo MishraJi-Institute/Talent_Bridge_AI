@@ -1,0 +1,18 @@
+﻿{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}TalentBridge Control Center{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">
+  <a href="{% url 'admin:index' %}">
+    <span class="tb-logo">TB</span>
+    TalentBridge <span class="tb-accent">Control Center</span>
+  </a>
+</h1>
+{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'jobs/admin.css' %}">
+{% endblock %}

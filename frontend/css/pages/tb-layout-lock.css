@@ -1,0 +1,90 @@
+/* Light homepage layout guard — preserve balanced two-column hero */
+
+.hero-section {
+  display: block !important;
+  overflow: visible !important;
+}
+
+.hero-section > .container {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr) !important;
+  width: min(1200px, calc(100% - 48px)) !important;
+  max-width: 1200px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  gap: clamp(20px, 3vw, 40px) !important;
+  align-items: start !important;
+}
+
+.hero-section .left-column,
+.hero-section .right-column {
+  min-width: 0 !important;
+  max-width: 100% !important;
+  overflow: visible !important;
+}
+
+.hero-section .left-column {
+  text-align: left !important;
+}
+
+.hero-section .left-column h1,
+.hero-section .left-column .eyebrow,
+.hero-section .description,
+.hero-section .cta-group,
+.hero-section .homepage-stats {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent;
+}
+
+.hero-section .left-column h1 {
+  border: 0 !important;
+}
+
+.hero-section .description,
+.hero-section .cta-group,
+.hero-section .features.homepage-stats {
+  margin-inline: 0 !important;
+}
+
+.hero-section .right-column {
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: flex-start !important;
+  zoom: normal !important;
+}
+
+.hero-section .tb-match-scene {
+  width: min(560px, 100%) !important;
+  max-width: 560px !important;
+  height: auto !important;
+  aspect-ratio: auto !important;
+  margin-left: auto !important;
+  margin-right: 0 !important;
+  overflow: hidden !important;
+}
+
+@media (max-width: 980px) {
+  .hero-section > .container {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .hero-section .left-column {
+    text-align: center !important;
+  }
+
+  .hero-section .left-column .eyebrow,
+  .hero-section .description,
+  .hero-section .cta-group,
+  .hero-section .features.homepage-stats {
+    margin-inline: auto !important;
+  }
+
+  .hero-section .right-column {
+    justify-content: center !important;
+  }
+
+  .hero-section .tb-match-scene {
+    margin-inline: auto !important;
+  }
+}

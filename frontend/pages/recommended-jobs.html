@@ -1,0 +1,144 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore active jobs matched to the skills and location in your TalentBridge profile.">
+  <title>Recommended Jobs | TalentBridge AI</title>
+  <link rel="stylesheet" href="{% static 'site-header.css' %}">
+  <link rel="stylesheet" href="{% static 'redesign.css' %}">
+  <link rel="stylesheet" href="{% static 'job-listings.css' %}">
+  <style>
+    .recommendations-note { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin: 0 0 22px; padding: 16px 18px; border: 1px solid #dce8f8; border-radius: 14px; background: #f3f7ff; color: #425675; line-height: 1.6; }
+    .recommendations-note select { min-height: 40px; padding: 0 10px; border: 1px solid #ccd8e8; border-radius: 8px; background: #fff; color: #19365b; font: inherit; }
+    .recommendations-note button { min-height: 40px; padding: 0 14px; border: 0; border-radius: 8px; background: #2563eb; color: #fff; font: inherit; font-weight: 700; cursor: pointer; }
+    .recommendation-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+    .recommendation-tags span { padding: 6px 10px; border-radius: 999px; background: #eef5ff; color: #355886; font-size: 12px; font-weight: 700; }
+    .recommendation-actions form { display: inline; }
+    .recommendation-actions button { min-height: 40px; padding: 0 14px; border: 0; border-radius: 10px; background: #075cff; color: #fff; font: inherit; font-weight: 700; cursor: pointer; }
+    .recommendation-actions button:hover { background: #0049d8; }
+    .sample-label { display: inline-block; margin-bottom: 10px; color: #a44a10; font-size: 11px; font-weight: 800; letter-spacing: .08em; }
+  </style>
+  <link rel="stylesheet" href="{% static 'dark-mode.css' %}">
+  <script src="{% static 'dark-mode.js' %}"></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="logo"><a href="../index.html"><span>TalentBridge<span class="logo-accent">AI</span></span></a></div>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="/dashboard/">Dashboard</a>
+        <a href="/jobs/">Browse Jobs</a>
+        <a href="/saved-jobs/">Saved Jobs</a>
+        <a href="/resume-management/">Resume Library</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="tb-hero tb-jobs-hero">
+      <div class="tb-wrap tb-jobs-hero__content">
+        <div>
+          <span class="tb-eyebrow">PROFILE-MATCHED OPPORTUNITIES</span>
+          <h1>Recommended jobs for you.</h1>
+          <p>Matches are ranked from profile skills, listed experience and location. You can also filter by your preferred work mode and job type. This is a transparent rule-based match, not an AI score.</p>
+          <a class="tb-button" href="/profile/">Update profile <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="tb-content tb-jobs-content">
+      <div class="tb-wrap">
+        <form class="recommendations-note" method="get" action="{% url 'recommended-jobs' %}">
+          <label for="recommendation-work-mode">Preferred work mode</label>
+          <select id="recommendation-work-mode" name="work_mode">
+            <option value="">Any work mode</option>
+            <option value="On-site" {% if selected_work_mode == "On-site" %}selected{% endif %}>On-site</option>
+            <option value="Hybrid" {% if selected_work_mode == "Hybrid" %}selected{% endif %}>Hybrid</option>
+            <option value="Remote" {% if selected_work_mode == "Remote" %}selected{% endif %}>Remote</option>
+          </select>
+          <label for="recommendation-job-type">Preferred job type</label>
+          <select id="recommendation-job-type" name="job_type">
+            <option value="">Any job type</option>
+            {% for value, label in job_types %}<option value="{{ value }}" {% if selected_job_type == value %}selected{% endif %}>{{ label }}</option>{% endfor %}
+          </select>
+          <button type="submit">Update recommendations</button>
+        </form>
+        {% for error in filter_errors %}<p role="alert">{{ error }}</p>{% endfor %}
+        <div class="tb-jobs-heading">
+          <div>
+            <span class="tb-eyebrow">YOUR NEXT STEP</span>
+            <h2 class="tb-section-title">Recommended opportunities</h2>
+            <p>Applications you have already submitted are excluded.</p>
+          </div>
+          <a class="tb-jobs-category-link" href="/jobs/">Browse all jobs <span aria-hidden="true">→</span></a>
+        </div>
+
+        {% if demo_recommendations %}
+          <aside class="recommendations-note" role="note">
+            Illustrative examples only — these roles are not live vacancies and are not saved to your account. Real recommendations appear when approved employers publish active jobs.
+          </aside>
+        {% endif %}
+
+        <div class="tb-jobs-list">
+          {% for item in recommendations %}
+            {% with job=item.job %}
+              <article class="tb-job-card">
+                <div class="tb-job-card__top">
+                  <span class="tb-job-card__logo tb-job-card__logo--blue" aria-hidden="true">{{ job.company.name|slice:":1"|upper }}</span>
+                  <span class="tb-job-card__badge">Live opportunity</span>
+                </div>
+                <h3>{{ job.title }}</h3>
+                <p class="tb-job-card__company">{{ job.company.name }} · {{ job.location|default:"Location not specified" }}</p>
+                <div class="recommendation-tags">
+                  {% if item.matched_skills %}<span>Skills: {{ item.matched_skills|join:", " }}</span>{% endif %}
+                  {% if item.location_match %}<span>Location match</span>{% endif %}
+                  {% if item.experience_match %}<span>Experience match</span>{% endif %}
+                  <span>{{ job.get_job_type_display }}</span>
+                  <span>{{ job.get_work_mode_display }}</span>
+                </div>
+                {% if item.reasons %}<p class="tb-job-card__description"><strong>Why it appears:</strong> {{ item.reasons|join:" · " }}</p>{% endif %}
+                <p class="tb-job-card__description">{{ job.description|truncatewords:34 }}</p>
+                {% if job.skills %}<p class="tb-job-card__tags"><span>{{ job.skills }}</span></p>{% endif %}
+                <div class="tb-job-card__actions recommendation-actions">
+                  <a href="{% url 'job_detail' job.pk %}">View role</a>
+                  <form method="post" action="{% url 'toggle-saved-job' job.pk %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="/recommended-jobs/">
+                    <button type="submit">{% if item.is_saved %}Remove saved job{% else %}Save job{% endif %}</button>
+                  </form>
+                </div>
+              </article>
+            {% endwith %}
+          {% empty %}
+            {% for item in demo_recommendations %}
+              <article class="tb-job-card">
+                <span class="sample-label">Illustrative example</span>
+                <h3>{{ item.role.title }}</h3>
+                <p class="tb-job-card__company">{{ item.role.company }} · {{ item.role.location }}</p>
+                <div class="recommendation-tags">
+                  {% if item.matched_skills %}<span>Skills: {{ item.matched_skills|join:", " }}</span>{% endif %}
+                  {% if item.location_match %}<span>Location match</span>{% endif %}
+                  {% if item.experience_match %}<span>Experience match</span>{% endif %}
+                  <span>{{ item.role.job_type }}</span>
+                  <span>{{ item.role.work_mode }}</span>
+                </div>
+                {% if item.reasons %}<p class="tb-job-card__description"><strong>Why it appears:</strong> {{ item.reasons|join:" · " }}</p>{% endif %}
+                <p class="tb-job-card__description">{{ item.role.description }}</p>
+                <p class="tb-job-card__tags"><span>Skills: {{ item.role.skills }}</span></p>
+              </article>
+            {% empty %}
+              <div class="tb-job-card">
+                <h3>No recommendations yet</h3>
+                <p>Add skills and a location to your profile, or browse all current jobs.</p>
+                <a class="tb-button" href="/jobs/">Browse jobs</a>
+              </div>
+            {% endfor %}
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

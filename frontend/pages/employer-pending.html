@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <base href="/pages/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Employer approval information for TalentBridge AI.">
+  <title>Employer Approval | TalentBridge AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/base/portal-pages.css">
+  <link rel="stylesheet" href="/css/base/redesign.css">
+<link rel="stylesheet" href="/css/components/site-experience.css">
+  <style id="fix-all-navbar-strikethrough">
+header a,
+header nav a,
+nav a,
+.navbar a,
+.nav-links a,
+.site-header a,
+header a *,
+nav a *,
+.navbar a *,
+.nav-links a *,
+.site-header a * {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    text-decoration-style: none !important;
+}
+</style>
+</head>
+<body>
+  <header class="tb-header">
+    <div class="tb-nav">
+      <a class="tb-brand" href="../index.html">TalentBridge AI<span>:</span></a>
+      <nav class="tb-links" aria-label="Main navigation">
+        <a href="../index.html">Home</a>
+        <a href="dashboard/cdashboard.html">Employer workspace</a>
+        <a href="help.html">Help</a>
+        {% if user.is_authenticated %}
+        <form class="tb-logout-form" method="post" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button class="tb-logout-button" type="submit">Log out</button>
+        </form>
+        {% endif %}
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="tb-hero">
+      <div class="tb-wrap">
+        <span class="tb-eyebrow">EMPLOYER ONBOARDING</span>
+        <h1>Employer approval status</h1>
+        <p>Employer accounts may require review before job posting is enabled.</p>
+      </div>
+    </section>
+    <section class="tb-content">
+      <div class="tb-wrap">
+        {% if company %}
+        <div class="tb-workspace-callout" role="status" aria-live="polite">
+          <span class="tb-workspace-callout__icon" aria-hidden="true">i</span>
+          <div>
+            <h2>Approval review in progress</h2>
+            <p><strong>{{ company.name }}</strong> is awaiting employer approval. You can prepare your company profile while review is pending; job publishing will be available after approval.</p>
+          </div>
+        </div>
+        {% else %}
+        <div class="tb-demo-notice" role="note">
+          <span class="tb-demo-notice__icon" aria-hidden="true">i</span>
+          <div><strong>Static site preview</strong>Employer approval status is available after signing in to the connected Django site.</div>
+        </div>
+        {% endif %}
+        <article class="tb-card">
+          <span class="tb-pill">Employer onboarding guide</span>
+          <h2>What happens next?</h2>
+          <p>Our team will review your company details. Once the account is approved, you can publish jobs and manage applicants from your employer workspace.</p>
+          <div class="tb-workspace-actions">
+            <a class="tb-button" href="dashboard/cdashboard.html">Review employer workspace</a>
+            <a class="tb-button secondary" href="help.html">Contact support</a>
+          </div>
+        </article>
+        <div class="tb-workflow-grid">
+          <article class="tb-workflow-card"><span class="tb-workflow-card__number">01</span><h3>Prepare company details</h3><p>Use an accurate organization name, a working website, and a concise description of your team.</p></article>
+          <article class="tb-workflow-card"><span class="tb-workflow-card__number">02</span><h3>Write a clear role</h3><p>Describe responsibilities, required skills, location, and work arrangement before publishing.</p></article>
+          <article class="tb-workflow-card"><span class="tb-workflow-card__number">03</span><h3>Confirm approval directly</h3><p>Do not assume publishing is enabled until your connected employer account shows an approved status.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="tb-footer">
+    <div class="tb-wrap tb-footer-inner">
+      <span>© TalentBridge AI. Built to connect people with opportunity.</span>
+      <span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a></span>
+    </div>
+  </footer>
+<script src="/js/core/site-experience.js"></script>
+  </body>
+</html>

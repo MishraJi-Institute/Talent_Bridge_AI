@@ -1,0 +1,7 @@
+﻿TALENTBRIDGEAI SERVER SETTINGS
+Website: http://127.0.0.1:8000/
+Admin: http://127.0.0.1:8000/admin/login/
+Host: 127.0.0.1
+Port: 8000
+Django project: legacy-django
+Settings module: config.settings

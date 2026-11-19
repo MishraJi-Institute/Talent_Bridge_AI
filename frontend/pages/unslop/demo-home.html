@@ -1,0 +1,894 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unslop demo · TalentBridge AI homepage</title>
+  <meta name="description" content="Standalone Unslop preview of the TalentBridge AI homepage. Live site is unchanged until you approve.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f7fa;
+      --card: #ffffff;
+      --raised: #eceff4;
+      --ink: #111827;
+      --secondary: #4b5565;
+      --muted: #6b7487;
+      --hairline: rgba(17, 24, 39, 0.08);
+      --accent: #1d4ed8;
+      --accent-soft: #eff4ff;
+      --positive: #16a34a;
+      --radius-control: 10px;
+      --radius-card: 14px;
+      --radius-panel: 18px;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --dur-fast: 150ms;
+      --dur-enter: 420ms;
+      --stagger: 50ms;
+      --rise: 10px;
+      --shadow: 0 1px 2px rgba(17, 24, 39, 0.04), 0 12px 28px rgba(17, 24, 39, 0.05);
+      --font: "Instrument Sans", system-ui, sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      color: var(--ink);
+      background: var(--bg);
+      font-size: 15px;
+      line-height: 1.5;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    button { font: inherit; }
+
+    /* Motion pass: one entrance, named transitions only */
+    .enter {
+      opacity: 0;
+      transform: translateY(var(--rise));
+      animation: enter-rise var(--dur-enter) var(--ease) forwards;
+      animation-delay: calc(var(--i, 0) * var(--stagger));
+    }
+    @keyframes enter-rise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .bridge-path {
+      stroke-dasharray: 240;
+      stroke-dashoffset: 240;
+      animation: bridge-draw 700ms var(--ease) 280ms forwards;
+    }
+    @keyframes bridge-draw {
+      to { stroke-dashoffset: 0; }
+    }
+
+    .score-pop {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.96);
+      animation: score-in 400ms var(--ease) 620ms forwards;
+    }
+    @keyframes score-in {
+      to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
+
+    .fit-list li {
+      opacity: 0;
+      transform: translateY(6px);
+      animation: enter-rise 360ms var(--ease) forwards;
+      animation-delay: calc(700ms + var(--i, 0) * var(--stagger));
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(var(--rise));
+      transition: opacity var(--dur-enter) var(--ease), transform var(--dur-enter) var(--ease);
+    }
+    .reveal.is-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .enter,
+      .bridge-path,
+      .score-pop,
+      .fit-list li,
+      .reveal {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        stroke-dashoffset: 0 !important;
+      }
+      .score-pop { transform: translate(-50%, -50%) !important; }
+      html { scroll-behavior: auto; }
+    }
+
+    .banner {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 24px;
+      background: #111827;
+      color: #eef0f5;
+      font-size: 13px;
+    }
+    .banner strong { font-weight: 500; }
+    .banner a {
+      color: #fff;
+      background: var(--accent);
+      padding: 8px 14px;
+      border-radius: var(--radius-control);
+      font-weight: 500;
+      transition: background-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+    }
+    .banner a:hover { background: #1e40af; }
+    .banner a:active { transform: scale(0.98); }
+    .banner .quiet { color: #a3a9b8; }
+
+    .wrap {
+      width: min(1120px, calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    /* Quiet chrome */
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      min-height: 64px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--hairline);
+      background: rgba(245, 247, 250, 0.92);
+      backdrop-filter: blur(8px);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      width: min(1120px, calc(100% - 48px));
+      margin-inline: auto;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+    }
+    .brand img {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+    }
+    .brand span { color: var(--accent); font-weight: 500; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex: 1;
+      min-width: 0;
+      overflow-x: auto;
+    }
+    .nav-links a {
+      padding: 8px 12px;
+      border-radius: 8px;
+      color: var(--secondary);
+      font-weight: 500;
+      font-size: 14px;
+      white-space: nowrap;
+      transition: color var(--dur-fast) var(--ease), background-color var(--dur-fast) var(--ease);
+    }
+    .nav-links a[aria-current="page"] {
+      color: var(--ink);
+      background: var(--raised);
+    }
+    .nav-links a:hover { color: var(--ink); background: var(--raised); }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+    .nav-actions .signin {
+      padding: 8px 12px;
+      color: var(--secondary);
+      font-weight: 500;
+      font-size: 14px;
+      transition: color var(--dur-fast) var(--ease);
+    }
+    .nav-actions .signin:hover { color: var(--ink); }
+    .nav-actions .signup {
+      padding: 8px 14px;
+      border-radius: var(--radius-control);
+      background: var(--accent);
+      color: #fff;
+      font-weight: 500;
+      font-size: 14px;
+      transition: background-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+    }
+    .nav-actions .signup:hover { background: #1e40af; }
+    .nav-actions .signup:active { transform: scale(0.98); }
+
+    /* Hero: asymmetric split, quiet chrome, one moment */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: 48px;
+      align-items: center;
+      min-height: calc(100vh - 120px);
+      padding: 64px 0 48px;
+    }
+    .hero-copy { max-width: 34rem; }
+    .eyebrow {
+      margin: 0 0 20px;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+    .hero h1 {
+      margin: 0 0 20px;
+      font-size: clamp(36px, 4.6vw, 56px);
+      line-height: 1.05;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+    .hero .lede {
+      margin: 0 0 28px;
+      max-width: 32rem;
+      color: var(--secondary);
+      font-size: 18px;
+      line-height: 1.55;
+    }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: var(--radius-control);
+      font-weight: 500;
+      font-size: 15px;
+      transition:
+        background-color var(--dur-fast) var(--ease),
+        color var(--dur-fast) var(--ease),
+        border-color var(--dur-fast) var(--ease),
+        transform var(--dur-fast) var(--ease);
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: #1e40af; }
+    .btn-secondary {
+      background: var(--card);
+      color: var(--ink);
+      border: 1px solid var(--hairline);
+    }
+    .btn-secondary:hover { background: var(--raised); }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      padding-top: 8px;
+      border-top: 1px solid var(--hairline);
+    }
+    .stat strong {
+      display: block;
+      font-size: 28px;
+      font-weight: 500;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    .stat span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Moment: match bridge preview */
+    .moment {
+      position: relative;
+      min-height: 520px;
+      padding: 24px;
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-panel);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .moment::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 78% 28%, rgba(29, 78, 216, 0.08), transparent 70%),
+        linear-gradient(180deg, #f8fafc 0%, #ffffff 55%);
+      pointer-events: none;
+    }
+    .moment-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 56px 1fr;
+      gap: 12px;
+      align-items: stretch;
+      height: 100%;
+      min-height: 472px;
+    }
+    .panel {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 16px;
+      border: 1px solid var(--hairline);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.92);
+    }
+    .panel-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .person {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--raised);
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .person strong { display: block; font-weight: 500; font-size: 15px; }
+    .person span { color: var(--muted); font-size: 13px; }
+    .attr {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 0;
+      border-top: 1px solid var(--hairline);
+      font-size: 13px;
+    }
+    .attr dt { color: var(--muted); margin: 0; }
+    .attr dd { margin: 0; font-weight: 500; text-align: right; }
+    .bridge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      position: relative;
+    }
+    .bridge svg { width: 40px; height: 220px; overflow: visible; }
+    .bridge .score {
+      position: absolute;
+      top: 42%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      background: var(--accent);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      box-shadow: 0 10px 24px rgba(29, 78, 216, 0.25);
+    }
+    .bridge .score strong {
+      font-size: 18px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+    }
+    .bridge .score small {
+      font-size: 9px;
+      font-family: var(--mono);
+      opacity: 0.85;
+      letter-spacing: 0.02em;
+    }
+    .job-chip {
+      padding: 12px;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(29, 78, 216, 0.12);
+    }
+    .job-chip strong { display: block; font-weight: 500; font-size: 14px; margin-bottom: 4px; }
+    .job-chip span { color: var(--secondary); font-size: 12px; }
+    .fit-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .fit-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--secondary);
+    }
+    .fit-list b {
+      font-weight: 500;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+      font-family: var(--mono);
+      font-size: 11px;
+    }
+    .note {
+      margin-top: auto;
+      padding-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      font-family: var(--mono);
+    }
+
+    /* Sections keep order, quieter treatment */
+    .section {
+      padding: 80px 0;
+      border-top: 1px solid var(--hairline);
+    }
+    .section-head {
+      max-width: 36rem;
+      margin-bottom: 32px;
+    }
+    .section-head p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .section-head h2 {
+      margin: 0 0 12px;
+      font-size: clamp(28px, 3vw, 36px);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+    .section-head .sub {
+      margin: 0;
+      color: var(--secondary);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .feature-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .feature {
+      padding: 20px;
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-card);
+      background: var(--card);
+      transition: border-color var(--dur-fast) var(--ease), background-color var(--dur-fast) var(--ease);
+    }
+    .feature:hover {
+      border-color: rgba(29, 78, 216, 0.22);
+      background: #fbfcff;
+    }
+    .feature h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .feature p {
+      margin: 0;
+      color: var(--secondary);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .checklist {
+      list-style: none;
+      margin: 24px 0 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .checklist li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: var(--secondary);
+      font-size: 15px;
+    }
+    .checklist i {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+    .checklist i svg { width: 12px; height: 12px; }
+
+    .smart-card {
+      padding: 24px;
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-panel);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    .smart-card::after {
+      /* Signature: thin bridge arc */
+      content: "";
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      top: 0;
+      height: 3px;
+      border-radius: 0 0 999px 999px;
+      background: linear-gradient(90deg, transparent, var(--accent) 20%, var(--accent) 80%, transparent);
+      opacity: 0.85;
+    }
+    .smart-card header {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .smart-card .meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .meta-block {
+      padding: 12px;
+      border-radius: 10px;
+      background: var(--raised);
+    }
+    .meta-block span {
+      display: block;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .meta-block strong { font-weight: 500; font-size: 14px; }
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .skills span {
+      padding: 6px 10px;
+      border-radius: 8px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .cta-band {
+      padding: 64px 0 96px;
+      text-align: left;
+    }
+    .cta-band .panel-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 32px;
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-panel);
+      background: var(--card);
+    }
+    .cta-band h2 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+    .cta-band p { margin: 0; color: var(--secondary); max-width: 36rem; }
+
+    .credit {
+      padding: 24px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      border-top: 1px solid var(--hairline);
+    }
+    .credit a { color: var(--secondary); text-decoration: underline; text-underline-offset: 2px; }
+
+    @media (max-width: 960px) {
+      .hero, .split, .feature-row, .moment-grid { grid-template-columns: 1fr; }
+      .bridge { flex-direction: row; min-height: 80px; }
+      .bridge svg { width: 220px; height: 40px; }
+      .bridge .score { top: 50%; }
+      .nav-links { display: none; }
+      .hero { min-height: auto; padding-top: 40px; }
+      .stats { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="banner">
+    <div>
+      <strong>Unslop demo only</strong>
+      <span class="quiet"> · Live TalentBridge site is unchanged · Blue brand accent kept</span>
+    </div>
+    <a href="/">Open live homepage</a>
+  </div>
+
+  <header class="nav enter" style="--i:0">
+    <div class="nav-inner">
+      <a class="brand" href="/">
+        <img src="/images/talentbridge-mark.svg" alt="">
+        TalentBridge<span>AI</span>
+      </a>
+      <nav class="nav-links" aria-label="Main">
+        <a href="/jobs/">Jobs</a>
+        <a href="/companies/">Companies</a>
+        <a href="/pages/employer.html">For employers</a>
+        <a href="/pages/jobseaker.html">For job seekers</a>
+        <a href="/pricing/" aria-current="page">Pricing</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="signin" href="/login/">Sign in</a>
+        <a class="signup" href="/signup/">Sign up</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <div class="hero-copy">
+        <p class="eyebrow enter" style="--i:1">Hiring marketplace for India teams and candidates</p>
+        <h1 class="enter" style="--i:2">Match people to roles with a clear fit score<em>.</em></h1>
+        <p class="lede enter" style="--i:3">Post jobs, build one Smart Card profile, and see ranked matches based on skills, experience, and work mode — without the noise.</p>
+        <div class="cta-row enter" style="--i:4">
+          <a class="btn btn-primary" href="/signup/">Create an account</a>
+          <a class="btn btn-secondary" href="/jobs/">Browse jobs</a>
+        </div>
+        <div class="stats enter" style="--i:5" aria-label="Platform totals">
+          <div class="stat"><strong>0</strong><span>Open jobs</span></div>
+          <div class="stat"><strong>3</strong><span>Employer accounts</span></div>
+          <div class="stat"><strong>1</strong><span>Seeker profiles</span></div>
+        </div>
+      </div>
+
+      <aside class="moment enter" style="--i:3" aria-label="Illustrative match preview">
+        <div class="moment-grid">
+          <article class="panel">
+            <div class="panel-label">Candidate</div>
+            <div class="person">
+              <div class="avatar" aria-hidden="true">RS</div>
+              <div>
+                <strong>Rahul Sharma</strong>
+                <span>Backend developer · Indore</span>
+              </div>
+            </div>
+            <dl>
+              <div class="attr"><dt>Skills</dt><dd>Python, Django, AWS</dd></div>
+              <div class="attr"><dt>Experience</dt><dd>5 years</dd></div>
+              <div class="attr"><dt>Education</dt><dd>M.S. Computer Science</dd></div>
+              <div class="attr"><dt>Preference</dt><dd>Hybrid</dd></div>
+            </dl>
+            <p class="note">Illustrative profile</p>
+          </article>
+
+          <div class="bridge" aria-hidden="true">
+            <svg viewBox="0 0 40 220" fill="none">
+              <path class="bridge-path" d="M20 12 C 8 70, 8 150, 20 208" stroke="#1d4ed8" stroke-width="2" stroke-linecap="round" opacity="0.35"/>
+              <path class="bridge-path" d="M20 12 C 32 70, 32 150, 20 208" stroke="#1d4ed8" stroke-width="2" stroke-linecap="round" opacity="0.55"/>
+              <circle cx="20" cy="12" r="3.5" fill="#1d4ed8"/>
+              <circle cx="20" cy="208" r="3.5" fill="#1d4ed8"/>
+            </svg>
+            <div class="score score-pop">
+              <div>
+                <strong data-fit-score>0</strong>
+                <small>FIT</small>
+              </div>
+            </div>
+          </div>
+
+          <article class="panel">
+            <div class="panel-label">Open role</div>
+            <div class="job-chip">
+              <strong>Senior Backend Engineer</strong>
+              <span>Engineering · Bengaluru · Full-time</span>
+            </div>
+            <ul class="fit-list">
+              <li style="--i:0"><span>Skills overlap</span><b>+28</b></li>
+              <li style="--i:1"><span>Experience depth</span><b>+22</b></li>
+              <li style="--i:2"><span>Location / mode</span><b>+18</b></li>
+              <li style="--i:3"><span>Education</span><b>+18</b></li>
+            </ul>
+            <p class="note">Illustrative ranking · not live matching</p>
+          </article>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section reveal">
+      <div class="wrap">
+        <div class="section-head">
+          <p>For employers</p>
+          <h2>Post where candidates already look</h2>
+          <p class="sub">Reach active seekers, rank applicants by fit, and keep hiring in one place.</p>
+        </div>
+        <div class="feature-row">
+          <article class="feature">
+            <h3>Unlimited listings</h3>
+            <p>Publish multiple roles and reach talent across India from one account.</p>
+          </article>
+          <article class="feature">
+            <h3>Ranked matches</h3>
+            <p>Sort applicants by skills, experience, and role requirements.</p>
+          </article>
+          <article class="feature">
+            <h3>Built-in ATS</h3>
+            <p>Track status, shortlist, and collaborate with your hiring team.</p>
+          </article>
+          <article class="feature">
+            <h3>Screening questions</h3>
+            <p>Ask what matters for each role before you review a full profile.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" style="background:#fff; border-top:1px solid var(--hairline)">
+      <div class="wrap split">
+        <div class="section-head" style="margin-bottom:0">
+          <p>For job seekers</p>
+          <h2>One Smart Card. Found by the right teams</h2>
+          <p class="sub">Build a single profile with skills, projects, and preferences. Employers discover you through fit, not keyword spam.</p>
+          <ul class="checklist">
+            <li>
+              <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l4 4L19 6"/></svg></i>
+              One profile for every opportunity
+            </li>
+            <li>
+              <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l4 4L19 6"/></svg></i>
+              Skills and projects shown clearly
+            </li>
+            <li>
+              <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l4 4L19 6"/></svg></i>
+              Work mode and notice period included
+            </li>
+          </ul>
+          <div class="cta-row" style="margin:28px 0 0">
+            <a class="btn btn-primary" href="/signup/">Create your Smart Card</a>
+            <a class="btn btn-secondary" href="/pages/jobseaker.html">How it works</a>
+          </div>
+        </div>
+        <article class="smart-card" aria-label="Smart Card preview">
+          <header>
+            <div class="avatar" style="width:52px;height:52px;font-size:16px">RS</div>
+            <div>
+              <strong style="font-size:18px;font-weight:500">Rahul Sharma</strong>
+              <span style="display:block;color:var(--muted);font-size:14px">Backend developer · Indore, Madhya Pradesh</span>
+            </div>
+          </header>
+          <div class="meta">
+            <div class="meta-block"><span>Experience</span><strong>5 years</strong></div>
+            <div class="meta-block"><span>Notice period</span><strong>30 days</strong></div>
+            <div class="meta-block"><span>Availability</span><strong>Open to offers</strong></div>
+            <div class="meta-block"><span>Work preference</span><strong>Hybrid</strong></div>
+          </div>
+          <div class="skills">
+            <span>Python</span><span>Django</span><span>REST APIs</span><span>PostgreSQL</span><span>AWS</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta-band wrap reveal">
+      <div class="panel-cta">
+        <div>
+          <h2>Hire, or get hired</h2>
+          <p>Start with a free account. Browse roles or post your first job when you are ready.</p>
+        </div>
+        <div class="cta-row" style="margin:0">
+          <a class="btn btn-primary" href="/signup/">Sign up to find a job</a>
+          <a class="btn btn-secondary" href="/pages/employer.html">Start hiring</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="credit">
+    Unslop demo by TalentBridge AI · method from
+    <a href="https://heydamir.design/unslop" rel="noopener">unslop by @heydamir</a>
+    (CC BY 4.0) · Approve this direction to roll it across the live site
+  </footer>
+
+  <script>
+    (() => {
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      // Fit score tween — explains the match, runs once
+      const scoreEl = document.querySelector("[data-fit-score]");
+      if (scoreEl) {
+        const target = 86;
+        if (reduce) {
+          scoreEl.textContent = String(target);
+        } else {
+          const start = performance.now();
+          const duration = 700;
+          const delay = 620;
+          const tick = (now) => {
+            const t = Math.max(0, Math.min(1, (now - start - delay) / duration));
+            const eased = 1 - Math.pow(1 - t, 3);
+            scoreEl.textContent = String(Math.round(target * eased));
+            if (t < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        }
+      }
+
+      // Scroll reveals for lower sections (opacity + rise only)
+      const reveals = document.querySelectorAll(".reveal");
+      if (!reveals.length) return;
+      if (reduce || !("IntersectionObserver" in window)) {
+        reveals.forEach((el) => el.classList.add("is-in"));
+        return;
+      }
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-in");
+            io.unobserve(entry.target);
+          });
+        },
+        { rootMargin: "0px 0px -8% 0px", threshold: 0.12 }
+      );
+      reveals.forEach((el) => io.observe(el));
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="{{ company.name }} on TalentBridge AI.">
+<title>{{ company.name }} | TalentBridge AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base/portal-pages.css">
+<link rel="stylesheet" href="../css/base/tb-foundation.css">
+</head>
+<body>
+<header class="tb-header"><div class="tb-nav"><a class="tb-brand" href="/"><img src="/images/talentbridge-mark.svg" width="36" height="36" alt="">TalentBridge AI</a><nav class="tb-links" aria-label="Main navigation"><a href="/">Home</a><a href="{% url 'jobs' %}">Browse Jobs</a><a href="{% url 'companies' %}">Companies</a><a href="{% url 'about' %}">About</a><a href="{% url 'login' %}">Sign in</a></nav></div></header>
+<main>
+<section class="tb-hero"><div class="tb-wrap"><span class="tb-eyebrow">Company</span><h1>{{ company.name }}</h1><p>{% if company.industry %}{{ company.industry }}{% else %}Employer{% endif %}{% if company.location %} · {{ company.location }}{% endif %}</p></div></section>
+<section class="tb-content"><div class="tb-wrap">
+<article class="tb-company-card">
+<p>{{ company.description|default:"This employer has not added a public description yet." }}</p>
+{% if company.website %}<p><a href="{{ company.website }}">Company website</a></p>{% endif %}
+</article>
+<h2 class="tb-section-title">Open roles</h2>
+{% if jobs %}
+<div class="tb-company-grid">
+{% for job in jobs %}
+<article class="tb-company-card">
+<h3>{{ job.title }}</h3>
+<p class="tb-muted">{{ job.location }} · {{ job.job_type }} · {{ job.work_mode }}</p>
+<a class="tb-button" href="{% url 'job_detail' job.id %}">View job</a>
+</article>
+{% endfor %}
+</div>
+{% else %}
+<div class="tb-empty" role="status"><h2>No open roles</h2><p>This approved employer does not currently have an active job posting.</p></div>
+{% endif %}
+<p><a href="{% url 'companies' %}">Back to companies</a></p>
+</div></section>
+</main>
+</body>
+</html>

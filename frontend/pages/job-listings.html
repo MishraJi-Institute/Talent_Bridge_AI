@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Search open opportunities, compare the basics and open a listing for full details.">
+  <title>Browse Jobs | TalentBridge AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/base/portal-pages.css">
+  <link rel="stylesheet" href="../css/base/redesign.css">
+  <link rel="stylesheet" href="../css/pages/job-listings.css">
+<link rel="stylesheet" href="../css/components/site-experience.css">
+  <style id="fix-all-navbar-strikethrough">
+header a,
+header nav a,
+nav a,
+.navbar a,
+.nav-links a,
+.site-header a,
+header a *,
+nav a *,
+.navbar a *,
+.nav-links a *,
+.site-header a * {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    text-decoration-style: none !important;
+}
+</style>
+</head>
+<body>
+  <header class="tb-header">
+    <div class="tb-nav">
+      <a class="tb-brand" href="../index.html">TalentBridge AI<span>:</span></a>
+      <nav class="tb-links" aria-label="Main navigation">
+        <a href="../index.html">Home</a>
+        <a href="job-listings.html" aria-current="page">Browse Jobs</a>
+        <a href="categories.html">Categories</a>
+        <a href="about.html">About</a>
+        <a href="help.html">Help</a>
+        <a href="login.html">Sign in</a>
+        <a class="tb-button" href="signup-role.html">Get started</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="tb-hero tb-jobs-hero">
+      <div class="tb-wrap tb-jobs-hero__content">
+        <div>
+          <span class="tb-eyebrow">TalentBridge AI · Opportunities</span>
+          <h1>Find work that fits your skills and goals.</h1>
+          <p>Search open opportunities, compare the basics and open a listing for full details.</p>
+          <a class="tb-button tb-jobs-hero__action" href="#opportunities">Explore opportunities <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="tb-jobs-hero__visual" aria-hidden="true">
+          <span class="tb-jobs-orbit tb-jobs-orbit--one"></span>
+          <span class="tb-jobs-orbit tb-jobs-orbit--two"></span>
+          <div class="tb-jobs-hero__card">
+            <span class="tb-jobs-hero__card-icon">✳</span>
+            <span class="tb-jobs-hero__card-kicker">YOUR NEXT CHAPTER</span>
+            <strong>Good work.<br>Good people.</strong>
+            <span class="tb-jobs-hero__card-line"></span>
+            <span class="tb-jobs-hero__card-line tb-jobs-hero__card-line--short"></span>
+            <span class="tb-jobs-hero__card-tag">Find your fit <span>↗</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="tb-wrap tb-jobs-stats" aria-label="Opportunity highlights">
+        <div><strong>9</strong><span>Sample opportunities</span></div>
+        <div><strong>4</strong><span>Remote-friendly roles</span></div>
+        <div><strong>6</strong><span>Career fields</span></div>
+      </div>
+    </section>
+
+    <section class="tb-content tb-jobs-content" id="opportunities">
+      <div class="tb-wrap">
+        <div class="tb-jobs-heading">
+          <div>
+            <span class="tb-eyebrow">A good place to start</span>
+            <h2 class="tb-section-title">Recent opportunities</h2>
+            <p>Explore roles, check the details and find a next step that feels right.</p>
+          </div>
+          <a class="tb-jobs-category-link" href="categories.html">Explore categories <span aria-hidden="true">→</span></a>
+        </div>
+
+        <form class="tb-search tb-jobs-search" action="job-listings.html" method="get" role="search">
+          <label class="tb-jobs-search__field">
+            <span aria-hidden="true">⌕</span>
+            <input name="keyword" placeholder="Job title, skill or company" aria-label="Keywords">
+          </label>
+          <label class="tb-jobs-search__field">
+            <span aria-hidden="true">⌖</span>
+            <input name="location" placeholder="City or remote" aria-label="Location">
+          </label>
+          <button class="tb-button" type="submit">Search jobs <span aria-hidden="true">→</span></button>
+        </form>
+
+        <div class="tb-jobs-toolbar">
+          <div class="tb-jobs-filters" role="group" aria-label="Filter opportunities">
+            <button type="button" class="tb-jobs-filter is-active" data-job-filter="all" aria-pressed="true">All opportunities</button>
+            <button type="button" class="tb-jobs-filter" data-job-filter="Remote" aria-pressed="false">Remote</button>
+            <button type="button" class="tb-jobs-filter" data-job-filter="Full-time" aria-pressed="false">Full-time</button>
+            <button type="button" class="tb-jobs-filter" data-job-filter="Internship" aria-pressed="false">Internships</button>
+          </div>
+          <span class="tb-jobs-result-count" aria-live="polite"></span>
+        </div>
+
+        <div class="tb-jobs-list" data-job-list>
+          <article class="tb-job-card" data-job-card data-type="Full-time" data-location="Remote" data-search="frontend developer google remote full-time javascript react css technology">
+            <div class="tb-job-card__top">
+              <span class="tb-job-card__logo tb-job-card__logo--blue" aria-hidden="true">G</span>
+              <span class="tb-job-card__badge">Featured role</span>
+            </div>
+            <h3>Frontend Developer</h3>
+            <p class="tb-job-card__company">Google <span aria-hidden="true">·</span> Remote</p>
+            <p class="tb-job-card__description">Build polished web experiences with a collaborative product and engineering team.</p>
+            <div class="tb-job-card__tags"><span>JavaScript</span><span>React</span><span>CSS</span></div>
+            <div class="tb-job-card__bottom"><strong>₹8–14 LPA <small>per year</small></strong><span>Full-time</span></div>
+            <div class="tb-job-card__actions"><a href="job-detail.html?role=frontend-developer">View details <span aria-hidden="true">→</span></a><a href="application-form.html?role=frontend-developer">Apply now</a></div>
+          </article>
+
+          <article class="tb-job-card" data-job-card data-type="Full-time" data-location="Hybrid Bhopal" data-search="ui ux designer northstar studio hybrid bhopal full-time figma design creative">
+            <div class="tb-job-card__top">
+              <span class="tb-job-card__logo tb-job-card__logo--violet" aria-hidden="true">N</span>
+              <span class="tb-job-card__badge tb-job-card__badge--quiet">Design &amp; creative</span>
+            </div>
+            <h3>UI/UX Designer</h3>
+            <p class="tb-job-card__company">Northstar Studio <span aria-hidden="true">·</span> Hybrid · Bhopal</p>
+            <p class="tb-job-card__description">Shape thoughtful product journeys from early research through high-fidelity design.</p>
+            <div class="tb-job-card__tags"><span>Figma</span><span>UI/UX</span><span>Design</span></div>
+            <div class="tb-job-card__bottom"><strong>₹6–10 LPA <small>per year</small></strong><span>Full-time</span></div>
+            <div class="tb-job-card__actions"><a href="job-detail.html?role=ui-ux-designer">View details <span aria-hidden="true">→</span></a><a href="application-form.html?role=ui-ux-designer">Apply now</a></div>
+          </article>
+
+          <article class="tb-job-card" data-job-card data-type="Internship" data-location="Remote" data-search="software engineer intern orbit systems remote internship python apis git technology">
+            <div class="tb-job-card__top">
+              <span class="tb-job-card__logo tb-job-card__logo--teal" aria-hidden="true">O</span>
+              <span class="tb-job-card__badge tb-job-card__badge--quiet">Early career</span>
+            </div>
+            <h3>Software Engineer Intern</h3>
+            <p class="tb-job-card__company">Orbit Systems <span aria-hidden="true">·</span> Remote</p>
+            <p class="tb-job-card__description">Learn by contributing to real product features with support from experienced engineers.</p>
+            <div class="tb-job-card__tags"><span>Python</span><span>APIs</span><span>Git</span></div>
+            <div class="tb-job-card__bottom"><strong>₹20–35k <small>per month</small></strong><span>Internship</span></div>
+            <div class="tb-job-card__actions"><a href="job-detail.html?role=software-engineer-intern">View details <span aria-hidden="true">→</span></a><a href="application-form.html?role=software-engineer-intern">Apply now</a></div>
+          </article>
+
+          <article class="tb-job-card" data-job-card data-type="Full-time" data-location="Remote" data-search="junior web developer nova digital remote full-time html css javascript technology">
+            <div class="tb-job-card__top">
+              <span class="tb-job-card__logo tb-job-card__logo--orange" aria-hidden="true">N</span>
+              <span class="tb-job-card__badge tb-job-card__badge--quiet">Growing team</span>
+            </div>
+            <h3>Junior Web Developer</h3>
+            <p class="tb-job-card__company">Nova Digital <span aria-hidden="true">·</span> Remote</p>
+            <p class="tb-job-card__description">Help create accessible, responsive websites while developing your front-end skills.</p>
+            <div class="tb-job-card__tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+            <div class="tb-job-card__bottom"><strong>₹4–7 LPA <small>per year</small></strong><span>Full-time</span></div>
+            <div class="tb-job-card__actions"><a href="job-detail.html?role=junior-web-developer">View details <span aria-hidden="true">→</span></a><a href="application-form.html?role=junior-web-developer">Apply now</a></div>
+          </article>
+
+          <article class="tb-job-card" data-job-card data-type="Full-time" data-location="On-site Indore" data-search="product designer pixel co on-site indore full-time product research figma design creative">
+            <div class="tb-job-card__top">
+              <span class="tb-job-card__logo tb-job-card__logo--pink" aria-hidden="true">P</span>
+              <span class="tb-job-card__badge tb-job-card__badge--quiet">Product &amp; design</span>
+            </div>
+            <h3>Product Designer</h3>
+            <p class="tb-job-card__company">Pixel &amp; Co. <span aria-hidden="true">·</span> On-site · Indore</p>
+            <p class="tb-job-card__description">Turn user needs into clear product experiences, prototypes and practical design systems.</p>
+            <div class="tb-job-card__tags"><span>Product</span><span>Research</span><span>Figma</span></div>
+            <div class="tb-job-card__bottom"><strong>₹7–11 LPA <small>per year</small></strong><span>Full-time</span></div>
+            <div class="tb-job-card__actions"><a href="job-detail.html?role=product-designer">View details <span aria-hidden="true">→</span></a><a href="application-form.html?role=product-designer">Apply now</a></div>
+          </article>
+
+          <article class="tb-job-card" data-job-card data-type="Full-time" data-location="Hybrid Mumbai" data-search="business analyst clearpath consulting hybrid mumbai full-time analysis operations business finance">
+            <div class="tb-job-card__top">
+              <span class="tb-job-card__logo tb-job-card__logo--blue" aria-hidden="true">C</span>
+              <span class="tb-job-card__badge tb-job-card__badge--quiet">Business &amp; finance</span>
+            </div>
+            <h3>Business Analyst</h3>
+            <p class="tb-job-card__company">ClearPath Consulting <span aria-hidden="true">·</span> Hybrid · Mumbai</p>
+            <p class="tb-job-card__description">Turn research and operational data into clear recommendations for client teams.</p>
+            <div class="tb-job-card__tags"><span>Analysis</span><span>Research</span><span>Operations</span></div>
+            <div class="tb-job-card__bottom"><strong>₹7–12 LPA <small>per year</small></strong><span>Full-time</span></div>
+            <div class="tb-job-card__actions"><a href="job-detail.html?role=business-analyst">View details <span aria-hidden="true">→</span></a><a href="application-form.html?role=business-analyst">Apply now</a></div>
+          </article>
+
+          <article class="tb-job-card" data-job-card data-type="Full-time" data-location="Remote" data-search="growth marketing specialist brightpath digital remote full-time marketing content analytics sales">
+            <div class="tb-job-card__top">
+              <span class="tb-job-card__logo tb-job-card__logo--orange" aria-hidden="true">B</span>
+              <span class="tb-job-card__badge tb-job-card__badge--quiet">Sales &amp; marketing</span>
+            </div>
+            <h3>Growth Marketing Specialist</h3>
+            <p class="tb-job-card__company">BrightPath Digital <span aria-hidden="true">·</span> Remote</p>
+            <p class="tb-job-card__description">Plan useful campaigns, learn from performance data and help customers discover new products.</p>
+            <div class="tb-job-card__tags"><span>Marketing</span><span>Analytics</span><span>Content</span></div>
+            <div class="tb-job-card__bottom"><strong>₹6–10 LPA <small>per year</small></strong><span>Full-time</span></div>
+            <div class="tb-job-card__actions"><a href="job-detail.html?role=growth-marketing-specialist">View details <span aria-hidden="true">→</span></a><a href="application-form.html?role=growth-marketing-specialist">Apply now</a></div>
+          </article>
+
+          <article class="tb-job-card" data-job-card data-type="Full-time" data-location="Hybrid Pune" data-search="people operations coordinator peoplefirst pune hybrid full-time people administration hr recruiting">
+            <div class="tb-job-card__top">
+              <span class="tb-job-card__logo tb-job-card__logo--violet" aria-hidden="true">P</span>
+              <span class="tb-job-card__badge tb-job-card__badge--quiet">People &amp; administration</span>
+            </div>
+            <h3>People Operations Coordinator</h3>
+            <p class="tb-job-card__company">PeopleFirst <span aria-hidden="true">·</span> Hybrid · Pune</p>
+            <p class="tb-job-card__description">Help create thoughtful onboarding and keep everyday people operations running smoothly.</p>
+            <div class="tb-job-card__tags"><span>People</span><span>Coordination</span><span>Communication</span></div>
+            <div class="tb-job-card__bottom"><strong>₹5–8 LPA <small>per year</small></strong><span>Full-time</span></div>
+            <div class="tb-job-card__actions"><a href="job-detail.html?role=people-operations-coordinator">View details <span aria-hidden="true">→</span></a><a href="application-form.html?role=people-operations-coordinator">Apply now</a></div>
+          </article>
+
+          <article class="tb-job-card" data-job-card data-type="Full-time" data-location="On-site Indore" data-search="mechanical design engineer meridian engineering indore on-site full-time engineering manufacturing cad">
+            <div class="tb-job-card__top">
+              <span class="tb-job-card__logo tb-job-card__logo--teal" aria-hidden="true">M</span>
+              <span class="tb-job-card__badge tb-job-card__badge--quiet">Engineering</span>
+            </div>
+            <h3>Mechanical Design Engineer</h3>
+            <p class="tb-job-card__company">Meridian Engineering <span aria-hidden="true">·</span> On-site · Indore</p>
+            <p class="tb-job-card__description">Support product design reviews and translate engineering requirements into practical drawings.</p>
+            <div class="tb-job-card__tags"><span>CAD</span><span>Design</span><span>Manufacturing</span></div>
+            <div class="tb-job-card__bottom"><strong>₹6–9 LPA <small>per year</small></strong><span>Full-time</span></div>
+            <div class="tb-job-card__actions"><a href="job-detail.html?role=mechanical-design-engineer">View details <span aria-hidden="true">→</span></a><a href="application-form.html?role=mechanical-design-engineer">Apply now</a></div>
+          </article>
+        </div>
+
+        <div class="tb-empty tb-jobs-empty" data-job-empty hidden>
+          <strong>Search results appear here</strong>
+          <br>No sample opportunities match these filters. Try another title, skill or location.
+        </div>
+
+        <p class="tb-notice tb-jobs-notice">These nine opportunities are illustrative sample listings for preview, not live vacancies. Search and filters run in your browser; applications are not submitted or saved.</p>
+      </div>
+    </section>
+
+    <section class="tb-jobs-discover">
+      <div class="tb-wrap tb-jobs-discover__inner">
+        <div>
+          <span class="tb-eyebrow">Your search, your direction</span>
+          <h2>Not sure where to begin?</h2>
+          <p>Explore different fields, discover a role that matches your strengths, and take your search one step at a time.</p>
+        </div>
+        <a class="tb-button secondary" href="categories.html">Explore job categories <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <section class="tb-content tb-jobs-next">
+      <div class="tb-wrap">
+        <div class="tb-jobs-heading">
+          <div>
+            <span class="tb-eyebrow">Make your next move</span>
+            <h2 class="tb-section-title">A simpler way to find your fit</h2>
+          </div>
+        </div>
+        <div class="tb-jobs-steps">
+          <article><span>01</span><h3>Explore your options</h3><p>Search by role, skill or location and compare the basics across opportunities.</p></article>
+          <article><span>02</span><h3>Find your fit</h3><p>Check work type, location and skills to decide which opportunities feel right.</p></article>
+          <article><span>03</span><h3>Take the next step</h3><p>Open a listing for more details, then continue to the application experience.</p></article>
+        </div>
+        <div class="tb-jobs-employer-cta">
+          <div><strong>Building a team instead?</strong><span>Share an opportunity with people ready for their next move.</span></div>
+          <a href="posting-job.html">Post a job <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="tb-footer">
+    <div class="tb-wrap tb-footer-inner">
+      <span>© TalentBridge AI. Built to connect people with opportunity.</span>
+      <span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a></span>
+    </div>
+  </footer>
+  <script src="../js/jobs/job-listings.js"></script>
+<script src="../js/core/site-experience.js"></script>
+  </body>
+</html>

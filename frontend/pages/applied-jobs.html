@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Review application progress and keep your next steps organized.">
+<title>My Applications | TalentBridge AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base/portal-pages.css">
+  <link rel="stylesheet" href="../css/base/redesign.css">
+<link rel="stylesheet" href="../css/components/site-experience.css">
+  
+<style>
+.backend-panel{max-width:1120px;margin:28px auto;padding:24px;background:#fff;border:1px solid #e5eaf2;border-radius:18px;box-shadow:0 8px 28px rgba(20,40,80,.06);color:#17233d}
+.backend-panel h2{margin:0 0 16px;font-size:1.45rem}.backend-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.backend-card{border:1px solid #e5eaf2;border-radius:12px;padding:16px;background:#fbfdff}.backend-card p{margin:7px 0;line-height:1.5}.backend-muted{color:#64748b;font-size:.92rem}.backend-btn{display:inline-block;border:0;border-radius:9px;padding:10px 14px;background:#145cff;color:#fff;text-decoration:none;font-weight:650;cursor:pointer}.backend-btn.secondary{background:#eef4ff;color:#145cff}.backend-field{display:block;width:100%;max-width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid #cbd5e1;border-radius:8px;margin:6px 0 12px}.backend-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.backend-table-wrap{overflow-x:auto}.backend-table{width:100%;border-collapse:collapse;min-width:600px}.backend-table th,.backend-table td{text-align:left;padding:12px;border-bottom:1px solid #e5eaf2}.backend-empty{padding:18px;border-radius:12px;background:#f8fafc;color:#64748b}
+@media(max-width:600px){.backend-panel{margin:16px 10px;padding:16px}.backend-row>*{max-width:100%}}
+</style>
+
+<style id="fix-all-navbar-strikethrough">
+header a,
+header nav a,
+nav a,
+.navbar a,
+.nav-links a,
+.site-header a,
+header a *,
+nav a *,
+.navbar a *,
+.nav-links a *,
+.site-header a * {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    text-decoration-style: none !important;
+}
+</style>
+</head>
+<body>
+<header class="tb-header"><div class="tb-nav"><a class="tb-brand" href="../index.html">TalentBridge AI<span>:</span></a><nav class="tb-links" aria-label="Main navigation"><a href="../index.html">Home</a><a href="job-listings.html">Browse Jobs</a><a href="categories.html">Categories</a><a href="about.html">About</a><a href="help.html">Help</a><a href="login.html">Sign in</a><a class="tb-button" href="signup-role.html">Get started</a></nav></div></header>
+<main><section class="tb-hero"><div class="tb-wrap"><span class="tb-eyebrow">YOUR JOB SEARCH</span><h1>Keep every application step in view.</h1><p>Use a clear routine to track the roles you pursue, the details you shared and the follow-up you plan to make.</p></div></section>
+<section class="tb-content tb-workspace-content"><div class="tb-wrap">
+<div class="tb-demo-notice" role="note"><span class="tb-demo-notice__icon" aria-hidden="true">i</span><div><strong>Example application tracker · fictional demo data</strong>These are sample records for layout testing only. No applications were submitted, and these statuses do not describe real candidates or employers.</div></div>
+<div class="tb-demo-stats" aria-label="Sample application summary"><div class="tb-demo-stat"><strong>3</strong><span>Example records</span></div><div class="tb-demo-stat"><strong>1</strong><span>Interview stage</span></div><div class="tb-demo-stat"><strong>1</strong><span>Under review</span></div><div class="tb-demo-stat"><strong>1</strong><span>Draft only</span></div></div>
+<div class="tb-table-wrap"><table class="tb-table"><thead><tr><th scope="col">Role</th><th scope="col">Company</th><th scope="col">Example record</th><th scope="col">Sample status</th><th scope="col">Next step</th></tr></thead><tbody>
+<tr><td>Frontend Developer</td><td>Google</td><td>Example 01</td><td><span class="tb-status-pill tb-status-pill--violet">Interview stage · example</span></td><td><a href="interviews.html">View sample interview</a></td></tr>
+<tr><td>UI/UX Designer</td><td>Northstar Studio</td><td>Example 02</td><td><span class="tb-status-pill tb-status-pill--amber">Under review · example</span></td><td>Wait for a connected update</td></tr>
+<tr><td>Business Analyst</td><td>ClearPath Consulting</td><td>Example 03</td><td><span class="tb-status-pill">Draft · not submitted</span></td><td><a href="application-form.html?role=business-analyst">Preview application steps</a></td></tr>
+</tbody></table></div>
+<p class="tb-demo-note">Example status values are not linked to an employer system. Do not rely on them for an actual application or follow-up.</p>
+<div class="tb-workspace-actions" style="margin-top:18px"><a class="tb-button" href="job-listings.html">Browse opportunities <span aria-hidden="true">→</span></a><a class="tb-button secondary" href="resume-management.html">Prepare your resume</a></div>
+<div class="tb-card" style="margin-top:18px"><h2>Keep your search organized</h2><ul class="tb-workspace-list"><li>Keep a copy of the role description and the date you applied.</li><li>Tailor your resume and introduction to the opportunity.</li><li>Follow up through the employer's official contact channel.</li></ul></div>
+</div></section></main>
+<footer class="tb-footer"><div class="tb-wrap tb-footer-inner"><span>© TalentBridge AI. Built to connect people with opportunity.</span><span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a></span></div></footer>
+<script src="../js/core/site-experience.js"></script>
+  
+<section class="backend-panel"><h2>Your job applications</h2>{% if applications %}<div class="backend-grid">{% for app in applications %}<article class="backend-card"><h3>{{ app.job.title }}</h3><p>{{ app.job.company.name }} · {{ app.job.location }}</p><p>Applied {{ app.submitted_at|date:"M j, Y" }}</p><p class="backend-muted">Status: {{ app.get_status_display }}</p><a class="backend-btn secondary" href="{% url 'job_detail' app.job.id %}">View job</a></article>{% endfor %}</div>{% else %}<div class="backend-empty">You haven't applied for any jobs yet. <a href="{% url 'jobs' %}">Browse jobs</a>.</div>{% endif %}</section>
+</body></html>

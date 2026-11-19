@@ -1,0 +1,8 @@
+﻿body.login {
+    background-image: url("../images/Loginpage.jpg") !important;
+    background-position: center center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+    background-color: #244765 !important;
+}

@@ -1,0 +1,4937 @@
+{
+  "project_root": "E:\\Job POrtal\\TalentBridgeAI",
+  "route_count_total": 257,
+  "dup_names": {
+    "jobs": 2,
+    "saved-jobs": 2,
+    "notifications": 2,
+    "interviews": 2,
+    "candidate-details": 2,
+    "admin-dashboard": 2,
+    "login": 2
+  },
+  "dup_name_patterns": {
+    "jobs": [
+      "jobs/",
+      "jobs/"
+    ],
+    "saved-jobs": [
+      "saved-jobs/",
+      "saved-jobs/"
+    ],
+    "notifications": [
+      "notifications/",
+      "notifications/"
+    ],
+    "interviews": [
+      "interviews/",
+      "interviews/"
+    ],
+    "candidate-details": [
+      "candidate-details/",
+      "candidate-details/"
+    ],
+    "admin-dashboard": [
+      "admin-dashboard/",
+      "admin-dashboard/"
+    ],
+    "login": [
+      "login/",
+      "login/"
+    ]
+  },
+  "reverse_ok_count": 155,
+  "reverse_err_count": 59,
+  "reverse_err": {
+    "account_confirm_email": "Reverse for 'account_confirm_email' with no arguments not found. 1 pattern(s) tried: ['accounts/confirm-email/(?P<key>[-:\\\\w]+)/$']",
+    "account_reset_password_from_key": "Reverse for 'account_reset_password_from_key' with no arguments not found. 1 pattern(s) tried: ['accounts/password/reset/key/(?P<uidb36>[0-9A-Za-z]+)-(?P<key>.+",
+    "admin:account_emailaddress_change": "Reverse for 'account_emailaddress_change' with no arguments not found. 1 pattern(s) tried: ['admin/account/emailaddress/(?P<object_id>.+)/change/\\\\Z']",
+    "admin:account_emailaddress_delete": "Reverse for 'account_emailaddress_delete' with no arguments not found. 1 pattern(s) tried: ['admin/account/emailaddress/(?P<object_id>.+)/delete/\\\\Z']",
+    "admin:account_emailaddress_history": "Reverse for 'account_emailaddress_history' with no arguments not found. 1 pattern(s) tried: ['admin/account/emailaddress/(?P<object_id>.+)/history/\\\\Z']",
+    "admin:app_list": "Reverse for 'app_list' with no arguments not found. 1 pattern(s) tried: ['admin/(?P<app_label>auth|sites|account|socialaccount|jobs)/$']",
+    "admin:auth_group_change": "Reverse for 'auth_group_change' with no arguments not found. 1 pattern(s) tried: ['admin/auth/group/(?P<object_id>.+)/change/\\\\Z']",
+    "admin:auth_group_delete": "Reverse for 'auth_group_delete' with no arguments not found. 1 pattern(s) tried: ['admin/auth/group/(?P<object_id>.+)/delete/\\\\Z']",
+    "admin:auth_group_history": "Reverse for 'auth_group_history' with no arguments not found. 1 pattern(s) tried: ['admin/auth/group/(?P<object_id>.+)/history/\\\\Z']",
+    "admin:auth_user_change": "Reverse for 'auth_user_change' with no arguments not found. 1 pattern(s) tried: ['admin/auth/user/(?P<object_id>.+)/change/\\\\Z']",
+    "admin:auth_user_delete": "Reverse for 'auth_user_delete' with no arguments not found. 1 pattern(s) tried: ['admin/auth/user/(?P<object_id>.+)/delete/\\\\Z']",
+    "admin:auth_user_history": "Reverse for 'auth_user_history' with no arguments not found. 1 pattern(s) tried: ['admin/auth/user/(?P<object_id>.+)/history/\\\\Z']",
+    "admin:auth_user_password_change": "Reverse for 'auth_user_password_change' with no arguments not found. 1 pattern(s) tried: ['admin/auth/user/(?P<id>[^/]+)/password/\\\\Z']",
+    "admin:jobs_application_change": "Reverse for 'jobs_application_change' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/application/(?P<object_id>.+)/change/\\\\Z']",
+    "admin:jobs_application_delete": "Reverse for 'jobs_application_delete' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/application/(?P<object_id>.+)/delete/\\\\Z']",
+    "admin:jobs_application_history": "Reverse for 'jobs_application_history' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/application/(?P<object_id>.+)/history/\\\\Z']",
+    "admin:jobs_company_change": "Reverse for 'jobs_company_change' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/company/(?P<object_id>.+)/change/\\\\Z']",
+    "admin:jobs_company_delete": "Reverse for 'jobs_company_delete' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/company/(?P<object_id>.+)/delete/\\\\Z']",
+    "admin:jobs_company_history": "Reverse for 'jobs_company_history' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/company/(?P<object_id>.+)/history/\\\\Z']",
+    "admin:jobs_contactinquiry_change": "Reverse for 'jobs_contactinquiry_change' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/contactinquiry/(?P<object_id>.+)/change/\\\\Z']",
+    "admin:jobs_contactinquiry_delete": "Reverse for 'jobs_contactinquiry_delete' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/contactinquiry/(?P<object_id>.+)/delete/\\\\Z']",
+    "admin:jobs_contactinquiry_history": "Reverse for 'jobs_contactinquiry_history' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/contactinquiry/(?P<object_id>.+)/history/\\\\Z']",
+    "admin:jobs_interview_change": "Reverse for 'jobs_interview_change' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/interview/(?P<object_id>.+)/change/\\\\Z']",
+    "admin:jobs_interview_delete": "Reverse for 'jobs_interview_delete' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/interview/(?P<object_id>.+)/delete/\\\\Z']",
+    "admin:jobs_interview_history": "Reverse for 'jobs_interview_history' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/interview/(?P<object_id>.+)/history/\\\\Z']",
+    "admin:jobs_job_change": "Reverse for 'jobs_job_change' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/job/(?P<object_id>.+)/change/\\\\Z']",
+    "admin:jobs_job_delete": "Reverse for 'jobs_job_delete' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/job/(?P<object_id>.+)/delete/\\\\Z']",
+    "admin:jobs_job_history": "Reverse for 'jobs_job_history' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/job/(?P<object_id>.+)/history/\\\\Z']",
+    "admin:jobs_jobalert_change": "Reverse for 'jobs_jobalert_change' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/jobalert/(?P<object_id>.+)/change/\\\\Z']",
+    "admin:jobs_jobalert_delete": "Reverse for 'jobs_jobalert_delete' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/jobalert/(?P<object_id>.+)/delete/\\\\Z']",
+    "admin:jobs_jobalert_history": "Reverse for 'jobs_jobalert_history' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/jobalert/(?P<object_id>.+)/history/\\\\Z']",
+    "admin:jobs_jobalertpreference_change": "Reverse for 'jobs_jobalertpreference_change' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/jobalertpreference/(?P<object_id>.+)/change/\\\\Z']",
+    "admin:jobs_jobalertpreference_delete": "Reverse for 'jobs_jobalertpreference_delete' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/jobalertpreference/(?P<object_id>.+)/delete/\\\\Z']",
+    "admin:jobs_jobalertpreference_history": "Reverse for 'jobs_jobalertpreference_history' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/jobalertpreference/(?P<object_id>.+)/history/\\\\Z']",
+    "admin:jobs_notification_change": "Reverse for 'jobs_notification_change' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/notification/(?P<object_id>.+)/change/\\\\Z']",
+    "admin:jobs_notification_delete": "Reverse for 'jobs_notification_delete' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/notification/(?P<object_id>.+)/delete/\\\\Z']",
+    "admin:jobs_notification_history": "Reverse for 'jobs_notification_history' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/notification/(?P<object_id>.+)/history/\\\\Z']",
+    "admin:jobs_profile_change": "Reverse for 'jobs_profile_change' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/profile/(?P<object_id>.+)/change/\\\\Z']",
+    "admin:jobs_profile_delete": "Reverse for 'jobs_profile_delete' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/profile/(?P<object_id>.+)/delete/\\\\Z']",
+    "admin:jobs_profile_history": "Reverse for 'jobs_profile_history' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/profile/(?P<object_id>.+)/history/\\\\Z']",
+    "admin:jobs_savedjob_change": "Reverse for 'jobs_savedjob_change' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/savedjob/(?P<object_id>.+)/change/\\\\Z']",
+    "admin:jobs_savedjob_delete": "Reverse for 'jobs_savedjob_delete' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/savedjob/(?P<object_id>.+)/delete/\\\\Z']",
+    "admin:jobs_savedjob_history": "Reverse for 'jobs_savedjob_history' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/savedjob/(?P<object_id>.+)/history/\\\\Z']",
+    "admin:jobs_signuprecord_change": "Reverse for 'jobs_signuprecord_change' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/signuprecord/(?P<object_id>.+)/change/\\\\Z']",
+    "admin:jobs_signuprecord_delete": "Reverse for 'jobs_signuprecord_delete' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/signuprecord/(?P<object_id>.+)/delete/\\\\Z']",
+    "admin:jobs_signuprecord_history": "Reverse for 'jobs_signuprecord_history' with no arguments not found. 1 pattern(s) tried: ['admin/jobs/signuprecord/(?P<object_id>.+)/history/\\\\Z']",
+    "admin:sites_site_change": "Reverse for 'sites_site_change' with no arguments not found. 1 pattern(s) tried: ['admin/sites/site/(?P<object_id>.+)/change/\\\\Z']",
+    "admin:sites_site_delete": "Reverse for 'sites_site_delete' with no arguments not found. 1 pattern(s) tried: ['admin/sites/site/(?P<object_id>.+)/delete/\\\\Z']",
+    "admin:sites_site_history": "Reverse for 'sites_site_history' with no arguments not found. 1 pattern(s) tried: ['admin/sites/site/(?P<object_id>.+)/history/\\\\Z']",
+    "admin:socialaccount_socialaccount_change": "Reverse for 'socialaccount_socialaccount_change' with no arguments not found. 1 pattern(s) tried: ['admin/socialaccount/socialaccount/(?P<object_id>.+)/change/\\",
+    "admin:socialaccount_socialaccount_delete": "Reverse for 'socialaccount_socialaccount_delete' with no arguments not found. 1 pattern(s) tried: ['admin/socialaccount/socialaccount/(?P<object_id>.+)/delete/\\",
+    "admin:socialaccount_socialaccount_history": "Reverse for 'socialaccount_socialaccount_history' with no arguments not found. 1 pattern(s) tried: ['admin/socialaccount/socialaccount/(?P<object_id>.+)/history",
+    "admin:socialaccount_socialapp_change": "Reverse for 'socialaccount_socialapp_change' with no arguments not found. 1 pattern(s) tried: ['admin/socialaccount/socialapp/(?P<object_id>.+)/change/\\\\Z']",
+    "admin:socialaccount_socialapp_delete": "Reverse for 'socialaccount_socialapp_delete' with no arguments not found. 1 pattern(s) tried: ['admin/socialaccount/socialapp/(?P<object_id>.+)/delete/\\\\Z']",
+    "admin:socialaccount_socialapp_history": "Reverse for 'socialaccount_socialapp_history' with no arguments not found. 1 pattern(s) tried: ['admin/socialaccount/socialapp/(?P<object_id>.+)/history/\\\\Z']",
+    "admin:socialaccount_socialtoken_change": "Reverse for 'socialaccount_socialtoken_change' with no arguments not found. 1 pattern(s) tried: ['admin/socialaccount/socialtoken/(?P<object_id>.+)/change/\\\\Z']",
+    "admin:socialaccount_socialtoken_delete": "Reverse for 'socialaccount_socialtoken_delete' with no arguments not found. 1 pattern(s) tried: ['admin/socialaccount/socialtoken/(?P<object_id>.+)/delete/\\\\Z']",
+    "admin:socialaccount_socialtoken_history": "Reverse for 'socialaccount_socialtoken_history' with no arguments not found. 1 pattern(s) tried: ['admin/socialaccount/socialtoken/(?P<object_id>.+)/history/\\\\Z",
+    "admin:view_on_site": "Reverse for 'view_on_site' with no arguments not found. 1 pattern(s) tried: ['admin/r/(?P<content_type_id>.+)/(?P<object_id>.+)/\\\\Z']"
+  },
+  "check": "System check identified no issues (0 silenced).",
+  "pages_missing_templates": {},
+  "smoke": {
+    "/": {
+      "status": 200,
+      "loc": ""
+    },
+    "/login/": {
+      "status": 200,
+      "loc": ""
+    },
+    "/signup/": {
+      "status": 200,
+      "loc": ""
+    },
+    "/signup/job-seeker/": {
+      "status": 200,
+      "loc": ""
+    },
+    "/signup/employer/": {
+      "status": 200,
+      "loc": ""
+    },
+    "/jobs/": {
+      "status": 200,
+      "loc": ""
+    },
+    "/companies/": {
+      "status": 200,
+      "loc": ""
+    },
+    "/faq/": {
+      "status": 200,
+      "loc": ""
+    },
+    "/faqs/": {
+      "status": 302,
+      "loc": "/faq/"
+    },
+    "/pricing/": {
+      "status": 200,
+      "loc": ""
+    },
+    "/about/": {
+      "status": 200,
+      "loc": ""
+    },
+    "/contact/": {
+      "status": 200,
+      "loc": ""
+    },
+    "/forgot-password/": {
+      "status": 200,
+      "loc": ""
+    },
+    "/password-reset/": {
+      "status": 200,
+      "loc": ""
+    },
+    "/trust/": {
+      "status": 302,
+      "loc": "/trust-center/"
+    },
+    "/search/": {
+      "status": 302,
+      "loc": "/job-search/"
+    },
+    "/css/base/style.css": {
+      "status": 200,
+      "loc": ""
+    },
+    "/js/core/script.js": {
+      "status": 200,
+      "loc": ""
+    },
+    "/images/talentbridge-mark.svg": {
+      "status": 200,
+      "loc": ""
+    },
+    "/admin/login/": {
+      "status": 200,
+      "loc": ""
+    },
+    "/accounts/login/": {
+      "status": 302,
+      "loc": "/login/"
+    },
+    "/remote-jobs/": {
+      "status": 200,
+      "loc": ""
+    },
+    "/startup-jobs/": {
+      "status": 200,
+      "loc": ""
+    },
+    "/job-search/": {
+      "status": 200,
+      "loc": ""
+    },
+    "/employer/": {
+      "status": 200,
+      "loc": ""
+    },
+    "/jobseaker/": {
+      "status": 200,
+      "loc": ""
+    },
+    "/dashboard/": {
+      "status": 302,
+      "loc": "/login/?next=/dashboard/"
+    },
+    "/resume-builder/": {
+      "status": 302,
+      "loc": "/login/?next=/resume-builder/"
+    },
+    "/saved-jobs/": {
+      "status": 302,
+      "loc": "/accounts/login/?next=/saved-jobs/"
+    },
+    "/notifications/": {
+      "status": 302,
+      "loc": "/accounts/login/?next=/notifications/"
+    },
+    "/interviews/": {
+      "status": 302,
+      "loc": "/accounts/login/?next=/interviews/"
+    },
+    "/admin-dashboard/": {
+      "status": 302,
+      "loc": "/accounts/login/?next=/admin-dashboard/"
+    },
+    "/jobs/create/": {
+      "status": 302,
+      "loc": "/accounts/login/?next=/jobs/create/"
+    },
+    "/resume/download/": {
+      "status": 302,
+      "loc": "/accounts/login/?next=/resume/download/"
+    },
+    "/profile/": {
+      "status": 302,
+      "loc": "/accounts/login/?next=/profile/"
+    },
+    "/manage-jobs/": {
+      "status": 302,
+      "loc": "/accounts/login/?next=/manage-jobs/"
+    },
+    "/logout/": {
+      "status": 405,
+      "loc": ""
+    }
+  },
+  "routes": [
+    {
+      "pattern": "__dev__/",
+      "name": "dev-preview-dashboard",
+      "namespace": null,
+      "view": "jobs.dev_preview_views.dev_preview_dashboard",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\dev_preview_views.py",
+      "decorators": [
+        "dev_preview_dashboard"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "__dev__/state/",
+      "name": "dev-preview-state",
+      "namespace": null,
+      "view": "jobs.dev_preview_views.dev_preview_state",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\dev_preview_views.py",
+      "decorators": [
+        "dev_preview_state"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/",
+      "name": "admin:index",
+      "namespace": "admin",
+      "view": "django.contrib.admin.sites.index",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\sites.py",
+      "decorators": [
+        "index"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/login/",
+      "name": "admin:login",
+      "namespace": "admin",
+      "view": "django.contrib.admin.sites.login",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\sites.py",
+      "decorators": [
+        "login"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/logout/",
+      "name": "admin:logout",
+      "namespace": "admin",
+      "view": "django.contrib.admin.sites.logout",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\sites.py",
+      "decorators": [
+        "logout"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/password_change/",
+      "name": "admin:password_change",
+      "namespace": "admin",
+      "view": "django.contrib.admin.sites.password_change",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\sites.py",
+      "decorators": [
+        "password_change"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/password_change/done/",
+      "name": "admin:password_change_done",
+      "namespace": "admin",
+      "view": "django.contrib.admin.sites.password_change_done",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\sites.py",
+      "decorators": [
+        "password_change_done"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/autocomplete/",
+      "name": "admin:autocomplete",
+      "namespace": "admin",
+      "view": "django.contrib.admin.sites.autocomplete_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\sites.py",
+      "decorators": [
+        "autocomplete_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jsi18n/",
+      "name": "admin:jsi18n",
+      "namespace": "admin",
+      "view": "django.contrib.admin.sites.i18n_javascript",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\sites.py",
+      "decorators": [
+        "i18n_javascript"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/r/<path:content_type_id>/<path:object_id>/",
+      "name": "admin:view_on_site",
+      "namespace": "admin",
+      "view": "django.contrib.contenttypes.views.shortcut",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\contenttypes\\views.py",
+      "decorators": [
+        "shortcut"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/auth/group/",
+      "name": "admin:auth_group_changelist",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.changelist_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "changelist_view",
+        "changelist_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/auth/group/add/",
+      "name": "admin:auth_group_add",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.add_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "add_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/auth/group/<path:object_id>/history/",
+      "name": "admin:auth_group_history",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.history_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "history_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/auth/group/<path:object_id>/delete/",
+      "name": "admin:auth_group_delete",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.delete_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "delete_view",
+        "delete_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/auth/group/<path:object_id>/change/",
+      "name": "admin:auth_group_change",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.change_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "change_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/auth/group/<path:object_id>/",
+      "name": null,
+      "namespace": "admin",
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/auth/user/<id>/password/",
+      "name": "admin:auth_user_password_change",
+      "namespace": "admin",
+      "view": "django.contrib.auth.admin.user_change_password",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\auth\\admin.py",
+      "decorators": [
+        "user_change_password",
+        "user_change_password"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/auth/user/",
+      "name": "admin:auth_user_changelist",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.changelist_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "changelist_view",
+        "changelist_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/auth/user/add/",
+      "name": "admin:auth_user_add",
+      "namespace": "admin",
+      "view": "django.contrib.auth.admin.add_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\auth\\admin.py",
+      "decorators": [
+        "add_view",
+        "add_view",
+        "add_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/auth/user/<path:object_id>/history/",
+      "name": "admin:auth_user_history",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.history_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "history_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/auth/user/<path:object_id>/delete/",
+      "name": "admin:auth_user_delete",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.delete_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "delete_view",
+        "delete_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/auth/user/<path:object_id>/change/",
+      "name": "admin:auth_user_change",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.change_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "change_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/auth/user/<path:object_id>/",
+      "name": null,
+      "namespace": "admin",
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/sites/site/",
+      "name": "admin:sites_site_changelist",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.changelist_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "changelist_view",
+        "changelist_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/sites/site/add/",
+      "name": "admin:sites_site_add",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.add_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "add_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/sites/site/<path:object_id>/history/",
+      "name": "admin:sites_site_history",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.history_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "history_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/sites/site/<path:object_id>/delete/",
+      "name": "admin:sites_site_delete",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.delete_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "delete_view",
+        "delete_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/sites/site/<path:object_id>/change/",
+      "name": "admin:sites_site_change",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.change_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "change_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/sites/site/<path:object_id>/",
+      "name": null,
+      "namespace": "admin",
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/account/emailaddress/",
+      "name": "admin:account_emailaddress_changelist",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.changelist_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "changelist_view",
+        "changelist_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/account/emailaddress/add/",
+      "name": "admin:account_emailaddress_add",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.add_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "add_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/account/emailaddress/<path:object_id>/history/",
+      "name": "admin:account_emailaddress_history",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.history_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "history_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/account/emailaddress/<path:object_id>/delete/",
+      "name": "admin:account_emailaddress_delete",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.delete_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "delete_view",
+        "delete_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/account/emailaddress/<path:object_id>/change/",
+      "name": "admin:account_emailaddress_change",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.change_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "change_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/account/emailaddress/<path:object_id>/",
+      "name": null,
+      "namespace": "admin",
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/socialaccount/socialapp/",
+      "name": "admin:socialaccount_socialapp_changelist",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.changelist_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "changelist_view",
+        "changelist_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/socialaccount/socialapp/add/",
+      "name": "admin:socialaccount_socialapp_add",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.add_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "add_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/socialaccount/socialapp/<path:object_id>/history/",
+      "name": "admin:socialaccount_socialapp_history",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.history_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "history_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/socialaccount/socialapp/<path:object_id>/delete/",
+      "name": "admin:socialaccount_socialapp_delete",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.delete_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "delete_view",
+        "delete_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/socialaccount/socialapp/<path:object_id>/change/",
+      "name": "admin:socialaccount_socialapp_change",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.change_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "change_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/socialaccount/socialapp/<path:object_id>/",
+      "name": null,
+      "namespace": "admin",
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/socialaccount/socialtoken/",
+      "name": "admin:socialaccount_socialtoken_changelist",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.changelist_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "changelist_view",
+        "changelist_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/socialaccount/socialtoken/add/",
+      "name": "admin:socialaccount_socialtoken_add",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.add_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "add_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/socialaccount/socialtoken/<path:object_id>/history/",
+      "name": "admin:socialaccount_socialtoken_history",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.history_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "history_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/socialaccount/socialtoken/<path:object_id>/delete/",
+      "name": "admin:socialaccount_socialtoken_delete",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.delete_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "delete_view",
+        "delete_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/socialaccount/socialtoken/<path:object_id>/change/",
+      "name": "admin:socialaccount_socialtoken_change",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.change_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "change_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/socialaccount/socialtoken/<path:object_id>/",
+      "name": null,
+      "namespace": "admin",
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/socialaccount/socialaccount/",
+      "name": "admin:socialaccount_socialaccount_changelist",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.changelist_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "changelist_view",
+        "changelist_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/socialaccount/socialaccount/add/",
+      "name": "admin:socialaccount_socialaccount_add",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.add_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "add_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/socialaccount/socialaccount/<path:object_id>/history/",
+      "name": "admin:socialaccount_socialaccount_history",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.history_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "history_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/socialaccount/socialaccount/<path:object_id>/delete/",
+      "name": "admin:socialaccount_socialaccount_delete",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.delete_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "delete_view",
+        "delete_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/socialaccount/socialaccount/<path:object_id>/change/",
+      "name": "admin:socialaccount_socialaccount_change",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.change_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "change_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/socialaccount/socialaccount/<path:object_id>/",
+      "name": null,
+      "namespace": "admin",
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/jobalertpreference/",
+      "name": "admin:jobs_jobalertpreference_changelist",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.changelist_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "changelist_view",
+        "changelist_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/jobalertpreference/add/",
+      "name": "admin:jobs_jobalertpreference_add",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.add_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "add_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/jobalertpreference/<path:object_id>/history/",
+      "name": "admin:jobs_jobalertpreference_history",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.history_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "history_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/jobalertpreference/<path:object_id>/delete/",
+      "name": "admin:jobs_jobalertpreference_delete",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.delete_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "delete_view",
+        "delete_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/jobalertpreference/<path:object_id>/change/",
+      "name": "admin:jobs_jobalertpreference_change",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.change_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "change_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/jobalertpreference/<path:object_id>/",
+      "name": null,
+      "namespace": "admin",
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/jobalert/",
+      "name": "admin:jobs_jobalert_changelist",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.changelist_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "changelist_view",
+        "changelist_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/jobalert/add/",
+      "name": "admin:jobs_jobalert_add",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.add_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "add_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/jobalert/<path:object_id>/history/",
+      "name": "admin:jobs_jobalert_history",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.history_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "history_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/jobalert/<path:object_id>/delete/",
+      "name": "admin:jobs_jobalert_delete",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.delete_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "delete_view",
+        "delete_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/jobalert/<path:object_id>/change/",
+      "name": "admin:jobs_jobalert_change",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.change_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "change_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/jobalert/<path:object_id>/",
+      "name": null,
+      "namespace": "admin",
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/company/",
+      "name": "admin:jobs_company_changelist",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.changelist_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "changelist_view",
+        "changelist_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/company/add/",
+      "name": "admin:jobs_company_add",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.add_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "add_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/company/<path:object_id>/history/",
+      "name": "admin:jobs_company_history",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.history_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "history_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/company/<path:object_id>/delete/",
+      "name": "admin:jobs_company_delete",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.delete_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "delete_view",
+        "delete_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/company/<path:object_id>/change/",
+      "name": "admin:jobs_company_change",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.change_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "change_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/company/<path:object_id>/",
+      "name": null,
+      "namespace": "admin",
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/job/",
+      "name": "admin:jobs_job_changelist",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.changelist_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "changelist_view",
+        "changelist_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/job/add/",
+      "name": "admin:jobs_job_add",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.add_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "add_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/job/<path:object_id>/history/",
+      "name": "admin:jobs_job_history",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.history_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "history_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/job/<path:object_id>/delete/",
+      "name": "admin:jobs_job_delete",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.delete_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "delete_view",
+        "delete_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/job/<path:object_id>/change/",
+      "name": "admin:jobs_job_change",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.change_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "change_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/job/<path:object_id>/",
+      "name": null,
+      "namespace": "admin",
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/profile/",
+      "name": "admin:jobs_profile_changelist",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.changelist_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "changelist_view",
+        "changelist_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/profile/add/",
+      "name": "admin:jobs_profile_add",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.add_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "add_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/profile/<path:object_id>/history/",
+      "name": "admin:jobs_profile_history",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.history_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "history_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/profile/<path:object_id>/delete/",
+      "name": "admin:jobs_profile_delete",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.delete_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "delete_view",
+        "delete_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/profile/<path:object_id>/change/",
+      "name": "admin:jobs_profile_change",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.change_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "change_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/profile/<path:object_id>/",
+      "name": null,
+      "namespace": "admin",
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/application/",
+      "name": "admin:jobs_application_changelist",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.changelist_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "changelist_view",
+        "changelist_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/application/add/",
+      "name": "admin:jobs_application_add",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.add_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "add_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/application/<path:object_id>/history/",
+      "name": "admin:jobs_application_history",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.history_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "history_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/application/<path:object_id>/delete/",
+      "name": "admin:jobs_application_delete",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.delete_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "delete_view",
+        "delete_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/application/<path:object_id>/change/",
+      "name": "admin:jobs_application_change",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.change_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "change_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/application/<path:object_id>/",
+      "name": null,
+      "namespace": "admin",
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/contactinquiry/",
+      "name": "admin:jobs_contactinquiry_changelist",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.changelist_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "changelist_view",
+        "changelist_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/contactinquiry/add/",
+      "name": "admin:jobs_contactinquiry_add",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.add_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "add_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/contactinquiry/<path:object_id>/history/",
+      "name": "admin:jobs_contactinquiry_history",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.history_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "history_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/contactinquiry/<path:object_id>/delete/",
+      "name": "admin:jobs_contactinquiry_delete",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.delete_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "delete_view",
+        "delete_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/contactinquiry/<path:object_id>/change/",
+      "name": "admin:jobs_contactinquiry_change",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.change_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "change_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/contactinquiry/<path:object_id>/",
+      "name": null,
+      "namespace": "admin",
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/savedjob/",
+      "name": "admin:jobs_savedjob_changelist",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.changelist_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "changelist_view",
+        "changelist_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/savedjob/add/",
+      "name": "admin:jobs_savedjob_add",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.add_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "add_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/savedjob/<path:object_id>/history/",
+      "name": "admin:jobs_savedjob_history",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.history_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "history_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/savedjob/<path:object_id>/delete/",
+      "name": "admin:jobs_savedjob_delete",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.delete_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "delete_view",
+        "delete_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/savedjob/<path:object_id>/change/",
+      "name": "admin:jobs_savedjob_change",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.change_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "change_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/savedjob/<path:object_id>/",
+      "name": null,
+      "namespace": "admin",
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/notification/",
+      "name": "admin:jobs_notification_changelist",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.changelist_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "changelist_view",
+        "changelist_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/notification/add/",
+      "name": "admin:jobs_notification_add",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.add_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "add_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/notification/<path:object_id>/history/",
+      "name": "admin:jobs_notification_history",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.history_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "history_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/notification/<path:object_id>/delete/",
+      "name": "admin:jobs_notification_delete",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.delete_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "delete_view",
+        "delete_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/notification/<path:object_id>/change/",
+      "name": "admin:jobs_notification_change",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.change_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "change_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/notification/<path:object_id>/",
+      "name": null,
+      "namespace": "admin",
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/interview/",
+      "name": "admin:jobs_interview_changelist",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.changelist_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "changelist_view",
+        "changelist_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/interview/add/",
+      "name": "admin:jobs_interview_add",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.add_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "add_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/interview/<path:object_id>/history/",
+      "name": "admin:jobs_interview_history",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.history_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "history_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/interview/<path:object_id>/delete/",
+      "name": "admin:jobs_interview_delete",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.delete_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "delete_view",
+        "delete_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/interview/<path:object_id>/change/",
+      "name": "admin:jobs_interview_change",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.change_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "change_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/interview/<path:object_id>/",
+      "name": null,
+      "namespace": "admin",
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/signuprecord/",
+      "name": "admin:jobs_signuprecord_changelist",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.changelist_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "changelist_view",
+        "changelist_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/signuprecord/add/",
+      "name": "admin:jobs_signuprecord_add",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.add_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "add_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/signuprecord/<path:object_id>/history/",
+      "name": "admin:jobs_signuprecord_history",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.history_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "history_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/signuprecord/<path:object_id>/delete/",
+      "name": "admin:jobs_signuprecord_delete",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.delete_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "delete_view",
+        "delete_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/signuprecord/<path:object_id>/change/",
+      "name": "admin:jobs_signuprecord_change",
+      "namespace": "admin",
+      "view": "django.contrib.admin.options.change_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\options.py",
+      "decorators": [
+        "change_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/jobs/signuprecord/<path:object_id>/",
+      "name": null,
+      "namespace": "admin",
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/^(?P<app_label>auth|sites|account|socialaccount|jobs)/$",
+      "name": "admin:app_list",
+      "namespace": "admin",
+      "view": "django.contrib.admin.sites.app_index",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\sites.py",
+      "decorators": [
+        "app_index"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin/(?P<url>.*)$",
+      "name": null,
+      "namespace": "admin",
+      "view": "django.contrib.admin.sites.catch_all_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\admin\\sites.py",
+      "decorators": [
+        "catch_all_view",
+        "catch_all_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "favicon.ico",
+      "name": null,
+      "namespace": null,
+      "view": "django.views.static.serve",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\static.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "document_root": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\assets\\images",
+        "path": "talentbridge-mark.svg"
+      }
+    },
+    {
+      "pattern": "",
+      "name": "home",
+      "namespace": null,
+      "view": "jobs.views.home",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "dashboard/",
+      "name": "dashboard",
+      "namespace": null,
+      "view": "jobs.views.dashboard_redirect",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [
+        "dashboard_redirect"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "dashboard/profile/save/",
+      "name": "dashboard-profile-save",
+      "namespace": null,
+      "view": "jobs.views.dashboard_profile_save",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [
+        "dashboard_profile_save",
+        "dashboard_profile_save"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "jobs/",
+      "name": "jobs",
+      "namespace": null,
+      "view": "jobs.views.job_list",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "remote-jobs/",
+      "name": "remote-jobs",
+      "namespace": null,
+      "view": "jobs.views.remote_jobs",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "startup-jobs/",
+      "name": "startup-jobs",
+      "namespace": null,
+      "view": "jobs.views.startup_jobs",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "companies/",
+      "name": "companies",
+      "namespace": null,
+      "view": "jobs.views.company_directory",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "companies/<int:company_id>/",
+      "name": "company-detail",
+      "namespace": null,
+      "view": "jobs.views.public_company_detail",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "faqs/",
+      "name": null,
+      "namespace": null,
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "trust/",
+      "name": null,
+      "namespace": null,
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "status/",
+      "name": null,
+      "namespace": null,
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "ai-audit/",
+      "name": null,
+      "namespace": null,
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "cookies/",
+      "name": null,
+      "namespace": null,
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "search/",
+      "name": null,
+      "namespace": null,
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "applications/",
+      "name": null,
+      "namespace": null,
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "jobs/create/",
+      "name": "create_job",
+      "namespace": null,
+      "view": "jobs.views.create_job",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [
+        "create_job"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "jobs/<int:job_id>/edit/",
+      "name": "edit-job",
+      "namespace": null,
+      "view": "jobs.views.edit_job",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [
+        "edit_job"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "jobs/<int:job_id>/",
+      "name": "job_detail",
+      "namespace": null,
+      "view": "jobs.views.job_detail",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "jobs/<int:job_id>/apply/",
+      "name": "apply_job",
+      "namespace": null,
+      "view": "jobs.views.apply_job",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [
+        "apply_job"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "contact/submit/",
+      "name": "contact_submit",
+      "namespace": null,
+      "view": "jobs.views.contact_page",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "resume/download/",
+      "name": "resume_download",
+      "namespace": null,
+      "view": "jobs.views.resume_download",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [
+        "resume_download"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "resume/preview/",
+      "name": "resume_preview",
+      "namespace": null,
+      "view": "jobs.views.resume_preview",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [
+        "resume_preview"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "resume/delete/",
+      "name": "resume_delete",
+      "namespace": null,
+      "view": "jobs.views.resume_delete",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [
+        "resume_delete",
+        "resume_delete"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "resume-builder/",
+      "name": "resume-builder",
+      "namespace": null,
+      "view": "jobs.views.resume_builder",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [
+        "resume_builder"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "saved-jobs/",
+      "name": "saved-jobs",
+      "namespace": null,
+      "view": "jobs.views.saved_jobs_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [
+        "saved_jobs_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "job-alerts/",
+      "name": "job-alerts",
+      "namespace": null,
+      "view": "jobs.views.job_alerts_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [
+        "job_alerts_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "jobs/<int:job_id>/save/",
+      "name": "toggle-saved-job",
+      "namespace": null,
+      "view": "jobs.views.toggle_saved_job",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [
+        "toggle_saved_job",
+        "toggle_saved_job"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "notifications/",
+      "name": "notifications",
+      "namespace": null,
+      "view": "jobs.views.notifications_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [
+        "notifications_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "interviews/",
+      "name": "interviews",
+      "namespace": null,
+      "view": "jobs.views.interviews_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [
+        "interviews_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "interviews/<int:interview_id>/status/",
+      "name": "update-interview-status",
+      "namespace": null,
+      "view": "jobs.views.update_interview_status",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [
+        "update_interview_status",
+        "update_interview_status"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "applications/<int:application_id>/status/",
+      "name": "update-application-status",
+      "namespace": null,
+      "view": "jobs.views.update_application_status",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [
+        "update_application_status",
+        "update_application_status"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "manage-jobs/<int:job_id>/toggle/",
+      "name": "toggle-job-active",
+      "namespace": null,
+      "view": "jobs.views.toggle_job_active",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [
+        "toggle_job_active",
+        "toggle_job_active"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "candidate-details/",
+      "name": "candidate-details",
+      "namespace": null,
+      "view": "jobs.views.candidate_details",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [
+        "candidate_details"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin-dashboard/",
+      "name": "admin-dashboard",
+      "namespace": null,
+      "view": "jobs.views.admin_dashboard",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [
+        "admin_dashboard"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "admin-dashboard/companies/<int:company_id>/approve/",
+      "name": "approve-company",
+      "namespace": null,
+      "view": "jobs.views.approve_company",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [
+        "approve_company",
+        "approve_company"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "signup/job-seeker/",
+      "name": "jobseeker_signup",
+      "namespace": null,
+      "view": "jobs.views.jobseeker_signup",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "signup/employer/",
+      "name": "employer_signup",
+      "namespace": null,
+      "view": "jobs.views.employer_signup",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "login/",
+      "name": "login",
+      "namespace": null,
+      "view": "jobs.views.login_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "verify-email/<uidb64>/<token>/",
+      "name": "verify-email",
+      "namespace": null,
+      "view": "jobs.views.verify_email",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "resend-verification/",
+      "name": "resend-verification",
+      "namespace": null,
+      "view": "jobs.views.resend_verification",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "auth/social/<str:provider>/",
+      "name": "social-login-start",
+      "namespace": null,
+      "view": "jobs.views.social_login_start",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [
+        "social_login_start"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "logout/",
+      "name": "logout",
+      "namespace": null,
+      "view": "jobs.views.logout_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [
+        "logout_view"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "accounts/login/",
+      "name": "accounts-login-redirect",
+      "namespace": null,
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "accounts/login/",
+      "name": "account_login",
+      "namespace": null,
+      "view": "allauth.account.views._login.LoginView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\allauth\\account\\views\\_login.py",
+      "decorators": [
+        "dispatch",
+        "dispatch",
+        "dispatch"
+      ],
+      "mixins": [
+        "NextRedirectMixin",
+        "RedirectAuthenticatedUserMixin",
+        "AjaxCapableProcessFormViewMixin",
+        "FormView",
+        "TemplateResponseMixin",
+        "FormMixin",
+        "ContextMixin",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "accounts/logout/",
+      "name": "account_logout",
+      "namespace": null,
+      "view": "allauth.account.views._logout.LogoutView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\allauth\\account\\views\\_logout.py",
+      "decorators": [],
+      "mixins": [
+        "NextRedirectMixin",
+        "LogoutFunctionalityMixin",
+        "TemplateView",
+        "TemplateResponseMixin",
+        "ContextMixin",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "accounts/inactive/",
+      "name": "account_inactive",
+      "namespace": null,
+      "view": "allauth.account.views._account.AccountInactiveView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\allauth\\account\\views\\_account.py",
+      "decorators": [],
+      "mixins": [
+        "TemplateView",
+        "TemplateResponseMixin",
+        "ContextMixin",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "accounts/signup/",
+      "name": "account_signup",
+      "namespace": null,
+      "view": "allauth.account.views._signup.SignupView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\allauth\\account\\views\\_signup.py",
+      "decorators": [
+        "dispatch",
+        "dispatch",
+        "dispatch"
+      ],
+      "mixins": [
+        "RedirectAuthenticatedUserMixin",
+        "CloseableSignupMixin",
+        "NextRedirectMixin",
+        "AjaxCapableProcessFormViewMixin",
+        "FormView",
+        "TemplateResponseMixin",
+        "FormMixin",
+        "ContextMixin",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "accounts/reauthenticate/",
+      "name": "account_reauthenticate",
+      "namespace": null,
+      "view": "allauth.account.views._reauthenticate.ReauthenticateView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\allauth\\account\\views\\_reauthenticate.py",
+      "decorators": [],
+      "mixins": [
+        "NextRedirectMixin",
+        "FormView",
+        "TemplateResponseMixin",
+        "FormMixin",
+        "ContextMixin",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "accounts/reauthenticate/code/",
+      "name": "account_request_reauthentication_code",
+      "namespace": null,
+      "view": "allauth.account.views._reauthenticate.RequestReauthenticationCodeView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\allauth\\account\\views\\_reauthenticate.py",
+      "decorators": [],
+      "mixins": [
+        "NextRedirectMixin",
+        "FormView",
+        "TemplateResponseMixin",
+        "FormMixin",
+        "ContextMixin",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "accounts/reauthenticate/code/confirm/",
+      "name": "account_confirm_reauthentication_code",
+      "namespace": null,
+      "view": "allauth.account.views._reauthenticate.ConfirmReauthenticationCodeView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\allauth\\account\\views\\_reauthenticate.py",
+      "decorators": [
+        "dispatch"
+      ],
+      "mixins": [
+        "NextRedirectMixin",
+        "FormView",
+        "TemplateResponseMixin",
+        "FormMixin",
+        "ContextMixin",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "accounts/email/",
+      "name": "account_email",
+      "namespace": null,
+      "view": "allauth.account.views._email_change.EmailView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\allauth\\account\\views\\_email_change.py",
+      "decorators": [
+        "dispatch"
+      ],
+      "mixins": [
+        "AjaxCapableProcessFormViewMixin",
+        "FormView",
+        "TemplateResponseMixin",
+        "FormMixin",
+        "ContextMixin",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "accounts/confirm-email/",
+      "name": "account_email_verification_sent",
+      "namespace": null,
+      "view": "allauth.account.views._email_verification.email_verification_sent",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\allauth\\account\\views\\_email_verification.py",
+      "decorators": [
+        "email_verification_sent"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "accounts/password/change/",
+      "name": "account_change_password",
+      "namespace": null,
+      "view": "allauth.account.views._password_change.PasswordChangeView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\allauth\\account\\views\\_password_change.py",
+      "decorators": [
+        "dispatch",
+        "dispatch"
+      ],
+      "mixins": [
+        "AjaxCapableProcessFormViewMixin",
+        "NextRedirectMixin",
+        "FormView",
+        "TemplateResponseMixin",
+        "FormMixin",
+        "ContextMixin",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "accounts/password/set/",
+      "name": "account_set_password",
+      "namespace": null,
+      "view": "allauth.account.views._password_change.PasswordSetView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\allauth\\account\\views\\_password_change.py",
+      "decorators": [
+        "dispatch",
+        "dispatch"
+      ],
+      "mixins": [
+        "AjaxCapableProcessFormViewMixin",
+        "NextRedirectMixin",
+        "FormView",
+        "TemplateResponseMixin",
+        "FormMixin",
+        "ContextMixin",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "accounts/password/reset/",
+      "name": "account_reset_password",
+      "namespace": null,
+      "view": "allauth.account.views._password_reset.PasswordResetView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\allauth\\account\\views\\_password_reset.py",
+      "decorators": [],
+      "mixins": [
+        "PasswordResetView",
+        "NextRedirectMixin",
+        "AjaxCapableProcessFormViewMixin",
+        "FormView",
+        "TemplateResponseMixin",
+        "FormMixin",
+        "ContextMixin",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "accounts/login/code/confirm/",
+      "name": "account_confirm_login_code",
+      "namespace": null,
+      "view": "allauth.account.views._login.ConfirmLoginCodeView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\allauth\\account\\views\\_login.py",
+      "decorators": [
+        "dispatch"
+      ],
+      "mixins": [
+        "NextRedirectMixin",
+        "FormView",
+        "TemplateResponseMixin",
+        "FormMixin",
+        "ContextMixin",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "accounts/^confirm-email/(?P<key>[-:\\w]+)/$",
+      "name": "account_confirm_email",
+      "namespace": null,
+      "view": "allauth.account.views._email_verification.ConfirmEmailView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\allauth\\account\\views\\_email_verification.py",
+      "decorators": [],
+      "mixins": [
+        "NextRedirectMixin",
+        "LogoutFunctionalityMixin",
+        "TemplateView",
+        "TemplateResponseMixin",
+        "ContextMixin",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "accounts/password/reset/key/done/",
+      "name": "account_reset_password_from_key_done",
+      "namespace": null,
+      "view": "allauth.account.views._password_reset.PasswordResetFromKeyDoneView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\allauth\\account\\views\\_password_reset.py",
+      "decorators": [],
+      "mixins": [
+        "TemplateView",
+        "TemplateResponseMixin",
+        "ContextMixin",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "accounts/^password/reset/key/(?P<uidb36>[0-9A-Za-z]+)-(?P<key>.+)/$",
+      "name": "account_reset_password_from_key",
+      "namespace": null,
+      "view": "allauth.account.views._password_reset.PasswordResetFromKeyView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\allauth\\account\\views\\_password_reset.py",
+      "decorators": [
+        "dispatch"
+      ],
+      "mixins": [
+        "AjaxCapableProcessFormViewMixin",
+        "NextRedirectMixin",
+        "LogoutFunctionalityMixin",
+        "FormView",
+        "TemplateResponseMixin",
+        "FormMixin",
+        "ContextMixin",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "accounts/password/reset/done/",
+      "name": "account_reset_password_done",
+      "namespace": null,
+      "view": "allauth.account.views._password_reset.PasswordResetDoneView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\allauth\\account\\views\\_password_reset.py",
+      "decorators": [],
+      "mixins": [
+        "PasswordResetDoneView",
+        "TemplateView",
+        "TemplateResponseMixin",
+        "ContextMixin",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "accounts/3rdparty/login/cancelled/",
+      "name": "socialaccount_login_cancelled",
+      "namespace": null,
+      "view": "allauth.socialaccount.views.LoginCancelledView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\allauth\\socialaccount\\views.py",
+      "decorators": [],
+      "mixins": [
+        "TemplateView",
+        "TemplateResponseMixin",
+        "ContextMixin",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "accounts/3rdparty/login/error/",
+      "name": "socialaccount_login_error",
+      "namespace": null,
+      "view": "allauth.socialaccount.views.LoginErrorView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\allauth\\socialaccount\\views.py",
+      "decorators": [],
+      "mixins": [
+        "TemplateView",
+        "TemplateResponseMixin",
+        "ContextMixin",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "accounts/3rdparty/signup/",
+      "name": "socialaccount_signup",
+      "namespace": null,
+      "view": "allauth.socialaccount.views.SignupView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\allauth\\socialaccount\\views.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectAuthenticatedUserMixin",
+        "CloseableSignupMixin",
+        "AjaxCapableProcessFormViewMixin",
+        "FormView",
+        "TemplateResponseMixin",
+        "FormMixin",
+        "ContextMixin",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "accounts/3rdparty/",
+      "name": "socialaccount_connections",
+      "namespace": null,
+      "view": "allauth.socialaccount.views.ConnectionsView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\allauth\\socialaccount\\views.py",
+      "decorators": [],
+      "mixins": [
+        "AjaxCapableProcessFormViewMixin",
+        "FormView",
+        "TemplateResponseMixin",
+        "FormMixin",
+        "ContextMixin",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "accounts/social/login/cancelled/",
+      "name": null,
+      "namespace": null,
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "accounts/social/login/error/",
+      "name": null,
+      "namespace": null,
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "accounts/social/signup/",
+      "name": null,
+      "namespace": null,
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "accounts/social/connections/",
+      "name": null,
+      "namespace": null,
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "accounts/google/login/",
+      "name": "google_login",
+      "namespace": null,
+      "view": "allauth.socialaccount.providers.oauth2.views.view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\allauth\\socialaccount\\providers\\oauth2\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "accounts/google/login/callback/",
+      "name": "google_callback",
+      "namespace": null,
+      "view": "allauth.socialaccount.providers.oauth2.views.view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\allauth\\socialaccount\\providers\\oauth2\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "accounts/google/login/token/",
+      "name": "google_login_by_token",
+      "namespace": null,
+      "view": "allauth.socialaccount.providers.google.views.LoginByTokenView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\allauth\\socialaccount\\providers\\google\\views.py",
+      "decorators": [],
+      "mixins": [
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "employer/pending/",
+      "name": "employer_pending",
+      "namespace": null,
+      "view": "jobs.views.employer_pending",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [
+        "employer_pending"
+      ],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "forgot-password/",
+      "name": "forgot-password",
+      "namespace": null,
+      "view": "django.contrib.auth.views.PasswordResetView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\auth\\views.py",
+      "decorators": [
+        "dispatch"
+      ],
+      "mixins": [
+        "PasswordResetView",
+        "PasswordContextMixin",
+        "FormView",
+        "TemplateResponseMixin",
+        "FormMixin",
+        "ContextMixin",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "password-reset/",
+      "name": "password-reset",
+      "namespace": null,
+      "view": "django.contrib.auth.views.PasswordResetDoneView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\auth\\views.py",
+      "decorators": [],
+      "mixins": [
+        "PasswordResetDoneView",
+        "PasswordContextMixin",
+        "TemplateView",
+        "TemplateResponseMixin",
+        "ContextMixin",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "password-reset/<uidb64>/<token>/",
+      "name": "password-reset-confirm",
+      "namespace": null,
+      "view": "django.contrib.auth.views.PasswordResetConfirmView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\auth\\views.py",
+      "decorators": [
+        "dispatch",
+        "dispatch"
+      ],
+      "mixins": [
+        "PasswordResetConfirmView",
+        "PasswordContextMixin",
+        "FormView",
+        "TemplateResponseMixin",
+        "FormMixin",
+        "ContextMixin",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "password-reset/complete/",
+      "name": "password-reset-complete",
+      "namespace": null,
+      "view": "django.contrib.auth.views.PasswordResetCompleteView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\contrib\\auth\\views.py",
+      "decorators": [],
+      "mixins": [
+        "PasswordResetCompleteView",
+        "PasswordContextMixin",
+        "TemplateView",
+        "TemplateResponseMixin",
+        "ContextMixin",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "pages/jobseeker-signup.html",
+      "name": "jobseeker_signup_page",
+      "namespace": null,
+      "view": "jobs.views.jobseeker_signup",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "pages/company-signup.html",
+      "name": "employer_signup_page",
+      "namespace": null,
+      "view": "jobs.views.employer_signup",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "pages/login.html",
+      "name": "login_page",
+      "namespace": null,
+      "view": "jobs.views.login_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "index.html",
+      "name": null,
+      "namespace": null,
+      "view": "django.views.static.serve",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\static.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "document_root": "E:\\Job POrtal\\TalentBridgeAI\\frontend",
+        "path": "index.html"
+      }
+    },
+    {
+      "pattern": "site/index.html",
+      "name": "static-home-redirect",
+      "namespace": null,
+      "view": "django.views.generic.base.RedirectView",
+      "view_kind": "cbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\generic\\base.py",
+      "decorators": [],
+      "mixins": [
+        "RedirectView",
+        "View"
+      ],
+      "default_args": {}
+    },
+    {
+      "pattern": "signup/",
+      "name": "signup",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "signup-role.html"
+      }
+    },
+    {
+      "pattern": "company-signup/",
+      "name": "company-signup",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "company-signup.html"
+      }
+    },
+    {
+      "pattern": "jobseeker-signup/",
+      "name": "jobseeker-signup",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "jobseeker-signup.html"
+      }
+    },
+    {
+      "pattern": "employer/",
+      "name": "employer",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "employer.html"
+      }
+    },
+    {
+      "pattern": "employee/",
+      "name": "employee",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "employee.html"
+      }
+    },
+    {
+      "pattern": "jobseaker/",
+      "name": "jobseaker",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "jobseaker.html"
+      }
+    },
+    {
+      "pattern": "login/",
+      "name": "login",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "login.html"
+      }
+    },
+    {
+      "pattern": "pricing/",
+      "name": "pricing",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "pricing.html"
+      }
+    },
+    {
+      "pattern": "salary-calculator/",
+      "name": "salary-calculator",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "salary-calculator.html"
+      }
+    },
+    {
+      "pattern": "platform-status/",
+      "name": "platform-status",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "platform-status.html"
+      }
+    },
+    {
+      "pattern": "posting-job/",
+      "name": "posting-job",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "posting-job.html"
+      }
+    },
+    {
+      "pattern": "terms/",
+      "name": "terms",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "terms.html"
+      }
+    },
+    {
+      "pattern": "trust-center/",
+      "name": "trust-center",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "trust-center.html"
+      }
+    },
+    {
+      "pattern": "privacy/",
+      "name": "privacy",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "privacy.html"
+      }
+    },
+    {
+      "pattern": "about/",
+      "name": "about",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "about.html"
+      }
+    },
+    {
+      "pattern": "ai-audit-center/",
+      "name": "ai-audit-center",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "ai-audit-center.html"
+      }
+    },
+    {
+      "pattern": "blog/",
+      "name": "blog",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "blog.html"
+      }
+    },
+    {
+      "pattern": "careers/",
+      "name": "careers",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "careers.html"
+      }
+    },
+    {
+      "pattern": "contact/",
+      "name": "contact",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "contact.html"
+      }
+    },
+    {
+      "pattern": "cookie-preferences/",
+      "name": "cookie-preferences",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "cookie-preferences.html"
+      }
+    },
+    {
+      "pattern": "customer-stories/",
+      "name": "customer-stories",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "customer-stories.html"
+      }
+    },
+    {
+      "pattern": "help/",
+      "name": "help",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "help.html"
+      }
+    },
+    {
+      "pattern": "faq/",
+      "name": "faq",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "faq.html"
+      }
+    },
+    {
+      "pattern": "categories/",
+      "name": "categories",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "categories.html"
+      }
+    },
+    {
+      "pattern": "jobs/",
+      "name": "jobs",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "job-listings.html"
+      }
+    },
+    {
+      "pattern": "remote-work-guide/",
+      "name": "remote-work-guide",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "remote-work-guide.html"
+      }
+    },
+    {
+      "pattern": "recommended-jobs/",
+      "name": "recommended-jobs",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "recommended-jobs.html"
+      }
+    },
+    {
+      "pattern": "job-search/",
+      "name": "job-search",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "job-search.html"
+      }
+    },
+    {
+      "pattern": "job-detail/",
+      "name": "job-detail",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "job-detail.html"
+      }
+    },
+    {
+      "pattern": "saved-jobs/",
+      "name": "saved-jobs",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "saved-jobs.html"
+      }
+    },
+    {
+      "pattern": "applied-jobs/",
+      "name": "applied-jobs",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "applied-jobs.html"
+      }
+    },
+    {
+      "pattern": "application-form/",
+      "name": "application-form",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "application-form.html"
+      }
+    },
+    {
+      "pattern": "resume-management/",
+      "name": "resume-management",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "resume-management.html"
+      }
+    },
+    {
+      "pattern": "privacy-settings/",
+      "name": "privacy-settings",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "privacy-settings.html"
+      }
+    },
+    {
+      "pattern": "get-discovered/",
+      "name": "get-discovered",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "privacy-settings.html"
+      }
+    },
+    {
+      "pattern": "profile/",
+      "name": "profile",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "profile.html"
+      }
+    },
+    {
+      "pattern": "edit-profile/",
+      "name": "edit-profile",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "edit-profile.html"
+      }
+    },
+    {
+      "pattern": "account-security/",
+      "name": "account-security",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "account-security.html"
+      }
+    },
+    {
+      "pattern": "employer-profile/",
+      "name": "employer-profile",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "employer-profile.html"
+      }
+    },
+    {
+      "pattern": "company-details/",
+      "name": "company-details",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "company-details.html"
+      }
+    },
+    {
+      "pattern": "manage-jobs/",
+      "name": "manage-jobs",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "manage-jobs.html"
+      }
+    },
+    {
+      "pattern": "manage-applications/",
+      "name": "manage-applications",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "manage-applications.html"
+      }
+    },
+    {
+      "pattern": "candidate-search/",
+      "name": "candidate-search",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "candidate-search.html"
+      }
+    },
+    {
+      "pattern": "candidate-details/",
+      "name": "candidate-details",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "candidate-details.html"
+      }
+    },
+    {
+      "pattern": "notifications/",
+      "name": "notifications",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "notifications.html"
+      }
+    },
+    {
+      "pattern": "interviews/",
+      "name": "interviews",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "interviews.html"
+      }
+    },
+    {
+      "pattern": "admin-dashboard/",
+      "name": "admin-dashboard",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "admin-dashboard.html"
+      }
+    },
+    {
+      "pattern": "application-success/",
+      "name": "application-success",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "application-success.html"
+      }
+    },
+    {
+      "pattern": "access-denied/",
+      "name": "access-denied",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "access-denied.html"
+      }
+    },
+    {
+      "pattern": "404/",
+      "name": "404",
+      "namespace": null,
+      "view": "jobs.views.page_view",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "filename": "404.html"
+      }
+    },
+    {
+      "pattern": "^pages/(?P<path>.*)$",
+      "name": null,
+      "namespace": null,
+      "view": "jobs.views.page_file",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\jobs\\views.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {}
+    },
+    {
+      "pattern": "^css/(?P<path>.*)$",
+      "name": null,
+      "namespace": null,
+      "view": "config.urls.dev_static",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\config\\urls.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "document_root": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\css"
+      }
+    },
+    {
+      "pattern": "^js/(?P<path>.*)$",
+      "name": null,
+      "namespace": null,
+      "view": "config.urls.dev_static",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\config\\urls.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "document_root": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\js"
+      }
+    },
+    {
+      "pattern": "^images/(?P<path>.*)$",
+      "name": null,
+      "namespace": null,
+      "view": "django.views.static.serve",
+      "view_kind": "fbv",
+      "view_file": "E:\\Job POrtal\\TalentBridgeAI\\backend\\legacy-django\\.venv\\Lib\\site-packages\\django\\views\\static.py",
+      "decorators": [],
+      "mixins": [],
+      "default_args": {
+        "document_root": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\assets\\images"
+      }
+    }
+  ],
+  "view_analysis": {
+    "jobs.views._account_profile_completion": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views._application_form": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [
+        "application-form.html"
+      ],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views._assess_job_post_quality": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views._experience_matches": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views._experience_years": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views._job_alert_match_fields": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views._match_existing_jobs_for_preference": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views._match_job_alert_preferences": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views._public_auth_context": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [
+        "login.html",
+        "jobseeker-signup.html",
+        "company-signup.html"
+      ],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views._recommendation_match_signals": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views._record_job_alert": {
+      "auth_markers": [],
+      "wraps": [
+        "_record_job_alert"
+      ],
+      "templates": [],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views._register": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [
+        "pages/company-signup.html",
+        "pages/jobseeker-signup.html"
+      ],
+      "methods": [],
+      "roles": [
+        "role-check-in-body"
+      ],
+      "login_required_wrap": false
+    },
+    "jobs.views._render_page": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views._resume_draft_education": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views._save_resume_draft_education": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views._send_signup_verification": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views._set_application_status": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views.access_denied_view": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [
+        "access-denied.html"
+      ],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views.account_security": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "account_security"
+      ],
+      "templates": [
+        "account-security.html"
+      ],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views.admin_dashboard": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "admin_dashboard"
+      ],
+      "templates": [
+        "admin-dashboard.html"
+      ],
+      "methods": [],
+      "roles": [
+        "staff-check-in-body"
+      ],
+      "login_required_wrap": false
+    },
+    "jobs.views.applied_jobs": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "applied_jobs"
+      ],
+      "templates": [
+        "applied-jobs.html"
+      ],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views.apply_job": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "apply_job"
+      ],
+      "templates": [
+        "application-form.html"
+      ],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views.approve_company": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "approve_company",
+        "approve_company"
+      ],
+      "templates": [],
+      "methods": [
+        "POST"
+      ],
+      "roles": [
+        "staff-check-in-body"
+      ],
+      "login_required_wrap": false
+    },
+    "jobs.views.candidate_details": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "candidate_details"
+      ],
+      "templates": [
+        "candidate-details.html"
+      ],
+      "methods": [],
+      "roles": [
+        "ownership-check"
+      ],
+      "login_required_wrap": false
+    },
+    "jobs.views.candidate_search": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "candidate_search"
+      ],
+      "templates": [
+        "candidate-search.html"
+      ],
+      "methods": [],
+      "roles": [
+        "role-check-in-body",
+        "staff-check-in-body",
+        "ownership-check"
+      ],
+      "login_required_wrap": false
+    },
+    "jobs.views.company_directory": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [
+        "companies/list.html"
+      ],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views.company_profile_view": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "company_profile_view"
+      ],
+      "templates": [
+        "company-details.html"
+      ],
+      "methods": [],
+      "roles": [
+        "ownership-check"
+      ],
+      "login_required_wrap": false
+    },
+    "jobs.views.contact_page": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [
+        "contact.html"
+      ],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views.create_job": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "create_job"
+      ],
+      "templates": [],
+      "methods": [],
+      "roles": [
+        "ownership-check"
+      ],
+      "login_required_wrap": false
+    },
+    "jobs.views.dashboard_profile_save": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "dashboard_profile_save",
+        "dashboard_profile_save"
+      ],
+      "templates": [],
+      "methods": [
+        "POST"
+      ],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views.dashboard_redirect": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "dashboard_redirect"
+      ],
+      "templates": [
+        "/pages/dashboard/cdashboard.html",
+        "/pages/dashboard/jdashboard.html"
+      ],
+      "methods": [],
+      "roles": [
+        "role-check-in-body",
+        "ownership-check"
+      ],
+      "login_required_wrap": false
+    },
+    "jobs.views.edit_job": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "edit_job"
+      ],
+      "templates": [
+        "jobs/edit_job.html"
+      ],
+      "methods": [],
+      "roles": [
+        "ownership-check"
+      ],
+      "login_required_wrap": false
+    },
+    "jobs.views.employer_pending": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "employer_pending"
+      ],
+      "templates": [
+        "employer-pending.html"
+      ],
+      "methods": [],
+      "roles": [
+        "ownership-check"
+      ],
+      "login_required_wrap": false
+    },
+    "jobs.views.employer_signup": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views.home": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [
+        "index.html"
+      ],
+      "methods": [],
+      "roles": [
+        "role-check-in-body"
+      ],
+      "login_required_wrap": false
+    },
+    "jobs.views.interviews_view": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "interviews_view"
+      ],
+      "templates": [
+        "interviews.html"
+      ],
+      "methods": [],
+      "roles": [
+        "ownership-check"
+      ],
+      "login_required_wrap": false
+    },
+    "jobs.views.job_alerts_view": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "job_alerts_view"
+      ],
+      "templates": [
+        "job-alerts.html"
+      ],
+      "methods": [],
+      "roles": [
+        "role-check-in-body",
+        "ownership-check"
+      ],
+      "login_required_wrap": false
+    },
+    "jobs.views.job_detail": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [
+        "job-detail.html"
+      ],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views.job_list": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [
+        "jobs/home.html"
+      ],
+      "methods": [],
+      "roles": [
+        "role-check-in-body"
+      ],
+      "login_required_wrap": false
+    },
+    "jobs.views.jobseeker_signup": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views.login_view": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [
+        "pages/login.html"
+      ],
+      "methods": [],
+      "roles": [
+        "staff-check-in-body"
+      ],
+      "login_required_wrap": false
+    },
+    "jobs.views.logout_view": {
+      "auth_markers": [],
+      "wraps": [
+        "logout_view"
+      ],
+      "templates": [],
+      "methods": [
+        "POST"
+      ],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views.manage_applications": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "manage_applications"
+      ],
+      "templates": [
+        "manage-applications.html"
+      ],
+      "methods": [],
+      "roles": [
+        "ownership-check"
+      ],
+      "login_required_wrap": false
+    },
+    "jobs.views.manage_jobs": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "manage_jobs"
+      ],
+      "templates": [
+        "manage-jobs.html"
+      ],
+      "methods": [],
+      "roles": [
+        "ownership-check"
+      ],
+      "login_required_wrap": false
+    },
+    "jobs.views.notifications_view": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "notifications_view"
+      ],
+      "templates": [
+        "notifications.html"
+      ],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views.page_file": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [
+        "dashboard/dindex.html",
+        "/pages/dashboard/cdashboard.html",
+        "job-listings.html",
+        "job-search.html",
+        "salary-calculator.html",
+        "recommended-jobs.html",
+        "profile.html",
+        "edit-profile.html",
+        "privacy-settings.html",
+        "account-security.html",
+        "employer-profile.html",
+        "company-details.html",
+        "contact.html",
+        "resume-management.html",
+        "application-form.html"
+      ],
+      "methods": [],
+      "roles": [
+        "ownership-check"
+      ],
+      "login_required_wrap": false
+    },
+    "jobs.views.page_view": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [
+        "signup-role.html",
+        "company-signup.html",
+        "jobseeker-signup.html",
+        "employer.html",
+        "employee.html",
+        "login.html",
+        "pricing.html",
+        "salary-calculator.html",
+        "jobseaker.html",
+        "ai-audit-center.html",
+        "blog.html",
+        "careers.html",
+        "cookie-preferences.html",
+        "customer-stories.html",
+        "platform-status.html"
+      ],
+      "methods": [],
+      "roles": [
+        "role-check-in-body"
+      ],
+      "login_required_wrap": false
+    },
+    "jobs.views.profile_discovery_settings": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "profile_discovery_settings"
+      ],
+      "templates": [
+        "privacy-settings.html"
+      ],
+      "methods": [],
+      "roles": [
+        "role-check-in-body"
+      ],
+      "login_required_wrap": false
+    },
+    "jobs.views.profile_view": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "profile_view"
+      ],
+      "templates": [
+        "edit-profile.html",
+        "profile.html"
+      ],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views.public_company_detail": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [
+        "companies/detail.html"
+      ],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views.recommended_jobs": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "recommended_jobs"
+      ],
+      "templates": [
+        "recommended-jobs.html"
+      ],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views.remote_jobs": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views.resend_verification": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views.resume_builder": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "resume_builder"
+      ],
+      "templates": [
+        "resume-builder.html"
+      ],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views.resume_delete": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "resume_delete",
+        "resume_delete"
+      ],
+      "templates": [],
+      "methods": [
+        "POST"
+      ],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views.resume_download": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "resume_download"
+      ],
+      "templates": [],
+      "methods": [],
+      "roles": [
+        "ownership-check"
+      ],
+      "login_required_wrap": false
+    },
+    "jobs.views.resume_management": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "resume_management"
+      ],
+      "templates": [
+        "resume-management.html"
+      ],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views.resume_preview": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "resume_preview"
+      ],
+      "templates": [],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views.salary_calculator": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [
+        "salary-calculator.html"
+      ],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views.saved_jobs_view": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "saved_jobs_view"
+      ],
+      "templates": [
+        "saved-jobs.html"
+      ],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views.social_login_start": {
+      "auth_markers": [],
+      "wraps": [
+        "social_login_start"
+      ],
+      "templates": [
+        "socialaccount/auto_login.html"
+      ],
+      "methods": [],
+      "roles": [
+        "role-check-in-body"
+      ],
+      "login_required_wrap": false
+    },
+    "jobs.views.startup_jobs": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views.toggle_job_active": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "toggle_job_active",
+        "toggle_job_active"
+      ],
+      "templates": [],
+      "methods": [
+        "POST"
+      ],
+      "roles": [
+        "ownership-check"
+      ],
+      "login_required_wrap": false
+    },
+    "jobs.views.toggle_saved_job": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "toggle_saved_job",
+        "toggle_saved_job"
+      ],
+      "templates": [],
+      "methods": [
+        "POST"
+      ],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.views.update_application_status": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "update_application_status",
+        "update_application_status"
+      ],
+      "templates": [],
+      "methods": [
+        "POST"
+      ],
+      "roles": [
+        "ownership-check"
+      ],
+      "login_required_wrap": false
+    },
+    "jobs.views.update_interview_status": {
+      "auth_markers": [
+        "login_required"
+      ],
+      "wraps": [
+        "update_interview_status",
+        "update_interview_status"
+      ],
+      "templates": [],
+      "methods": [
+        "POST"
+      ],
+      "roles": [
+        "ownership-check"
+      ],
+      "login_required_wrap": false
+    },
+    "jobs.views.verify_email": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.dev_preview_views._require_development": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.dev_preview_views._template_errors": {
+      "auth_markers": [],
+      "wraps": [],
+      "templates": [],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.dev_preview_views.dev_preview_dashboard": {
+      "auth_markers": [],
+      "wraps": [
+        "dev_preview_dashboard"
+      ],
+      "templates": [
+        "dev_preview.html"
+      ],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    },
+    "jobs.dev_preview_views.dev_preview_state": {
+      "auth_markers": [],
+      "wraps": [
+        "dev_preview_state"
+      ],
+      "templates": [],
+      "methods": [],
+      "roles": [],
+      "login_required_wrap": false
+    }
+  },
+  "page_templates": {
+    "signup": {
+      "file": "signup-role.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\signup-role.html"
+    },
+    "company-signup": {
+      "file": "company-signup.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\company-signup.html"
+    },
+    "jobseeker-signup": {
+      "file": "jobseeker-signup.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\jobseeker-signup.html"
+    },
+    "employer": {
+      "file": "employer.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\employer.html"
+    },
+    "employee": {
+      "file": "employee.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\employee.html"
+    },
+    "jobseaker": {
+      "file": "jobseaker.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\jobseaker.html"
+    },
+    "login": {
+      "file": "login.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\login.html"
+    },
+    "pricing": {
+      "file": "pricing.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\pricing.html"
+    },
+    "salary-calculator": {
+      "file": "salary-calculator.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\salary-calculator.html"
+    },
+    "platform-status": {
+      "file": "platform-status.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\platform-status.html"
+    },
+    "posting-job": {
+      "file": "posting-job.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\posting-job.html"
+    },
+    "terms": {
+      "file": "terms.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\terms.html"
+    },
+    "trust-center": {
+      "file": "trust-center.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\trust-center.html"
+    },
+    "privacy": {
+      "file": "privacy.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\privacy.html"
+    },
+    "about": {
+      "file": "about.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\about.html"
+    },
+    "ai-audit-center": {
+      "file": "ai-audit-center.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\ai-audit-center.html"
+    },
+    "blog": {
+      "file": "blog.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\blog.html"
+    },
+    "careers": {
+      "file": "careers.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\careers.html"
+    },
+    "contact": {
+      "file": "contact.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\contact.html"
+    },
+    "cookie-preferences": {
+      "file": "cookie-preferences.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\cookie-preferences.html"
+    },
+    "customer-stories": {
+      "file": "customer-stories.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\customer-stories.html"
+    },
+    "help": {
+      "file": "help.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\help.html"
+    },
+    "faq": {
+      "file": "faq.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\faq.html"
+    },
+    "categories": {
+      "file": "categories.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\categories.html"
+    },
+    "jobs": {
+      "file": "job-listings.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\job-listings.html"
+    },
+    "remote-work-guide": {
+      "file": "remote-work-guide.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\remote-work-guide.html"
+    },
+    "recommended-jobs": {
+      "file": "recommended-jobs.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\recommended-jobs.html"
+    },
+    "job-search": {
+      "file": "job-search.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\job-search.html"
+    },
+    "job-detail": {
+      "file": "job-detail.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\job-detail.html"
+    },
+    "saved-jobs": {
+      "file": "saved-jobs.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\saved-jobs.html"
+    },
+    "applied-jobs": {
+      "file": "applied-jobs.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\applied-jobs.html"
+    },
+    "application-form": {
+      "file": "application-form.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\application-form.html"
+    },
+    "resume-management": {
+      "file": "resume-management.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\resume-management.html"
+    },
+    "privacy-settings": {
+      "file": "privacy-settings.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\privacy-settings.html"
+    },
+    "get-discovered": {
+      "file": "privacy-settings.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\privacy-settings.html"
+    },
+    "profile": {
+      "file": "profile.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\profile.html"
+    },
+    "edit-profile": {
+      "file": "edit-profile.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\edit-profile.html"
+    },
+    "account-security": {
+      "file": "account-security.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\account-security.html"
+    },
+    "employer-profile": {
+      "file": "employer-profile.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\employer-profile.html"
+    },
+    "company-details": {
+      "file": "company-details.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\company-details.html"
+    },
+    "manage-jobs": {
+      "file": "manage-jobs.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\manage-jobs.html"
+    },
+    "manage-applications": {
+      "file": "manage-applications.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\manage-applications.html"
+    },
+    "candidate-search": {
+      "file": "candidate-search.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\candidate-search.html"
+    },
+    "candidate-details": {
+      "file": "candidate-details.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\candidate-details.html"
+    },
+    "notifications": {
+      "file": "notifications.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\notifications.html"
+    },
+    "interviews": {
+      "file": "interviews.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\interviews.html"
+    },
+    "admin-dashboard": {
+      "file": "admin-dashboard.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\admin-dashboard.html"
+    },
+    "application-success": {
+      "file": "application-success.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\application-success.html"
+    },
+    "access-denied": {
+      "file": "access-denied.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\access-denied.html"
+    },
+    "404": {
+      "file": "404.html",
+      "exists": true,
+      "path": "E:\\Job POrtal\\TalentBridgeAI\\frontend\\pages\\404.html"
+    }
+  },
+  "smoke_note": "Client requests used override_settings(ALLOWED_HOSTS including testserver); bare Client returned 400 DisallowedHost under DEBUG=False"
+}

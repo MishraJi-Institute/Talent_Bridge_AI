@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Create and save a private resume draft with a live preview.">
+  <title>Resume Builder | TalentBridge AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/base/portal-pages.css">
+  <link rel="stylesheet" href="/css/base/redesign.css">
+  <link rel="stylesheet" href="/css/pages/resume-builder.css">
+<link rel="stylesheet" href="/css/components/reference-image-integration.css">
+</head>
+<body>
+  <header class="tb-header">
+    <div class="tb-nav">
+      <a class="tb-brand" href="../index.html">TalentBridge AI<span>:</span></a>
+      <nav class="tb-links" aria-label="Main navigation">
+        <a href="../index.html">Home</a>
+        <a href="/jobs/">Browse Jobs</a>
+        <a href="/dashboard/">Dashboard</a>
+        <a href="/resume-management/">Resume Library</a>
+        <form class="tb-logout-form" method="post" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button class="tb-logout-button" type="submit">Sign out</button>
+        </form>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="tb-hero resume-builder-hero">
+      <div class="tb-wrap">
+        <span class="tb-eyebrow">YOUR PRIVATE WORKSPACE</span>
+        <h1>Resume Builder</h1>
+        <p>Write, save, and review your resume in one place. Your draft is private to your account.</p>
+      </div>
+    </section>
+
+    <section class="tb-content resume-builder-content">
+      <div class="tb-wrap">
+        <div class="resume-builder-messages" aria-live="polite">
+          {% if messages %}
+            {% for message in messages %}
+              <div class="tb-alert tb-alert--{{ message.tags|default:'info' }}" role="status">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+          {% if form.non_field_errors %}
+            <div class="tb-alert tb-alert--error" role="alert">{{ form.non_field_errors }}</div>
+          {% endif %}
+        </div>
+
+        <aside class="resume-ai-notice" aria-label="AI writing assistance availability">
+          <span class="resume-ai-badge">AI ASSIST UNAVAILABLE</span>
+          <p>There is no AI provider connected. This builder saves and previews only the content you enter; it does not generate or send your information to an AI service.</p>
+        </aside>
+
+        <div class="builder-toolbar">
+          <div>
+            <span class="tb-eyebrow">LIVE EDITOR</span>
+            <p>{% if has_saved_draft %}Your saved draft is ready to edit.{% else %}Your profile details are prefilled where available.{% endif %}</p>
+          </div>
+          <button class="tb-button secondary" type="button" id="print-resume">Print / Save as PDF</button>
+        </div>
+
+        <div class="resume-builder-layout">
+          <section class="tb-card builder-editor" aria-labelledby="editor-heading">
+            <div class="builder-editor-heading">
+              <div>
+                <span class="tb-eyebrow">EDIT CONTENT</span>
+                <h2 id="editor-heading">Your resume details</h2>
+              </div>
+              <span class="resume-private-label">Private draft</span>
+            </div>
+
+            <form class="tb-form resume-builder-form" method="post" action="{% url 'resume-builder' %}">
+              {% csrf_token %}
+              <div class="tb-two">
+                <div class="resume-field">
+                  <label for="{{ form.full_name.id_for_label }}">Full name</label>
+                  {{ form.full_name }}
+                  {% if form.full_name.errors %}<div class="tb-field-errors" role="alert">{{ form.full_name.errors }}</div>{% endif %}
+                </div>
+                <div class="resume-field">
+                  <label for="{{ form.headline.id_for_label }}">Professional headline</label>
+                  {{ form.headline }}
+                  {% if form.headline.errors %}<div class="tb-field-errors" role="alert">{{ form.headline.errors }}</div>{% endif %}
+                </div>
+              </div>
+              <div class="tb-two">
+                <div class="resume-field">
+                  <label for="{{ form.email.id_for_label }}">Email</label>
+                  {{ form.email }}
+                  {% if form.email.errors %}<div class="tb-field-errors" role="alert">{{ form.email.errors }}</div>{% endif %}
+                </div>
+                <div class="resume-field">
+                  <label for="{{ form.phone.id_for_label }}">Phone</label>
+                  {{ form.phone }}
+                  {% if form.phone.errors %}<div class="tb-field-errors" role="alert">{{ form.phone.errors }}</div>{% endif %}
+                </div>
+              </div>
+              <div class="resume-field">
+                <label for="{{ form.location.id_for_label }}">Location</label>
+                {{ form.location }}
+                  {% if form.location.errors %}<div class="tb-field-errors" role="alert">{{ form.location.errors }}</div>{% endif %}
+              </div>
+              <div class="resume-field">
+                <label for="{{ form.summary.id_for_label }}">Professional summary</label>
+                {{ form.summary }}
+                  {% if form.summary.errors %}<div class="tb-field-errors" role="alert">{{ form.summary.errors }}</div>{% endif %}
+                
+              </div>
+              <div class="resume-field">
+                <label for="{{ form.skills.id_for_label }}">Skills</label>
+                {{ form.skills }}
+                  {% if form.skills.errors %}<div class="tb-field-errors" role="alert">{{ form.skills.errors }}</div>{% endif %}
+                
+              </div>
+              <div class="resume-field">
+                <label for="{{ form.experience.id_for_label }}">Experience</label>
+                {{ form.experience }}
+                  {% if form.experience.errors %}<div class="tb-field-errors" role="alert">{{ form.experience.errors }}</div>{% endif %}
+                
+              </div>
+              <div class="resume-field">
+                <label for="{{ form.education.id_for_label }}">Education</label>
+                {{ form.education }}
+                  {% if form.education.errors %}<div class="tb-field-errors" role="alert">{{ form.education.errors }}</div>{% endif %}
+                
+              </div>
+              <div class="resume-field">
+                <label for="{{ form.links.id_for_label }}">Portfolio or professional links</label>
+                {{ form.links }}
+                  {% if form.links.errors %}<div class="tb-field-errors" role="alert">{{ form.links.errors }}</div>{% endif %}
+                
+              </div>
+              <div class="resume-form-actions">
+                <button class="tb-button" type="submit">Save resume draft</button>
+                <a class="tb-button secondary" href="/resume-management/">Resume Library</a>
+              </div>
+            </form>
+          </section>
+
+          <section class="resume-preview-column" aria-label="Resume preview column">
+            <div class="resume-preview-heading">
+              <div>
+                <span class="tb-eyebrow">PREVIEW</span>
+                <h2>Live resume preview</h2>
+              </div>
+              <span class="resume-preview-status">Updates as you type</span>
+            </div>
+            <article class="resume-preview" id="resume-preview" aria-label="Live resume preview">
+              <header class="resume-preview-header">
+                <h1 data-preview-field="full_name" data-empty="Your Name">{{ preview.full_name|default:"Your Name" }}</h1>
+                <p class="resume-preview-headline" data-preview-field="headline" data-empty="Professional headline">{{ preview.headline|default:"Professional headline" }}</p>
+                <div class="resume-contact" data-preview-contact>
+                  <span data-preview-field="email">{{ preview.email }}</span>
+                  <span data-preview-field="phone">{{ preview.phone }}</span>
+                  <span data-preview-field="location">{{ preview.location }}</span>
+                </div>
+              </header>
+              <section class="resume-preview-section" data-preview-section="summary" {% if not preview.summary %}hidden{% endif %}>
+                <h2>Profile</h2>
+                <p data-preview-field="summary">{{ preview.summary }}</p>
+              </section>
+              <section class="resume-preview-section" data-preview-section="skills" {% if not preview.skill_list %}hidden{% endif %}>
+                <h2>Skills</h2>
+                <div class="resume-preview-skills" data-preview-skills>
+                  {% for skill in preview.skill_list %}<span>{{ skill }}</span>{% endfor %}
+                </div>
+              </section>
+              <section class="resume-preview-section" data-preview-section="experience" {% if not preview.experience %}hidden{% endif %}>
+                <h2>Experience</h2>
+                <p class="resume-preview-lines" data-preview-field="experience">{{ preview.experience }}</p>
+              </section>
+              <section class="resume-preview-section" data-preview-section="education" {% if not preview.education %}hidden{% endif %}>
+                <h2>Education</h2>
+                <p class="resume-preview-lines" data-preview-field="education">{{ preview.education }}</p>
+              </section>
+              <section class="resume-preview-section" data-preview-section="links" {% if not preview.links %}hidden{% endif %}>
+                <h2>Links</h2>
+                <p class="resume-preview-lines" data-preview-field="links">{{ preview.links }}</p>
+              </section>
+            </article>
+            <p class="resume-export-note">Print / Save as PDF opens your browser's print dialog. No PDF is uploaded or stored by the server.</p>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="tb-footer">
+    <div class="tb-wrap tb-footer-inner">
+      <span>© TalentBridge AI. Built to connect people with opportunity.</span>
+      <span><a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · <a href="/contact/">Contact</a></span>
+    </div>
+  </footer>
+  <script src="/js/jobs/resume-builder.js" defer></script>
+</body>
+</html>

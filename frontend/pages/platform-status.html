@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <base href="/pages/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Check what platform status information is available for TalentBridge AI.">
+  <title>Platform Status | TalentBridge AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/base/portal-pages.css">
+  <link rel="stylesheet" href="../css/base/redesign.css">
+<link rel="stylesheet" href="../css/components/site-experience.css">
+  <style id="fix-all-navbar-strikethrough">
+header a,
+header nav a,
+nav a,
+.navbar a,
+.nav-links a,
+.site-header a,
+header a *,
+nav a *,
+.navbar a *,
+.nav-links a *,
+.site-header a * {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    text-decoration-style: none !important;
+}
+</style>
+</head>
+<body>
+  <header class="tb-header"><div class="tb-nav">
+    <a class="tb-brand" href="../index.html">TalentBridge AI<span>:</span></a>
+    <nav class="tb-links" aria-label="Main navigation"><a href="../index.html">Home</a><a href="/trust-center/">Trust center</a><a href="/help/">Help</a><a href="/jobs/">Browse Jobs</a><a class="tb-button" href="/contact/">Contact</a></nav>
+  </div></header>
+  <main>
+    <section class="tb-hero"><div class="tb-wrap">
+      <span class="tb-eyebrow">PLATFORM STATUS</span>
+      <h1>Service status information</h1>
+      <p>We want availability information to be clear and useful. This page lists the current limits of the local development service.</p>
+    </div></section>
+    <section class="tb-content"><div class="tb-wrap">
+      <div class="tb-card">
+        <span class="tb-pill">Local development service</span>
+        <h2>No public uptime or incident feed is available.</h2>
+        <p>This page does not monitor production services or provide an uptime guarantee. The Django application supports account, job, application, employer, and resume workflows, subject to sign-in and role permissions.</p>
+        <p>AI-generated content and matching are not connected. Development sample roles, when shown, are labeled and are not published vacancies.</p>
+        <div class="tb-workspace-actions"><a class="tb-button" href="/jobs/">Browse jobs</a><a class="tb-button secondary" href="/help/">Read help guidance</a></div>
+      </div>
+      <div class="tb-card" style="margin-top:20px">
+        <h2>What you can test here</h2>
+        <div class="tb-table-wrap" style="margin-top:14px">
+          <table class="tb-table">
+            <thead><tr><th scope="col">Experience</th><th scope="col">Current capability</th><th scope="col">What to expect</th></tr></thead>
+            <tbody>
+              <tr><td>Job search</td><td>Django-backed</td><td>Eligible live listings are shown separately from labeled development samples.</td></tr>
+              <tr><td>Account sign-in</td><td>Django-backed</td><td>Google OAuth depends on the configured provider and user consent.</td></tr>
+              <tr><td>Applications, profiles, and resumes</td><td>Account-backed</td><td>Sign-in and role permissions are required; resume files are private.</td></tr>
+              <tr><td>AI matching and generation</td><td>Not connected</td><td>Recommendations use profile skills and location; no AI candidate scoring or generated resume content runs.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div></section>
+  </main>
+  <footer class="tb-footer"><div class="tb-wrap tb-footer-inner"><span>© TalentBridge AI. Built to connect people with opportunity.</span><span><a href="/trust-center/">Trust center</a> · <a href="/privacy/">Privacy</a> · <a href="/contact/">Contact</a></span></div></footer>
+<script src="../js/core/site-experience.js"></script>
+  </body>
+</html>

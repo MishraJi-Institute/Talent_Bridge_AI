@@ -1,0 +1,439 @@
+/**
+ * TalentBridgeAI homepage visual coherence layer
+ * Loaded last on the homepage only. Scopes polish to public homepage
+ * sections without changing backend behavior or other routes.
+ */
+
+body[data-public-page] {
+  --tb-navy: #142B4D;
+  --tb-heading: #19365B;
+  --tb-body: #45566F;
+  --tb-secondary: #687B93;
+  --tb-royal: #2563EB;
+  --tb-royal-hover: #1D4ED8;
+  --tb-bright: #0EA5E9;
+  --tb-soft: #EFF6FF;
+  --tb-page: #F3F6FB;
+  --tb-white: #FFFFFF;
+  --tb-line: #E2E8F0;
+  --tb-muted: #687B93;
+  --tb-shadow: 0 14px 36px rgba(20, 43, 77, .10);
+  --tb-shadow-lg: 0 22px 48px rgba(20, 43, 77, .14);
+  --tb-radius-sm: 12px;
+  --tb-radius-md: 16px;
+  --tb-radius-lg: 22px;
+  --tb-space-1: 8px;
+  --tb-space-2: 12px;
+  --tb-space-3: 16px;
+  --tb-space-4: 24px;
+  --tb-space-5: 32px;
+  --tb-space-6: 48px;
+  --tb-space-7: 72px;
+  --tb-container: min(1200px, calc(100% - 48px));
+  --tb-icon-sm: 18px;
+  --tb-icon-md: 22px;
+  --tb-icon-lg: 26px;
+  --tb-icon-well: 48px;
+  color: var(--tb-body);
+  background: var(--tb-page);
+}
+
+/* ---------- Shared containers & section rhythm ---------- */
+body[data-public-page] .nav-container,
+body[data-public-page] .hero-section > .container,
+body[data-public-page] .employers-container,
+body[data-public-page] .jobseekers-container,
+body[data-public-page] .success-stories-container,
+body[data-public-page] .faq-container,
+body[data-public-page] .footer-container {
+  width: var(--tb-container) !important;
+  max-width: 1200px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box;
+}
+
+body[data-public-page] .employers-section,
+body[data-public-page] .jobseekers-section,
+body[data-public-page] .success-stories-section,
+body[data-public-page] .faq-section {
+  padding-block: clamp(56px, 8vw, 88px);
+}
+
+body[data-public-page] .employers-title,
+body[data-public-page] .jobseekers-copy h2,
+body[data-public-page] .success-stories-heading h2,
+body[data-public-page] .faq-main-title,
+body[data-public-page] .footer-cta-title {
+  color: var(--tb-heading) !important;
+  letter-spacing: -.03em;
+  line-height: 1.15;
+}
+
+body[data-public-page] .employers-description,
+body[data-public-page] .jobseekers-copy p,
+body[data-public-page] .success-stories-heading p,
+body[data-public-page] .faq-intro p,
+body[data-public-page] .hero-section .description {
+  color: var(--tb-body);
+  line-height: 1.65;
+  max-width: 54ch;
+}
+
+/* ---------- Header ---------- */
+body[data-public-page] .navbar {
+  border-bottom-color: rgba(226, 232, 240, .95) !important;
+  background: rgba(255, 255, 255, .92) !important;
+}
+
+body[data-public-page] .logo {
+  color: var(--tb-navy);
+  font-size: 1.35rem;
+}
+
+body[data-public-page] .logo img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  display: block;
+}
+
+body[data-public-page] .logo-accent,
+body[data-public-page] .logo .logo-accent {
+  color: var(--tb-royal) !important;
+}
+
+body[data-public-page] .nav-links a {
+  color: var(--tb-secondary);
+  font-size: .92rem;
+  font-weight: 650;
+}
+
+body[data-public-page] .nav-links a:hover,
+body[data-public-page] .nav-links a[aria-current="page"] {
+  color: var(--tb-royal);
+}
+
+body[data-public-page] .nav-links a::after {
+  background: var(--tb-royal);
+}
+
+body[data-public-page] .auth-btn {
+  min-height: 42px;
+  padding: 0 16px;
+  border-radius: 11px;
+  font-weight: 700;
+  font-size: .9rem;
+}
+
+body[data-public-page] .auth-signin {
+  color: var(--tb-royal);
+  border-color: #c7d7fe;
+  background: #fff;
+}
+
+body[data-public-page] .auth-signup {
+  background: var(--tb-royal) !important;
+  border-color: var(--tb-royal) !important;
+}
+
+body[data-public-page] .auth-signup:hover {
+  background: var(--tb-royal-hover) !important;
+}
+
+/* ---------- Hero balance ---------- */
+body[data-public-page] .hero-section {
+  min-height: 0 !important;
+  background:
+    radial-gradient(ellipse at 86% 28%, rgba(37, 99, 235, .14), transparent 42%),
+    radial-gradient(ellipse at 8% 86%, rgba(14, 165, 233, .10), transparent 36%),
+    linear-gradient(118deg, #fff 0%, #f7faff 46%, var(--tb-page) 100%) !important;
+  overflow-x: clip;
+}
+
+body[data-public-page] .hero-section > .container {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr) !important;
+  gap: clamp(20px, 3vw, 40px) !important;
+  align-items: start !important;
+  min-height: 0 !important;
+}
+
+body[data-public-page] .hero-section .left-column h1 {
+  color: var(--tb-heading);
+}
+
+body[data-public-page] .hero-section .left-column h1 .highlight {
+  color: var(--tb-royal);
+}
+
+body[data-public-page] .hero-section .cta-group .btn {
+  min-height: 56px;
+  border-radius: var(--tb-radius-sm);
+}
+
+body[data-public-page] .hero-section .cta-group .btn-primary {
+  background: var(--tb-royal);
+}
+
+body[data-public-page] .hero-section .cta-group .btn-primary:hover {
+  background: var(--tb-royal-hover);
+}
+
+body[data-public-page] .hero-section .right-column {
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: flex-start !important;
+}
+
+body[data-public-page] .hero-section .tb-match-scene {
+  width: min(560px, 100%) !important;
+  max-width: 560px !important;
+  aspect-ratio: auto !important;
+  margin-left: auto !important;
+  margin-right: 0 !important;
+  overflow: hidden !important;
+}
+
+body[data-public-page] .hero-section img,
+body[data-public-page] .employers-section img,
+body[data-public-page] .jobseekers-section img,
+body[data-public-page] .success-stories-section img {
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+}
+
+/* Hero match portraits: show complete demo image (do not cover-crop). */
+body[data-public-page] .tb-match-profile__photo {
+  aspect-ratio: 4 / 3 !important;
+  height: auto !important;
+  background: #e8eef8 !important;
+}
+body[data-public-page] .tb-match-profile__photo img {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+}
+
+body[data-public-page] .tb-match-ring {
+  overflow: hidden !important;
+}
+
+body[data-public-page] .tb-match-ring__value {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+body[data-public-page] .homepage-stat .feature-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+}
+
+body[data-public-page] .homepage-stat .feature-icon svg {
+  width: var(--tb-icon-sm);
+  height: var(--tb-icon-sm);
+}
+
+/* ---------- Icon consistency ---------- */
+body[data-public-page] .feature-icon-box-emp {
+  width: var(--tb-icon-well) !important;
+  height: var(--tb-icon-well) !important;
+  min-width: var(--tb-icon-well) !important;
+  border-radius: 14px !important;
+}
+
+body[data-public-page] .feature-icon-box-emp svg {
+  width: var(--tb-icon-md) !important;
+  height: var(--tb-icon-md) !important;
+  stroke: var(--tb-royal) !important;
+  stroke-width: 1.85;
+}
+
+body[data-public-page] .faq-support-card svg,
+body[data-public-page] .faq-icon-svg {
+  width: var(--tb-icon-sm);
+  height: var(--tb-icon-sm);
+}
+
+body[data-public-page] .footer-social a,
+body[data-public-page] .social-links a {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid var(--tb-line);
+  background: #fff;
+  color: var(--tb-secondary);
+  font-size: .72rem;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+/* ---------- Cards & buttons ---------- */
+body[data-public-page] .feature-card-emp,
+body[data-public-page] .success-story-card,
+body[data-public-page] .faq-item,
+body[data-public-page] .faq-support-card {
+  border-radius: var(--tb-radius-md);
+  border-color: var(--tb-line);
+}
+
+body[data-public-page] .btn-employer-primary,
+body[data-public-page] .btn-footer-primary,
+body[data-public-page] .jobseekers-cta .btn,
+body[data-public-page] a.btn-employer-primary {
+  min-height: 48px;
+  border-radius: var(--tb-radius-sm);
+  background: var(--tb-royal);
+  border-color: var(--tb-royal);
+}
+
+body[data-public-page] .btn-employer-primary:hover,
+body[data-public-page] .btn-footer-primary:hover {
+  background: var(--tb-royal-hover);
+}
+
+body[data-public-page] .btn-footer-secondary {
+  min-height: 48px;
+  border-radius: var(--tb-radius-sm);
+  border: 1px solid var(--tb-line);
+  color: var(--tb-heading);
+  background: #fff;
+}
+
+/* ---------- Success story avatars ---------- */
+body[data-public-page] .success-story-card img,
+body[data-public-page] .success-avatar img,
+body[data-public-page] .applicant-avatar img,
+body[data-public-page] .jobseekers-card img {
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+body[data-public-page] .success-story-card {
+  box-shadow: var(--tb-shadow);
+  background: var(--tb-white);
+}
+
+/* ---------- Footer ---------- */
+body[data-public-page] .footer-section {
+  background:
+    linear-gradient(180deg, #0f2748 0%, #142B4D 55%, #0d213d 100%);
+  color: #d7e3f4;
+}
+
+body[data-public-page] .footer-section a {
+  color: #c5d4ea;
+}
+
+body[data-public-page] .footer-section a:hover {
+  color: #fff;
+}
+
+body[data-public-page] .footer-section h4,
+body[data-public-page] .footer-cta-title {
+  color: #fff !important;
+}
+
+/* ---------- Motion (subtle) ---------- */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  body[data-public-page] .feature-card-emp,
+  body[data-public-page] .success-story-card,
+  body[data-public-page] .homepage-stat,
+  body[data-public-page] .auth-btn,
+  body[data-public-page] .hero-section .cta-group .btn {
+    transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+  }
+
+  body[data-public-page] .feature-card-emp:hover,
+  body[data-public-page] .success-story-card:hover,
+  body[data-public-page] .homepage-stat:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--tb-shadow-lg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body[data-public-page] .feature-card-emp,
+  body[data-public-page] .success-story-card,
+  body[data-public-page] .homepage-stat,
+  body[data-public-page] .auth-btn,
+  body[data-public-page] .hero-section .cta-group .btn {
+    transition: none !important;
+  }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+  body[data-public-page] {
+    --tb-container: min(100%, calc(100% - 40px));
+  }
+
+  body[data-public-page] .hero-section > .container {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 28px !important;
+  }
+
+  body[data-public-page] .hero-section .right-column {
+    justify-content: center !important;
+  }
+
+  body[data-public-page] .hero-section .tb-match-scene {
+    width: min(560px, 100%) !important;
+    margin-inline: auto !important;
+  }
+}
+
+@media (max-width: 768px) {
+  body[data-public-page] {
+    --tb-container: calc(100% - 32px);
+    --tb-icon-well: 44px;
+  }
+
+  body[data-public-page] .nav-links {
+    gap: 10px;
+  }
+
+  body[data-public-page] .nav-links a {
+    font-size: .84rem;
+  }
+
+  body[data-public-page] .hero-section .cta-group {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  body[data-public-page] .hero-section .tb-match-scene {
+    width: min(100%, 520px) !important;
+  }
+}
+
+@media (max-width: 430px) {
+  body[data-public-page] .logo {
+    font-size: 1.15rem;
+  }
+
+  body[data-public-page] .logo img {
+    width: 30px;
+    height: 30px;
+  }
+
+  body[data-public-page] .auth-btn {
+    min-height: 38px;
+    padding: 0 12px;
+    font-size: .82rem;
+  }
+
+  body[data-public-page] .hero-section .tb-match-scene {
+    width: 100% !important;
+    max-width: none !important;
+  }
+}

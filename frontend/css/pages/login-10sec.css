@@ -1,0 +1,67 @@
+﻿#tb-cinema {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    pointer-events: none;
+    overflow: hidden;
+    animation: tbFadeOut 10s ease forwards;
+}
+#tb-cinema .beam {
+    position: absolute;
+    width: 180vw;
+    height: 3px;
+    left: -190%;
+    top: 20%;
+    background: linear-gradient(90deg, transparent, #fff, #39baff, #fff, transparent);
+    box-shadow: 0 0 20px #20aaff, 0 0 45px #20aaff;
+    transform: rotate(-17deg);
+    animation: tbBeam 3s ease-in-out 2;
+}
+#tb-cinema .beam.two {
+    top: 75%;
+    animation-delay: .8s;
+    height: 2px;
+}
+#tb-cinema .particle {
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 15px 5px #26aaff;
+    animation: tbFly 4s ease-in-out infinite;
+}
+#tb-cinema .particle:nth-child(3) {left:10%;top:75%}
+#tb-cinema .particle:nth-child(4) {left:25%;top:35%;animation-delay:-1s}
+#tb-cinema .particle:nth-child(5) {left:45%;top:80%;animation-delay:-2s}
+#tb-cinema .particle:nth-child(6) {left:70%;top:25%;animation-delay:-.5s}
+#tb-cinema .particle:nth-child(7) {left:88%;top:65%;animation-delay:-3s}
+#tb-cinema .ring {
+    position:absolute;
+    width:180px;
+    height:180px;
+    border:2px solid #66d5ff;
+    border-radius:50%;
+    box-shadow:0 0 25px #29aaff80,inset 0 0 25px #29aaff50;
+    animation:tbRing 3s ease-out infinite;
+}
+#tb-cinema .ring.one {left:8%;top:30%}
+#tb-cinema .ring.two {right:8%;bottom:18%;animation-delay:1.5s}
+@keyframes tbBeam {
+    0% {left:-190%;opacity:0}
+    25% {opacity:1}
+    100% {left:120%;opacity:0}
+}
+@keyframes tbFly {
+    0%,100% {transform:translate(0,0) scale(.5);opacity:.2}
+    50% {transform:translate(35px,-75px) scale(1.5);opacity:1}
+}
+@keyframes tbRing {
+    0% {transform:scale(.2);opacity:0}
+    35% {opacity:.8}
+    100% {transform:scale(1.8);opacity:0}
+}
+@keyframes tbFadeOut {
+    0%,85% {opacity:1}
+    100% {opacity:0;visibility:hidden}
+}

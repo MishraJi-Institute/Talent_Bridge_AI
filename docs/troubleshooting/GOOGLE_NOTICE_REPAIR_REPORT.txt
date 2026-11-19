@@ -1,0 +1,24 @@
+TalentBridgeAI repair update
+=============================
+
+Additional root cause fixed:
+The VS Code folder-open task previously treated any HTTP 200 response on port 8000
+as healthy. That allowed an older Django process to keep serving the obsolete
+Google OAuth notice even after updated source files had been extracted.
+
+Changes in this package:
+- Updated .vscode/start-talentbridge.ps1 to inspect the actual /pages/login.html
+  response, not merely the homepage HTTP status.
+- If the login page still contains the obsolete notice, it stops only a process
+  positively identified as a Python manage.py runserver listener on 127.0.0.1:8000,
+  then starts the project launcher and waits until the notice is absent.
+- It refuses to terminate an unrelated process occupying port 8000.
+- Retains the previous template and middleware notice-removal changes.
+- Does not change or reset the database.
+
+Validation performed in this environment:
+- ZIP CRC integrity check.
+- Confirmed startup task script contains the login-content health check.
+- Confirmed original database archive entry remains present.
+- No live Windows execution or Google OAuth login test was possible here.
+Google OAuth still requires the owner's real Google Cloud Client ID and Secret.

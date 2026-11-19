@@ -1,0 +1,80 @@
+
+/* Supplied reference image integration — actual Django-rendered pages */
+.hero-section .cards-stack-wrapper { isolation: isolate; }
+.hero-section .hero-office-backdrop {
+  position: absolute;
+  z-index: 0;
+  inset: 12px -24px 28px 18px;
+  width: calc(100% + 6px);
+  height: calc(100% - 40px);
+  object-fit: cover;
+  object-position: center;
+  border-radius: 28px;
+  opacity: .20;
+  filter: saturate(.85);
+  pointer-events: none;
+}
+.hero-section .cards-stack { position: relative; z-index: 1; }
+.hero-section .profile-card,
+.hero-section .card-stacked { z-index: 2; }
+.hero-section .profile-header .candidate-avatar-illustration img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.login-visual { isolation: isolate; overflow: hidden; }
+.login-visual-photo {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: .16;
+  pointer-events: none;
+}
+.tb-reference-story { padding: 30px 0 64px; }
+.tb-reference-story__inner {
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  gap: clamp(22px, 4vw, 52px);
+  align-items: center;
+}
+.tb-reference-story__inner h2 {
+  margin: 10px 0;
+  color: #101828;
+  font-size: clamp(25px, 3vw, 38px);
+  line-height: 1.15;
+  letter-spacing: -.04em;
+}
+.tb-reference-story__inner p { color: #475467; max-width: 420px; }
+.tb-reference-story__inner img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border: 1px solid #dbe5f3;
+  border-radius: 22px;
+  box-shadow: 0 18px 44px rgba(16,24,40,.13);
+}
+@media (max-width: 760px) {
+  .tb-reference-story__inner { grid-template-columns: 1fr; }
+  .hero-section .hero-office-backdrop { inset: 4px 0 20px; width: 100%; }
+}
+
+.login-visual > :not(.login-visual-photo) {
+  position: relative;
+  z-index: 1;
+}
+
+.tb-field-errors {
+  margin-top: 6px;
+  color: #b42318;
+  font-size: .82rem;
+  line-height: 1.45;
+}
+.tb-field-errors ul { margin: 0; padding-left: 18px; }
+.tb-field-errors li { margin: 2px 0; }

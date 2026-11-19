@@ -1,0 +1,86 @@
+/* TalentBridge AI - cross-page responsive/accessibility corrections (2026-10) */
+:root { color-scheme: light; }
+html { max-width: 100%; overflow-x: clip; -webkit-text-size-adjust: 100%; }
+body { max-width: 100%; overflow-x: clip; }
+img, video, canvas, svg, iframe { max-width: 100%; }
+input, select, textarea, button { max-width: 100%; }
+button, a { -webkit-tap-highlight-color: transparent; }
+:where(a, button, input, select, textarea, summary):focus-visible { outline: 3px solid rgba(0,82,255,.45); outline-offset: 3px; }
+
+/* Keep the homepage header and hero from inheriting conflicting legacy rules. */
+@media (max-width: 760px) {
+  .navbar.has-mobile-menu { padding: 10px 0 !important; }
+  .navbar.has-mobile-menu .nav-container {
+    width: 100%; max-width: 100%; box-sizing: border-box;
+    display: flex; flex-wrap: wrap; align-items: center;
+    gap: 10px; padding: 0 14px !important;
+  }
+  .navbar.has-mobile-menu .logo { order: 0; max-width: calc(100% - 54px); font-size: clamp(1.05rem, 4.7vw, 1.3rem); }
+  .navbar.has-mobile-menu .nav-menu-toggle { order: 1; display: inline-flex; margin-left: auto; }
+  .navbar.has-mobile-menu .auth-actions {
+    order: 2; width: 100%; min-width: 0; flex: 1 0 100%; margin: 0;
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px;
+  }
+  .navbar.has-mobile-menu .auth-actions .auth-btn {
+    box-sizing: border-box; min-width: 0; width: 100%; min-height: 40px;
+    padding: 8px 7px; white-space: normal; text-align: center;
+    line-height: 1.2; font-size: clamp(.72rem, 2.8vw, .84rem);
+  }
+  .navbar.has-mobile-menu .auth-actions .auth-jdashboard { font-size: 0; }
+  .navbar.has-mobile-menu .auth-actions .auth-jdashboard::after {
+    content: "Job Seeker Dashboard"; font-size: clamp(.68rem, 2.6vw, .8rem); line-height: 1.2;
+  }
+  .navbar.has-mobile-menu .auth-actions .auth-dashboard::after { content: "Employer Dashboard"; }
+  .navbar.has-mobile-menu .auth-actions .auth-dashboard,
+  .navbar.has-mobile-menu .auth-actions .auth-jdashboard { font-size: 0; }
+  .navbar.has-mobile-menu .auth-actions .auth-dashboard::after,
+  .navbar.has-mobile-menu .auth-actions .auth-jdashboard::after { font-size: clamp(.68rem, 2.6vw, .8rem); }
+  .navbar.has-mobile-menu .nav-links { max-width: calc(100vw - 28px); box-sizing: border-box; }
+
+  .hero-section { min-height: 0; padding: 34px 0 42px; overflow: hidden; }
+  .hero-section .container {
+    box-sizing: border-box; width: 100%; max-width: 100%; padding-inline: 18px;
+    display: grid; grid-template-columns: minmax(0,1fr); gap: 28px;
+  }
+  .hero-section .left-column { width: 100%; max-width: 100%; min-width: 0; margin: 0; text-align: center; }
+  .hero-section .eyebrow { font-size: clamp(.66rem, 2.7vw, .8rem); letter-spacing: .13em; line-height: 1.5; }
+  .hero-section h1 { max-width: 100%; font-size: clamp(2rem, 8.4vw, 2.75rem); line-height: 1.12; letter-spacing: -.045em; overflow-wrap: anywhere; }
+  .hero-section .description { width: 100%; max-width: 38rem; margin: 16px auto 0; font-size: clamp(.9rem, 3.8vw, 1.05rem); line-height: 1.65; overflow-wrap: anywhere; }
+  .hero-section .cta-group { display: grid; grid-template-columns: minmax(0,1fr); gap: 12px; width: 100%; max-width: 440px; margin: 22px auto 0; }
+  .hero-section .cta-group .btn { box-sizing: border-box; width: 100%; min-width: 0; min-height: 54px; white-space: normal; }
+  .hero-section .right-column { width: 100%; min-width: 0; max-width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; overflow: visible; }
+  .hero-section .flow-step { box-sizing: border-box; width: min(100%, 330px); max-width: 100%; }
+  .hero-section .cards-stack-wrapper, .hero-section .cards-stack { width: 100%; max-width: 100%; min-width: 0; }
+  .hero-section .cards-stack { transform: none; }
+  .hero-section .cards-stack .candidate-card, .hero-section .candidate-card { box-sizing: border-box; max-width: 100%; }
+  .hero-section .hero-handwritten { display: none; }
+  .hero-section .feature-strip, .hero-section .features { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; }
+  .hero-section .feature-item { min-width: 0; gap: 9px; }
+  .hero-section .feature-item h3, .hero-section .feature-item p { overflow-wrap: anywhere; }
+  .hero-section .bg-graphics { max-width: 100%; overflow: hidden; }
+  .hero-section .bg-waves { max-width: none; width: 150%; }
+  .container, .section-container, .content-container, main { max-width: 100%; }
+  .footer-grid, .footer-columns { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (max-width: 420px) {
+  .navbar.has-mobile-menu .nav-container { padding-inline: 11px !important; }
+  .navbar.has-mobile-menu .auth-actions { gap: 7px; }
+  .navbar.has-mobile-menu .auth-actions .auth-btn { padding-inline: 5px; }
+  .hero-section .container { padding-inline: 14px; }
+  .hero-section h1 { font-size: clamp(1.8rem, 8.2vw, 2.15rem); }
+  .hero-section .feature-strip, .hero-section .features { grid-template-columns: minmax(0,1fr); }
+  .footer-grid, .footer-columns { grid-template-columns: minmax(0,1fr); }
+}
+@media (min-width: 761px) and (max-width: 1120px) {
+  .nav-container { box-sizing: border-box; width: 100%; padding-inline: 18px; gap: 14px; }
+  .auth-actions { flex-wrap: wrap; justify-content: flex-end; }
+  .auth-btn { padding-inline: 12px; }
+  .hero-section .container { grid-template-columns: minmax(0,1fr); }
+  .hero-section .left-column { max-width: 760px; margin-inline: auto; text-align: center; }
+  .hero-section .description { margin-inline: auto; }
+  .hero-section .cta-group { justify-content: center; flex-wrap: wrap; }
+  .hero-section .right-column { justify-content: center; flex-wrap: wrap; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

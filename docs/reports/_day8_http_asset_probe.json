@@ -1,0 +1,329 @@
+{
+  "pages": {
+    "/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/",
+      "broken": [],
+      "forms": [],
+      "pages_root_links": []
+    },
+    "/login/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/login/",
+      "broken": [],
+      "forms": [
+        {
+          "action": "/login/",
+          "method": "post"
+        },
+        {
+          "action": "/auth/social/google/",
+          "method": "post"
+        }
+      ],
+      "pages_root_links": [
+        "/pages/",
+        "/pages/"
+      ]
+    },
+    "/jobs/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/jobs/",
+      "broken": [],
+      "forms": [
+        {
+          "action": "/jobs/",
+          "method": "get"
+        }
+      ],
+      "pages_root_links": [
+        "/pages/",
+        "/pages/"
+      ]
+    },
+    "/contact/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/contact/",
+      "broken": [
+        {
+          "ref": "categories.html",
+          "resolved": "/contact/categories.html",
+          "status": 404
+        },
+        {
+          "ref": "about.html",
+          "resolved": "/contact/about.html",
+          "status": 404
+        },
+        {
+          "ref": "help.html",
+          "resolved": "/contact/help.html",
+          "status": 404
+        },
+        {
+          "ref": "login.html",
+          "resolved": "/contact/login.html",
+          "status": 404
+        },
+        {
+          "ref": "signup-role.html",
+          "resolved": "/contact/signup-role.html",
+          "status": 404
+        },
+        {
+          "ref": "faq.html",
+          "resolved": "/contact/faq.html",
+          "status": 404
+        },
+        {
+          "ref": "forgot-password.html",
+          "resolved": "/contact/forgot-password.html",
+          "status": 404
+        },
+        {
+          "ref": "employer.html",
+          "resolved": "/contact/employer.html",
+          "status": 404
+        },
+        {
+          "ref": "trust-center.html",
+          "resolved": "/contact/trust-center.html",
+          "status": 404
+        },
+        {
+          "ref": "privacy.html",
+          "resolved": "/contact/privacy.html",
+          "status": 404
+        },
+        {
+          "ref": "terms.html",
+          "resolved": "/contact/terms.html",
+          "status": 404
+        }
+      ],
+      "forms": [
+        {
+          "action": "/contact/submit/",
+          "method": "post"
+        }
+      ],
+      "pages_root_links": [
+        "/pages/",
+        "/pages/"
+      ]
+    },
+    "/signup/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/signup/",
+      "broken": [],
+      "forms": [],
+      "pages_root_links": [
+        "/pages/",
+        "/pages/"
+      ]
+    },
+    "/pricing/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/pricing/",
+      "broken": [],
+      "forms": [],
+      "pages_root_links": [
+        "/pages/",
+        "/pages/"
+      ]
+    },
+    "/employer/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/employer/",
+      "broken": [
+        {
+          "ref": "employer.html",
+          "resolved": "/employer/employer.html",
+          "status": 404
+        },
+        {
+          "ref": "jobseaker.html",
+          "resolved": "/employer/jobseaker.html",
+          "status": 404
+        },
+        {
+          "ref": "pricing.html",
+          "resolved": "/employer/pricing.html",
+          "status": 404
+        },
+        {
+          "ref": "login.html",
+          "resolved": "/employer/login.html",
+          "status": 404
+        },
+        {
+          "ref": "signup-role.html",
+          "resolved": "/employer/signup-role.html",
+          "status": 404
+        },
+        {
+          "ref": "posting-job.html",
+          "resolved": "/employer/posting-job.html",
+          "status": 404
+        },
+        {
+          "ref": "jobseeker-signup.html",
+          "resolved": "/employer/jobseeker-signup.html",
+          "status": 404
+        },
+        {
+          "ref": "about.html",
+          "resolved": "/employer/about.html",
+          "status": 404
+        },
+        {
+          "ref": "customer-stories.html",
+          "resolved": "/employer/customer-stories.html",
+          "status": 404
+        },
+        {
+          "ref": "blog.html",
+          "resolved": "/employer/blog.html",
+          "status": 404
+        },
+        {
+          "ref": "careers.html",
+          "resolved": "/employer/careers.html",
+          "status": 404
+        },
+        {
+          "ref": "contact.html",
+          "resolved": "/employer/contact.html",
+          "status": 404
+        },
+        {
+          "ref": "help.html",
+          "resolved": "/employer/help.html",
+          "status": 404
+        },
+        {
+          "ref": "trust-center.html",
+          "resolved": "/employer/trust-center.html",
+          "status": 404
+        },
+        {
+          "ref": "ai-audit-center.html",
+          "resolved": "/employer/ai-audit-center.html",
+          "status": 404
+        },
+        {
+          "ref": "platform-status.html",
+          "resolved": "/employer/platform-status.html",
+          "status": 404
+        },
+        {
+          "ref": "privacy.html",
+          "resolved": "/employer/privacy.html",
+          "status": 404
+        },
+        {
+          "ref": "cookie-preferences.html",
+          "resolved": "/employer/cookie-preferences.html",
+          "status": 404
+        },
+        {
+          "ref": "terms.html",
+          "resolved": "/employer/terms.html",
+          "status": 404
+        }
+      ],
+      "forms": [],
+      "pages_root_links": [
+        "/pages/",
+        "/pages/"
+      ]
+    },
+    "/jobseaker/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/jobseaker/",
+      "broken": [
+        {
+          "ref": "employer.html",
+          "resolved": "/jobseaker/employer.html",
+          "status": 404
+        },
+        {
+          "ref": "jobseaker.html",
+          "resolved": "/jobseaker/jobseaker.html",
+          "status": 404
+        },
+        {
+          "ref": "pricing.html",
+          "resolved": "/jobseaker/pricing.html",
+          "status": 404
+        },
+        {
+          "ref": "login.html",
+          "resolved": "/jobseaker/login.html",
+          "status": 404
+        },
+        {
+          "ref": "signup-role.html",
+          "resolved": "/jobseaker/signup-role.html",
+          "status": 404
+        }
+      ],
+      "forms": [
+        {
+          "action": "",
+          "method": "get"
+        }
+      ],
+      "pages_root_links": [
+        "/pages/",
+        "/pages/"
+      ]
+    },
+    "/companies/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/companies/",
+      "broken": [],
+      "forms": [],
+      "pages_root_links": [
+        "/pages/",
+        "/pages/"
+      ]
+    },
+    "/forgot-password/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/forgot-password/",
+      "broken": [],
+      "forms": [
+        {
+          "action": "/forgot-password/",
+          "method": "post"
+        }
+      ],
+      "pages_root_links": [
+        "/pages/",
+        "/pages/"
+      ]
+    },
+    "/about/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/about/",
+      "broken": [],
+      "forms": [],
+      "pages_root_links": [
+        "/pages/",
+        "/pages/"
+      ]
+    },
+    "/faq/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/faq/",
+      "broken": [],
+      "forms": [],
+      "pages_root_links": [
+        "/pages/",
+        "/pages/"
+      ]
+    }
+  },
+  "job_id": null
+}

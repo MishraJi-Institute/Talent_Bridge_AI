@@ -1,0 +1,22 @@
+TALENTBRIDGEAI - FIRST OPEN / NEW ZIP SETUP
+
+Automatic flow (same Windows PC):
+1. Extract this ZIP to a normal folder.
+2. Open that extracted TalentBridgeAI folder in VS Code.
+3. If VS Code asks whether you trust the authors, choose Trust only if this is your own trusted project.
+4. Allow the folder-open task to run. It launches .vscode/start-talentbridge.ps1.
+5. The manager imports the previous checkout's .env, SQLite database and missing media files from the last registered checkout (or the known prior folder E:\Job Folder 16 Nov 2026 2 pm\TalentBridgeAI). It backs up an existing destination DB/.env before replacing it.
+6. It checks/rebuilds the local .venv (virtual environments are not portable between PCs), installs requirements, checks Django, makes DB backup before pending migrations, migrates, collects static files, audits admin accounts, and starts/checks the local server.
+7. On subsequent openings it uses the last active checkout recorded under %LOCALAPPDATA%\TalentBridgeAI.
+
+Manual one-command option:
+Double-click FIRST_RUN_OR_UPDATE.bat in the extracted project folder.
+
+Important limitations:
+- Opening a ZIP file without extracting it cannot run setup.
+- VS Code folder-open tasks require Workspace Trust / automatic task permission.
+- The first Super Admin account needs a one-time username/email/password choice. This package never invents a password or resets an existing account. If none exists, run CREATE_SUPERUSER.bat once.
+- Google OAuth requires valid Client ID/Secret and the correct Google redirect URI in the private .env. Email verification requires working SMTP credentials. The package preserves .env; it cannot invent provider credentials.
+- Cross-extraction data handoff is for the same Windows user account on the same PC. A different PC needs its own private .env/credentials and data transfer.
+- This is a local Django development server, not a production deployment.
+- No script can guarantee zero errors on every PC. Logs: logs\setup.log, logs\server.log, logs\auto-update.log.

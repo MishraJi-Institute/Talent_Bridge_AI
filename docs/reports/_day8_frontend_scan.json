@@ -1,0 +1,1446 @@
+{
+  "base": "http://127.0.0.1:8000",
+  "static": {
+    "html_files": 77,
+    "pages": [
+      {
+        "file": "frontend/index.html",
+        "link_count": 50,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/404.html",
+        "link_count": 13,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/about.html",
+        "link_count": 14,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/access-denied.html",
+        "link_count": 7,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/account-security.html",
+        "link_count": 7,
+        "form_count": 1
+      },
+      {
+        "file": "frontend/pages/admin-dashboard.html",
+        "link_count": 16,
+        "form_count": 1
+      },
+      {
+        "file": "frontend/pages/ai-audit-center.html",
+        "link_count": 12,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/application-form.html",
+        "link_count": 12,
+        "form_count": 1
+      },
+      {
+        "file": "frontend/pages/application-success.html",
+        "link_count": 13,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/applied-jobs.html",
+        "link_count": 17,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/blog.html",
+        "link_count": 15,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/candidate-details.html",
+        "link_count": 14,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/candidate-search.html",
+        "link_count": 11,
+        "form_count": 1
+      },
+      {
+        "file": "frontend/pages/careers.html",
+        "link_count": 13,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/categories.html",
+        "link_count": 19,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/companies.html",
+        "link_count": 7,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/company-details.html",
+        "link_count": 12,
+        "form_count": 1
+      },
+      {
+        "file": "frontend/pages/company-signup.html",
+        "link_count": 9,
+        "form_count": 2
+      },
+      {
+        "file": "frontend/pages/contact.html",
+        "link_count": 17,
+        "form_count": 1
+      },
+      {
+        "file": "frontend/pages/cookie-preferences.html",
+        "link_count": 10,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/customer-stories.html",
+        "link_count": 13,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/dashboard/cdashboard.html",
+        "link_count": 19,
+        "form_count": 4
+      },
+      {
+        "file": "frontend/pages/dashboard/customize.html",
+        "link_count": 17,
+        "form_count": 1
+      },
+      {
+        "file": "frontend/pages/dashboard/dindex.html",
+        "link_count": 16,
+        "form_count": 4
+      },
+      {
+        "file": "frontend/pages/dashboard/jdashboard.html",
+        "link_count": 18,
+        "form_count": 3
+      },
+      {
+        "file": "frontend/pages/dashboard/organize-cards.html",
+        "link_count": 10,
+        "form_count": 1
+      },
+      {
+        "file": "frontend/pages/edit-profile.html",
+        "link_count": 12,
+        "form_count": 1
+      },
+      {
+        "file": "frontend/pages/employee.html",
+        "link_count": 15,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/employer-pending.html",
+        "link_count": 9,
+        "form_count": 1
+      },
+      {
+        "file": "frontend/pages/employer-profile.html",
+        "link_count": 15,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/employer.html",
+        "link_count": 33,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/faq.html",
+        "link_count": 20,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/forgot-password.html",
+        "link_count": 7,
+        "form_count": 1
+      },
+      {
+        "file": "frontend/pages/help.html",
+        "link_count": 20,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/interviews.html",
+        "link_count": 15,
+        "form_count": 2
+      },
+      {
+        "file": "frontend/pages/job-alerts.html",
+        "link_count": 8,
+        "form_count": 2
+      },
+      {
+        "file": "frontend/pages/job-detail.html",
+        "link_count": 16,
+        "form_count": 1
+      },
+      {
+        "file": "frontend/pages/job-listings.html",
+        "link_count": 33,
+        "form_count": 1
+      },
+      {
+        "file": "frontend/pages/job-search.html",
+        "link_count": 15,
+        "form_count": 1
+      },
+      {
+        "file": "frontend/pages/jobseaker.html",
+        "link_count": 7,
+        "form_count": 1
+      },
+      {
+        "file": "frontend/pages/jobseeker-signup.html",
+        "link_count": 9,
+        "form_count": 2
+      },
+      {
+        "file": "frontend/pages/login.html",
+        "link_count": 9,
+        "form_count": 2
+      },
+      {
+        "file": "frontend/pages/manage-applications.html",
+        "link_count": 21,
+        "form_count": 2
+      },
+      {
+        "file": "frontend/pages/manage-jobs.html",
+        "link_count": 20,
+        "form_count": 1
+      },
+      {
+        "file": "frontend/pages/notifications.html",
+        "link_count": 17,
+        "form_count": 2
+      },
+      {
+        "file": "frontend/pages/password-reset-complete.html",
+        "link_count": 2,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/password-reset-confirm.html",
+        "link_count": 7,
+        "form_count": 1
+      },
+      {
+        "file": "frontend/pages/password-reset.html",
+        "link_count": 13,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/platform-status.html",
+        "link_count": 11,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/posting-job.html",
+        "link_count": 13,
+        "form_count": 2
+      },
+      {
+        "file": "frontend/pages/pricing.html",
+        "link_count": 18,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/privacy-settings.html",
+        "link_count": 6,
+        "form_count": 1
+      },
+      {
+        "file": "frontend/pages/privacy.html",
+        "link_count": 14,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/profile.html",
+        "link_count": 12,
+        "form_count": 1
+      },
+      {
+        "file": "frontend/pages/recommended-jobs.html",
+        "link_count": 9,
+        "form_count": 2
+      },
+      {
+        "file": "frontend/pages/remote-work-guide.html",
+        "link_count": 10,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/resume-builder.html",
+        "link_count": 9,
+        "form_count": 2
+      },
+      {
+        "file": "frontend/pages/resume-management.html",
+        "link_count": 17,
+        "form_count": 3
+      },
+      {
+        "file": "frontend/pages/salary-calculator.html",
+        "link_count": 7,
+        "form_count": 1
+      },
+      {
+        "file": "frontend/pages/saved-jobs.html",
+        "link_count": 15,
+        "form_count": 1
+      },
+      {
+        "file": "frontend/pages/signup-role.html",
+        "link_count": 9,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/socialaccount/signup.html",
+        "link_count": 8,
+        "form_count": 1
+      },
+      {
+        "file": "frontend/pages/terms.html",
+        "link_count": 15,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/trust-center.html",
+        "link_count": 15,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/unslop/about.html",
+        "link_count": 13,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/unslop/companies.html",
+        "link_count": 11,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/unslop/contact.html",
+        "link_count": 11,
+        "form_count": 1
+      },
+      {
+        "file": "frontend/pages/unslop/demo-home.html",
+        "link_count": 16,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/unslop/employer.html",
+        "link_count": 12,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/unslop/faq.html",
+        "link_count": 13,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/unslop/homepage.html",
+        "link_count": 30,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/unslop/index.html",
+        "link_count": 16,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/unslop/job-detail.html",
+        "link_count": 12,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/unslop/jobs.html",
+        "link_count": 12,
+        "form_count": 1
+      },
+      {
+        "file": "frontend/pages/unslop/jobseaker.html",
+        "link_count": 12,
+        "form_count": 0
+      },
+      {
+        "file": "frontend/pages/unslop/login.html",
+        "link_count": 6,
+        "form_count": 1
+      },
+      {
+        "file": "frontend/pages/unslop/pricing.html",
+        "link_count": 14,
+        "form_count": 0
+      }
+    ],
+    "hash_or_placeholder_links": [
+      {
+        "file": "frontend/pages/dashboard/jdashboard.html",
+        "text": "Portfolio \u2197",
+        "href": "#"
+      },
+      {
+        "file": "frontend/pages/dashboard/jdashboard.html",
+        "text": "LinkedIn \u2197",
+        "href": "#"
+      },
+      {
+        "file": "frontend/pages/dashboard/jdashboard.html",
+        "text": "GitHub \u2197",
+        "href": "#"
+      },
+      {
+        "file": "frontend/pages/dashboard/jdashboard.html",
+        "text": "Resume \u2197",
+        "href": "#"
+      }
+    ],
+    "hash_link_count": 4,
+    "empty_href_count": 0,
+    "empty_href": [],
+    "js_pages_links": [],
+    "url_reverse_fail": [
+      {
+        "file": "frontend/pages/admin-dashboard.html",
+        "name": "approve-company",
+        "error": "Reverse for 'approve-company' with no arguments not found. 1 pattern(s) tried: ['admin\\\\-dashboard/companies/(?P<company"
+      },
+      {
+        "file": "frontend/pages/application-form.html",
+        "name": "apply_job",
+        "error": "Reverse for 'apply_job' with no arguments not found. 1 pattern(s) tried: ['jobs/(?P<job_id>[0-9]+)/apply/\\\\Z']"
+      },
+      {
+        "file": "frontend/pages/application-form.html",
+        "name": "job_detail",
+        "error": "Reverse for 'job_detail' with no arguments not found. 1 pattern(s) tried: ['jobs/(?P<job_id>[0-9]+)/\\\\Z']"
+      },
+      {
+        "file": "frontend/pages/applied-jobs.html",
+        "name": "job_detail",
+        "error": "Reverse for 'job_detail' with no arguments not found. 1 pattern(s) tried: ['jobs/(?P<job_id>[0-9]+)/\\\\Z']"
+      },
+      {
+        "file": "frontend/pages/company-signup.html",
+        "name": "social-login-start",
+        "error": "Reverse for 'social-login-start' with no arguments not found. 1 pattern(s) tried: ['auth/social/(?P<provider>[^/]+)/\\\\Z'"
+      },
+      {
+        "file": "frontend/pages/dashboard/jdashboard.html",
+        "name": "job_detail",
+        "error": "Reverse for 'job_detail' with no arguments not found. 1 pattern(s) tried: ['jobs/(?P<job_id>[0-9]+)/\\\\Z']"
+      },
+      {
+        "file": "frontend/pages/interviews.html",
+        "name": "update-interview-status",
+        "error": "Reverse for 'update-interview-status' with no arguments not found. 1 pattern(s) tried: ['interviews/(?P<interview_id>[0-"
+      },
+      {
+        "file": "frontend/pages/job-alerts.html",
+        "name": "job_detail",
+        "error": "Reverse for 'job_detail' with no arguments not found. 1 pattern(s) tried: ['jobs/(?P<job_id>[0-9]+)/\\\\Z']"
+      },
+      {
+        "file": "frontend/pages/job-detail.html",
+        "name": "apply_job",
+        "error": "Reverse for 'apply_job' with no arguments not found. 1 pattern(s) tried: ['jobs/(?P<job_id>[0-9]+)/apply/\\\\Z']"
+      },
+      {
+        "file": "frontend/pages/job-detail.html",
+        "name": "toggle-saved-job",
+        "error": "Reverse for 'toggle-saved-job' with no arguments not found. 1 pattern(s) tried: ['jobs/(?P<job_id>[0-9]+)/save/\\\\Z']"
+      },
+      {
+        "file": "frontend/pages/jobseeker-signup.html",
+        "name": "social-login-start",
+        "error": "Reverse for 'social-login-start' with no arguments not found. 1 pattern(s) tried: ['auth/social/(?P<provider>[^/]+)/\\\\Z'"
+      },
+      {
+        "file": "frontend/pages/login.html",
+        "name": "social-login-start",
+        "error": "Reverse for 'social-login-start' with no arguments not found. 1 pattern(s) tried: ['auth/social/(?P<provider>[^/]+)/\\\\Z'"
+      },
+      {
+        "file": "frontend/pages/manage-applications.html",
+        "name": "update-application-status",
+        "error": "Reverse for 'update-application-status' with no arguments not found. 1 pattern(s) tried: ['applications/(?P<application_"
+      },
+      {
+        "file": "frontend/pages/manage-jobs.html",
+        "name": "job_detail",
+        "error": "Reverse for 'job_detail' with no arguments not found. 1 pattern(s) tried: ['jobs/(?P<job_id>[0-9]+)/\\\\Z']"
+      },
+      {
+        "file": "frontend/pages/manage-jobs.html",
+        "name": "edit-job",
+        "error": "Reverse for 'edit-job' with no arguments not found. 1 pattern(s) tried: ['jobs/(?P<job_id>[0-9]+)/edit/\\\\Z']"
+      },
+      {
+        "file": "frontend/pages/manage-jobs.html",
+        "name": "toggle-job-active",
+        "error": "Reverse for 'toggle-job-active' with no arguments not found. 1 pattern(s) tried: ['manage\\\\-jobs/(?P<job_id>[0-9]+)/togg"
+      },
+      {
+        "file": "frontend/pages/recommended-jobs.html",
+        "name": "job_detail",
+        "error": "Reverse for 'job_detail' with no arguments not found. 1 pattern(s) tried: ['jobs/(?P<job_id>[0-9]+)/\\\\Z']"
+      },
+      {
+        "file": "frontend/pages/recommended-jobs.html",
+        "name": "toggle-saved-job",
+        "error": "Reverse for 'toggle-saved-job' with no arguments not found. 1 pattern(s) tried: ['jobs/(?P<job_id>[0-9]+)/save/\\\\Z']"
+      },
+      {
+        "file": "frontend/pages/saved-jobs.html",
+        "name": "job_detail",
+        "error": "Reverse for 'job_detail' with no arguments not found. 1 pattern(s) tried: ['jobs/(?P<job_id>[0-9]+)/\\\\Z']"
+      },
+      {
+        "file": "frontend/pages/saved-jobs.html",
+        "name": "toggle-saved-job",
+        "error": "Reverse for 'toggle-saved-job' with no arguments not found. 1 pattern(s) tried: ['jobs/(?P<job_id>[0-9]+)/save/\\\\Z']"
+      }
+    ],
+    "forms": [
+      {
+        "file": "frontend/pages/account-security.html",
+        "action": "{% url 'account-security' %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 1
+      },
+      {
+        "file": "frontend/pages/admin-dashboard.html",
+        "action": "{% url 'approve-company' company.id %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 1
+      },
+      {
+        "file": "frontend/pages/application-form.html",
+        "action": "{% if job %}{% url 'apply_job' job.id %}{% else %}#{% endif %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 5
+      },
+      {
+        "file": "frontend/pages/candidate-search.html",
+        "action": "{% url 'candidate-search' %}",
+        "method": "get",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 2
+      },
+      {
+        "file": "frontend/pages/company-details.html",
+        "action": "{% url 'company-details' %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 6
+      },
+      {
+        "file": "frontend/pages/company-signup.html",
+        "action": "{% url 'employer_signup' %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 11
+      },
+      {
+        "file": "frontend/pages/company-signup.html",
+        "action": "{% url 'social-login-start' 'google' %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 3
+      },
+      {
+        "file": "frontend/pages/contact.html",
+        "action": "{% url 'contact_submit' %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 5
+      },
+      {
+        "file": "frontend/pages/dashboard/cdashboard.html",
+        "action": "{% url 'logout' %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 1
+      },
+      {
+        "file": "frontend/pages/dashboard/cdashboard.html",
+        "action": "",
+        "method": "get",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 31
+      },
+      {
+        "file": "frontend/pages/dashboard/cdashboard.html",
+        "action": "",
+        "method": "get",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 5
+      },
+      {
+        "file": "frontend/pages/dashboard/cdashboard.html",
+        "action": "",
+        "method": "get",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 9
+      },
+      {
+        "file": "frontend/pages/dashboard/customize.html",
+        "action": "",
+        "method": "get",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 4
+      },
+      {
+        "file": "frontend/pages/dashboard/dindex.html",
+        "action": "{% url 'logout' %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 1
+      },
+      {
+        "file": "frontend/pages/dashboard/dindex.html",
+        "action": "",
+        "method": "get",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 32
+      },
+      {
+        "file": "frontend/pages/dashboard/dindex.html",
+        "action": "",
+        "method": "get",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 11
+      },
+      {
+        "file": "frontend/pages/dashboard/dindex.html",
+        "action": "",
+        "method": "get",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 9
+      },
+      {
+        "file": "frontend/pages/dashboard/jdashboard.html",
+        "action": "{% url 'logout' %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 1
+      },
+      {
+        "file": "frontend/pages/dashboard/jdashboard.html",
+        "action": "",
+        "method": "get",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 43
+      },
+      {
+        "file": "frontend/pages/dashboard/jdashboard.html",
+        "action": "",
+        "method": "get",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 2
+      },
+      {
+        "file": "frontend/pages/dashboard/organize-cards.html",
+        "action": "",
+        "method": "get",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 4
+      },
+      {
+        "file": "frontend/pages/edit-profile.html",
+        "action": "{% url 'edit-profile' %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 9
+      },
+      {
+        "file": "frontend/pages/employer-pending.html",
+        "action": "{% url 'logout' %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 1
+      },
+      {
+        "file": "frontend/pages/forgot-password.html",
+        "action": "{% url 'forgot-password' %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 2
+      },
+      {
+        "file": "frontend/pages/interviews.html",
+        "action": "{% url 'interviews' %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 5
+      },
+      {
+        "file": "frontend/pages/interviews.html",
+        "action": "{% url 'update-interview-status' interview.pk %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 2
+      },
+      {
+        "file": "frontend/pages/job-alerts.html",
+        "action": "",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 2
+      },
+      {
+        "file": "frontend/pages/job-alerts.html",
+        "action": "",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 3
+      },
+      {
+        "file": "frontend/pages/job-detail.html",
+        "action": "{% url 'toggle-saved-job' job.id %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 2
+      },
+      {
+        "file": "frontend/pages/job-listings.html",
+        "action": "job-listings.html",
+        "method": "get",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 3
+      },
+      {
+        "file": "frontend/pages/job-search.html",
+        "action": "job-listings.html",
+        "method": "get",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 3
+      },
+      {
+        "file": "frontend/pages/jobseaker.html",
+        "action": "",
+        "method": "get",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 3
+      },
+      {
+        "file": "frontend/pages/jobseeker-signup.html",
+        "action": "{% url 'jobseeker_signup' %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 10
+      },
+      {
+        "file": "frontend/pages/jobseeker-signup.html",
+        "action": "{% url 'social-login-start' 'google' %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 3
+      },
+      {
+        "file": "frontend/pages/login.html",
+        "action": "/login/",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 6
+      },
+      {
+        "file": "frontend/pages/login.html",
+        "action": "{% url 'social-login-start' 'google' %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 3
+      },
+      {
+        "file": "frontend/pages/manage-applications.html",
+        "action": "",
+        "method": "get",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 4
+      },
+      {
+        "file": "frontend/pages/manage-applications.html",
+        "action": "{% url 'update-application-status' app.id %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 2
+      },
+      {
+        "file": "frontend/pages/manage-jobs.html",
+        "action": "{% url 'toggle-job-active' job.id %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 1
+      },
+      {
+        "file": "frontend/pages/notifications.html",
+        "action": "{% url 'notifications' %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 2
+      },
+      {
+        "file": "frontend/pages/notifications.html",
+        "action": "{% url 'notifications' %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 1
+      },
+      {
+        "file": "frontend/pages/password-reset-confirm.html",
+        "action": "{{ request.path }}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 1
+      },
+      {
+        "file": "frontend/pages/posting-job.html",
+        "action": "{% url 'create_job' %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 29
+      },
+      {
+        "file": "frontend/pages/posting-job.html",
+        "action": "",
+        "method": "get",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 5
+      },
+      {
+        "file": "frontend/pages/privacy-settings.html",
+        "action": "",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 2
+      },
+      {
+        "file": "frontend/pages/profile.html",
+        "action": "{% url 'profile' %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 9
+      },
+      {
+        "file": "frontend/pages/recommended-jobs.html",
+        "action": "{% url 'recommended-jobs' %}",
+        "method": "get",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 3
+      },
+      {
+        "file": "frontend/pages/recommended-jobs.html",
+        "action": "{% url 'toggle-saved-job' job.pk %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 2
+      },
+      {
+        "file": "frontend/pages/resume-builder.html",
+        "action": "{% url 'logout' %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 1
+      },
+      {
+        "file": "frontend/pages/resume-builder.html",
+        "action": "{% url 'resume-builder' %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 1
+      },
+      {
+        "file": "frontend/pages/resume-management.html",
+        "action": "{% url 'logout' %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 1
+      },
+      {
+        "file": "frontend/pages/resume-management.html",
+        "action": "{% url 'resume_delete' %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 1
+      },
+      {
+        "file": "frontend/pages/resume-management.html",
+        "action": "{% url 'resume-management' %}",
+        "method": "post",
+        "enctype": "multipart/form-data",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": true,
+        "input_count": 2
+      },
+      {
+        "file": "frontend/pages/salary-calculator.html",
+        "action": "",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 5
+      },
+      {
+        "file": "frontend/pages/saved-jobs.html",
+        "action": "{% url 'toggle-saved-job' saved.job.id %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 2
+      },
+      {
+        "file": "frontend/pages/socialaccount/signup.html",
+        "action": "{% url 'socialaccount_signup' %}",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 1
+      },
+      {
+        "file": "frontend/pages/unslop/contact.html",
+        "action": "/contact/submit/",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 4
+      },
+      {
+        "file": "frontend/pages/unslop/jobs.html",
+        "action": "/pages/unslop/jobs.html",
+        "method": "get",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 10
+      },
+      {
+        "file": "frontend/pages/unslop/login.html",
+        "action": "/login/",
+        "method": "post",
+        "enctype": "",
+        "has_csrf": false,
+        "has_submit": true,
+        "has_file": false,
+        "input_count": 3
+      }
+    ],
+    "pages_slugs": [
+      "signup",
+      "company-signup",
+      "jobseeker-signup",
+      "employer",
+      "employee",
+      "jobseaker",
+      "login",
+      "pricing",
+      "salary-calculator",
+      "platform-status",
+      "posting-job",
+      "terms",
+      "trust-center",
+      "privacy",
+      "about",
+      "ai-audit-center",
+      "blog",
+      "careers",
+      "contact",
+      "cookie-preferences",
+      "customer-stories",
+      "help",
+      "faq",
+      "categories",
+      "jobs",
+      "remote-work-guide",
+      "recommended-jobs",
+      "job-search",
+      "job-detail",
+      "saved-jobs",
+      "applied-jobs",
+      "application-form",
+      "resume-management",
+      "privacy-settings",
+      "get-discovered",
+      "profile",
+      "edit-profile",
+      "account-security",
+      "employer-profile",
+      "company-details",
+      "manage-jobs",
+      "manage-applications",
+      "candidate-search",
+      "candidate-details",
+      "notifications",
+      "interviews",
+      "admin-dashboard",
+      "application-success",
+      "access-denied",
+      "404"
+    ]
+  },
+  "http_probe": {
+    "/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/",
+      "bytes": 95879,
+      "ctype": "text/html; charset=utf-8"
+    },
+    "/login/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/login/",
+      "bytes": 10556,
+      "ctype": "text/html; charset=utf-8"
+    },
+    "/signup/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/signup/",
+      "bytes": 6957,
+      "ctype": "text/html; charset=utf-8"
+    },
+    "/signup/job-seeker/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/signup/job-seeker/",
+      "bytes": 21757,
+      "ctype": "text/html; charset=utf-8"
+    },
+    "/signup/employer/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/signup/employer/",
+      "bytes": 21724,
+      "ctype": "text/html; charset=utf-8"
+    },
+    "/jobs/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/jobs/",
+      "bytes": 22139,
+      "ctype": "text/html; charset=utf-8"
+    },
+    "/companies/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/companies/",
+      "bytes": 6311,
+      "ctype": "text/html; charset=utf-8"
+    },
+    "/pricing/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/pricing/",
+      "bytes": 29727,
+      "ctype": "text/html; charset=utf-8"
+    },
+    "/faq/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/faq/",
+      "bytes": 4656,
+      "ctype": "text/html; charset=utf-8"
+    },
+    "/about/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/about/",
+      "bytes": 4395,
+      "ctype": "text/html; charset=utf-8"
+    },
+    "/contact/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/contact/",
+      "bytes": 4536,
+      "ctype": "text/html; charset=utf-8"
+    },
+    "/job-search/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/job-search/",
+      "bytes": 22139,
+      "ctype": "text/html; charset=utf-8"
+    },
+    "/employer/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/employer/",
+      "bytes": 119135,
+      "ctype": "text/html; charset=utf-8"
+    },
+    "/jobseaker/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/jobseaker/",
+      "bytes": 14018,
+      "ctype": "text/html; charset=utf-8"
+    },
+    "/forgot-password/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/forgot-password/",
+      "bytes": 3621,
+      "ctype": "text/html; charset=utf-8"
+    },
+    "/dashboard/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/login/?next=/dashboard/",
+      "bytes": 10578,
+      "ctype": "text/html; charset=utf-8"
+    },
+    "/profile/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/login/?next=/profile/",
+      "bytes": 10574,
+      "ctype": "text/html; charset=utf-8"
+    },
+    "/saved-jobs/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/login/?next=/saved-jobs/",
+      "bytes": 10580,
+      "ctype": "text/html; charset=utf-8"
+    },
+    "/resume-builder/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/login/?next=/resume-builder/",
+      "bytes": 10588,
+      "ctype": "text/html; charset=utf-8"
+    },
+    "/admin-dashboard/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/login/?next=/admin-dashboard/",
+      "bytes": 10590,
+      "ctype": "text/html; charset=utf-8"
+    },
+    "/faqs/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/faq/",
+      "bytes": 4656,
+      "ctype": "text/html; charset=utf-8"
+    },
+    "/trust/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/trust-center/",
+      "bytes": 3987,
+      "ctype": "text/html; charset=utf-8"
+    },
+    "/search/": {
+      "status": 200,
+      "final": "http://127.0.0.1:8000/job-search/",
+      "bytes": 22139,
+      "ctype": "text/html; charset=utf-8"
+    }
+  },
+  "link_checks": {
+    "/": {
+      "internal_link_sample": 27,
+      "asset_sample": 20,
+      "broken": {},
+      "all_internal_count": 53
+    },
+    "/login/": {
+      "internal_link_sample": 10,
+      "asset_sample": 20,
+      "broken": {
+        "/pages/": {
+          "status": 404,
+          "final": "",
+          "bytes": 0,
+          "ctype": ""
+        }
+      },
+      "all_internal_count": 32
+    },
+    "/jobs/": {
+      "internal_link_sample": 21,
+      "asset_sample": 13,
+      "broken": {
+        "/pages/": {
+          "status": 404,
+          "final": "",
+          "bytes": 0,
+          "ctype": ""
+        }
+      },
+      "all_internal_count": 34
+    },
+    "/signup/": {
+      "internal_link_sample": 9,
+      "asset_sample": 15,
+      "broken": {
+        "/pages/": {
+          "status": 404,
+          "final": "",
+          "bytes": 0,
+          "ctype": ""
+        }
+      },
+      "all_internal_count": 24
+    },
+    "/pricing/": {
+      "internal_link_sample": 11,
+      "asset_sample": 10,
+      "broken": {
+        "/pages/": {
+          "status": 404,
+          "final": "",
+          "bytes": 0,
+          "ctype": ""
+        }
+      },
+      "all_internal_count": 21
+    },
+    "/contact/": {
+      "internal_link_sample": 15,
+      "asset_sample": 6,
+      "broken": {
+        "/contact/about.html": {
+          "status": 404,
+          "final": "",
+          "bytes": 0,
+          "ctype": ""
+        },
+        "/contact/categories.html": {
+          "status": 404,
+          "final": "",
+          "bytes": 0,
+          "ctype": ""
+        },
+        "/contact/employer.html": {
+          "status": 404,
+          "final": "",
+          "bytes": 0,
+          "ctype": ""
+        },
+        "/contact/faq.html": {
+          "status": 404,
+          "final": "",
+          "bytes": 0,
+          "ctype": ""
+        },
+        "/contact/forgot-password.html": {
+          "status": 404,
+          "final": "",
+          "bytes": 0,
+          "ctype": ""
+        },
+        "/contact/help.html": {
+          "status": 404,
+          "final": "",
+          "bytes": 0,
+          "ctype": ""
+        },
+        "/contact/login.html": {
+          "status": 404,
+          "final": "",
+          "bytes": 0,
+          "ctype": ""
+        },
+        "/contact/privacy.html": {
+          "status": 404,
+          "final": "",
+          "bytes": 0,
+          "ctype": ""
+        },
+        "/contact/signup-role.html": {
+          "status": 404,
+          "final": "",
+          "bytes": 0,
+          "ctype": ""
+        },
+        "/contact/terms.html": {
+          "status": 404,
+          "final": "",
+          "bytes": 0,
+          "ctype": ""
+        },
+        "/contact/trust-center.html": {
+          "status": 404,
+          "final": "",
+          "bytes": 0,
+          "ctype": ""
+        },
+        "/pages/": {
+          "status": 404,
+          "final": "",
+          "bytes": 0,
+          "ctype": ""
+        }
+      },
+      "all_internal_count": 21
+    }
+  },
+  "login_has_csrf": true,
+  "login_has_password_type": true
+}

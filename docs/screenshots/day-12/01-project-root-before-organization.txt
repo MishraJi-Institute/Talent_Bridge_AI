@@ -1,0 +1,36 @@
+﻿
+Mode   Name                         
+----   ----                         
+d----- .github                      
+d----- .vscode                      
+d----- backend                      
+d----- backups                      
+d----l css                          
+d----- database                     
+d----- docs                         
+d----- frontend                     
+d----l images                       
+d----l js                           
+d----l legacy-django                
+d----- logs                         
+d----l pages                        
+d----- private_media                
+d----- releases                     
+d----- scripts                      
+d----- site                         
+d----- tests                        
+d----- tools                        
+-a---- .env                         
+-a---- .env.example                 
+-a---- .gitattributes               
+-a---- .gitignore                   
+-a---- .talentbridge_django.pid     
+-a---- .talentbridge_django.port    
+-a---- .talentbridge_port_bridge.pid
+-a---- index.html                   
+-a---- netlify.toml                 
+-a---- README.md                    
+-a---- TalentBridgeAI.code-workspace
+
+
+

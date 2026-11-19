@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <base href="/pages/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Read about AI capabilities and limitations in the TalentBridge AI static site preview.">
+  <title>AI Audit Center | TalentBridge AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/base/portal-pages.css">
+  <link rel="stylesheet" href="../css/base/redesign.css">
+<link rel="stylesheet" href="../css/components/site-experience.css">
+  <style id="fix-all-navbar-strikethrough">
+header a,
+header nav a,
+nav a,
+.navbar a,
+.nav-links a,
+.site-header a,
+header a *,
+nav a *,
+.navbar a *,
+.nav-links a *,
+.site-header a * {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    text-decoration-style: none !important;
+}
+</style>
+</head>
+<body>
+  <header class="tb-header"><div class="tb-nav">
+    <a class="tb-brand" href="../index.html">TalentBridge AI<span>:</span></a>
+    <nav class="tb-links" aria-label="Main navigation"><a href="../index.html">Home</a><a href="/trust-center/">Trust center</a><a href="/privacy/">Privacy</a><a href="/help/">Help</a><a class="tb-button" href="/contact/">Contact</a></nav>
+  </div></header>
+  <main>
+    <section class="tb-hero"><div class="tb-wrap">
+      <span class="tb-eyebrow">AI TRANSPARENCY</span>
+      <h1>Understand the role of AI in this experience.</h1>
+      <p>Clear boundaries matter. This page explains which AI features are and are not connected in the current Django application.</p>
+    </div></section>
+    <section class="tb-content"><div class="tb-wrap">
+      <div class="tb-demo-notice" role="note"><span class="tb-demo-notice__icon" aria-hidden="true">!</span><div><strong>No AI provider is connected</strong>This application does not run AI-generated resume writing, candidate scoring, hiring decisions, or model-based job matching. No model or independent audit reports are available.</div></div>
+      <div class="tb-grid">
+        <article class="tb-card"><h2>What works today?</h2><p>Job Search filters eligible Django database listings. Recommended Jobs ranks eligible roles using profile skills and location, without an AI model.</p><a href="/jobs/">Browse jobs</a></article>
+        <article class="tb-card"><h2>What is not active?</h2><p>AI-written resumes, automated candidate recommendations, resume scoring, candidate ranking, and AI-based hiring decisions are not connected.</p><a href="/trust-center/">Read the Trust Center</a></article>
+        <article class="tb-card"><h2>How to evaluate a claim</h2><p>Ask what data a feature uses, what outcome it produces, how a person can review it, and whether evidence is available for the specific deployment.</p><a href="/privacy/">Review privacy information</a></article>
+      </div>
+    </div></section>
+  </main>
+  <footer class="tb-footer"><div class="tb-wrap tb-footer-inner"><span>© TalentBridge AI. Built to connect people with opportunity.</span><span><a href="/trust-center/">Trust center</a> · <a href="/privacy/">Privacy</a> · <a href="/contact/">Contact</a></span></div></footer>
+<script src="../js/core/site-experience.js"></script>
+  </body>
+</html>

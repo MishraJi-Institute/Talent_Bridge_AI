@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Complete your TalentBridge AI account setup.">
+  <title>Complete account setup | TalentBridge AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/base/portal-pages.css">
+  <link rel="stylesheet" href="/css/base/redesign.css">
+  <link rel="stylesheet" href="/css/components/site-experience.css">
+<style id="fix-all-navbar-strikethrough">
+header a,
+header nav a,
+nav a,
+.navbar a,
+.nav-links a,
+.site-header a,
+header a *,
+nav a *,
+.navbar a *,
+.nav-links a *,
+.site-header a * {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    text-decoration-style: none !important;
+}
+</style>
+</head>
+<body>
+  <header class="tb-header">
+    <div class="tb-nav">
+      <a class="tb-brand" href="/">TalentBridge AI<span>:</span></a>
+      <nav class="tb-links" aria-label="Main navigation">
+        <a href="/">Home</a>
+        <a href="/jobs/">Browse Jobs</a>
+        <a href="/help/">Help</a>
+        <a class="tb-button secondary" href="/login/">Sign in</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="tb-hero">
+      <div class="tb-wrap">
+        <span class="tb-eyebrow">ACCOUNT SETUP</span>
+        <h1>Complete your account</h1>
+        <p>Continue securely with {{ account.get_provider.name }} and choose how you want to use TalentBridge AI.</p>
+      </div>
+    </section>
+    <section class="tb-content">
+      <div class="tb-wrap">
+        <div class="tb-card">
+          <h2>Almost there</h2>
+          <p>Confirm your account details to finish signing up.</p>
+          <form method="post" action="{% url 'socialaccount_signup' %}" class="tb-form">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+              <div class="tb-notice" role="alert">{{ form.non_field_errors }}</div>
+            {% endif %}
+            {% for field in form %}
+              {% if field.is_hidden %}
+                {{ field }}
+              {% else %}
+                <label for="{{ field.id_for_label }}">
+                  {{ field.label }}
+                  {{ field }}
+                  {% if field.help_text %}<span class="tb-small">{{ field.help_text }}</span>{% endif %}
+                  {% for error in field.errors %}<span class="tb-small" role="alert">{{ error }}</span>{% endfor %}
+                </label>
+              {% endif %}
+            {% endfor %}
+            {{ redirect_field }}
+            <button type="submit" class="tb-button">Create account</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="tb-footer">
+    <div class="tb-wrap tb-footer-inner">
+      <span>© TalentBridge AI. Built to connect people with opportunity.</span>
+      <span><a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · <a href="/contact/">Contact</a></span>
+    </div>
+  </footer>
+</body>
+</html>

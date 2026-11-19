@@ -1,0 +1,53 @@
+﻿{% extends "admin/base.html" %}
+{% load static %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+body.login {
+    background: #eaf5ff url("{% static 'admin_login_bg.png' %}") center center / cover fixed no-repeat !important;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+body.login::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(120deg, rgba(0,90,255,.12), rgba(255,255,255,.12), rgba(0,220,210,.15));
+    background-size: 300% 300%;
+    animation: talentBridgeGlow 10s ease-in-out infinite;
+}
+body.login #container {
+    position: relative;
+    z-index: 1;
+    animation: talentBridgeCard 10s ease-in-out infinite;
+}
+body.login #content {
+    background: rgba(255,255,255,.90);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,.8);
+    border-radius: 20px;
+    box-shadow: 0 20px 65px rgba(0,40,90,.22);
+    padding: 30px;
+}
+body.login #header {
+    position: relative;
+    z-index: 1;
+    background: rgba(255,255,255,.88);
+    color: #12345a;
+}
+@keyframes talentBridgeGlow {
+    0%,100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+@keyframes talentBridgeCard {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+@media (prefers-reduced-motion: reduce) {
+    body.login::before, body.login #container { animation: none; }
+}
+</style>
+{% endblock %}

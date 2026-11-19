@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TalentBridge AI — Opening…</title>
+  <script>
+    (function () {
+      var candidates = [
+        "http://127.0.0.1:8000/",
+        "http://127.0.0.1:8001/"
+      ];
+      var i = 0;
+      function tryNext() {
+        if (i >= candidates.length) {
+          document.getElementById("msg").innerHTML =
+            "Django is not running. Start it with <code>scripts/startup/START_TALENTBRIDGEAI.bat</code> or the VS Code/Cursor auto-start task, then open <a href=\"http://127.0.0.1:8000/\">http://127.0.0.1:8000/</a> or <a href=\"http://127.0.0.1:8001/\">http://127.0.0.1:8001/</a>.";
+          return;
+        }
+        var url = candidates[i++];
+        fetch(url, { mode: "no-cors", cache: "no-store" })
+          .then(function () { window.location.replace(url); })
+          .catch(function () { setTimeout(tryNext, 120); });
+      }
+      // Prefer :8000 (bookmarks); bridge redirects to the live Django port when needed.
+      window.location.replace(candidates[0]);
+      setTimeout(tryNext, 900);
+    })();
+  </script>
+  <meta http-equiv="refresh" content="2; url=http://127.0.0.1:8000/">
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 40rem; margin: 3rem auto; padding: 0 1rem; color: #102a56; line-height: 1.5; }
+    a { color: #155eef; }
+    code { background: #f1f5f9; padding: 0.1em 0.35em; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>TalentBridge AI</h1>
+  <p id="msg">Opening the local Django site… Prefer <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a> (also works on <a href="http://127.0.0.1:8001/">:8001</a>).</p>
+  <p>Login: <a href="http://127.0.0.1:8000/login/">/login/</a> (not a raw HTML file path).</p>
+</body>
+</html>

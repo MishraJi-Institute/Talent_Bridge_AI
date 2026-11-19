@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Send our team a note and tell us how we can help.">
+<title>Contact Us | TalentBridge AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base/portal-pages.css">
+  <link rel="stylesheet" href="../css/base/redesign.css">
+<link rel="stylesheet" href="../css/components/site-experience.css">
+  <style id="fix-all-navbar-strikethrough">
+header a,
+header nav a,
+nav a,
+.navbar a,
+.nav-links a,
+.site-header a,
+header a *,
+nav a *,
+.navbar a *,
+.nav-links a *,
+.site-header a * {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    text-decoration-style: none !important;
+}
+</style>
+</head>
+<body>
+<div class="tb-wrap" aria-live="polite">{% if messages %}{% for message in messages %}<div class="tb-alert tb-alert--{{ message.tags|default:'info' }}" role="status">{{ message }}</div>{% endfor %}{% endif %}</div>
+
+<header class="tb-header"><div class="tb-nav"><a class="tb-brand" href="../index.html">TalentBridge AI<span>:</span></a><nav class="tb-links" aria-label="Main navigation"><a href="../index.html">Home</a><a href="{% url 'jobs' %}">Browse Jobs</a><a href="{% url 'companies' %}">Companies</a><a href="categories.html">Categories</a><a href="about.html">About</a><a href="help.html">Help</a><a href="login.html">Sign in</a><a class="tb-button" href="signup-role.html">Get started</a></nav></div></header>
+<main><div class="tb-wrap auth-messages" role="status"><p></p></div><section class="tb-hero"><div class="tb-wrap"><span class="tb-eyebrow">TALENTBRIDGE SUPPORT</span><h1>We’re here to help.</h1><p>Send our team a note and tell us how we can help.</p></div></section>
+<section class="tb-content"><div class="tb-wrap"><div class="tb-card tb-demo-form-card"><form class="tb-form" method="post" action="{% url 'contact_submit' %}">{% csrf_token %}<div class="tb-two"><label>Your name<input name="name" autocomplete="name" maxlength="100" required></label><label>Email address<input name="email" type="email" autocomplete="email" maxlength="254" required></label></div><label>Topic<select name="topic" required><option>General question</option><option>Account support</option><option>Job seeker support</option><option>Employer support</option></select></label><label>Message<textarea name="message" maxlength="5000" placeholder="Tell us what you need help with." required></textarea></label><button class="tb-button" type="submit">Send message</button><p class="tb-small">For common questions, visit the <a href="faq.html">FAQ</a> or <a href="help.html">Help Center</a>.</p></form></div></div></section></main>
+<section class="tb-content" style="padding-top:0"><div class="tb-wrap">
+<div class="tb-grid">
+<article class="tb-card"><span class="tb-pill">Account access</span><h2>Sign-in and password help</h2><p>Use the account recovery flow for password issues. Never send your password or a recovery link in a support message.</p><a href="forgot-password.html">Reset your password</a></article>
+<article class="tb-card"><span class="tb-pill">Job seekers</span><h2>Search and application guidance</h2><p>Browse current roles and review the job details before you apply. Sample listings are labeled and do not accept applications.</p><a href="{% url 'jobs' %}">Browse jobs</a></article>
+<article class="tb-card"><span class="tb-pill">Employers</span><h2>Hiring workflow guidance</h2><p>Prepare company details and job descriptions. Publishing and candidate management require connected employer services.</p><a href="employer.html">Explore employer tools</a></article>
+</div>
+<p class="tb-small" style="margin-top:18px">Please do not include passwords, payment information, or sensitive identity details. A valid message is stored for the TalentBridge team. Email delivery is not configured, so this form does not send mail.</p>
+</div></section>
+<footer class="tb-footer"><div class="tb-wrap tb-footer-inner"><span>© TalentBridge AI. Built to connect people with opportunity.</span><span><a href="trust-center.html">Trust center</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span></div></footer>
+<script src="../js/core/site-experience.js"></script>
+  </body></html>

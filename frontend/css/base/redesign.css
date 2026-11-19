@@ -1,0 +1,265 @@
+:root {
+  --tb-accent: #0052ff;
+  --tb-accent-hover: #0040cc;
+  --tb-ink: #071447;
+  --tb-copy: #354765;
+  --tb-muted: #62728c;
+  --tb-line: #e1e8f2;
+  --tb-surface: #fff;
+  --tb-canvas: #f5f8fd;
+  --tb-radius: 18px;
+  --tb-shadow: 0 16px 42px rgba(20, 45, 90, .08);
+  --tb-soft-shadow: 0 8px 24px rgba(20, 45, 90, .06);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+}
+
+body:not([data-workspace-page]) {
+  color: var(--tb-ink);
+  background-color: var(--tb-canvas);
+  font-family: Manrope, Inter, "Segoe UI", sans-serif;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body:not([data-workspace-page]) :where(h1, h2, h3, h4) {
+  color: var(--tb-ink);
+  font-family: Manrope, Inter, "Segoe UI", sans-serif;
+  font-weight: 800;
+  letter-spacing: -.035em;
+  line-height: 1.18;
+}
+
+body:not([data-workspace-page]) :where(p, li) {
+  line-height: 1.72;
+}
+
+body:not([data-workspace-page]) :where(a, button, input, select, textarea) {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body:not([data-workspace-page]) :where(a, button, input, select, textarea):focus-visible {
+  outline: 3px solid rgba(0, 82, 255, .35);
+  outline-offset: 3px;
+}
+
+body:not([data-workspace-page]) :where(button, input, select, textarea) {
+  font: inherit;
+}
+
+body:not([data-workspace-page]) :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]), select, textarea) {
+  min-height: 46px;
+  border: 1px solid #d8e1ee;
+  border-radius: 11px;
+  background-color: #fff;
+  color: var(--tb-ink);
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+
+body:not([data-workspace-page]) :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]), select, textarea):focus {
+  border-color: var(--tb-accent);
+  box-shadow: 0 0 0 4px rgba(0, 82, 255, .1);
+  outline: 0;
+}
+
+body:not([data-workspace-page]) :where(button, .tb-button, .auth-btn, .btn, .role-button, .plan-button) {
+  border-radius: 11px;
+  font-weight: 750;
+  transition: color .18s ease, background-color .18s ease, border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+body:not([data-workspace-page]) :where(button:not(:disabled), .tb-button, .auth-btn, .btn, .role-button, .plan-button):hover {
+  transform: translateY(-1px);
+}
+
+body:not([data-workspace-page]) :where(.tb-card, .job-card, .login-card, .signup-card, .role-card, .plan-card, .pricing-card, .content-card, .feature-card, .faq-item, .job-builder-card, .card) {
+  border-color: var(--tb-line);
+  border-radius: var(--tb-radius);
+  box-shadow: var(--tb-soft-shadow);
+}
+
+body:not([data-workspace-page]) :where(.tb-card, .job-card, .login-card, .signup-card, .role-card, .plan-card, .pricing-card, .content-card, .feature-card, .faq-item, .job-builder-card, .card):hover {
+  box-shadow: var(--tb-shadow);
+}
+
+body:not([data-workspace-page]) .navbar {
+  border-bottom-color: rgba(215, 225, 240, .82);
+  background: rgba(255, 255, 255, .92) !important;
+  box-shadow: 0 8px 28px rgba(20, 45, 90, .055);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+body:not([data-workspace-page]) .tb-header {
+  border-bottom-color: rgba(215, 225, 240, .82);
+  background: rgba(255, 255, 255, .92);
+  box-shadow: 0 8px 28px rgba(20, 45, 90, .055);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+body:not([data-workspace-page]) .tb-nav {
+  width: min(100% - 40px, 1280px);
+  padding: 14px 0;
+}
+
+body:not([data-workspace-page]) :where(.tb-brand, .logo a) {
+  color: #12284f;
+  font-size: 1.08rem;
+  font-weight: 850;
+  letter-spacing: -.055em;
+  text-decoration: none;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .8);
+  background: none;
+  -webkit-text-fill-color: #12284f;
+}
+
+body:not([data-workspace-page]) :where(.tb-brand, .logo a) {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  transition: color .18s ease, transform .18s ease;
+}
+
+body:not([data-workspace-page]) :where(.tb-brand, .logo a):hover {
+  color: #0752c9;
+  text-decoration: none;
+}
+
+body:not([data-workspace-page]) :where(.tb-brand, .logo a)::before {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  place-items: center;
+  border: 0;
+  border-radius: 14px;
+  background-color: transparent;
+  background-image: url("/images/talentbridge-mark.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  box-shadow: 0 7px 17px rgba(0, 70, 190, .19);
+  content: "";
+  font-size: 0;
+  line-height: 1;
+  transition: box-shadow .18s ease, transform .18s ease;
+}
+
+body:not([data-workspace-page]) :where(.tb-brand, .logo a):hover::before {
+  box-shadow: 0 9px 21px rgba(0, 70, 190, .26);
+  transform: translateY(-1px);
+}
+
+body:not([data-workspace-page]) :where(.tb-brand > span, .logo-accent) {
+  display: none;
+}
+
+body:not([data-workspace-page]) .tb-links a:not(.tb-button) {
+  color: #43536e;
+  transition: color .18s ease;
+}
+
+body:not([data-workspace-page]) .tb-links a:not(.tb-button):hover {
+  color: var(--tb-accent);
+  text-decoration: none;
+}
+
+@media (min-width: 1121px) and (max-width: 1500px) {
+  body:not([data-workspace-page]) .navbar .nav-container {
+    width: 98%;
+    gap: 12px;
+    padding-inline: 8px;
+  }
+
+  body:not([data-workspace-page]) .navbar .logo {
+    font-size: clamp(1.1rem, 1.4vw, 1.35rem);
+  }
+
+  body:not([data-workspace-page]) .navbar .nav-links {
+    gap: clamp(10px, 1.1vw, 16px);
+  }
+
+  body:not([data-workspace-page]) .navbar .nav-links a {
+    font-size: .84rem;
+  }
+
+  body:not([data-workspace-page]) .navbar .auth-actions {
+    gap: 6px;
+  }
+
+  body:not([data-workspace-page]) .navbar .auth-btn {
+    min-height: 38px;
+    padding-inline: 10px;
+    font-size: .82rem;
+  }
+}
+
+body:not([data-workspace-page]) :where(.tb-hero, .jobs-hero) {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 86% 6%, rgba(147, 197, 253, .44), transparent 34%),
+    radial-gradient(ellipse at 6% 96%, rgba(219, 234, 254, .7), transparent 36%),
+    linear-gradient(135deg, #fff 0%, #f0f6ff 100%);
+}
+
+body:not([data-workspace-page]) :where(.tb-hero h1, .jobs-hero h1) {
+  max-width: 900px;
+  letter-spacing: -.055em;
+}
+
+body:not([data-workspace-page]) :where(.tb-eyebrow, .jobs-eyebrow) {
+  color: var(--tb-accent);
+  letter-spacing: .16em;
+}
+
+body:not([data-workspace-page]) :where(.tb-content, .jobs-results) {
+  padding-bottom: clamp(44px, 7vw, 88px);
+}
+
+body:not([data-workspace-page]) :where(.tb-card, .job-card, .login-card, .signup-card, .role-card, .plan-card, .pricing-card, .content-card, .feature-card, .faq-item, .job-builder-card, .card, .tb-table-wrap) {
+  background-color: var(--tb-surface);
+}
+
+body:not([data-workspace-page]) :where(.tb-footer, .site-footer) {
+  border-top-color: var(--tb-line);
+  background-color: #fff;
+}
+
+body:not([data-workspace-page]) .tb-form-notice {
+  width: min(100% - 32px, 1180px);
+  border-color: #f1d08b;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(140, 92, 0, .06);
+}
+
+body:not([data-workspace-page]) .auth-messages {
+  border-color: #c9dbfb;
+  border-radius: 12px;
+  background: #f1f6ff;
+}
+
+body:not([data-workspace-page]) :where(table th) {
+  color: #41526f;
+  background: #f5f8fd;
+}
+
+@media (max-width: 760px) {
+  body:not([data-workspace-page]) .tb-nav {
+    width: min(100% - 28px, 1280px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body:not([data-workspace-page]) :where(*, *::before, *::after) {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}

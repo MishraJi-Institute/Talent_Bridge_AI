@@ -1,0 +1,56 @@
+/* TalentBridge AI foundation layer for new portal pages. */
+:root {
+  --tb-primary: #155eef;
+  --tb-navy: #101828;
+  --tb-success: #10b981;
+  --tb-warning: #f59e0b;
+  --tb-error: #ef4444;
+  --tb-ink: var(--tb-navy);
+  --tb-muted: #475467;
+  --tb-line: #eaecf0;
+  --tb-blue: var(--tb-primary);
+  --tb-blue-dark: #004eeb;
+  --tb-surface: #ffffff;
+  --tb-canvas: #f8fafc;
+}
+.tb-muted { color: var(--tb-muted); }
+.tb-section-title { margin: 28px 0 14px; color: var(--tb-ink); }
+.tb-company-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+.tb-company-card {
+  background: var(--tb-surface);
+  border: 1px solid var(--tb-line);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 28px rgba(20, 35, 60, 0.05);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+.tb-company-card h2,
+.tb-company-card h3 { margin: 0 0 8px; color: var(--tb-ink); }
+.tb-company-card p { line-height: 1.55; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .tb-company-card:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(20, 35, 60, 0.08); }
+}
+.tb-empty {
+  background: var(--tb-canvas);
+  border: 1px dashed var(--tb-line);
+  border-radius: 16px;
+  padding: 28px;
+}
+.tb-button {
+  display: inline-block;
+  margin-top: 8px;
+  background: var(--tb-blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 700;
+}
+.tb-button:hover { background: var(--tb-blue-dark); }
+@media (max-width: 700px) {
+  .tb-company-grid { grid-template-columns: 1fr; }
+}

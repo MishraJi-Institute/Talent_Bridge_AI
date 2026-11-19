@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Privacy information for the local TalentBridge AI Django development website.">
+  <title>Privacy Policy | TalentBridge AI</title>
+  <link rel="stylesheet" href="../css/components/site-header.css">
+  <link rel="stylesheet" href="../css/components/motion.css">
+  <style>
+    body { margin: 0; background: #f7faff; color: #15233e; font-family: Inter, Manrope, Arial, sans-serif; }
+    .legal-wrap { width: min(820px, calc(100% - 40px)); margin: 0 auto; padding: 56px 0 88px; }
+    .legal-wrap h1 { margin: 0 0 12px; font-size: clamp(32px, 5vw, 48px); letter-spacing: -1.5px; }
+    .legal-wrap p, .legal-wrap li { color: #5b6c89; line-height: 1.7; }
+    .legal-wrap h2 { margin: 32px 0 10px; font-size: 22px; }
+    .legal-wrap a { color: #075cff; font-weight: 700; }
+  </style>
+  <link rel="stylesheet" href="../css/components/dark-mode.css">
+  <script src="../js/core/dark-mode.js"></script>
+
+  <link rel="stylesheet" href="../css/dashboard/jerry-guide/jerry-guide.css">
+
+    <link rel="stylesheet" href="../css/responsive/responsive-fixes.css">
+  <link rel="stylesheet" href="../css/base/pro-upgrade.css?v=2">
+<link rel="stylesheet" href="../css/components/site-experience.css">
+  <style id="fix-all-navbar-strikethrough">
+header a,
+header nav a,
+nav a,
+.navbar a,
+.nav-links a,
+.site-header a,
+header a *,
+nav a *,
+.navbar a *,
+.nav-links a *,
+.site-header a * {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    text-decoration-style: none !important;
+}
+</style>
+</head>
+<body data-public-page>
+  <header class="navbar">
+  <div class="nav-container">
+    <div class="logo"><a href="../index.html"><span>TalentBridge<span class="logo-accent">AI</span></span></a></div>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="/employer/">For Employers</a>
+      <a href="/jobseaker/">For Job Seekers</a>
+      <a href="/companies/">Companies</a>
+      <a href="/jobs/">Browse Jobs</a>
+      <a href="/pricing/">Pricing</a>
+      
+    </nav>
+    <div class="auth-actions">
+      <a href="/login/" class="auth-btn auth-signin">Sign In</a>
+      <a href="/signup/" class="auth-btn auth-signup">Sign Up</a>
+    </div>
+  </div>
+  
+</header>
+
+  <main class="legal-wrap">
+    <span class="tb-eyebrow">PRIVACY &amp; DATA</span>
+    <h1>Privacy Policy</h1>
+    <p>This notice describes data handling in the local TalentBridge AI Django development website. It is an operational summary, not legal advice or a complete notice for a production deployment.</p>
+    <div class="tb-demo-notice" role="note"><span class="tb-demo-notice__icon" aria-hidden="true">i</span><div><strong>Development deployment</strong>When you use connected account workflows, information is stored in this site's local Django database and resume files are stored in private media. No AI provider or external email delivery is connected. Labeled demo content is not a real account record.</div></div>
+    <h2>Information you enter</h2>
+    <p>Connected account workflows can store registration and profile details, job applications, saved jobs, contact inquiries, and resume-builder drafts in the local database. Resume uploads are stored separately in private media. Features labeled as demo or browser-only do not create real account records.</p>
+    <h2>Authentication and account data</h2>
+    <p>Sign-in and registration use Django accounts. Authenticated sessions are maintained by Django; administrative access is restricted by account permissions. If you choose Google sign-in when it is available, Django Allauth exchanges sign-in information with Google, which handles that information under its own privacy notice.</p>
+    <p>The authenticated Resume Builder stores the draft you save with your account. Draft content is not sent to an AI provider; AI writing assistance is unavailable. Print or Save as PDF uses your browser and does not create a server-side PDF file.</p>
+    <h2>Jobs, applications, and resumes</h2>
+    <p>Applications to eligible real listings are associated with the signed-in account. Resume uploads are private to the account and are made available to an employer only through an authorized application workflow. Labeled demo roles do not accept or create applications. Upload validation and access checks apply on the Django server.</p>
+    <h2>AI and automated decisions</h2>
+    <p>No AI provider is connected. Resume text is not sent for AI processing, and the site does not run AI candidate scoring or automated hiring decisions. Recommended Jobs uses profile skills and location to rank eligible roles; it is not an AI decision.</p>
+    <h2>Cookies and browser storage</h2>
+    <p>Django uses essential session and CSRF cookies for sign-in and form protection. Some interface preferences and demo previews are stored in your browser's local or session storage. This site does not provide a cookie consent manager or a complete production analytics inventory. Clearing browser data may sign you out or reset browser-only preferences; it does not delete database records or uploaded resumes.</p>
+    <h2>External services and requests</h2>
+    <p>Pages that load Inter or Manrope from Google Fonts cause the browser to request those font resources from Google. Google OAuth contacts Google only when you choose that sign-in method and it is configured. Email uses the local development backend and is not delivered to an external inbox.</p>
+    <p>Use the <a href="/contact/">Contact page</a> for a support inquiry; the message is stored locally for the team and no email confirmation is sent. For Google account data, also review Google's privacy notice and account controls.</p>
+    <p class="tb-small">Last reviewed: November 2026. Update this notice when deployed services, data flows, or privacy controls change.</p>
+    <p><a href="/terms/">Read the Terms of Service</a> · <a href="/trust-center/">Visit the Trust Center</a></p>
+  </main>
+  <footer class="tb-footer"><div class="tb-wrap tb-footer-inner"><span>© TalentBridge AI. Built to connect people with opportunity.</span><span><a href="/terms/">Terms</a> · <a href="/cookie-preferences/">Cookie preferences</a> · <a href="/contact/">Contact</a></span></div></footer>
+  <script src="../js/core/motion.js"></script>
+
+  <script src="../js/dashboard/jerry-guide/jerry-site.js" data-jerry-image="../images/jerry-mascot.png"></script>
+  <script src="../js/core/pro-upgrade.js" defer></script>
+<script src="../js/core/site-experience.js"></script>
+  </body>
+</html>

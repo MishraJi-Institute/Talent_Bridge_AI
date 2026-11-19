@@ -1,0 +1,158 @@
+[
+    {
+        "from":  "docs/TALENTBRIDGEAI_DAY1_ENVIRONMENT_AUDIT.md",
+        "to":  "docs/audit/day1/TALENTBRIDGEAI_DAY1_ENVIRONMENT_AUDIT.md"
+    },
+    {
+        "from":  "docs/TALENTBRIDGEAI_DAY2_WEBSITE_BASELINE_AUDIT.md",
+        "to":  "docs/audit/day2/TALENTBRIDGEAI_DAY2_WEBSITE_BASELINE_AUDIT.md"
+    },
+    {
+        "from":  "docs/TALENTBRIDGEAI_DAY3_COMPLETE_PROJECT_STRUCTURE_INVENTORY.md",
+        "to":  "docs/audit/day3/TALENTBRIDGEAI_DAY3_COMPLETE_PROJECT_STRUCTURE_INVENTORY.md"
+    },
+    {
+        "from":  "docs/TALENTBRIDGEAI_DAY4_DJANGO_SETTINGS_AUDIT.md",
+        "to":  "docs/audit/day4/TALENTBRIDGEAI_DAY4_DJANGO_SETTINGS_AUDIT.md"
+    },
+    {
+        "from":  "docs/TALENTBRIDGEAI_DAY5_DATABASE_BACKUP_AND_INVENTORY.md",
+        "to":  "docs/audit/day5/TALENTBRIDGEAI_DAY5_DATABASE_BACKUP_AND_INVENTORY.md"
+    },
+    {
+        "from":  "docs/TALENTBRIDGEAI_DAY6_COMPLETE_URL_MAP.md",
+        "to":  "docs/audit/day6/TALENTBRIDGEAI_DAY6_COMPLETE_URL_MAP.md"
+    },
+    {
+        "from":  "docs/TALENTBRIDGEAI_DAY7_DATA_DICTIONARY.md",
+        "to":  "docs/audit/day7/TALENTBRIDGEAI_DAY7_DATA_DICTIONARY.md"
+    },
+    {
+        "from":  "docs/TALENTBRIDGEAI_DAY7_ERD.md",
+        "to":  "docs/audit/day7/TALENTBRIDGEAI_DAY7_ERD.md"
+    },
+    {
+        "from":  "docs/TALENTBRIDGEAI_DAY7_PROGRESS_NOTE.md",
+        "to":  "docs/audit/day7/TALENTBRIDGEAI_DAY7_PROGRESS_NOTE.md"
+    },
+    {
+        "from":  "docs/TALENTBRIDGEAI_DAY8_COMPLETE_FRONTEND_AUDIT.md",
+        "to":  "docs/audit/day8/TALENTBRIDGEAI_DAY8_COMPLETE_FRONTEND_AUDIT.md"
+    },
+    {
+        "from":  "docs/TALENTBRIDGEAI_DAY8_PROGRESS_NOTE.md",
+        "to":  "docs/audit/day8/TALENTBRIDGEAI_DAY8_PROGRESS_NOTE.md"
+    },
+    {
+        "from":  "docs/TALENTBRIDGEAI_DAY9_PROGRESS_NOTE.md",
+        "to":  "docs/audit/day9/TALENTBRIDGEAI_DAY9_PROGRESS_NOTE.md"
+    },
+    {
+        "from":  "docs/TALENTBRIDGEAI_DAY9_SECURITY_AND_DEPENDENCY_AUDIT.md",
+        "to":  "docs/audit/day9/TALENTBRIDGEAI_DAY9_SECURITY_AND_DEPENDENCY_AUDIT.md"
+    },
+    {
+        "from":  "docs/TALENTBRIDGEAI_DAY10_PROGRESS_NOTE.md",
+        "to":  "docs/audit/day10/TALENTBRIDGEAI_DAY10_PROGRESS_NOTE.md"
+    },
+    {
+        "from":  "docs/TALENTBRIDGEAI_DAY10_SCREENSHOT_INDEX.md",
+        "to":  "docs/audit/day10/TALENTBRIDGEAI_DAY10_SCREENSHOT_INDEX.md"
+    },
+    {
+        "from":  "docs/TALENTBRIDGEAI_DAY10_TEST_BASELINE.md",
+        "to":  "docs/audit/day10/TALENTBRIDGEAI_DAY10_TEST_BASELINE.md"
+    },
+    {
+        "from":  "docs/TALENTBRIDGEAI_PHASE1_FINAL_AUDIT_REPORT.md",
+        "to":  "docs/audit/phase1/TALENTBRIDGEAI_PHASE1_FINAL_AUDIT_REPORT.md"
+    },
+    {
+        "from":  "docs/TALENTBRIDGEAI_PHASE1_GATE_REVIEW.md",
+        "to":  "docs/audit/phase1/TALENTBRIDGEAI_PHASE1_GATE_REVIEW.md"
+    },
+    {
+        "from":  "docs/TALENTBRIDGEAI_PHASE1_PRIORITIZED_BACKLOG.md",
+        "to":  "docs/audit/phase1/TALENTBRIDGEAI_PHASE1_PRIORITIZED_BACKLOG.md"
+    },
+    {
+        "from":  "docs/TALENTBRIDGEAI_HOMEPAGE_DESIGN_CORRECTION_REPORT.md",
+        "to":  "docs/homepage/TALENTBRIDGEAI_HOMEPAGE_DESIGN_CORRECTION_REPORT.md"
+    },
+    {
+        "from":  "docs/TALENTBRIDGEAI_HOMEPAGE_DESIGN_IMPROVEMENT_REPORT.md",
+        "to":  "docs/homepage/TALENTBRIDGEAI_HOMEPAGE_DESIGN_IMPROVEMENT_REPORT.md"
+    },
+    {
+        "from":  "docs/TALENTBRIDGEAI_CANDIDATE_MATCHING_ANIMATION_REPORT.md",
+        "to":  "docs/homepage/TALENTBRIDGEAI_CANDIDATE_MATCHING_ANIMATION_REPORT.md"
+    },
+    {
+        "from":  "docs/PREMIUM_REDESIGN_AUDIT.md",
+        "to":  "docs/homepage/PREMIUM_REDESIGN_AUDIT.md"
+    },
+    {
+        "from":  "docs/REFERENCE_IMAGE_IMPLEMENTATION.md",
+        "to":  "docs/homepage/REFERENCE_IMAGE_IMPLEMENTATION.md"
+    },
+    {
+        "from":  "docs/GOOGLE_OAUTH_SETUP.md",
+        "to":  "docs/setup/GOOGLE_OAUTH_SETUP.md"
+    },
+    {
+        "from":  "docs/TALENTBRIDGEAI_REPRODUCIBLE_STARTUP_GUIDE.md",
+        "to":  "docs/setup/TALENTBRIDGEAI_REPRODUCIBLE_STARTUP_GUIDE.md"
+    },
+    {
+        "from":  "docs/DATABASE_BACKUP_AND_RECOVERY.md",
+        "to":  "docs/setup/DATABASE_BACKUP_AND_RECOVERY.md"
+    },
+    {
+        "from":  "docs/STARTUP_FAILURE_DIAGNOSTICS.md",
+        "to":  "docs/troubleshooting/STARTUP_FAILURE_DIAGNOSTICS.md"
+    },
+    {
+        "from":  "docs/STATIC_PREVIEW_BANNER_PERMANENT_FIX.md",
+        "to":  "docs/troubleshooting/STATIC_PREVIEW_BANNER_PERMANENT_FIX.md"
+    },
+    {
+        "from":  "docs/BUG_FIX_SUMMARY.md",
+        "to":  "docs/troubleshooting/BUG_FIX_SUMMARY.md"
+    },
+    {
+        "from":  "docs/REMAINING_ISSUES.md",
+        "to":  "docs/troubleshooting/REMAINING_ISSUES.md"
+    },
+    {
+        "from":  "docs/COMPLETE_PROJECT_REPORT.md",
+        "to":  "docs/reports/COMPLETE_PROJECT_REPORT.md"
+    },
+    {
+        "from":  "docs/DELIVERY_QA_REPORT.md",
+        "to":  "docs/reports/DELIVERY_QA_REPORT.md"
+    },
+    {
+        "from":  "docs/FEATURE_VERIFICATION_REPORT.md",
+        "to":  "docs/reports/FEATURE_VERIFICATION_REPORT.md"
+    },
+    {
+        "from":  "docs/PROJECT_CHANGELOG.md",
+        "to":  "docs/reports/PROJECT_CHANGELOG.md"
+    },
+    {
+        "from":  "docs/TEST_REPORT.md",
+        "to":  "docs/reports/TEST_REPORT.md"
+    },
+    {
+        "from":  "docs/TalentBridgeAI_Current_Progress_Report.pdf",
+        "to":  "docs/reports/TalentBridgeAI_Current_Progress_Report.pdf"
+    },
+    {
+        "from":  "docs/TalentBridgeAI_Interim_Progress_Report.pdf",
+        "to":  "docs/reports/TalentBridgeAI_Interim_Progress_Report.pdf"
+    },
+    {
+        "from":  "docs/TALENTBRIDGEAI_REFERENCE_AUTH_REPAIR_REPORT.pdf",
+        "to":  "docs/reports/TALENTBRIDGEAI_REFERENCE_AUTH_REPAIR_REPORT.pdf"
+    }
+]

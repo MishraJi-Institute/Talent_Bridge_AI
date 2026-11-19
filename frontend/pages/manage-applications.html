@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Review candidate applications and update their status through your hiring workflow.">
+<title>Manage Applications | TalentBridge AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base/portal-pages.css">
+  <link rel="stylesheet" href="../css/base/redesign.css">
+<link rel="stylesheet" href="../css/components/site-experience.css">
+  
+<style>
+.backend-panel{max-width:1120px;margin:28px auto;padding:24px;background:#fff;border:1px solid #e5eaf2;border-radius:18px;box-shadow:0 8px 28px rgba(20,40,80,.06);color:#17233d}
+.backend-panel h2{margin:0 0 16px;font-size:1.45rem}.backend-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.backend-card{border:1px solid #e5eaf2;border-radius:12px;padding:16px;background:#fbfdff}.backend-card p{margin:7px 0;line-height:1.5}.backend-muted{color:#64748b;font-size:.92rem}.backend-btn{display:inline-block;border:0;border-radius:9px;padding:10px 14px;background:#145cff;color:#fff;text-decoration:none;font-weight:650;cursor:pointer}.backend-btn.secondary{background:#eef4ff;color:#145cff}.backend-field{display:block;width:100%;max-width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid #cbd5e1;border-radius:8px;margin:6px 0 12px}.backend-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.backend-table-wrap{overflow-x:auto}.backend-table{width:100%;border-collapse:collapse;min-width:600px}.backend-table th,.backend-table td{text-align:left;padding:12px;border-bottom:1px solid #e5eaf2}.backend-empty{padding:18px;border-radius:12px;background:#f8fafc;color:#64748b}
+@media(max-width:600px){.backend-panel{margin:16px 10px;padding:16px}.backend-row>*{max-width:100%}}
+</style>
+
+<style id="fix-all-navbar-strikethrough">
+header a,
+header nav a,
+nav a,
+.navbar a,
+.nav-links a,
+.site-header a,
+header a *,
+nav a *,
+.navbar a *,
+.nav-links a *,
+.site-header a * {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    text-decoration-style: none !important;
+}
+</style>
+</head>
+<body>
+<header class="tb-header"><div class="tb-nav"><a class="tb-brand" href="../index.html">TalentBridge AI<span>:</span></a><nav class="tb-links" aria-label="Main navigation"><a href="../index.html">Home</a><a href="job-listings.html">Browse Jobs</a><a href="categories.html">Categories</a><a href="about.html">About</a><a href="help.html">Help</a><a href="login.html">Sign in</a><a class="tb-button" href="signup-role.html">Get started</a></nav></div></header>
+<main><section class="tb-hero"><div class="tb-wrap"><span class="tb-eyebrow">EMPLOYER WORKSPACE</span><h1>Give every application a thoughtful review.</h1><p>Keep candidate conversations organized and evaluate each applicant against the role requirements.</p></div></section>
+<section class="tb-content tb-workspace-content"><div class="tb-wrap">
+<div class="tb-demo-notice" role="note"><span class="tb-demo-notice__icon" aria-hidden="true">i</span><div><strong>Sample review queue · fictional candidate data</strong>The first table contains synthetic UI examples only. Your real account-backed applications, if any, appear separately below.</div></div>
+<div class="tb-demo-stats" aria-label="Sample application queue summary"><div class="tb-demo-stat"><strong>3</strong><span>Example candidates</span></div><div class="tb-demo-stat"><strong>1</strong><span>New · example</span></div><div class="tb-demo-stat"><strong>1</strong><span>In review · example</span></div><div class="tb-demo-stat"><strong>1</strong><span>Interview · example</span></div></div>
+<div class="tb-table-wrap"><table class="tb-table"><thead><tr><th scope="col">Candidate</th><th scope="col">Sample role</th><th scope="col">Example record</th><th scope="col">Example stage</th><th scope="col">Preview</th></tr></thead><tbody>
+<tr><td>Demo Candidate 01</td><td>Frontend Developer</td><td>Example 01</td><td><span class="tb-status-pill">New · sample</span></td><td><a href="candidate-details.html#candidate-demo-01">View fictional profile</a></td></tr>
+<tr><td>Demo Candidate 02</td><td>UI/UX Designer</td><td>Example 02</td><td><span class="tb-status-pill tb-status-pill--amber">Under review · sample</span></td><td><a href="candidate-details.html#candidate-demo-02">View fictional profile</a></td></tr>
+<tr><td>Demo Candidate 03</td><td>Business Analyst</td><td>Example 03</td><td><span class="tb-status-pill tb-status-pill--violet">Interview stage · sample</span></td><td><a href="candidate-details.html#candidate-demo-03">View fictional profile</a></td></tr>
+</tbody></table></div>
+<p class="tb-demo-note">Statuses are illustrative only. Candidate details are fictional and do not authorize any hiring decision.</p>
+<div class="tb-workspace-actions" style="margin-top:18px"><a class="tb-button" href="/candidate-search/">Search your applicants</a><a class="tb-button secondary" href="/manage-jobs/">Manage your jobs</a><a class="tb-button secondary" href="candidate-details.html#candidate-demo-01">Open candidate preview</a></div>
+<div class="tb-workflow-grid"><article class="tb-workflow-card"><span class="tb-workflow-card__number">01</span><h3>Review consistently</h3><p>Compare relevant experience and skills against the published requirements.</p></article><article class="tb-workflow-card"><span class="tb-workflow-card__number">02</span><h3>Protect candidate data</h3><p>Only access information needed for hiring and share it with authorized reviewers.</p></article><article class="tb-workflow-card"><span class="tb-workflow-card__number">03</span><h3>Communicate clearly</h3><p>Keep next steps, timelines and decisions respectful and transparent.</p></article></div>
+</div></section></main>
+<footer class="tb-footer"><div class="tb-wrap tb-footer-inner"><span>© TalentBridge AI. Built to connect people with opportunity.</span><span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a></span></div></footer>
+<script src="../js/core/site-experience.js"></script>
+  
+<section class="backend-panel">
+  <h2>Applications received</h2>
+  <form method="get" class="backend-row" role="search" aria-label="Filter applications">
+    <label>Candidate name or skill
+      <input class="backend-field" type="search" name="q" value="{{ application_query }}" maxlength="100">
+    </label>
+    <label>Application status
+      <select class="backend-field" name="status">
+        <option value="">All statuses</option>
+        {% for value, label in application_status_choices %}
+          <option value="{{ value }}" {% if application_status_filter == value %}selected{% endif %}>{{ label }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>Application date
+      <select class="backend-field" name="sort">
+        <option value="newest" {% if application_sort == "newest" %}selected{% endif %}>Newest first</option>
+        <option value="oldest" {% if application_sort == "oldest" %}selected{% endif %}>Oldest first</option>
+      </select>
+    </label>
+    <button class="backend-btn" type="submit">Apply filters</button>
+    <a class="backend-btn secondary" href="{% url 'manage-applications' %}">Clear filters</a>
+  </form>
+  {% if applications %}
+    <p class="backend-muted">Showing {{ page_obj.start_index }}–{{ page_obj.end_index }} of {{ page_obj.paginator.count }} applications for your jobs.</p>
+    <div class="backend-table-wrap">
+      <table class="backend-table">
+        <thead><tr><th>Candidate</th><th>Job</th><th>Submitted</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody>
+          {% for app in applications %}
+            <tr>
+              <td>
+                <strong>{{ app.applicant.profile.full_name|default:app.applicant.get_full_name|default:app.applicant.email }}</strong>
+                <div class="backend-muted">{{ app.applicant.profile.headline }}</div>
+                {% if app.applicant.profile.skills %}<div class="backend-muted">Skills: {{ app.applicant.profile.skills }}</div>{% endif %}
+                {% if app.applicant.profile.experience %}<div class="backend-muted">Experience: {{ app.applicant.profile.experience }}</div>{% endif %}
+              </td>
+              <td>{{ app.job.title }}</td>
+              <td>{{ app.submitted_at|date:"M j, Y" }}</td>
+              <td>{{ app.get_status_display }}</td>
+              <td>
+                <div class="backend-row">
+                  <a class="backend-btn secondary" href="{% url 'candidate-details' %}?application_id={{ app.id }}">Review profile</a>
+                  <form method="post" action="{% url 'update-application-status' app.id %}">
+                    {% csrf_token %}
+                    <select name="status" aria-label="Application status" class="backend-field">
+                      {% for value, label in application_status_choices %}
+                        <option value="{{ value }}" {% if app.status == value %}selected{% endif %}>{{ label }}</option>
+                      {% endfor %}
+                    </select>
+                    <button class="backend-btn" type="submit">Update</button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% if page_obj.has_other_pages %}
+      <nav class="backend-row" aria-label="Application pages">
+        {% if page_obj.has_previous %}
+          <a class="backend-btn secondary" href="?q={{ application_query|urlencode }}&amp;status={{ application_status_filter|urlencode }}&amp;sort={{ application_sort }}&amp;page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+        <span class="backend-muted">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+        {% if page_obj.has_next %}
+          <a class="backend-btn secondary" href="?q={{ application_query|urlencode }}&amp;status={{ application_status_filter|urlencode }}&amp;sort={{ application_sort }}&amp;page={{ page_obj.next_page_number }}">Next</a>
+        {% endif %}
+      </nav>
+    {% endif %}
+  {% else %}
+    <div class="backend-empty">No applications match these filters.</div>
+  {% endif %}
+</section>
+
+</body></html>

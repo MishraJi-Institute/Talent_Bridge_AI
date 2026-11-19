@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Staff-only live platform overview and employer review queue.">
+  <title>Admin Dashboard | TalentBridge AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/base/tb-foundation.css">
+  <link rel="stylesheet" href="../css/base/portal-pages.css">
+  <link rel="stylesheet" href="../css/base/redesign.css">
+  <link rel="stylesheet" href="../css/components/site-experience.css">
+  <style>
+    body { background: var(--tb-canvas); color: var(--tb-navy); font-family: Inter, system-ui, sans-serif; }
+    .admin-wrap { width: min(1120px, calc(100% - 32px)); margin: 32px auto 64px; }
+    .admin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; }
+    .admin-card { padding: 18px; border: 1px solid var(--tb-line); border-radius: 16px; background: #fff; box-shadow: 0 10px 28px rgba(16, 24, 40, .05); }
+    .admin-card h2, .admin-card h3 { margin-top: 0; }
+    .admin-stat { font-size: 2rem; font-weight: 800; color: var(--tb-primary); }
+    .admin-links { display: flex; flex-wrap: wrap; gap: 12px; }
+    .admin-links a, .admin-button { display: inline-block; padding: 10px 14px; border: 0; border-radius: 9px; background: var(--tb-primary); color: #fff; font: inherit; font-weight: 650; text-decoration: none; cursor: pointer; }
+    .admin-links a.secondary { background: #eff4ff; color: var(--tb-primary); }
+    .admin-record { padding: 14px 0; border-top: 1px solid var(--tb-line); }
+    .admin-muted { color: var(--tb-muted); line-height: 1.55; }
+    .admin-message { margin: 12px 0; padding: 12px 16px; border-radius: 10px; background: #eff4ff; }
+    .admin-empty { padding: 16px; border-radius: 10px; background: var(--tb-canvas); color: var(--tb-muted); }
+  </style>
+</head>
+<body>
+  <div class="tb-wrap" aria-live="polite">
+    {% if messages %}{% for message in messages %}
+      <div class="tb-alert tb-alert--{{ message.tags|default:'info' }}" role="status">{{ message }}</div>
+    {% endfor %}{% endif %}
+  </div>
+  <header class="tb-header">
+    <div class="tb-nav">
+      <a class="tb-brand" href="../index.html">TalentBridge AI<span>:</span></a>
+      <nav class="tb-links" aria-label="Staff navigation">
+        <a href="/admin-dashboard/" aria-current="page">Overview</a>
+        <a href="{% url 'admin:index' %}">Django admin</a>
+        <a href="../index.html">Public site</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="tb-hero">
+      <div class="tb-wrap">
+        <span class="tb-eyebrow">STAFF WORKSPACE</span>
+        <h1>Platform overview and review queue.</h1>
+        <p>These totals come from stored account records. Demo jobs are shown separately and excluded from live job and application counts.</p>
+      </div>
+    </section>
+    <section class="admin-wrap" aria-label="Live administration dashboard">
+      <div class="admin-grid" aria-label="Live platform totals">
+        <article class="admin-card"><h2>Total accounts</h2><div class="admin-stat">{{ user_count }}</div></article>
+        <article class="admin-card"><h2>Companies</h2><div class="admin-stat">{{ company_count }}</div><p class="admin-muted">{{ pending_company_count }} pending approval</p></article>
+        <article class="admin-card"><h2>Live job posts</h2><div class="admin-stat">{{ job_count }}</div></article>
+        <article class="admin-card"><h2>Live applications</h2><div class="admin-stat">{{ application_count }}</div></article>
+        <article class="admin-card"><h2>Demo jobs</h2><div class="admin-stat">{{ demo_job_count }}</div><p class="admin-muted">Excluded from live totals.</p></article>
+      </div>
+
+      <section class="admin-card" style="margin-top:20px">
+        <h2>Record management</h2>
+        <p class="admin-muted">Open the protected Django admin to search and manage accounts, employers, jobs, applications, and support messages.</p>
+        <div class="admin-links">
+          {% if perms.auth.view_user or perms.auth.change_user %}<a href="{% url 'admin:auth_user_changelist' %}">Manage accounts</a>{% endif %}
+          {% if perms.jobs.view_company or perms.jobs.change_company %}<a href="{% url 'admin:jobs_company_changelist' %}">Manage companies</a>{% endif %}
+          {% if perms.jobs.view_job or perms.jobs.change_job %}<a href="{% url 'admin:jobs_job_changelist' %}">Manage jobs</a>{% endif %}
+          {% if perms.jobs.view_profile or perms.jobs.change_profile %}<a href="{% url 'admin:jobs_profile_changelist' %}">Manage job-seeker profiles</a>{% endif %}
+          {% if perms.jobs.view_application or perms.jobs.change_application %}<a href="{% url 'admin:jobs_application_changelist' %}">Manage applications</a>{% endif %}
+          {% if perms.jobs.view_savedjob or perms.jobs.change_savedjob %}<a href="{% url 'admin:jobs_savedjob_changelist' %}">Manage saved jobs</a>{% endif %}
+          {% if perms.jobs.view_notification or perms.jobs.change_notification %}<a href="{% url 'admin:jobs_notification_changelist' %}">Manage notifications</a>{% endif %}
+          {% if perms.jobs.view_interview or perms.jobs.change_interview %}<a href="{% url 'admin:jobs_interview_changelist' %}">Manage interviews</a>{% endif %}
+          {% if perms.jobs.view_contactinquiry or perms.jobs.change_contactinquiry %}<a href="{% url 'admin:jobs_contactinquiry_changelist' %}">Support messages</a>{% endif %}
+          <a class="secondary" href="{% url 'admin:index' %}">Open Django admin</a>
+        </div>
+      </section>
+
+      <section class="admin-card" style="margin-top:20px">
+        <h2>Pending employer approvals</h2>
+        {% if can_view_companies %}
+          {% if pending_companies %}
+            {% for company in pending_companies %}
+              <article class="admin-record">
+                <h3>{{ company.name }}</h3>
+                <p class="admin-muted">{{ company.owner.email|default:"No owner account" }}{% if company.industry %} · {{ company.industry }}{% endif %}{% if company.location %} · {{ company.location }}{% endif %}</p>
+                {% if can_approve_companies %}
+                  <form method="post" action="{% url 'approve-company' company.id %}">
+                    {% csrf_token %}
+                    <button class="admin-button" type="submit">Approve employer</button>
+                  </form>
+                {% else %}
+                  <p class="admin-muted">Your staff account can view this employer but cannot approve it.</p>
+                {% endif %}
+              </article>
+            {% endfor %}
+          {% else %}
+            <div class="admin-empty">No pending company approvals.</div>
+          {% endif %}
+        {% else %}
+          <div class="admin-empty">Your staff account does not have permission to view pending employers.</div>
+        {% endif %}
+      </section>
+
+      <section class="admin-card" style="margin-top:20px">
+        <h2>Recent contact messages</h2>
+        {% if perms.jobs.view_contactinquiry or perms.jobs.change_contactinquiry %}
+          {% if contact_inquiries %}
+            {% for inquiry in contact_inquiries %}
+              <article class="admin-record">
+                <h3>{{ inquiry.topic }}</h3>
+                <p class="admin-muted">{{ inquiry.name }} · <a href="mailto:{{ inquiry.email }}">{{ inquiry.email }}</a> · {{ inquiry.received_at|date:"M j, Y H:i" }}</p>
+                <p>{{ inquiry.message }}</p>
+              </article>
+            {% endfor %}
+          {% else %}
+            <div class="admin-empty">No contact messages are recorded.</div>
+          {% endif %}
+        {% else %}
+          <div class="admin-empty">Your staff account does not have permission to view contact messages.</div>
+        {% endif %}
+      </section>
+    </section>
+  </main>
+  <footer class="tb-footer">
+    <div class="tb-wrap tb-footer-inner">
+      <span>© TalentBridge AI. Staff access is recorded by the Django admin.</span>
+      <span><a href="{% url 'admin:index' %}">Django admin</a></span>
+    </div>
+  </footer>
+</body>
+</html>

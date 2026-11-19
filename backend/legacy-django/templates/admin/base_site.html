@@ -1,0 +1,47 @@
+﻿{% extends "admin/base.html" %}
+{% load static %}
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'jobs/admin.css' %}?v=20261117-2">
+<link rel="stylesheet" href="{% static 'admin/css/login-motion.css' %}">
+{% endblock %}
+{% block extrahead %}
+{{ block.super }}
+{% if has_permission %}
+<script src="{% static 'jobs/admin-tip-bot.js' %}" defer></script>
+{% endif %}
+{% endblock %}
+{% block branding %}
+<h1 id="site-name">TalentBridge AI | Control Center</h1>
+{% endblock %}
+{% block footer %}
+{% if has_permission %}
+<aside class="admin-tip-bot" id="admin-tip-bot" aria-label="Wellness tip companion">
+  <section class="admin-tip-card" id="admin-tip-card" aria-live="polite" aria-atomic="true" hidden>
+    <div class="admin-tip-card-top">
+      <span class="admin-tip-label"><span aria-hidden="true"></span> A tiny reset</span>
+      <button class="admin-tip-dismiss" id="admin-tip-dismiss" type="button" aria-label="Dismiss this tip">×</button>
+    </div>
+    <p class="admin-tip-message" id="admin-tip-message"></p>
+    <button class="admin-tip-next" id="admin-tip-next" type="button">Another tip <span aria-hidden="true">→</span></button>
+  </section>
+  <button class="admin-tip-avatar" id="admin-tip-avatar" type="button" aria-label="Open a wellness tip" aria-controls="admin-tip-card" aria-expanded="false">
+    <span class="admin-bot-spark admin-bot-spark-one" aria-hidden="true"></span>
+    <span class="admin-bot-spark admin-bot-spark-two" aria-hidden="true"></span>
+    <svg class="admin-bot-illustration" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+      <path class="admin-bot-antenna" d="M32 13V8" />
+      <circle class="admin-bot-antenna-light" cx="32" cy="6" r="3" />
+      <path class="admin-bot-ear" d="M14 25h-4v12h5m35-12h4v12h-5" />
+      <rect class="admin-bot-head" x="14" y="15" width="36" height="35" rx="13" />
+      <path class="admin-bot-face" d="M19 27a8 8 0 0 1 8-8h14a6 6 0 0 1 6 6v13a7 7 0 0 1-7 7H27a8 8 0 0 1-8-8z" />
+      <ellipse class="admin-bot-eye" cx="27" cy="32" rx="2.6" ry="3.5" />
+      <ellipse class="admin-bot-eye" cx="39" cy="32" rx="2.6" ry="3.5" />
+      <path class="admin-bot-smile" d="M28 39q4 4 8 0" />
+      <path class="admin-bot-body" d="M19 51h26l4 7H15z" />
+      <path class="admin-bot-body-detail" d="M27 54h10" />
+    </svg>
+    <span class="admin-bot-pulse" aria-hidden="true"></span>
+  </button>
+</aside>
+{% endif %}
+{% endblock %}

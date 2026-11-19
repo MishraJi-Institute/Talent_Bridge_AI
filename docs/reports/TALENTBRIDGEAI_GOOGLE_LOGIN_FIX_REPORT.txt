@@ -1,0 +1,235 @@
+TALENTBRIDGEAI - GOOGLE AUTHENTICATION AND ADMIN REVIEW
+========================================================
+
+Report date: 2026-11-12
+Project: TalentBridgeAI
+Scope: Existing Django authentication, Google OAuth readiness, admin account
+       state, focused tests, and requested deliverables.
+
+EXECUTIVE SUMMARY
+-----------------
+The project already contains a server-side Google OpenID Connect flow built
+with django-allauth. The actual blocker is configuration: the private project
+root .env has neither GOOGLE_OAUTH_CLIENT_ID nor
+GOOGLE_OAUTH_CLIENT_SECRET configured. Django therefore correctly disables
+the Google buttons and does not start an OAuth request. No credentials were
+read into this report or printed during the audit.
+
+The active database is database/TalentBridgeAI.sqlite3. It contains zero
+auth_user rows and therefore zero staff or superuser accounts. No password
+reset, account creation, database restore, or destructive operation was
+performed. A test-database superuser can authenticate and open Django Admin.
+
+REAL GOOGLE SIGN-IN IS NOT YET END-TO-END TESTED. A valid Google Cloud Web
+OAuth client, an allowed Google test account, and the user's interactive
+approval are required. The Google button remains explicitly unavailable
+until the credentials are configured locally.
+
+1. PROJECT OVERVIEW
+-------------------
+The project uses Django 5.2.19, django-allauth 65.22.0, Python 3.12.10, and
+the default Django auth.User model. Authentication uses the project's
+EmailOrUsernameBackend, Django ModelBackend, and allauth's account backend.
+Sessions are stored in the database. Email/password login remains enabled.
+
+The live login page is rendered from the repository-root pages/login.html by
+the Django route /login/. The allauth URL include is mounted at /accounts/.
+The custom OAuth start endpoint is /auth/social/google/.
+
+2. ORIGINAL PROBLEM AND ROOT CAUSE
+----------------------------------
+The reported notice was:
+"Google sign-in is unavailable until this site is connected to a Google OAuth
+app."
+
+Inspection of the private .env checked only whether values were present; no
+secret values were read or displayed. Both Google OAuth variables are
+unconfigured. There are also zero Google SocialApp rows in the active database.
+The settings add the Google provider only when both values are present, and
+google_oauth_configured() reports false otherwise. The login and signup
+templates consequently disable the button and show a configuration notice.
+This is the safe behavior, not a successful Google login.
+
+The OAuth routes, Google provider, callback handling, signup adapter, and
+security-related tests already existed. The root cause was not a missing or
+duplicate authentication system; it was the absence of the required Google
+Cloud OAuth client credentials. The consent-screen configuration cannot be
+verified until a valid Google Cloud client is supplied.
+
+3. FILES AND CONFIGURATION INSPECTED
+------------------------------------
+- legacy-django/config/settings.py
+- legacy-django/manage.py
+- legacy-django/config/urls.py
+- legacy-django/jobs/views.py
+- legacy-django/jobs/adapters.py
+- legacy-django/jobs/forms.py
+- legacy-django/jobs/backends.py
+- legacy-django/jobs/models.py
+- legacy-django/jobs/google_oauth.py
+- legacy-django/jobs/management/commands/sync_google_oauth.py
+- legacy-django/jobs/management/commands/audit_admin_auth.py
+- legacy-django/jobs/tests.py
+- legacy-django/requirements.txt
+- pages/login.html
+- pages/jobseeker-signup.html
+- pages/company-signup.html
+- legacy-django/templates/socialaccount/login.html
+- legacy-django/templates/socialaccount/auto_login.html
+- js/demo-forms.js
+- CONNECT_GOOGLE_OAUTH.bat
+- CONNECT_GOOGLE_OAUTH.ps1
+- .env.example (the template only; the private .env values were not exposed)
+- docs/setup/GOOGLE_OAUTH_SETUP.md
+
+The active database and the available SQLite backup file were checked using
+aggregate metadata only. The backup candidate was zero bytes and was not
+restored or used.
+
+4. FILES CREATED AND MODIFIED
+-----------------------------
+Created:
+- js/google-oauth.js
+- docs/reports/TALENTBRIDGEAI_GOOGLE_LOGIN_FIX_REPORT.txt
+- docs/reports/TALENTBRIDGEAI_GOOGLE_LOGIN_FIX_REPORT.pdf
+
+Modified:
+- pages/login.html
+- pages/jobseeker-signup.html
+- pages/company-signup.html
+- legacy-django/jobs/tests.py
+- docs/setup/GOOGLE_OAUTH_SETUP.md
+
+No new authentication system, custom user model, migration, database reset,
+or credentials were added.
+
+5. GOOGLE OAUTH IMPLEMENTATION AND SECURITY
+-------------------------------------------
+The existing django-allauth Google provider is retained. The login and both
+signup pages submit to the real, CSRF-protected POST endpoint
+/auth/social/google/. Allauth creates and validates OAuth state and handles
+the authorization-code exchange and callback. The callback was resolved from
+the running URL configuration:
+
+  http://127.0.0.1:8000/accounts/google/login/callback/
+
+The Google provider uses allauth's ID-token verifier. It checks issuer,
+audience, and expiration, obtains Google's signing keys when signature
+verification is required, and applies the library's JWT replay check when a
+token includes a jti claim. Allauth's Google provider marks email addresses
+verified only from Google's verified-email claim. Automatic email-based
+account authentication/connection is enabled only for the Google provider.
+Tests confirm an unverified email does not authenticate an existing account.
+
+SOCIALACCOUNT_AUTO_SIGNUP is false. A first-time Google user completes the
+existing account form, including account role; employer signup requires a
+company name and remains pending approval. The requested role is kept in the
+server session, not trusted from a modified form. Redirect destinations are
+restricted to safe local URLs. Existing Django session login is used, and
+logout is POST-only.
+
+The new google-oauth.js loading state disables a submitted Google button and
+announces that it is connecting. When credentials are absent, all three
+Google buttons remain disabled. The login heading no longer implies Google
+sign-in is ready in that state. Email/password authentication remains
+available.
+
+The static-preview demo handler is separate from the Django server and only
+runs in its explicit static-preview mode; it is not the live Django
+authentication flow.
+
+6. ENVIRONMENT AND GOOGLE CLOUD CONFIGURATION
+---------------------------------------------
+Required private environment values:
+
+  GOOGLE_OAUTH_CLIENT_ID=<Web application client ID>
+  GOOGLE_OAUTH_CLIENT_SECRET=<Web application client secret>
+
+Neither value is hardcoded in source or included in this report. Use
+CONNECT_GOOGLE_OAUTH.bat from the project root. It accepts the Client Secret
+through hidden input and stores the values in the private root .env. Do not
+paste credentials into chat or commit/share .env.
+
+Google Cloud Console setup:
+1. Create/select a Google Cloud project and configure the OAuth consent screen.
+2. Choose Internal or External audience as appropriate; add test users while
+   the external app is in Testing.
+3. Create a Web application OAuth client using the openid, email, and profile
+   scopes.
+4. Add this local authorized JavaScript origin:
+   http://127.0.0.1:8000
+5. Add this exact redirect URI:
+   http://127.0.0.1:8000/accounts/google/login/callback/
+6. Configure separate exact HTTPS origin and callback values for production.
+
+After local credentials are saved, restart Django and use
+http://127.0.0.1:8000/login/. Do not use the static Go Live preview for OAuth.
+The detailed setup is documented in docs/setup/GOOGLE_OAUTH_SETUP.md.
+
+7. ADMIN AUTHENTICATION AUDIT
+-----------------------------
+The configured user model is auth.User; no custom user model is selected.
+The active database path is E:\Job Portal\TalentBridgeAI\database\
+TalentBridgeAI.sqlite3. Read-only aggregate checks found:
+
+  User rows: 0
+  Staff rows: 0
+  Superuser rows: 0
+  Google SocialApp rows: 0
+  Stable Django SECRET_KEY configured: yes
+  Session engine: django.contrib.sessions.backends.db
+
+The live /admin/login/ route returned HTTP 200. There is no existing
+superuser in the selected database whose password can be tested or repaired.
+No account was created, reset, deleted, or replaced. A new regression test
+creates a superuser only in Django's temporary test database, logs in using
+the configured authentication backends, and successfully opens /admin/.
+If this database is intended to contain an existing admin account, confirm
+that it is the correct database before taking any recovery action.
+
+8. VERIFICATION RESULTS
+-----------------------
+- Focused Django suite: 46 tests passed.
+- Django system checks: no issues.
+- Focused rerun after the user-facing missing-credential wording change:
+  2 tests passed.
+- Live /login/: HTTP 200; Google button disabled with exact missing-variable
+  instructions; email/password form remains present.
+- Live /admin/login/: HTTP 200.
+- After restarting Django, /, /login/, and /admin/login/ each returned HTTP
+  200; the managed Django process remained alive (PID 14724) after the checks.
+- Local /js/google-oauth.js: HTTP 200.
+- Django URL reverse resolved the callback to
+  /accounts/google/login/callback/.
+- Test coverage includes CSRF-protected OAuth start, Google authorization
+  redirect construction, invalid state, cancellation, verified-email
+  matching, signup completion and role integrity, safe redirects, email
+  login, POST-only logout, and test-database admin login.
+
+Real Google account selection, Google callback/token exchange, and subsequent
+live session creation were not tested because valid credentials and a Google
+test account are not configured. Tests with placeholder client values are
+not represented as a successful real Google login.
+
+9. REMAINING USER ACTION
+-----------------------
+To enable real Google sign-in/sign-up, configure the Client ID and Client
+Secret locally through CONNECT_GOOGLE_OAUTH.bat, register the exact redirect
+URI above in Google Cloud, and add an allowed Google test user if the consent
+screen is in Testing. Keep credentials out of chat. After that, a real
+interactive browser test can verify Google authorization, callback, session,
+dashboard, logout, cancellation, and repeat login.
+
+The current database has no superuser account. If it is the intended
+database, create an authorized administrator only after confirming the desired
+account details, using Django's interactive createsuperuser command.
+
+10. FINAL STATUS
+----------------
+Google OAuth code and secure configuration handling are present and tested
+without real credentials. Google sign-in is NOT enabled or end-to-end
+verified. The exact blocker is the missing GOOGLE_OAUTH_CLIENT_ID and
+GOOGLE_OAUTH_CLIENT_SECRET configuration.
+
+The active database was not changed. Its current auth_user table has no
+superuser record, so there was no existing admin account to reset.

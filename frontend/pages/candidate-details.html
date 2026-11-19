@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Use this view to assess relevant experience and application information with appropriate access permissions.">
+<title>Candidate Details | TalentBridge AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base/portal-pages.css">
+  <link rel="stylesheet" href="../css/base/redesign.css">
+<link rel="stylesheet" href="../css/components/site-experience.css">
+  
+<style>
+.backend-panel{max-width:1120px;margin:28px auto;padding:24px;background:#fff;border:1px solid #e5eaf2;border-radius:18px;box-shadow:0 8px 28px rgba(20,40,80,.06);color:#17233d}
+.backend-panel h2{margin:0 0 16px;font-size:1.45rem}.backend-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.backend-card{border:1px solid #e5eaf2;border-radius:12px;padding:16px;background:#fbfdff}.backend-card p{margin:7px 0;line-height:1.5}.backend-muted{color:#64748b;font-size:.92rem}.backend-btn{display:inline-block;border:0;border-radius:9px;padding:10px 14px;background:#145cff;color:#fff;text-decoration:none;font-weight:650;cursor:pointer}.backend-btn.secondary{background:#eef4ff;color:#145cff}.backend-field{display:block;width:100%;max-width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid #cbd5e1;border-radius:8px;margin:6px 0 12px}.backend-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.backend-table-wrap{overflow-x:auto}.backend-table{width:100%;border-collapse:collapse;min-width:600px}.backend-table th,.backend-table td{text-align:left;padding:12px;border-bottom:1px solid #e5eaf2}.backend-empty{padding:18px;border-radius:12px;background:#f8fafc;color:#64748b}
+@media(max-width:600px){.backend-panel{margin:16px 10px;padding:16px}.backend-row>*{max-width:100%}}
+</style>
+
+<style id="fix-all-navbar-strikethrough">
+header a,
+header nav a,
+nav a,
+.navbar a,
+.nav-links a,
+.site-header a,
+header a *,
+nav a *,
+.navbar a *,
+.nav-links a *,
+.site-header a * {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    text-decoration-style: none !important;
+}
+</style>
+</head>
+<body>
+<header class="tb-header"><div class="tb-nav"><a class="tb-brand" href="../index.html">TalentBridge AI<span>:</span></a><nav class="tb-links" aria-label="Main navigation"><a href="../index.html">Home</a><a href="job-listings.html">Browse Jobs</a><a href="categories.html">Categories</a><a href="about.html">About</a><a href="help.html">Help</a><a href="login.html">Sign in</a><a class="tb-button" href="signup-role.html">Get started</a></nav></div></header>
+<main><section class="tb-hero"><div class="tb-wrap"><span class="tb-eyebrow">CANDIDATE PREVIEW</span><h1>Review a candidate’s professional profile.</h1><p>Use the fictional profiles below to preview a hiring review. In a live service, access must be limited to authorized hiring teams.</p></div></section>
+<section class="tb-content tb-workspace-content"><div class="tb-wrap"><div class="tb-workspace-callout"><span class="tb-workspace-callout__icon" aria-hidden="true">i</span><div><h2>{% if application %}Authorized application details{% else %}Live candidate details require an authorized account{% endif %}</h2><p>{% if application %}This applicant’s account-backed details are available to the employer for this application only.{% else %}Select an applicant from a job owned by your company to view authorized account-backed details.{% endif %}</p></div></div>
+<div class="tb-demo-notice" role="note"><span class="tb-demo-notice__icon" aria-hidden="true">!</span><div><strong>Fictional candidate data for preview only</strong>These profiles are synthetic UI examples. They are not real people, applicants, or endorsements. No contact details or resumes are included.</div></div>
+<div class="tb-demo-records" aria-label="Fictional candidate profiles">
+<article class="tb-demo-record" id="candidate-demo-01"><div class="tb-demo-record__top"><div><span class="tb-pill">Sample applicant · 01</span><h2>Demo Candidate 01</h2><p>Frontend Developer · Indore, Madhya Pradesh</p></div><span class="tb-status-pill">Application stage: New · example</span></div><p>Early-career web developer focused on accessible interfaces and responsive product experiences. Interested in collaborative teams and mentorship.</p><h3>Example skills</h3><div class="tb-demo-record__meta"><span class="tb-pill">JavaScript</span><span class="tb-pill">React</span><span class="tb-pill">HTML/CSS</span><span class="tb-pill">Accessibility</span></div><p class="tb-demo-note">Sample experience: personal portfolio project and two fictional practice builds. No resume file attached.</p></article>
+<article class="tb-demo-record" id="candidate-demo-02"><div class="tb-demo-record__top"><div><span class="tb-pill">Sample applicant · 02</span><h2>Demo Candidate 02</h2><p>Product Designer · Bhopal, Madhya Pradesh</p></div><span class="tb-status-pill tb-status-pill--amber">Application stage: Review · example</span></div><p>Product design profile centered on user research, wireframing, prototyping, and design handoff. Interested in improving complex workflows.</p><h3>Example skills</h3><div class="tb-demo-record__meta"><span class="tb-pill">Figma</span><span class="tb-pill">Prototyping</span><span class="tb-pill">User research</span><span class="tb-pill">Design systems</span></div><p class="tb-demo-note">Sample experience: fictional redesign exercise and usability-study practice. No portfolio link or resume attached.</p></article>
+<article class="tb-demo-record" id="candidate-demo-03"><div class="tb-demo-record__top"><div><span class="tb-pill">Sample applicant · 03</span><h2>Demo Candidate 03</h2><p>Business Analyst · Mumbai, Maharashtra</p></div><span class="tb-status-pill tb-status-pill--violet">Application stage: Interview · example</span></div><p>Business analysis profile with practice in requirements gathering, process mapping, stakeholder communication, and reporting.</p><h3>Example skills</h3><div class="tb-demo-record__meta"><span class="tb-pill">Requirements</span><span class="tb-pill">Process mapping</span><span class="tb-pill">Excel</span><span class="tb-pill">Documentation</span></div><p class="tb-demo-note">Sample experience: fictional case-study exercise and process-improvement project. No interview has actually been scheduled.</p></article>
+</div>
+<div class="tb-workspace-actions" style="margin-top:18px"><a class="tb-button" href="manage-applications.html">Back to sample applications</a><a class="tb-button secondary" href="privacy.html">Review privacy information</a></div>
+<div class="tb-workflow-grid"><article class="tb-workflow-card"><span class="tb-workflow-card__number">01</span><h3>Review relevant skills</h3><p>Use role-related criteria and avoid decisions based on irrelevant personal information.</p></article><article class="tb-workflow-card"><span class="tb-workflow-card__number">02</span><h3>Handle information carefully</h3><p>Keep resumes and contact details within the authorized hiring process.</p></article><article class="tb-workflow-card"><span class="tb-workflow-card__number">03</span><h3>Make the next step clear</h3><p>Share timely, respectful updates through an approved communication channel.</p></article></div>
+</div></section></main>
+<footer class="tb-footer"><div class="tb-wrap tb-footer-inner"><span>© TalentBridge AI. Built to connect people with opportunity.</span><span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a></span></div></footer>
+<script src="../js/core/site-experience.js"></script>
+  
+<section class="backend-panel"><h2>Candidate details</h2>{% if application %}<div class="backend-card"><h3>{{ application.applicant.get_full_name|default:application.applicant.email }}</h3><p>{{ application.applicant.email }}</p><p>Applied for: {{ application.job.title }}</p><p>Status: {{ application.get_status_display }}</p><p>Submitted: {{ application.submitted_at|date:"M j, Y, P" }}</p>{% if application.applicant.profile.headline %}<p>{{ application.applicant.profile.headline }}</p>{% endif %}{% if application.applicant.profile.skills %}<p><strong>Skills:</strong> {{ application.applicant.profile.skills }}</p>{% endif %}{% if application.applicant.profile.experience %}<p><strong>Experience:</strong> {{ application.applicant.profile.experience }}</p>{% endif %}{% if candidate_education %}<p><strong>Education:</strong> {{ candidate_education }}</p>{% endif %}{% if application.applicant.profile.bio %}<p>{{ application.applicant.profile.bio }}</p>{% endif %}{% if application.applicant.profile.resume %}<a class="backend-btn" href="{% url 'resume_download' %}?application_id={{ application.id }}">Download resume</a>{% endif %}</div>{% else %}<div class="backend-empty">Select a candidate from Manage Applications to see details.</div>{% endif %}</section>
+
+</body></html>

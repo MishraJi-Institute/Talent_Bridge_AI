@@ -1,0 +1,124 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Browse approved employers on TalentBridge AI.">
+  <title>Browse Companies | TalentBridge AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/components/site-header.css?v=20261118-jobs2">
+  <link rel="stylesheet" href="/css/base/portal-pages.css">
+  <link rel="stylesheet" href="/css/base/tb-foundation.css">
+  <link rel="stylesheet" href="/css/base/tb-premium-system.css?v=1">
+  <link rel="stylesheet" href="/css/components/dark-mode.css">
+  <script src="/js/core/dark-mode.js"></script>
+  <style>
+    .logo a:has(img)::before { content: none !important; display: none !important; }
+    .logo a img { display: block; width: 36px; height: 36px; border-radius: 10px; }
+    .tb-company-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .tb-company-card {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 22px;
+      border: 1px solid #e4eaf3;
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 10px 28px rgba(16, 42, 86, .05);
+    }
+    .tb-company-card h2 { margin: 0; font-size: 1.2rem; }
+    .tb-company-card .tb-button { margin-top: auto; width: fit-content; }
+    @media (max-width: 900px) { .tb-company-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 640px) { .tb-company-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body data-public-page>
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <a href="/">
+          <img src="/images/talentbridge-mark.svg" width="36" height="36" alt="">
+          <span>TalentBridge<span class="logo-accent">AI</span></span>
+        </a>
+      </div>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="/jobs/">Jobs</a>
+        <a href="/companies/" aria-current="page">Companies</a>
+        <a href="/pages/employer.html">For Employers</a>
+        <a href="/careers/">Resources</a>
+        <a href="/pages/jobseaker.html">For Job Seekers</a>
+        <a href="/pricing/">Pricing</a>
+      </nav>
+      <div class="auth-actions">
+        {% if request.user.is_authenticated %}
+        <a href="/dashboard/" class="auth-btn auth-dashboard">Dashboard</a>
+        {% else %}
+        <a href="/login/" class="auth-btn auth-signin">Sign In</a>
+        <a href="/signup/" class="auth-btn auth-signup">Sign Up</a>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="tb-hero">
+      <div class="tb-wrap">
+        <span class="tb-eyebrow">Employers</span>
+        <h1>Companies hiring on TalentBridge AI</h1>
+        <p>{% if demo_companies %}Illustrative employer profiles for preview. Approved live companies replace these once administrators publish them.{% else %}Browse approved employers currently hiring on TalentBridge AI.{% endif %}</p>
+      </div>
+    </section>
+    <section class="tb-content">
+      <div class="tb-wrap">
+        {% if companies %}
+        <div class="tb-company-grid">
+          {% for company in companies %}
+          <article class="tb-company-card">
+            <h2>{{ company.name }}</h2>
+            <p class="tb-muted">{% if company.industry %}{{ company.industry }}{% else %}Employer{% endif %}{% if company.location %} · {{ company.location }}{% endif %}</p>
+            <p>{{ company.description|default:"This employer has not added a public description yet."|truncatewords:40 }}</p>
+            <a class="tb-button" href="{% url 'company-detail' company.id %}">View company</a>
+          </article>
+          {% endfor %}
+        </div>
+        {% elif demo_companies %}
+        <div class="tb-company-grid">
+          {% for company in demo_companies %}
+          <article class="tb-company-card">
+            <span class="tb-eyebrow" style="display:inline-flex;margin-bottom:6px">Illustrative example</span>
+            <h2>{{ company.name }}</h2>
+            <p class="tb-muted">{{ company.industry }} · {{ company.location }}</p>
+            <p>{{ company.description }}</p>
+            <a class="tb-button" href="/jobs/">Browse related jobs</a>
+          </article>
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="tb-empty" role="status">
+          <h2>No approved companies yet</h2>
+          <p>Employer accounts appear here after administrator approval. Existing registrations that are still pending review remain private.</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:18px">
+            <a class="tb-button" href="{% url 'employer_signup' %}">Register as an employer</a>
+            <a class="tb-button secondary" href="/jobs/">Browse jobs</a>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </section>
+  </main>
+
+  <footer class="tb-footer">
+    <div class="tb-wrap tb-footer-inner">
+      <span>© TalentBridge AI.</span>
+      <span><a href="{% url 'privacy' %}">Privacy</a> · <a href="{% url 'terms' %}">Terms</a> · <a href="{% url 'contact' %}">Contact</a></span>
+    </div>
+  </footer>
+  <script src="/js/core/site-experience.js?v=20261118-dir2"></script>
+</body>
+</html>

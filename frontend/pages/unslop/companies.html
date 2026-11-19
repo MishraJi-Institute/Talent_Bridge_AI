@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Backup redesign · Companies | TalentBridge AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/unslop/unslop.css">
+</head>
+<body>
+  <div class="banner">
+    <div><strong>Backup redesign · companies</strong><span class="quiet"> · Live site unchanged</span></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <a href="/pages/unslop/index.html">Backup hub</a>
+      <a href="/companies/">Open live companies</a>
+    </div>
+  </div>
+  <header class="nav enter" style="--i:0">
+    <div class="nav-inner">
+      <a class="brand" href="/pages/unslop/homepage.html"><img src="/images/talentbridge-mark.svg" alt="">TalentBridge<span>AI</span></a>
+      <nav class="nav-links" aria-label="Main">
+        <a href="/pages/unslop/jobs.html">Jobs</a>
+        <a href="/pages/unslop/companies.html" aria-current="page">Companies</a>
+        <a href="/pages/unslop/employer.html">For employers</a>
+        <a href="/pages/unslop/jobseaker.html">For job seekers</a>
+        <a href="/pages/unslop/pricing.html">Pricing</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="signin" href="/pages/unslop/login.html">Sign in</a>
+        <a class="signup" href="/signup/">Sign up</a>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="page-hero wrap">
+      <p class="eyebrow enter" style="--i:1">Employers</p>
+      <h1 class="enter" style="--i:2">Companies hiring on TalentBridge AI</h1>
+      <p class="enter" style="--i:3">Illustrative employer profiles for preview. Approved live companies replace these once administrators publish them.</p>
+    </section>
+    <section class="section wrap reveal">
+      <div class="company-grid" id="companyGrid"></div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="wrap credit">Backup Unslop companies · live <a href="/companies/">/companies/</a> unchanged</div></footer>
+  <script>
+    const companies = [
+      { name: "Google", industry: "Technology", location: "Remote / Bengaluru", description: "Product and engineering teams hiring for frontend and platform roles across India." },
+      { name: "Northstar Studio", industry: "Design", location: "Bhopal", description: "A product design studio focused on research-led UX for growth-stage companies." },
+      { name: "Orbit Systems", industry: "Software", location: "Remote", description: "Early-stage product company building cloud tools for operations teams." },
+      { name: "Nova Digital", industry: "Digital agency", location: "Bhopal", description: "Web and marketing studio helping local businesses ship modern customer experiences." },
+      { name: "ClearPath Consulting", industry: "Consulting", location: "Mumbai", description: "Business analysis and process improvement for mid-market organizations." },
+      { name: "Pixel & Co.", industry: "Product design", location: "Indore", description: "Design partner for SaaS teams needing reusable product systems." }
+    ];
+    document.getElementById("companyGrid").innerHTML = companies.map((c) => `
+      <article class="company-card">
+        <span class="job-card badge" style="display:inline-flex;width:fit-content;padding:5px 10px;border-radius:8px;background:var(--accent-soft);color:var(--accent);font-size:11px;font-family:var(--mono);font-weight:500">Illustrative example</span>
+        <h3>${c.name}</h3>
+        <p class="meta">${c.industry} · ${c.location}</p>
+        <p>${c.description}</p>
+        <a class="btn btn-primary" href="/pages/unslop/jobs.html">Browse related jobs</a>
+      </article>`).join("");
+  </script>
+  <script src="/js/unslop/unslop.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+﻿body.login {
+    overflow-x: hidden;
+}
+body.login::before,
+body.login::after {
+    content: "";
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    filter: blur(35px);
+    opacity: .55;
+    animation: tbGlow 8s ease-in-out infinite alternate;
+}
+body.login::before {
+    left: 4%;
+    top: 18%;
+    background: radial-gradient(circle, #51c9ff, transparent 70%);
+}
+body.login::after {
+    right: 4%;
+    bottom: 8%;
+    background: radial-gradient(circle, #52f0c0, transparent 70%);
+    animation-delay: -4s;
+}
+body.login #container,
+body.login #header,
+body.login #footer {
+    position: relative;
+    z-index: 1;
+}
+body.login #content {
+    animation: tbEnter .9s cubic-bezier(.2,.8,.2,1) both;
+}
+@keyframes tbGlow {
+    from { transform: translate(0,0) scale(.8); }
+    to { transform: translate(45px,-35px) scale(1.2); }
+}
+@keyframes tbEnter {
+    from { opacity: 0; transform: translateY(22px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+    body.login::before,
+    body.login::after,
+    body.login #content {
+        animation: none !important;
+    }
+}

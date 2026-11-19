@@ -1,0 +1,12 @@
+TalentBridgeAI - VS Code Automatic Tasks setting
+
+Copy the .vscode folder from this ZIP into the TalentBridgeAI project root,
+merging with the existing .vscode folder if prompted.
+
+This setting allows VS Code automatic tasks for this workspace. VS Code may
+still require the folder to be trusted. The project must also contain a valid
+.vscode/tasks.json task with runOn set to folderOpen for automatic startup.
+
+This settings file does not install Python packages, configure Google OAuth,
+or guarantee Django starts successfully. It does not change your database
+or credentials.

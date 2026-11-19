@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Convert annual gross pay into useful salary and hourly estimates.">
+  <title>Salary Calculator | TalentBridge AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/base/portal-pages.css">
+  <link rel="stylesheet" href="../css/components/site-experience.css">
+  <style>
+    .salary-results{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:18px 0}
+    .salary-results div{padding:14px;border:1px solid var(--tb-line);border-radius:12px;background:#f8faff}
+    .salary-results dt{font-size:13px;color:var(--tb-muted)}
+    .salary-results dd{margin:4px 0 0;font-size:19px;font-weight:800;color:var(--tb-ink)}
+    .salary-results-heading{margin-top:24px}
+  </style>
+</head>
+<body>
+  <header class="tb-header">
+    <div class="tb-nav">
+      <a class="tb-brand" href="../index.html">TalentBridge AI<span>:</span></a>
+      <nav class="tb-links" aria-label="Main navigation">
+        <a href="../index.html">Home</a>
+        <a href="job-listings.html">Browse jobs</a>
+        <a href="careers.html">Career resources</a>
+        <a class="tb-button" href="login.html">Sign in</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="tb-hero">
+      <div class="tb-wrap">
+        <span class="tb-eyebrow">CAREER TOOL</span>
+        <h1>Salary calculator</h1>
+        <p>Convert annual gross pay into common pay periods and an hourly estimate.</p>
+      </div>
+    </section>
+    <section class="tb-content">
+      <div class="tb-wrap">
+        <div class="tb-card">
+          <form method="post" action="" class="tb-form">
+            {% csrf_token %}
+            <div class="tb-two">
+              <label for="annual_salary">Annual gross salary
+                <input id="annual_salary" name="annual_salary" type="number" min="0" max="1000000000000" step="0.01" required value="{{ values.annual_salary }}">
+              </label>
+              <label for="currency">Currency
+                <select id="currency" name="currency">
+                  <option value="INR"{% if values.currency == "INR" %} selected{% endif %}>INR — Indian rupee</option>
+                  <option value="USD"{% if values.currency == "USD" %} selected{% endif %}>USD — US dollar</option>
+                  <option value="EUR"{% if values.currency == "EUR" %} selected{% endif %}>EUR — euro</option>
+                  <option value="GBP"{% if values.currency == "GBP" %} selected{% endif %}>GBP — pound sterling</option>
+                </select>
+              </label>
+              <label for="hours_per_week">Hours worked per week
+                <input id="hours_per_week" name="hours_per_week" type="number" min="0.25" max="168" step="0.25" required value="{{ values.hours_per_week }}">
+              </label>
+              <label for="weeks_per_year">Work weeks per year
+                <input id="weeks_per_year" name="weeks_per_year" type="number" min="1" max="52" step="1" required value="{{ values.weeks_per_year }}">
+              </label>
+            </div>
+            <button class="tb-button" type="submit">Calculate gross pay</button>
+          </form>
+
+          {% if error %}
+          <p role="alert">{{ error }}</p>
+          {% endif %}
+
+          {% if results %}
+          <section aria-labelledby="results-heading">
+            <h2 class="salary-results-heading" id="results-heading">Estimated gross pay by period</h2>
+            <dl class="salary-results">
+              <div><dt>Annual</dt><dd>{{ currency_symbol }}{{ results.annual|floatformat:2 }} {{ values.currency }}</dd></div>
+              <div><dt>Monthly</dt><dd>{{ currency_symbol }}{{ results.monthly|floatformat:2 }} {{ values.currency }}</dd></div>
+              <div><dt>Semi-monthly (24 pay periods)</dt><dd>{{ currency_symbol }}{{ results.semi_monthly|floatformat:2 }} {{ values.currency }}</dd></div>
+              <div><dt>Biweekly (26 pay periods)</dt><dd>{{ currency_symbol }}{{ results.biweekly|floatformat:2 }} {{ values.currency }}</dd></div>
+              <div><dt>Weekly</dt><dd>{{ currency_symbol }}{{ results.weekly|floatformat:2 }} {{ values.currency }}</dd></div>
+              <div><dt>Daily (5-day week)</dt><dd>{{ currency_symbol }}{{ results.daily|floatformat:2 }} {{ values.currency }}</dd></div>
+              <div><dt>Hourly</dt><dd>{{ currency_symbol }}{{ results.hourly|floatformat:2 }} {{ values.currency }}</dd></div>
+            </dl>
+          </section>
+          {% endif %}
+
+          <p class="tb-small">Gross-pay estimates before taxes, benefits, bonuses, or unpaid leave. Currency selection only changes the label; it does not convert money. Daily pay assumes five workdays per week.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="tb-footer">
+    <div class="tb-wrap tb-footer-inner">
+      <span>© TalentBridge AI. Built to connect people with opportunity.</span>
+      <span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span>
+    </div>
+  </footer>
+</body>
+</html>

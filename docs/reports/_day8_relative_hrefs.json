@@ -1,0 +1,467 @@
+{
+  "count_pages": 58,
+  "pages": {
+    "frontend/pages/404.html": [
+      "index.html",
+      "pages/categories.html",
+      "pages/contact.html",
+      "pages/help.html",
+      "pages/job-listings.html",
+      "pages/privacy.html",
+      "pages/signup-role.html",
+      "pages/trust-center.html"
+    ],
+    "frontend/pages/access-denied.html": [
+      "../index.html"
+    ],
+    "frontend/pages/account-security.html": [
+      "../index.html"
+    ],
+    "frontend/pages/admin-dashboard.html": [
+      "../index.html"
+    ],
+    "frontend/pages/ai-audit-center.html": [
+      "../index.html"
+    ],
+    "frontend/pages/application-form.html": [
+      "../index.html",
+      "about.html",
+      "categories.html",
+      "contact.html",
+      "help.html",
+      "job-listings.html",
+      "login.html",
+      "privacy.html",
+      "signup-role.html",
+      "terms.html"
+    ],
+    "frontend/pages/application-success.html": [
+      "../index.html",
+      "about.html",
+      "categories.html",
+      "contact.html",
+      "help.html",
+      "job-listings.html",
+      "login.html",
+      "privacy.html",
+      "signup-role.html",
+      "terms.html"
+    ],
+    "frontend/pages/applied-jobs.html": [
+      "../index.html",
+      "about.html",
+      "application-form.html?role=business-analyst",
+      "categories.html",
+      "contact.html",
+      "help.html",
+      "interviews.html",
+      "job-listings.html",
+      "login.html",
+      "privacy.html",
+      "resume-management.html",
+      "signup-role.html",
+      "terms.html"
+    ],
+    "frontend/pages/blog.html": [
+      "../index.html"
+    ],
+    "frontend/pages/candidate-details.html": [
+      "../index.html",
+      "about.html",
+      "categories.html",
+      "contact.html",
+      "help.html",
+      "job-listings.html",
+      "login.html",
+      "manage-applications.html",
+      "privacy.html",
+      "signup-role.html",
+      "terms.html"
+    ],
+    "frontend/pages/candidate-search.html": [
+      "../index.html"
+    ],
+    "frontend/pages/careers.html": [
+      "../index.html"
+    ],
+    "frontend/pages/categories.html": [
+      "../index.html"
+    ],
+    "frontend/pages/companies.html": [
+      "../index.html",
+      "contact.html",
+      "job-listings.html",
+      "login.html",
+      "privacy.html"
+    ],
+    "frontend/pages/company-details.html": [
+      "../index.html",
+      "about.html",
+      "categories.html",
+      "company-signup.html",
+      "contact.html",
+      "help.html",
+      "job-listings.html",
+      "login.html",
+      "privacy.html",
+      "signup-role.html",
+      "terms.html"
+    ],
+    "frontend/pages/company-signup.html": [
+      "../index.html"
+    ],
+    "frontend/pages/contact.html": [
+      "../index.html",
+      "about.html",
+      "categories.html",
+      "employer.html",
+      "faq.html",
+      "forgot-password.html",
+      "help.html",
+      "login.html",
+      "privacy.html",
+      "signup-role.html",
+      "terms.html",
+      "trust-center.html"
+    ],
+    "frontend/pages/cookie-preferences.html": [
+      "../index.html"
+    ],
+    "frontend/pages/customer-stories.html": [
+      "../index.html"
+    ],
+    "frontend/pages/dashboard/cdashboard.html": [
+      "organize-cards.html"
+    ],
+    "frontend/pages/dashboard/customize.html": [
+      "../../index.html",
+      "../employer.html",
+      "../jobseaker.html",
+      "../login.html",
+      "../pricing.html",
+      "../signup-role.html",
+      "cdashboard.html",
+      "organize-cards.html"
+    ],
+    "frontend/pages/dashboard/dindex.html": [
+      "../../index.html",
+      "../employer.html",
+      "../jobseaker.html",
+      "../login.html",
+      "../pricing.html",
+      "../signup-role.html",
+      "cdashboard.html"
+    ],
+    "frontend/pages/dashboard/organize-cards.html": [
+      "../../index.html",
+      "../employer.html",
+      "../jobseaker.html",
+      "../login.html",
+      "../pricing.html",
+      "../signup-role.html",
+      "cdashboard.html",
+      "customize.html"
+    ],
+    "frontend/pages/edit-profile.html": [
+      "../index.html",
+      "about.html",
+      "categories.html",
+      "contact.html",
+      "help.html",
+      "job-listings.html",
+      "login.html",
+      "privacy.html",
+      "profile.html",
+      "signup-role.html",
+      "terms.html"
+    ],
+    "frontend/pages/employee.html": [
+      "../index.html",
+      "categories.html",
+      "contact.html",
+      "help.html",
+      "job-listings.html",
+      "jobseeker-signup.html",
+      "login.html",
+      "privacy.html",
+      "resume-management.html",
+      "trust-center.html"
+    ],
+    "frontend/pages/employer-pending.html": [
+      "../index.html",
+      "contact.html",
+      "dashboard/cdashboard.html",
+      "help.html",
+      "privacy.html",
+      "terms.html"
+    ],
+    "frontend/pages/employer-profile.html": [
+      "../index.html",
+      "about.html",
+      "categories.html",
+      "company-details.html",
+      "company-signup.html",
+      "contact.html",
+      "help.html",
+      "job-listings.html",
+      "job-listings.html?keyword=design",
+      "login.html",
+      "manage-jobs.html",
+      "privacy.html",
+      "signup-role.html",
+      "terms.html"
+    ],
+    "frontend/pages/employer.html": [
+      "../index.html",
+      "about.html",
+      "ai-audit-center.html",
+      "blog.html",
+      "careers.html",
+      "contact.html",
+      "cookie-preferences.html",
+      "customer-stories.html",
+      "employer.html",
+      "help.html",
+      "jobseaker.html",
+      "jobseeker-signup.html",
+      "login.html",
+      "platform-status.html",
+      "posting-job.html",
+      "pricing.html",
+      "privacy.html",
+      "signup-role.html",
+      "terms.html",
+      "trust-center.html"
+    ],
+    "frontend/pages/faq.html": [
+      "../index.html"
+    ],
+    "frontend/pages/forgot-password.html": [
+      "../index.html"
+    ],
+    "frontend/pages/help.html": [
+      "../index.html"
+    ],
+    "frontend/pages/interviews.html": [
+      "../index.html",
+      "about.html",
+      "applied-jobs.html",
+      "categories.html",
+      "contact.html",
+      "help.html",
+      "job-detail.html?role=frontend-developer",
+      "job-detail.html?role=ui-ux-designer",
+      "job-listings.html",
+      "login.html",
+      "privacy.html",
+      "signup-role.html",
+      "terms.html"
+    ],
+    "frontend/pages/job-listings.html": [
+      "../index.html",
+      "about.html",
+      "application-form.html?role=business-analyst",
+      "application-form.html?role=frontend-developer",
+      "application-form.html?role=growth-marketing-specialist",
+      "application-form.html?role=junior-web-developer",
+      "application-form.html?role=mechanical-design-engineer",
+      "application-form.html?role=people-operations-coordinator",
+      "application-form.html?role=product-designer",
+      "application-form.html?role=software-engineer-intern",
+      "application-form.html?role=ui-ux-designer",
+      "categories.html",
+      "contact.html",
+      "help.html",
+      "job-detail.html?role=business-analyst",
+      "job-detail.html?role=frontend-developer",
+      "job-detail.html?role=growth-marketing-specialist",
+      "job-detail.html?role=junior-web-developer",
+      "job-detail.html?role=mechanical-design-engineer",
+      "job-detail.html?role=people-operations-coordinator",
+      "job-detail.html?role=product-designer",
+      "job-detail.html?role=software-engineer-intern",
+      "job-detail.html?role=ui-ux-designer",
+      "job-listings.html",
+      "login.html",
+      "posting-job.html",
+      "privacy.html",
+      "signup-role.html",
+      "terms.html"
+    ],
+    "frontend/pages/job-search.html": [
+      "../index.html",
+      "about.html",
+      "categories.html",
+      "contact.html",
+      "help.html",
+      "job-listings.html",
+      "job-listings.html?keyword=design",
+      "job-listings.html?keyword=technology",
+      "job-listings.html?location=Remote",
+      "login.html",
+      "privacy.html",
+      "signup-role.html",
+      "terms.html"
+    ],
+    "frontend/pages/jobseaker.html": [
+      "../index.html",
+      "employer.html",
+      "jobseaker.html",
+      "login.html",
+      "pricing.html",
+      "signup-role.html"
+    ],
+    "frontend/pages/jobseeker-signup.html": [
+      "../index.html"
+    ],
+    "frontend/pages/manage-applications.html": [
+      "../index.html",
+      "about.html",
+      "categories.html",
+      "contact.html",
+      "help.html",
+      "job-listings.html",
+      "login.html",
+      "privacy.html",
+      "signup-role.html",
+      "terms.html"
+    ],
+    "frontend/pages/manage-jobs.html": [
+      "../index.html",
+      "about.html",
+      "categories.html",
+      "contact.html",
+      "employer-profile.html",
+      "help.html",
+      "job-detail.html?role=frontend-developer",
+      "job-detail.html?role=ui-ux-designer",
+      "job-listings.html",
+      "login.html",
+      "posting-job.html",
+      "privacy.html",
+      "signup-role.html",
+      "terms.html"
+    ],
+    "frontend/pages/notifications.html": [
+      "../index.html",
+      "about.html",
+      "applied-jobs.html",
+      "categories.html",
+      "contact.html",
+      "help.html",
+      "job-detail.html?role=frontend-developer",
+      "job-listings.html",
+      "login.html",
+      "privacy.html",
+      "profile.html",
+      "signup-role.html",
+      "terms.html"
+    ],
+    "frontend/pages/password-reset-complete.html": [
+      "../index.html"
+    ],
+    "frontend/pages/password-reset-confirm.html": [
+      "../index.html"
+    ],
+    "frontend/pages/password-reset.html": [
+      "../index.html"
+    ],
+    "frontend/pages/platform-status.html": [
+      "../index.html"
+    ],
+    "frontend/pages/posting-job.html": [
+      "../index.html",
+      "employer.html",
+      "jobseaker.html",
+      "login.html",
+      "pricing.html",
+      "signup-role.html"
+    ],
+    "frontend/pages/pricing.html": [
+      "../index.html"
+    ],
+    "frontend/pages/privacy-settings.html": [
+      "../index.html"
+    ],
+    "frontend/pages/privacy.html": [
+      "../index.html"
+    ],
+    "frontend/pages/profile.html": [
+      "../index.html",
+      "about.html",
+      "categories.html",
+      "contact.html",
+      "help.html",
+      "job-listings.html",
+      "jobseeker-signup.html",
+      "login.html",
+      "privacy.html",
+      "signup-role.html",
+      "terms.html"
+    ],
+    "frontend/pages/recommended-jobs.html": [
+      "../index.html"
+    ],
+    "frontend/pages/remote-work-guide.html": [
+      "../index.html",
+      "careers.html",
+      "contact.html",
+      "login.html",
+      "privacy.html",
+      "salary-calculator.html",
+      "terms.html"
+    ],
+    "frontend/pages/resume-builder.html": [
+      "../index.html"
+    ],
+    "frontend/pages/resume-management.html": [
+      "../index.html",
+      "about.html",
+      "categories.html",
+      "contact.html",
+      "help.html",
+      "job-listings.html",
+      "login.html",
+      "privacy.html",
+      "profile.html",
+      "signup-role.html",
+      "terms.html"
+    ],
+    "frontend/pages/salary-calculator.html": [
+      "../index.html",
+      "careers.html",
+      "job-listings.html",
+      "login.html",
+      "privacy.html",
+      "terms.html"
+    ],
+    "frontend/pages/saved-jobs.html": [
+      "../index.html",
+      "job-detail.html?role=business-analyst",
+      "job-detail.html?role=frontend-developer",
+      "job-detail.html?role=ui-ux-designer"
+    ],
+    "frontend/pages/signup-role.html": [
+      "../index.html"
+    ],
+    "frontend/pages/socialaccount/signup.html": [
+      "../../index.html"
+    ],
+    "frontend/pages/terms.html": [
+      "../index.html",
+      "contact.html",
+      "cookie-preferences.html",
+      "employer.html",
+      "jobseaker.html",
+      "login.html",
+      "pricing.html",
+      "privacy.html",
+      "signup-role.html"
+    ],
+    "frontend/pages/trust-center.html": [
+      "../index.html",
+      "help.html",
+      "privacy.html"
+    ]
+  }
+}

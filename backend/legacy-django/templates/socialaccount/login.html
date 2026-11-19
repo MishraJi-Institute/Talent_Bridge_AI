@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <title>Continue with {{ provider.name }} | TalentBridge AI</title>
+    <link rel="icon" type="image/svg+xml" href="/images/talentbridge-mark.svg">
+    <link rel="stylesheet" href="/css/components/auth-provider.css">
+</head>
+<body>
+    <main class="auth-page">
+        <a class="brand" href="/">
+            <img src="/images/talentbridge-mark.svg" width="38" height="38" alt="">
+            <span>TalentBridge <strong>AI</strong></span>
+        </a>
+
+        <section class="auth-card" aria-labelledby="auth-title">
+            <div class="provider-mark" aria-hidden="true">
+                {{ provider.name|first|upper }}
+            </div>
+            <p class="eyebrow">SECURE ACCOUNT SIGN-IN</p>
+            <h1 id="auth-title">
+                {% if process == "connect" %}
+                    Connect {{ provider.name }}
+                {% else %}
+                    Continue with {{ provider.name }}
+                {% endif %}
+            </h1>
+            <p class="description">
+                Continue to TalentBridge AI using your {{ provider.name }} account.
+                You will be redirected to {{ provider.name }} to securely approve sign-in.
+            </p>
+
+            <form method="post">
+                {% csrf_token %}
+                <button class="continue-button" type="submit">
+                    Continue to {{ provider.name }}
+                    <span aria-hidden="true">&rarr;</span>
+                </button>
+            </form>
+
+            <a class="back-link" href="/login/">Back to sign in</a>
+            <p class="privacy-note">
+                Your password is entered only on {{ provider.name }}.
+            </p>
+        </section>
+
+        <p class="page-footer">TalentBridge AI &middot; Connecting people with opportunity</p>
+    </main>
+</body>
+</html>

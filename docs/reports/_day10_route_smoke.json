@@ -1,0 +1,72 @@
+[
+  {
+    "path": "/",
+    "status": 200,
+    "final": "http://127.0.0.1:8000/"
+  },
+  {
+    "path": "/login/",
+    "status": 200,
+    "final": "http://127.0.0.1:8000/login/"
+  },
+  {
+    "path": "/signup/",
+    "status": 200,
+    "final": "http://127.0.0.1:8000/signup/"
+  },
+  {
+    "path": "/jobs/",
+    "status": 200,
+    "final": "http://127.0.0.1:8000/jobs/"
+  },
+  {
+    "path": "/companies/",
+    "status": 200,
+    "final": "http://127.0.0.1:8000/companies/"
+  },
+  {
+    "path": "/contact/",
+    "status": 200,
+    "final": "http://127.0.0.1:8000/contact/"
+  },
+  {
+    "path": "/about/",
+    "status": 200,
+    "final": "http://127.0.0.1:8000/about/"
+  },
+  {
+    "path": "/pricing/",
+    "status": 200,
+    "final": "http://127.0.0.1:8000/pricing/"
+  },
+  {
+    "path": "/faq/",
+    "status": 200,
+    "final": "http://127.0.0.1:8000/faq/"
+  },
+  {
+    "path": "/employer/",
+    "status": 200,
+    "final": "http://127.0.0.1:8000/employer/"
+  },
+  {
+    "path": "/jobseaker/",
+    "status": 200,
+    "final": "http://127.0.0.1:8000/jobseaker/"
+  },
+  {
+    "path": "/dashboard/",
+    "status": 200,
+    "final": "http://127.0.0.1:8000/login/?next=/dashboard/"
+  },
+  {
+    "path": "/admin/",
+    "status": 200,
+    "final": "http://127.0.0.1:8000/admin/login/?next=/admin/"
+  },
+  {
+    "path": "/__dev__/",
+    "status": 200,
+    "final": "http://127.0.0.1:8000/__dev__/"
+  }
+]

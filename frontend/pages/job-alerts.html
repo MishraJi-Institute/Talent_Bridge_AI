@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Save job search preferences and review matching published jobs.">
+  <title>Job Alerts | TalentBridge AI</title>
+  <link rel="stylesheet" href="../css/base/portal-pages.css">
+  <link rel="stylesheet" href="../css/base/redesign.css">
+  <link rel="stylesheet" href="../css/components/site-experience.css">
+  <style>
+    .alert-panel{max-width:1000px;margin:28px auto;padding:24px;background:#fff;border:1px solid #e5eaf2;border-radius:18px;color:#17233d;box-shadow:0 8px 28px rgba(20,40,80,.06)}
+    .alert-panel h2{margin:0 0 8px}.alert-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+    .alert-form label{display:block;font-weight:600}.alert-form input,.alert-form select{display:block;width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid #cbd5e1;border-radius:8px;margin-top:6px}
+    .alert-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px}.alert-list{display:grid;gap:12px;padding:0;list-style:none}
+    .alert-item{padding:16px;border:1px solid #e5eaf2;border-radius:12px;background:#fbfdff}.alert-item p{margin:6px 0}.alert-muted{color:#64748b;font-size:.94rem}
+    .alert-errors{color:#a32222}.alert-empty{padding:16px;background:#f8fafc;border-radius:10px;color:#64748b}
+  </style>
+</head>
+<body>
+  <header class="tb-header">
+    <div class="tb-nav">
+      <a class="tb-brand" href="/">TalentBridge AI<span>:</span></a>
+      <nav class="tb-links" aria-label="Main navigation">
+        <a href="/">Home</a><a href="/jobs/">Browse Jobs</a><a href="/dashboard/">Dashboard</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="tb-hero">
+      <div class="tb-wrap">
+        <span class="tb-eyebrow">JOB SEEKER WORKSPACE</span>
+        <h1>Job alerts that follow <span>your preferences.</span></h1>
+        <p>Save a search to get an in-app alert when an approved employer publishes a matching active job.</p>
+      </div>
+    </section>
+    <section class="tb-content">
+      <div class="tb-wrap">
+        <section class="alert-panel" aria-labelledby="preference-heading">
+          <h2 id="preference-heading">{% if editing_preference %}Edit saved search{% else %}Create a saved search{% endif %}</h2>
+          <p class="alert-muted">Add at least one criterion. When several criteria are provided, a job must match each one; any listed skill may match.</p>
+          <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="preference_id" value="{{ editing_preference.pk|default:'' }}">
+            {{ form.non_field_errors }}
+            <div class="alert-form">
+              <label for="{{ form.title.id_for_label }}">Job title{{ form.title }}</label>
+              <label for="{{ form.location.id_for_label }}">Location or remote{{ form.location }}</label>
+              <label for="{{ form.skills.id_for_label }}">Any of these skills{{ form.skills }}</label>
+              <label for="{{ form.job_type.id_for_label }}">Job type{{ form.job_type }}</label>
+              <label for="{{ form.work_mode.id_for_label }}">Work mode{{ form.work_mode }}</label>
+              <label for="{{ form.experience.id_for_label }}">Experience{{ form.experience }}</label>
+            </div>
+            <div class="alert-errors">{{ form.errors }}</div>
+            <div class="alert-actions">
+              <button class="tb-button" type="submit">Save job alert</button>
+              {% if editing_preference %}<a class="tb-button secondary" href="{% url 'job-alerts' %}">Cancel edit</a>{% endif %}
+              <a class="tb-button secondary" href="{% url 'jobs' %}">Browse jobs</a>
+            </div>
+          </form>
+        </section>
+
+        <section class="alert-panel" aria-labelledby="saved-searches-heading">
+          <h2 id="saved-searches-heading">Your saved searches</h2>
+          {% if job_alert_preferences %}
+            <ul class="alert-list">
+              {% for preference in job_alert_preferences %}
+                <li class="alert-item">
+                  <strong>
+                    {% if preference.title %}{{ preference.title }}{% else %}Any title{% endif %}
+                    {% if preference.location %} · {{ preference.location }}{% endif %}
+                  </strong>
+                  <p class="alert-muted">
+                    {% if preference.skills %}Skills: {{ preference.skills }} · {% endif %}
+                    {% if preference.job_type %}{{ preference.get_job_type_display }} · {% endif %}
+                    {% if preference.work_mode %}{{ preference.get_work_mode_display }} · {% endif %}
+                    {% if preference.experience %}{{ preference.experience }} · {% endif %}
+                    {% if preference.enabled %}Enabled{% else %}Paused{% endif %}
+                  </p>
+                  <div class="alert-actions">
+                    <a class="tb-button secondary" href="{% url 'job-alerts' %}?edit={{ preference.pk }}">Edit</a>
+                    <form method="post">
+                      {% csrf_token %}
+                      <input type="hidden" name="action" value="toggle">
+                      <input type="hidden" name="preference_id" value="{{ preference.pk }}">
+                      <button class="tb-button secondary" type="submit">{% if preference.enabled %}Pause{% else %}Enable{% endif %}</button>
+                    </form>
+                  </div>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="alert-empty">You have not saved a job search yet.</p>
+          {% endif %}
+        </section>
+
+        <section class="alert-panel" aria-labelledby="matching-jobs-heading">
+          <h2 id="matching-jobs-heading">Matching job alerts</h2>
+          {% if job_alerts %}
+            <ul class="alert-list">
+              {% for alert in job_alerts %}
+                <li class="alert-item">
+                  <strong>
+                    {% if alert.job.is_active %}
+                      <a href="{% url 'job_detail' alert.job.pk %}">{{ alert.job.title }}</a>
+                    {% else %}
+                      {{ alert.job.title }} <span class="alert-muted">(closed)</span>
+                    {% endif %}
+                  </strong>
+                  <p>{{ alert.job.company.name }} · {{ alert.job.location }} · {{ alert.job.get_job_type_display }}</p>
+                  <p class="alert-muted">
+                    Matched by: {{ alert.matched_fields|join:", " }} ·
+                    {{ alert.created_at|date:"M j, Y" }}
+                  </p>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="alert-empty">No published jobs match your saved searches yet. New matches will appear here.</p>
+          {% endif %}
+        </section>
+      </div>
+    </section>
+  </main>
+  <script src="../js/core/site-experience.js"></script>
+</body>
+</html>

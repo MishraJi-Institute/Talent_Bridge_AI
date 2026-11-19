@@ -1,0 +1,34 @@
+TalentBridgeAI login and restart reliability update
+
+Changes:
+- Email/password login no longer selects the first account when duplicate email
+  addresses exist. It authenticates the unique account whose password matches.
+  If multiple duplicate-email accounts have the same password, login is safely
+  rejected rather than choosing an arbitrary account.
+- Username/password login remains supported for Django admin/superusers.
+- The server manager runs dependency, Django, database, migration (with SQLite
+  backup), static collection, local site configuration and read-only admin
+  account checks on each start/restart.
+- Health checks now include the login page, Django admin login and admin CSS.
+- INSTALL_TALENTBRIDGEAI.bat registers a hidden current-user Windows sign-in
+  startup entry and then starts the server.
+- Server startup and diagnostics remain in logs/setup.log and logs/server.log.
+
+Important:
+- This does not create or reset passwords. If an account has no usable password,
+  run `python manage.py changepassword <username>` inside legacy-django.
+- Google OAuth credentials remain in the private root .env and are not changed.
+- A new extracted copy must run INSTALL_TALENTBRIDGEAI.bat once to register that
+  copy for Windows sign-in startup. The startup registration cannot update an
+  arbitrary future ZIP before it is extracted/installed.
+- Keep backups of .env, database/, private_media/ and your source changes.
+- Local development server URL: http://127.0.0.1:8000/
+- Admin URL: http://127.0.0.1:8000/admin/
+
+Safe update for an existing installation:
+- Extract this ZIP to a NEW folder, not over your current working folder.
+- Run APPLY_UPDATE_PRESERVE_DATA.bat from the new folder. It copies .env,
+  database/, private_media/, media/ and uploads/ from the existing project,
+  creates a backup in the new folder, then runs installation and server startup.
+- The script defaults to the project path shown in the supplied screenshot; if
+  that path is unavailable it asks for the current project folder.

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Redirecting to {{ provider_name }} | TalentBridge AI</title>
+</head>
+<body>
+    <form id="provider-login" method="post" action="{% url 'social-login-start' provider %}">
+        {% csrf_token %}
+        <input type="hidden" name="role" value="{{ role }}">
+        <input type="hidden" name="next" value="{{ next }}">
+        <noscript>
+            <button type="submit">Continue to {{ provider_name }}</button>
+        </noscript>
+    </form>
+    <script>
+        document.getElementById("provider-login").submit();
+    </script>
+</body>
+</html>

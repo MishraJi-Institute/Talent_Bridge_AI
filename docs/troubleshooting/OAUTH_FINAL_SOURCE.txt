@@ -1,0 +1,531 @@
+	
+========== site\js\dashboard-guard.js ==========
+2:   const DEMO_SESSION_KEY = "talentbridge.demo.auth.v1";
+3:   const { authUserId, authEmail, authName } = document.body.dataset;
+4:   const serverUser = authUserId
+5:     ? { id: authUserId, email: authEmail || "", name: authName || "" }
+10:   let demoUser = null;
+14:       const stored = JSON.parse(window.sessionStorage.getItem(DEMO_SESSION_KEY) || "null");
+15:       if (stored?.isDemo && stored.id && stored.role && stored.email) demoUser = stored;
+19:   const user = serverUser || demoUser;
+20:   if (demoUser) {
+21:     document.body.dataset.authUserId = demoUser.id;
+22:     document.body.dataset.authEmail = demoUser.email;
+23:     document.body.dataset.authName = demoUser.name;
+26:   document.documentElement.dataset.dashboardAuth = serverUser
+28:     : demoUser ? "demo" : "missing";
+29:   document.body.querySelectorAll("[data-auth-email]").forEach(element => {
+30:     element.textContent = demoUser
+31:       ? `Demo account · ${demoUser.email}`
+41:   window.TALENTBRIDGE_AUTH_READY = Promise.resolve(user);
+
+========== site\js\demo-forms.js ==========
+1: /* Browser-only demo authentication for the static preview. */
+3:   const DEMO_SESSION_KEY = "talentbridge.demo.auth.v1";
+10:   function showDemoNotice() {
+11:     if (document.querySelector("[data-demo-auth-notice]")) return;
+14:     notice.className = "social-auth-notice";
+15:     notice.dataset.demoAuthNotice = "";
+18:     notice.textContent = "Static preview demo mode: sign-in lasts for this browser tab. Google identity is not verified, and no account is saved to a server.";
+21:     const loginForm = document.querySelector("[data-auth-login]");
+22:     const anchor = socialSection || loginForm;
+26:   function makeDemoSession({ email, name, role, provider }) {
+28:     const normalizedEmail = String(email || "demo.user@talentbridge.local").trim().toLowerCase();
+32:       id: `demo-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`,
+36:       provider: provider || "email-demo",
+37:       isDemo: true,
+41:       window.sessionStorage.setItem(DEMO_SESSION_KEY, JSON.stringify(user));
+55:   showDemoNotice();
+64:         window.sessionStorage.removeItem(DEMO_SESSION_KEY);
+66:       window.location.assign(form.action || "../login.html");
+70:     if (form.matches("[data-auth-login]")) {
+73:       const user = makeDemoSession({ email, role: "job_seeker", provider: "email-demo" });
+75:         showDemoNotice();
+82:     const provider = form.dataset.oauthProvider;
+83:     if (provider === "google") {
+87:       const user = makeDemoSession({
+89:           ? "demo.employer@talentbridge.local"
+90:           : "demo.google@talentbridge.local",
+91:         name: role === "employer" ? "Demo Employer" : "Google Demo User",
+93:         provider: "google-demo",
+96:         showDemoNotice();
+107:       const user = makeDemoSession({
+111:         provider: "signup-demo",
+119:       let status = form.querySelector("[data-demo-form-status]");
+122:         status.dataset.demoFormStatus = "";
+
+========== site\pages\login.html ==========
+8:     <link rel="stylesheet" href="../css/login.css">
+10:     <link rel="preconnect" href="https://fonts.googleapis.com">
+11:     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+41: <link rel="stylesheet" href="../css/login-motion.css">
+66:     <div class="auth-actions">
+67:       <a href="login.html" class="auth-btn auth-signin" aria-current="page">Sign In</a>
+68:       <a href="signup-role.html" class="auth-btn auth-signup">Sign Up</a>
+76:     <section class="login-card">
+77:         <aside class="login-visual" aria-hidden="true">
+78:             <span class="login-visual-eyebrow">YOUR NEXT CHAPTER</span>
+81:             <div class="login-visual-orbit orbit-one"></div>
+82:             <div class="login-visual-orbit orbit-two"></div>
+83:             <div class="login-preview-card">
+84:                 <div class="login-preview-top"><span>CAREER SNAPSHOT</span><span class="login-preview-live"></span></div>
+85:                 <div class="login-preview-avatar">TB</div>
+87:                 <span class="login-preview-line"></span>
+88:                 <span class="login-preview-line short"></span>
+89:                 <div class="login-preview-tags"><i>Skills</i><i>Growth</i><i>Goals</i></div>
+90:                 <div class="login-preview-progress"><span></span></div>
+93:             <span class="login-visual-note note-one">✦ Find your fit</span>
+94:             <span class="login-visual-note note-two">✓ Keep growing</span>
+97:         <div class="login-content">
+113:             <p>Sign in securely with your Google account. Or use your email and password.</p>
+118:         <form action="login.html" method="post" data-auth-login>
+182:             <button type="submit" class="login-btn">
+197:                 <form data-oauth-provider="google" action="login.html" method="post">
+201:                     <button type="submit" class="social-btn" aria-label="Continue with Google">
+202:                         <span class="google-logo">G</span>
+203:                         <span class="social-name">Continue with Google</span>
+210:         <div class="signup-prompt">
+213:             <div class="signup-links">
+214:                 <a href="jobseeker-signup.html">Join as Job Seeker</a>
+216:                 <a href="company-signup.html">Join as Employer</a>
+240: <script src="../js/demo-forms.js"></script>
+
+========== site\pages\jobseeker-signup.html ==========
+10:     <link rel="stylesheet" href="../css/jobseeker-signup.css">
+12:     <link rel="preconnect" href="https://fonts.googleapis.com">
+14:     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+61:     <div class="auth-actions">
+62:       <a href="login.html" class="auth-btn auth-signin">Sign In</a>
+63:       <a href="signup-role.html" class="auth-btn auth-signup">Sign Up</a>
+72:         <section class="signup-card">
+100:             <form id="jobSeekerForm" action="jobseeker-signup.html" method="post">
+367:             <!-- SOCIAL LOGIN -->
+376:                     <form data-oauth-provider="google" action="login.html" method="post">
+380:                         <button type="submit" class="social-btn google-signup-btn" aria-label="Continue with Google">
+381:                             <span class="google-logo" aria-hidden="true">G</span>
+382:                             <span class="social-name">Google</span>
+383:                             <span class="google-signup-label">Continue with Google</span>
+390:             <p class="login-prompt">
+392:                     <a href="login.html">Sign In</a>
+546: <script src="../js/demo-forms.js"></script>
+
+========== site\pages\company-signup.html ==========
+9:     <link rel="stylesheet" href="../css/company-signup.css">
+11:     <link rel="preconnect" href="https://fonts.googleapis.com">
+13:     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+61:     <div class="auth-actions">
+62:       <a href="login.html" class="auth-btn auth-signin">Sign In</a>
+63:       <a href="signup-role.html" class="auth-btn auth-signup">Sign Up</a>
+72:         <section class="signup-card">
+99:             <form id="employerForm" action="company-signup.html" method="post">
+339:                     <form data-oauth-provider="google" action="login.html" method="post">
+343:                         <button type="submit" class="social-btn google-signup-btn" aria-label="Continue with Google">
+344:                             <span class="google-logo" aria-hidden="true">G</span>
+345:                             <span class="social-name">Google</span>
+346:                             <span class="google-signup-label">Continue with Google</span>
+353:             <p class="login-prompt">
+355:                     <a href="login.html">Sign In</a>
+501: <script src="../js/demo-forms.js"></script>
+
+========== legacy-django\config\settings.py ==========
+44: # Application definition
+45: 
+46: INSTALLED_APPS = [
+47:     'django.contrib.admin',
+48:     'django.contrib.auth',
+49:     'django.contrib.contenttypes',
+50:     'django.contrib.sessions',
+51:     'django.contrib.messages',
+54:     'allauth',
+55:     'allauth.account',
+56:     'allauth.socialaccount',
+57:     'allauth.socialaccount.providers.google',
+58:     'jobs',
+59: ]
+60: 
+61: MIDDLEWARE = [
+55:     'allauth.account',
+56:     'allauth.socialaccount',
+57:     'allauth.socialaccount.providers.google',
+58:     'jobs',
+59: ]
+60: 
+61: MIDDLEWARE = [
+62:     'django.middleware.security.SecurityMiddleware',
+59: ]
+60: 
+61: MIDDLEWARE = [
+62:     'django.middleware.security.SecurityMiddleware',
+63:     'django.contrib.sessions.middleware.SessionMiddleware',
+64:     'django.middleware.common.CommonMiddleware',
+65:     'django.middleware.csrf.CsrfViewMiddleware',
+66:     'django.contrib.auth.middleware.AuthenticationMiddleware',
+60: 
+61: MIDDLEWARE = [
+62:     'django.middleware.security.SecurityMiddleware',
+63:     'django.contrib.sessions.middleware.SessionMiddleware',
+64:     'django.middleware.common.CommonMiddleware',
+65:     'django.middleware.csrf.CsrfViewMiddleware',
+66:     'django.contrib.auth.middleware.AuthenticationMiddleware',
+67:     'allauth.account.middleware.AccountMiddleware',
+61: MIDDLEWARE = [
+62:     'django.middleware.security.SecurityMiddleware',
+63:     'django.contrib.sessions.middleware.SessionMiddleware',
+64:     'django.middleware.common.CommonMiddleware',
+65:     'django.middleware.csrf.CsrfViewMiddleware',
+66:     'django.contrib.auth.middleware.AuthenticationMiddleware',
+67:     'allauth.account.middleware.AccountMiddleware',
+68:     'django.contrib.messages.middleware.MessageMiddleware',
+62:     'django.middleware.security.SecurityMiddleware',
+63:     'django.contrib.sessions.middleware.SessionMiddleware',
+64:     'django.middleware.common.CommonMiddleware',
+65:     'django.middleware.csrf.CsrfViewMiddleware',
+66:     'django.contrib.auth.middleware.AuthenticationMiddleware',
+67:     'allauth.account.middleware.AccountMiddleware',
+68:     'django.contrib.messages.middleware.MessageMiddleware',
+69:     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+63:     'django.contrib.sessions.middleware.SessionMiddleware',
+64:     'django.middleware.common.CommonMiddleware',
+65:     'django.middleware.csrf.CsrfViewMiddleware',
+66:     'django.contrib.auth.middleware.AuthenticationMiddleware',
+67:     'allauth.account.middleware.AccountMiddleware',
+68:     'django.contrib.messages.middleware.MessageMiddleware',
+69:     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+70: ]
+64:     'django.middleware.common.CommonMiddleware',
+65:     'django.middleware.csrf.CsrfViewMiddleware',
+66:     'django.contrib.auth.middleware.AuthenticationMiddleware',
+67:     'allauth.account.middleware.AccountMiddleware',
+68:     'django.contrib.messages.middleware.MessageMiddleware',
+69:     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+70: ]
+71: 
+65:     'django.middleware.csrf.CsrfViewMiddleware',
+66:     'django.contrib.auth.middleware.AuthenticationMiddleware',
+67:     'allauth.account.middleware.AccountMiddleware',
+68:     'django.contrib.messages.middleware.MessageMiddleware',
+69:     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+70: ]
+71: 
+72: ROOT_URLCONF = 'config.urls'
+66:     'django.contrib.auth.middleware.AuthenticationMiddleware',
+67:     'allauth.account.middleware.AccountMiddleware',
+68:     'django.contrib.messages.middleware.MessageMiddleware',
+69:     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+70: ]
+71: 
+72: ROOT_URLCONF = 'config.urls'
+73: 
+67:     'allauth.account.middleware.AccountMiddleware',
+68:     'django.contrib.messages.middleware.MessageMiddleware',
+69:     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+70: ]
+71: 
+72: ROOT_URLCONF = 'config.urls'
+73: 
+74: TEMPLATES = [
+89: WSGI_APPLICATION = 'config.wsgi.application'
+90: 
+91: ACCOUNT_ADAPTER = 'jobs.adapters.TalentBridgeAccountAdapter'
+92: SOCIALACCOUNT_ADAPTER = 'jobs.adapters.TalentBridgeSocialAccountAdapter'
+93: ACCOUNT_LOGIN_METHODS = {'email'}
+94: ACCOUNT_SIGNUP_FIELDS = ['email*']
+95: SOCIALACCOUNT_AUTO_SIGNUP = False
+96: SOCIALACCOUNT_EMAIL_REQUIRED = True
+90: 
+91: ACCOUNT_ADAPTER = 'jobs.adapters.TalentBridgeAccountAdapter'
+92: SOCIALACCOUNT_ADAPTER = 'jobs.adapters.TalentBridgeSocialAccountAdapter'
+93: ACCOUNT_LOGIN_METHODS = {'email'}
+94: ACCOUNT_SIGNUP_FIELDS = ['email*']
+95: SOCIALACCOUNT_AUTO_SIGNUP = False
+96: SOCIALACCOUNT_EMAIL_REQUIRED = True
+97: SOCIALACCOUNT_FORMS = {
+91: ACCOUNT_ADAPTER = 'jobs.adapters.TalentBridgeAccountAdapter'
+92: SOCIALACCOUNT_ADAPTER = 'jobs.adapters.TalentBridgeSocialAccountAdapter'
+93: ACCOUNT_LOGIN_METHODS = {'email'}
+94: ACCOUNT_SIGNUP_FIELDS = ['email*']
+95: SOCIALACCOUNT_AUTO_SIGNUP = False
+96: SOCIALACCOUNT_EMAIL_REQUIRED = True
+97: SOCIALACCOUNT_FORMS = {
+98:     'signup': 'jobs.forms.TalentBridgeSocialSignupForm',
+92: SOCIALACCOUNT_ADAPTER = 'jobs.adapters.TalentBridgeSocialAccountAdapter'
+93: ACCOUNT_LOGIN_METHODS = {'email'}
+94: ACCOUNT_SIGNUP_FIELDS = ['email*']
+95: SOCIALACCOUNT_AUTO_SIGNUP = False
+96: SOCIALACCOUNT_EMAIL_REQUIRED = True
+97: SOCIALACCOUNT_FORMS = {
+98:     'signup': 'jobs.forms.TalentBridgeSocialSignupForm',
+99: }
+93: ACCOUNT_LOGIN_METHODS = {'email'}
+94: ACCOUNT_SIGNUP_FIELDS = ['email*']
+95: SOCIALACCOUNT_AUTO_SIGNUP = False
+96: SOCIALACCOUNT_EMAIL_REQUIRED = True
+97: SOCIALACCOUNT_FORMS = {
+98:     'signup': 'jobs.forms.TalentBridgeSocialSignupForm',
+99: }
+100: LOGIN_REDIRECT_URL = '/dashboard/'
+94: ACCOUNT_SIGNUP_FIELDS = ['email*']
+95: SOCIALACCOUNT_AUTO_SIGNUP = False
+96: SOCIALACCOUNT_EMAIL_REQUIRED = True
+97: SOCIALACCOUNT_FORMS = {
+98:     'signup': 'jobs.forms.TalentBridgeSocialSignupForm',
+99: }
+100: LOGIN_REDIRECT_URL = '/dashboard/'
+101: 
+95: SOCIALACCOUNT_AUTO_SIGNUP = False
+96: SOCIALACCOUNT_EMAIL_REQUIRED = True
+97: SOCIALACCOUNT_FORMS = {
+98:     'signup': 'jobs.forms.TalentBridgeSocialSignupForm',
+99: }
+100: LOGIN_REDIRECT_URL = '/dashboard/'
+101: 
+102: SOCIALACCOUNT_PROVIDERS = {}
+98:     'signup': 'jobs.forms.TalentBridgeSocialSignupForm',
+99: }
+100: LOGIN_REDIRECT_URL = '/dashboard/'
+101: 
+102: SOCIALACCOUNT_PROVIDERS = {}
+103: 
+104: GOOGLE_OAUTH_CLIENT_ID = os.environ.get('GOOGLE_OAUTH_CLIENT_ID', '').strip()
+105: GOOGLE_OAUTH_CLIENT_SECRET = os.environ.get('GOOGLE_OAUTH_CLIENT_SECRET', '').strip()
+100: LOGIN_REDIRECT_URL = '/dashboard/'
+101: 
+102: SOCIALACCOUNT_PROVIDERS = {}
+103: 
+104: GOOGLE_OAUTH_CLIENT_ID = os.environ.get('GOOGLE_OAUTH_CLIENT_ID', '').strip()
+105: GOOGLE_OAUTH_CLIENT_SECRET = os.environ.get('GOOGLE_OAUTH_CLIENT_SECRET', '').strip()
+106: if bool(GOOGLE_OAUTH_CLIENT_ID) != bool(GOOGLE_OAUTH_CLIENT_SECRET):
+107:     raise ImproperlyConfigured(
+102: SOCIALACCOUNT_PROVIDERS = {}
+103: 
+104: GOOGLE_OAUTH_CLIENT_ID = os.environ.get('GOOGLE_OAUTH_CLIENT_ID', '').strip()
+105: GOOGLE_OAUTH_CLIENT_SECRET = os.environ.get('GOOGLE_OAUTH_CLIENT_SECRET', '').strip()
+106: if bool(GOOGLE_OAUTH_CLIENT_ID) != bool(GOOGLE_OAUTH_CLIENT_SECRET):
+107:     raise ImproperlyConfigured(
+108:         "Set both GOOGLE_OAUTH_CLIENT_ID and GOOGLE_OAUTH_CLIENT_SECRET to enable Google sign-in."
+109:     )
+103: 
+104: GOOGLE_OAUTH_CLIENT_ID = os.environ.get('GOOGLE_OAUTH_CLIENT_ID', '').strip()
+105: GOOGLE_OAUTH_CLIENT_SECRET = os.environ.get('GOOGLE_OAUTH_CLIENT_SECRET', '').strip()
+106: if bool(GOOGLE_OAUTH_CLIENT_ID) != bool(GOOGLE_OAUTH_CLIENT_SECRET):
+107:     raise ImproperlyConfigured(
+108:         "Set both GOOGLE_OAUTH_CLIENT_ID and GOOGLE_OAUTH_CLIENT_SECRET to enable Google sign-in."
+109:     )
+110: if GOOGLE_OAUTH_CLIENT_ID and GOOGLE_OAUTH_CLIENT_SECRET:
+104: GOOGLE_OAUTH_CLIENT_ID = os.environ.get('GOOGLE_OAUTH_CLIENT_ID', '').strip()
+105: GOOGLE_OAUTH_CLIENT_SECRET = os.environ.get('GOOGLE_OAUTH_CLIENT_SECRET', '').strip()
+106: if bool(GOOGLE_OAUTH_CLIENT_ID) != bool(GOOGLE_OAUTH_CLIENT_SECRET):
+107:     raise ImproperlyConfigured(
+108:         "Set both GOOGLE_OAUTH_CLIENT_ID and GOOGLE_OAUTH_CLIENT_SECRET to enable Google sign-in."
+109:     )
+110: if GOOGLE_OAUTH_CLIENT_ID and GOOGLE_OAUTH_CLIENT_SECRET:
+111:     SOCIALACCOUNT_PROVIDERS['google'] = {
+106: if bool(GOOGLE_OAUTH_CLIENT_ID) != bool(GOOGLE_OAUTH_CLIENT_SECRET):
+107:     raise ImproperlyConfigured(
+108:         "Set both GOOGLE_OAUTH_CLIENT_ID and GOOGLE_OAUTH_CLIENT_SECRET to enable Google sign-in."
+109:     )
+110: if GOOGLE_OAUTH_CLIENT_ID and GOOGLE_OAUTH_CLIENT_SECRET:
+111:     SOCIALACCOUNT_PROVIDERS['google'] = {
+112:         'SCOPE': ['openid', 'email', 'profile'],
+113:         'EMAIL_AUTHENTICATION': True,
+108:         "Set both GOOGLE_OAUTH_CLIENT_ID and GOOGLE_OAUTH_CLIENT_SECRET to enable Google sign-in."
+109:     )
+110: if GOOGLE_OAUTH_CLIENT_ID and GOOGLE_OAUTH_CLIENT_SECRET:
+111:     SOCIALACCOUNT_PROVIDERS['google'] = {
+112:         'SCOPE': ['openid', 'email', 'profile'],
+113:         'EMAIL_AUTHENTICATION': True,
+114:         'EMAIL_AUTHENTICATION_AUTO_CONNECT': True,
+115:     }
+109:     )
+110: if GOOGLE_OAUTH_CLIENT_ID and GOOGLE_OAUTH_CLIENT_SECRET:
+111:     SOCIALACCOUNT_PROVIDERS['google'] = {
+112:         'SCOPE': ['openid', 'email', 'profile'],
+113:         'EMAIL_AUTHENTICATION': True,
+114:         'EMAIL_AUTHENTICATION_AUTO_CONNECT': True,
+115:     }
+116: 
+217: DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'TalentBridge AI <noreply@localhost>')
+218: 
+219: SITE_ID = 1
+220: 
+221: 
+222: 
+223: # Email and username login support
+224: AUTHENTICATION_BACKENDS = [
+222: 
+223: # Email and username login support
+224: AUTHENTICATION_BACKENDS = [
+225:     "jobs.backends.EmailOrUsernameBackend",
+226:     "django.contrib.auth.backends.ModelBackend",
+227:     "allauth.account.auth_backends.AuthenticationBackend",
+228: ]
+
+========== legacy-django\config\urls.py ==========
+20: from django.contrib.auth import views as auth_views
+22: from django.views.generic import RedirectView
+29:     'signup': 'signup-role.html',
+30:     'company-signup': 'company-signup.html',
+31:     'jobseeker-signup': 'jobseeker-signup.html',
+35:     'login': 'login.html',
+77:     path('dashboard/', views.dashboard_redirect, name='dashboard'),
+94:     path('signup/job-seeker/', views.jobseeker_signup, name='jobseeker_signup'),
+95:     path('signup/employer/', views.employer_signup, name='employer_signup'),
+96:     path('login/', views.login_view, name='login'),
+97:     path('auth/social/<str:provider>/', views.social_login_start, name='social-login-start'),
+100:         'accounts/login/',
+101:         RedirectView.as_view(url='/login/', query_string=True),
+102:         name='accounts-login-redirect',
+104:     path('accounts/', include('allauth.urls')),
+108:         auth_views.PasswordResetView.as_view(
+118:         auth_views.PasswordResetDoneView.as_view(template_name='password-reset.html'),
+123:         auth_views.PasswordResetConfirmView.as_view(
+131:         auth_views.PasswordResetCompleteView.as_view(template_name='password-reset-complete.html'),
+134:     path('pages/jobseeker-signup.html', views.jobseeker_signup, name='jobseeker_signup_page'),
+135:     path('pages/company-signup.html', views.employer_signup, name='employer_signup_page'),
+136:     path('pages/login.html', views.login_view, name='login_page'),
+
+========== legacy-django\jobs\views.py ==========
+6: from django.contrib.auth import authenticate, login, logout, get_user_model
+7: from django.contrib.auth.decorators import login_required
+12: from django.shortcuts import render as django_render, redirect, get_object_or_404
+20: from .google_oauth import google_oauth_configured, sync_google_social_app
+24: DEMO_JOB_ROLES = (
+28:         "company": "Google",
+134: DEMO_APPLICATION_ROLES = frozenset(role["slug"] for role in DEMO_JOB_ROLES)
+169:     demo_role = request.GET.get("role", "")
+170:     if demo_role in DEMO_APPLICATION_ROLES:
+175:                 "demo_role": demo_role,
+185:     return redirect("jobs")
+196:         "signup-role.html", "company-signup.html", "jobseeker-signup.html",
+197:         "employer.html", "employee.html", "login.html", "pricing.html",
+245:     context = _public_auth_context(request, filename)
+260:     if path.startswith("dashboard/") and not request.user.is_authenticated:
+262:         return redirect(f"{reverse('login')}?{query}")
+264:         return redirect("/pages/dashboard/cdashboard.html")
+284:     context = _public_auth_context(request, requested.name)
+293: def _public_auth_context(request, filename):
+294:     if filename not in {"login.html", "jobseeker-signup.html", "company-signup.html"}:
+305:         "google_login_enabled": google_oauth_configured(),
+313: @login_required(login_url="login")
+314: def dashboard_redirect(request):
+319:             return redirect("employer_pending")
+320:         return redirect("/pages/dashboard/cdashboard.html")
+321:     return redirect("/pages/dashboard/jdashboard.html")
+327:         jobs = jobs.filter(is_demo=False)
+330:     demo_roles = []
+337:         demo_roles = [
+338:             role for role in DEMO_JOB_ROLES
+347:             "demo_roles": demo_roles,
+360:         available_jobs = available_jobs.filter(is_demo=False)
+365: @login_required
+368:         return redirect("posting-job")
+372:         return redirect("posting-job")
+375:         return redirect("employer_pending")
+386:         return redirect("posting-job")
+389:         return redirect("posting-job")
+392:         return redirect("posting-job")
+406:     return redirect("job_detail", job_id=job.pk)
+409: @login_required
+416:         is_demo=False,
+425:             return redirect(f"{request.path}")
+433:             return redirect("application-success")
+435:         return redirect("job_detail", job_id=job.pk)
+439: @login_required
+449: @login_required
+454:         return redirect("home")
+455:     jobs = Job.objects.filter(company=company, is_demo=False).order_by("-posted_at")
+459: @login_required
+467: @login_required
+480:             return redirect("edit-profile")
+483:             return redirect("edit-profile")
+486:             return redirect("edit-profile")
+500:         return redirect("profile")
+505: @login_required
+510:         return redirect("home")
+515:             return redirect("company-details")
+526:             return redirect("company-details")
+528:         return redirect("company-details")
+542:             return redirect("contact")
+546:             return redirect("contact")
+549:         return redirect("contact")
+553: @login_required
+563:             return redirect("resume-management")
+567:             return redirect("resume-management")
+586:             return redirect("resume-management")
+592:         return redirect("resume-management")
+596: @login_required
+621:     page = "pages/company-signup.html" if role == "employer" else "pages/jobseeker-signup.html"
+622:     if request.user.is_authenticated:
+623:         return redirect("dashboard")
+630:                 "google_login_enabled": google_oauth_configured(),
+642:         return redirect(page)
+647:         return redirect(page)
+650:         return redirect(page)
+653:         return redirect(page)
+656:         return redirect(page)
+660:         return redirect(page)
+663:         return redirect(page)
+666:         return redirect(page)
+677:         return redirect(page)
+678:     login(request, user, backend="django.contrib.auth.backends.ModelBackend")
+681:         return redirect("employer_pending")
+683:     return redirect("dashboard")
+685: def jobseeker_signup(request):
+688: def employer_signup(request):
+691: def login_view(request):
+700:     if request.user.is_authenticated:
+701:         return redirect(next_url or settings.LOGIN_REDIRECT_URL)
+705:             "pages/login.html",
+706:             {"next": next_url, "google_login_enabled": google_oauth_configured()},
+715:             "pages/login.html",
+716:             {"next": next_url, "google_login_enabled": google_oauth_configured()},
+718:     from django.contrib.auth import get_user_model
+721:     login_identifier = account.get_username() if account else email
+722:     user = authenticate(request, username=login_identifier, password=password)
+727:             "pages/login.html",
+728:             {"next": next_url, "google_login_enabled": google_oauth_configured()},
+730:     login(request, user)
+731:     return redirect(next_url or settings.LOGIN_REDIRECT_URL)
+735: def social_login_start(request, provider):
+736:     if provider != "google":
+737:         raise Http404("Authentication provider not found.")
+743:         return redirect("signup")
+745:     if not google_oauth_configured():
+746:         return redirect("login" if role == "choose" else (
+747:             "company-signup" if role == "employer" else "jobseeker-signup"
+760:             "socialaccount/auto_login.html",
+762:                 "provider": provider,
+763:                 "provider_name": "Google",
+769:     request.session["talentbridge.social_signup_role"] = role
+776:         request.session["talentbridge.social_login_next"] = next_url
+778:         request.session.pop("talentbridge.social_login_next", None)
+780:     if provider == "google":
+781:         sync_google_social_app()
+782:         from allauth.socialaccount.providers.google.views import oauth2_login
+784:         return oauth2_login(request)
+790:     return redirect("home")
+792: @login_required
+797:         return redirect("employer_signup")
+800:         return redirect("dashboard")
+804: @login_required
+810: @login_required
+822:         return redirect(next_url)
+823:     return redirect("saved-jobs")
+826: @login_required
+835:         return redirect("notifications")
+840: @login_required
+849:             return redirect("interviews")
+858:             return redirect("interviews")
+863:             return redirect("interviews")
+878:         return redirect("interviews")
+892: @login_required
+904:         return redirect("manage-applications")
+914:     return redirect("manage-applications")
+917: @login_required
+925:     return redirect("manage-jobs")
+928: @login_required
+933:         return redirect("manage-applications")
+942: @login_required
+946:         return redirect("home")
+958: @login_required
+974:     return redirect("admin-dashboard")

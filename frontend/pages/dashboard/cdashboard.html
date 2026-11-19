@@ -1,0 +1,385 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-workspace-page>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f8ff">
+  <title>Employer Dashboard | TalentBridge AI</title>
+  <script src="../../js/authentication/dashboard-guard.js?v=4" defer></script>
+  <link rel="stylesheet" href="../../css/dashboard/cdashboard.css">
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+  <script src="../../js/dashboard/cdashboard.js" defer></script>
+  <link rel="stylesheet" href="../../css/components/site-header.css">
+  <link rel="stylesheet" href="../../css/components/motion.css">
+  <link rel="stylesheet" href="../../css/components/dark-mode.css">
+  <script src="../../js/core/dark-mode.js"></script>
+
+  <link rel="stylesheet" href="../../css/dashboard/jerry-guide/jerry-guide.css">
+
+    <link rel="stylesheet" href="../../css/responsive/responsive-fixes.css">
+<link rel="stylesheet" href="../../css/responsive/responsive-all.css">
+  <link rel="stylesheet" href="../../css/base/redesign.css">
+  <link rel="stylesheet" href="../../css/dashboard/dashboard-polish.css">
+<link rel="stylesheet" href="../../css/components/site-experience.css">
+  <style id="fix-all-navbar-strikethrough">
+header a,
+header nav a,
+nav a,
+.navbar a,
+.nav-links a,
+.site-header a,
+header a *,
+nav a *,
+.navbar a *,
+.nav-links a *,
+.site-header a * {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    text-decoration-style: none !important;
+}
+</style>
+<link rel="stylesheet" href="/css/components/reference-image-integration.css">
+</head>
+<body data-auth-user-id="{{ request.user.pk }}" data-auth-email="{{ request.user.email }}" data-account-jobs="{{ account_job_count }}" data-account-closed-jobs="{{ account_closed_job_count }}" data-account-applicants="{{ account_applicant_count }}" data-account-pending="{{ account_pending_count }}" data-account-reviewed="{{ account_reviewed_count }}" data-account-rejected="{{ account_rejected_count }}" data-account-shortlisted="{{ account_shortlisted_count }}" data-account-interviews="{{ account_interview_count }}" data-account-job-rows="1">
+  {{ account_company|json_script:"account-company-data" }}
+  {{ account_application_history|json_script:"account-application-history" }}
+  {{ account_interview_history|json_script:"account-interview-history" }}
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#overview" aria-label="TalentBridge AI home">
+        <span class="brand-mark"><i data-lucide="network"></i></span>
+        <span>TalentBridge <b>AI</b></span>
+      </a>
+
+      <div class="company-mini">
+        <div class="company-mini-logo" id="sidebarCompanyLogo">{{ account_company.name|default:"CO"|slice:":2"|upper }}</div>
+        <div class="company-mini-info">
+          <strong id="sidebarCompanyName">{{ account_company.name|default:"Company profile not set" }}</strong>
+          <span>Employer account</span>
+        </div>
+        <button class="icon-btn tiny" id="editCompanyQuick" aria-label="Edit company profile" title="Edit company profile">
+          <i data-lucide="pencil"></i>
+        </button>
+      </div>
+
+      <div class="nav-heading">WORKSPACE</div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a class="nav-link active" href="#overview"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></a>
+        <a class="nav-link" href="#jobs"><i data-lucide="briefcase-business"></i><span>Manage Jobs</span><span class="nav-pill" id="jobNavCount">{{ account_job_count }}</span></a>
+        <a class="nav-link" href="#applicants"><i data-lucide="users"></i><span>Applicants</span><span class="nav-pill" id="applicantNavCount">{{ account_applicant_count }}</span></a>
+        <a class="nav-link" href="/candidate-search/"><i data-lucide="search"></i><span>Candidate Search</span></a>
+        <a class="nav-link" href="#analytics"><i data-lucide="chart-no-axes-combined"></i><span>Reports & Analytics</span></a>
+        <a class="nav-link" href="#team"><i data-lucide="user-rounds"></i><span>Team Members</span></a>
+        <a class="nav-link" href="#documents"><i data-lucide="folder-open"></i><span>Documents</span></a>
+        <a class="nav-link" href="#company-profile"><i data-lucide="building-2"></i><span>Company Profile</span></a>
+        <a class="nav-link" href="/account-security/"><i data-lucide="shield-check"></i><span>Account security</span></a>
+      </nav>
+
+      <div class="sidebar-customize">
+        <button class="sidebar-customize-link" id="openCustomizeSide"><i data-lucide="sliders-horizontal"></i> Customize dashboard</button>
+      </div>
+
+      <form action="{% url 'logout' %}" method="post" data-logout-form>
+        {% csrf_token %}
+        <button class="logout-btn" id="logoutBtn" type="submit"><i data-lucide="log-out"></i><span>Sign out</span></button>
+      </form>
+    </aside>
+
+    <main class="main-content" id="overview">
+      <header class="topbar">
+        <button class="icon-btn mobile-menu" id="mobileMenu" aria-label="Open navigation"><i data-lucide="menu"></i></button>
+        <div class="mobile-brand">TalentBridge <b>AI</b></div>
+        <label class="global-search">
+          <i data-lucide="search"></i>
+          <input type="search" id="globalSearch" placeholder="Search candidates, jobs, skills, or reports…" aria-label="Search the dashboard">
+          <kbd>⌘ K</kbd>
+        </label>
+        <div class="topbar-actions">
+          <span class="session-label" data-auth-email>Signed in</span>
+          <button class="icon-btn notice-btn" id="notificationsBtn" aria-label="Notifications" title="Notifications"><i data-lucide="bell"></i><span class="notice-dot"></span></button>
+          <button class="profile-trigger" id="profileTrigger" aria-label="Edit company profile">
+            <span class="top-company-avatar" id="topCompanyAvatar">{{ account_company.name|default:"CO"|slice:":2"|upper }}</span>
+            <span class="profile-trigger-text"><strong id="topCompanyName">{{ account_company.name|default:"Company profile not set" }}</strong><small>Company account</small></span>
+            <i data-lucide="chevron-down"></i>
+          </button>
+        </div>
+      </header>
+
+      <div class="content-wrap">
+        <section class="welcome-banner section-animated" id="company-profile">
+          <div class="banner-image" id="bannerImage"></div>
+          <div class="banner-shade"></div>
+          <button class="banner-edit" id="editBannerBtn"><i data-lucide="image"></i> Edit banner</button>
+          <div class="banner-content">
+            <div class="banner-eyebrow"><span class="pulse-dot"></span> YOUR HIRING WORKSPACE</div>
+            <h1>Welcome back, <span id="bannerCompanyName">{{ account_company.name|default:"Company profile not set" }}</span></h1>
+            <p class="dashboard-data-notice">Company details, active jobs, applicants, and hiring metrics below come from your account. Documents, team management, and some customization controls are still browser-only previews and should not be used to store real company records.</p>
+            <p class="dashboard-data-links"><a href="/manage-jobs/">Manage jobs</a> · <a href="/manage-applications/">Applicants</a> · <a href="/company-details/">Company profile</a> · <a href="/posting-job/">Post a job</a> · <a href="/account-security/">Account security</a></p>
+            <p id="bannerDescription">{{ account_company.description|default:"Manage your hiring from one simple workspace." }}</p>
+            <div class="banner-actions">
+              <button class="btn btn-primary" id="postJobBtn"><i data-lucide="plus"></i> Post a new job</button>
+              <button class="btn btn-glass" id="previewPublicBtn"><i data-lucide="eye"></i> Preview public profile</button>
+            </div>
+          </div>
+          <div class="banner-tip">
+            <span class="tip-icon"><i data-lucide="sparkles"></i></span>
+            <div><strong>Make your next great hire</strong><p>Discover talent that fits your team.</p></div>
+          </div>
+        </section>
+
+        <div class="page-heading">
+          <div><span class="section-kicker">OVERVIEW</span><h2>Your company at a glance</h2><p>Keep track of your hiring activity and recent progress.</p></div>
+          <div class="heading-actions dashboard-heading-actions">
+            <label class="range-select-wrap"><i data-lucide="calendar-days"></i><select id="dateRange" aria-label="Analytics date range"><option value="7">Last 7 days</option><option value="30" selected>Last 30 days</option><option value="90">Last 90 days</option><option value="365">Last 12 months</option></select></label>
+            <a class="btn btn-outline" href="organize-cards.html"><i data-lucide="move"></i> Arrange cards</a>
+            <button class="btn btn-outline" id="customizeBtn"><i data-lucide="sliders-horizontal"></i> Customize</button>
+          </div>
+        </div>
+
+        <section class="stats-grid dashboard-card section-animated" data-card-id="stats" id="stats">
+          <article class="stat-card">
+            <div class="stat-topline"><span class="stat-icon blue"><i data-lucide="briefcase-business"></i></span><button class="icon-btn tiny card-menu" data-stat-menu="activeJobs" aria-label="Active jobs options"><i data-lucide="more-horizontal"></i></button></div>
+            <span class="stat-label">Active jobs</span><strong class="stat-value" id="activeJobsValue">{{ account_job_count }}</strong><span class="stat-foot">Open, non-demo jobs for your company</span>
+          </article>
+          <article class="stat-card">
+            <div class="stat-topline"><span class="stat-icon purple"><i data-lucide="briefcase"></i></span><button class="icon-btn tiny card-menu" data-stat-menu="closedJobs" aria-label="Closed jobs options"><i data-lucide="more-horizontal"></i></button></div>
+            <span class="stat-label">Closed jobs</span><strong class="stat-value" id="closedJobsValue">{{ account_closed_job_count }}</strong><span class="stat-foot">Non-demo postings not currently active</span>
+          </article>
+          <article class="stat-card">
+            <div class="stat-topline"><span class="stat-icon purple"><i data-lucide="users"></i></span><button class="icon-btn tiny card-menu" data-stat-menu="applicants" aria-label="Applications options"><i data-lucide="more-horizontal"></i></button></div>
+            <span class="stat-label">Total applications</span><strong class="stat-value" id="applicantsValue">{{ account_applicant_count }}</strong><span class="stat-foot">Applications for your non-demo jobs</span>
+          </article>
+          <article class="stat-card">
+            <div class="stat-topline"><span class="stat-icon orange"><i data-lucide="user-round-search"></i></span><button class="icon-btn tiny card-menu" data-stat-menu="pending" aria-label="Pending applications options"><i data-lucide="more-horizontal"></i></button></div>
+            <span class="stat-label">Pending applications</span><strong class="stat-value" id="pendingValue">{{ account_pending_count }}</strong><span class="stat-foot">Applied and awaiting an employer review</span>
+          </article>
+          <article class="stat-card">
+            <div class="stat-topline"><span class="stat-icon green"><i data-lucide="user-check"></i></span><button class="icon-btn tiny card-menu" data-stat-menu="shortlisted" aria-label="Shortlisted applicants options"><i data-lucide="more-horizontal"></i></button></div>
+            <span class="stat-label">Shortlisted</span><strong class="stat-value" id="shortlistedValue">{{ account_shortlisted_count }}</strong><span class="stat-foot">Applicants advanced by your team</span>
+          </article>
+          <article class="stat-card">
+            <div class="stat-topline"><span class="stat-icon blue"><i data-lucide="calendar-check"></i></span><button class="icon-btn tiny card-menu" data-stat-menu="interviews" aria-label="Scheduled interviews options"><i data-lucide="more-horizontal"></i></button></div>
+            <span class="stat-label">Interviews scheduled</span><strong class="stat-value" id="interviewsValue">{{ account_interview_count }}</strong><span class="stat-foot">Scheduled for non-demo applications</span>
+          </article>
+        </section>
+
+        <section class="dashboard-grid" id="analyticsGrid">
+          <article class="panel analytics-panel dashboard-card" data-card-id="analytics" id="analytics">
+            <div class="panel-heading">
+              <div><div class="panel-title-row"><span class="panel-icon"><i data-lucide="chart-no-axes-combined"></i></span><h3>Applications overview</h3></div><p>See how your recruitment activity changes over time.</p></div>
+              <div class="panel-heading-actions"><select id="chartMetric" aria-label="Chart metric"><option value="applications">Applications</option><option value="interviews">Interviews</option></select><button class="icon-btn" id="downloadChart" title="Download chart CSV" aria-label="Download chart CSV"><i data-lucide="download"></i></button></div>
+            </div>
+            <div class="chart-legend"><span><i class="legend-dot legend-blue"></i><span id="chartMetricLabel">Applications</span></span></div>
+            <div class="chart-wrap"><canvas id="hiringChart" aria-label="Hiring activity chart" role="img"></canvas></div>
+            <div class="chart-footer"><span id="chartRangeLabel">Last 30 days · account records</span><span class="chart-insight" id="chartInsight">Counts update as your records change.</span></div>
+          </article>
+
+          <article class="panel applicants-panel dashboard-card" data-card-id="applicants" id="applicants">
+            <div class="panel-heading">
+              <div><div class="panel-title-row"><span class="panel-icon"><i data-lucide="users"></i></span><h3>Recent applicants</h3></div><p>Your latest candidates in one place.</p></div>
+              <button class="text-btn" id="viewAllApplicants" title="Scroll to recent applicants">View all <i data-lucide="arrow-up-right"></i></button>
+            </div>
+            <div class="applicant-list" id="applicantList">
+              {% for application in account_employer_applications %}
+              <a class="applicant-row" href="{% url 'candidate-details' %}?application_id={{ application.pk }}"><span class="candidate-avatar av-lilac">{{ application.applicant.get_username|slice:":1"|upper }}</span><div class="candidate-main"><strong>{{ application.applicant.get_username }}</strong><span>{{ application.job.title }}</span><small>{{ application.get_status_display }}</small></div><span class="status-pill {% if application.status == 'applied' or application.status == 'pending' %}status-new{% elif application.status == 'under_review' or application.status == 'reviewed' %}status-review{% elif application.status == 'interview_scheduled' %}status-interview{% elif application.status == 'shortlisted' or application.status == 'selected' %}status-shortlisted{% else %}status-rejected{% endif %}">{{ application.get_status_display }}</span></a>
+              {% empty %}
+              <div class="empty-state">No applicants are saved to your company yet.</div>
+              {% endfor %}
+            </div>
+          </article>
+        </section>
+
+        <section class="lower-grid">
+          <article class="panel jobs-panel dashboard-card" data-card-id="jobs" id="jobs">
+            <div class="panel-heading">
+              <div><div class="panel-title-row"><span class="panel-icon"><i data-lucide="briefcase-business"></i></span><h3>Active jobs</h3></div><p>Manage the roles you are hiring for.</p></div>
+              <button class="text-btn" id="viewAllJobs" title="Scroll to active jobs">View all <i data-lucide="arrow-up-right"></i></button>
+            </div>
+            <div class="job-list" id="jobList">
+              {% for job in account_jobs %}
+              <a class="job-row" href="{% url 'manage-jobs' %}"><span class="job-icon blue"><i data-lucide="briefcase-business"></i></span><div class="job-main"><strong>{{ job.title }}</strong><span>{{ job.job_type }} · {{ job.location }}</span></div><span class="applicant-count">{{ job.applicant_count }} applicants</span><span class="job-status">Active</span></a>
+              {% empty %}
+              <div class="empty-state">No active jobs are saved to your company yet.</div>
+              {% endfor %}
+            </div>
+            <button class="add-row-btn" id="addJobInline"><i data-lucide="plus"></i> Add another job</button>
+          </article>
+
+          <article class="panel pipeline-panel dashboard-card" data-card-id="pipeline" id="pipeline">
+            <div class="panel-heading">
+              <div><div class="panel-title-row"><span class="panel-icon"><i data-lucide="git-branch"></i></span><h3>Hiring pipeline</h3></div><p>Candidate progress across stages.</p></div>
+              <span class="section-kicker">ALL NON-DEMO APPLICATIONS</span>
+            </div>
+            <div class="pipeline-chart" aria-label="Applications by current status">
+              <div class="pipeline-legend"><span><i class="legend-dot legend-blue"></i>Pending review</span><span><i class="legend-dot legend-purple"></i>Under review</span><span><i class="legend-dot legend-orange"></i>Rejected</span></div>
+              <div class="pipeline-bars">
+                <div class="pipeline-group"><div class="bar-stack"><i class="pbar p-blue" id="pendingBar" style="height:0%"></i></div><span>Pending review <b id="pendingPipelineCount">{{ account_pending_count }}</b></span></div>
+                <div class="pipeline-group"><div class="bar-stack"><i class="pbar p-purple" id="reviewedBar" style="height:0%"></i></div><span>Under review <b id="reviewedPipelineCount">{{ account_reviewed_count }}</b></span></div>
+                <div class="pipeline-group"><div class="bar-stack"><i class="pbar p-orange" id="rejectedBar" style="height:0%"></i></div><span>Rejected <b id="rejectedPipelineCount">{{ account_rejected_count }}</b></span></div>
+              </div>
+            </div>
+            <div class="pipeline-footer"><span><b>{{ account_applicant_count }}</b> applications for your non-demo jobs</span><button class="text-btn" id="pipelineDetails">View pipeline <i data-lucide="arrow-up-right"></i></button></div>
+          </article>
+        </section>
+
+        <section class="resource-grid">
+          <article class="panel documents-panel dashboard-card" data-card-id="documents" id="documents">
+            <div class="panel-heading">
+              <div><div class="panel-title-row"><span class="panel-icon"><i data-lucide="folder-open"></i></span><h3>Documents & reports</h3></div><p>Demo files only. Uploads are not saved to the server.</p></div>
+              <button class="btn btn-primary btn-small" id="uploadBtn"><i data-lucide="upload"></i> Upload</button>
+            </div>
+            <div class="document-tabs"><button class="doc-tab active" data-doc-filter="all">All files</button><button class="doc-tab" data-doc-filter="report">Reports</button><button class="doc-tab" data-doc-filter="contract">Contracts</button><button class="doc-tab" data-doc-filter="other">Other</button></div>
+            <input id="fileInput" aria-label="Upload company document" type="file" hidden multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,.png,.jpg,.jpeg">
+            <div class="document-list" id="documentList">
+              <div class="document-row" data-doc-type="report"><span class="file-type pdf"><i data-lucide="file-text"></i></span><div class="document-main"><strong>Q2 Hiring Report.pdf</strong><small>PDF · 2.3 MB · 5 days ago</small></div><button class="icon-btn tiny file-download" aria-label="Download Q2 Hiring Report"><i data-lucide="download"></i></button><button class="icon-btn tiny file-more" aria-label="More file options"><i data-lucide="more-vertical"></i></button></div>
+              <div class="document-row" data-doc-type="report"><span class="file-type excel"><i data-lucide="file-spreadsheet"></i></span><div class="document-main"><strong>Recruitment Plan 2026.xlsx</strong><small>Excel · 1.2 MB · 2 weeks ago</small></div><button class="icon-btn tiny file-download" aria-label="Download Recruitment Plan"><i data-lucide="download"></i></button><button class="icon-btn tiny file-more" aria-label="More file options"><i data-lucide="more-vertical"></i></button></div>
+              <div class="document-row" data-doc-type="contract"><span class="file-type word"><i data-lucide="file-text"></i></span><div class="document-main"><strong>Vendor Agreement.docx</strong><small>Word · 800 KB · 3 weeks ago</small></div><button class="icon-btn tiny file-download" aria-label="Download Vendor Agreement"><i data-lucide="download"></i></button><button class="icon-btn tiny file-more" aria-label="More file options"><i data-lucide="more-vertical"></i></button></div>
+            </div>
+            <div class="upload-note"><i data-lucide="lock-keyhole"></i> Documents are private in this prototype. Connect secure storage before using real company files.</div>
+          </article>
+
+          <article class="panel team-panel dashboard-card" data-card-id="team" id="team">
+            <div class="panel-heading">
+              <div><div class="panel-title-row"><span class="panel-icon"><i data-lucide="users-round"></i></span><h3>Team members</h3></div><p>Demo team. Members and permissions are not stored in your account.</p></div>
+              <button class="btn btn-outline btn-small" id="inviteBtn"><i data-lucide="user-plus"></i> Invite</button>
+            </div>
+            <div class="team-list" id="teamList">
+              <div class="team-row"><span class="team-avatar team-a">RV</span><div class="team-member-main"><strong>Rahul Verma</strong><small>HR Manager</small></div><span class="role-tag admin">Admin</span><button class="icon-btn tiny team-more" aria-label="Rahul team options"><i data-lucide="more-vertical"></i></button></div>
+              <div class="team-row"><span class="team-avatar team-b">AS</span><div class="team-member-main"><strong>Ananya Singh</strong><small>Recruiter</small></div><span class="role-tag member">Member</span><button class="icon-btn tiny team-more" aria-label="Ananya team options"><i data-lucide="more-vertical"></i></button></div>
+              <div class="team-row"><span class="team-avatar team-c">KM</span><div class="team-member-main"><strong>Karan Mehta</strong><small>Hiring Manager</small></div><span class="role-tag member">Member</span><button class="icon-btn tiny team-more" aria-label="Karan team options"><i data-lucide="more-vertical"></i></button></div>
+            </div>
+            <button class="add-row-btn" id="manageTeamBtn"><i data-lucide="settings-2"></i> Manage team permissions</button>
+          </article>
+
+          <article class="panel profile-strength-panel dashboard-card" data-card-id="profile" id="profileStrength">
+            <div class="panel-heading">
+              <div><div class="panel-title-row"><span class="panel-icon"><i data-lucide="building-2"></i></span><h3>Company profile</h3></div><p>Make it easier for people to learn about your company.</p></div>
+              <button class="text-btn" id="editProfileBtn">Edit profile <i data-lucide="arrow-up-right"></i></button>
+            </div>
+            <div class="profile-strength-content">
+              <div class="profile-logo-large" id="profileLogoLarge">{{ account_company.name|default:"CO"|slice:":2"|upper }}</div>
+              <div class="company-details"><strong id="profileCompanyName">{{ account_company.name|default:"Company profile not set" }}</strong><span id="profileIndustry">{{ account_company.industry|default:"Industry not added" }}</span><span id="profileLocation">{{ account_company.location|default:"Location not added" }}</span><a id="profileWebsite" href="{{ account_company.website|default:'#' }}" target="_blank" rel="noopener">{{ account_company.website|default:"Website not added" }}</a></div>
+            </div>
+            <div class="completion-label"><span>Profile completion</span><b id="completionPercent">0%</b></div>
+            <div class="progress-track"><span id="completionProgress" style="width:0%"></span></div>
+            <button class="btn btn-outline full-width" id="editDetailsBtn"><i data-lucide="pencil"></i> Edit company details</button>
+          </article>
+        </section>
+
+        <section id="userCards" class="user-cards" aria-label="Your custom dashboard cards"></section>
+        <footer class="page-footer"><span>© 2026 TalentBridge AI</span><span>Made to help teams hire with confidence.</span><button class="text-btn" id="resetDemo">Reset demo</button></footer>
+      </div>
+    </main>
+  </div>
+
+  <!-- Company profile editor -->
+  <dialog class="modal modal-wide" id="profileModal">
+    <form id="profileForm">
+      <div class="modal-header">
+        <div><span class="eyebrow">YOUR COMPANY</span><h2>Edit company profile</h2><p>Customize your company details. You can preview changes before saving.</p></div>
+        <button type="button" class="icon-btn modal-close" data-close="profileModal" aria-label="Close"><i data-lucide="x"></i></button>
+      </div>
+      <div class="form-tabs" role="tablist">
+        <button class="form-tab active" type="button" data-profile-tab="basic">Basic information</button>
+        <button class="form-tab" type="button" data-profile-tab="about">About company</button>
+        <button class="form-tab" type="button" data-profile-tab="branding">Branding</button>
+        <button class="form-tab" type="button" data-profile-tab="privacy">Privacy</button>
+      </div>
+      <section class="form-page active" data-profile-page="basic">
+        <div class="form-grid">
+          <label>Company name<input id="companyNameInput" name="companyName" required maxlength="120"></label>
+          <label>Industry<input id="industryInput" name="industry" maxlength="100"></label>
+          <label>Company email<input id="companyEmailInput" name="companyEmail" type="email" maxlength="254"></label>
+          <label>Phone number<input id="companyPhoneInput" name="companyPhone" type="tel" maxlength="40"></label>
+          <label>Location<input id="companyLocationInput" name="companyLocation" maxlength="150"></label>
+          <label>Company website<input id="websiteInput" name="website" type="url" placeholder="https://example.com" maxlength="300"></label>
+          <label>Employee range<select id="employeeRangeInput" name="employeeRange"><option>1–10 employees</option><option>11–50 employees</option><option selected>51–200 employees</option><option>201–500 employees</option><option>501–1,000 employees</option><option>1,000+ employees</option></select></label>
+          <label>Year founded<input id="foundedInput" name="founded" type="number" min="1800" max="2100" placeholder="2018"></label>
+          <label class="field-wide">Short tagline<input id="taglineInput" name="tagline" maxlength="180" placeholder="A short sentence about your company"></label>
+        </div>
+      </section>
+      <section class="form-page" data-profile-page="about">
+        <div class="form-grid">
+          <label class="field-wide">Company description<textarea id="descriptionInput" name="description" rows="3" maxlength="600"></textarea></label>
+          <label class="field-wide">About your company<textarea id="aboutInput" name="about" rows="5" maxlength="3000" placeholder="Tell candidates about your mission, work, and team…"></textarea></label>
+          <label>Specialties / skills<input id="specialtiesInput" name="specialties" placeholder="AI, SaaS, Product Design" maxlength="500"></label>
+          <label>Company culture<input id="cultureInput" name="culture" placeholder="Collaborative, flexible, inclusive" maxlength="300"></label>
+          <label>LinkedIn URL<input id="linkedinInput" name="linkedin" type="url" placeholder="https://linkedin.com/company/…" maxlength="300"></label>
+          <label>Other social / portfolio URL<input id="socialInput" name="social" type="url" placeholder="https://…" maxlength="300"></label>
+        </div>
+      </section>
+      <section class="form-page" data-profile-page="branding">
+        <div class="form-grid">
+          <label>Logo URL<input id="logoUrlInput" name="logoUrl" type="url" placeholder="https://… (optional)" maxlength="500"></label>
+          <label>Banner image URL<input id="bannerUrlInput" name="bannerUrl" type="url" placeholder="https://… (optional)" maxlength="500"></label>
+          <label>Public profile headline<input id="publicHeadlineInput" name="publicHeadline" maxlength="180" placeholder="What makes your company unique?"></label>
+          <div class="field-wide branding-hint"><i data-lucide="image"></i><span>Use image URLs for this demo. A connected backend should validate logo and banner uploads and enforce file-size limits.</span></div>
+        </div>
+      </section>
+      <section class="form-page" data-profile-page="privacy">
+        <div class="privacy-settings">
+          <label class="privacy-setting"><span><strong>Show company email publicly</strong><small>Display your business email on your public company profile.</small></span><input id="publicEmailInput" type="checkbox"><span class="switch-ui"></span></label>
+          <label class="privacy-setting"><span><strong>Show phone number publicly</strong><small>Allow visitors to see your business contact number.</small></span><input id="publicPhoneInput" type="checkbox"><span class="switch-ui"></span></label>
+          <label class="privacy-setting"><span><strong>Show exact location publicly</strong><small>Display your location on the public company profile.</small></span><input id="publicLocationInput" type="checkbox" checked><span class="switch-ui"></span></label>
+          <label class="privacy-setting"><span><strong>Make company profile discoverable</strong><small>Allow job seekers to find your company profile.</small></span><input id="discoverableInput" type="checkbox" checked><span class="switch-ui"></span></label>
+        </div>
+        <p class="form-hint"><i data-lucide="shield-check"></i> These switches show the intended settings in this prototype. A trusted backend must enforce visibility and permissions.</p>
+      </section>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" id="previewProfileBtn"><i data-lucide="eye"></i> Preview changes</button>
+        <button type="button" class="btn btn-outline" id="undoProfileBtn"><i data-lucide="rotate-ccw"></i> Undo saved change</button>
+        <span class="spacer"></span><button type="button" class="btn btn-ghost" data-close="profileModal">Cancel</button>
+        <button type="submit" class="btn btn-primary"><i data-lucide="save"></i> Save profile</button>
+      </div>
+      <p class="modal-note"><i data-lucide="info"></i> Profile edits are saved in this browser demo only. Connect a backend for secure, account-wide saving.</p>
+    </form>
+  </dialog>
+
+  <!-- Customize dashboard panel -->
+  <dialog class="modal customize-modal" id="customizeModal">
+    <form id="customizeForm">
+      <div class="modal-header"><div><span class="eyebrow">YOUR WORKSPACE</span><h2>Customize dashboard</h2><p>Choose which sections you see and arrange them for your workflow.</p></div><button type="button" class="icon-btn modal-close" data-close="customizeModal" aria-label="Close"><i data-lucide="x"></i></button></div>
+      <div class="customize-theme-row">
+        <div><strong>Compact spacing</strong><small>Fit more content on the screen.</small></div>
+        <label class="switch-label"><input type="checkbox" id="compactToggle"><span class="switch-ui"></span></label>
+      </div>
+      <div class="customize-section-title">Show or hide sections</div>
+      <div id="cardSettings" class="card-settings"></div>
+      <div class="customize-section-title">Rearrange sections</div>
+      <p class="small-help">Use the arrows to choose the order. Hidden sections remain available here.</p>
+      <div id="reorderSettings" class="card-settings"></div>
+      <div class="modal-footer"><button type="button" class="btn btn-outline" id="resetLayoutBtn"><i data-lucide="rotate-ccw"></i> Reset layout</button><span class="spacer"></span><button type="button" class="btn btn-ghost" data-close="customizeModal">Cancel</button><button type="submit" class="btn btn-primary"><i data-lucide="check"></i> Save preferences</button></div>
+    </form>
+  </dialog>
+
+  <!-- Add job dialog -->
+  <dialog class="modal" id="jobModal">
+    <form id="jobForm">
+      <div class="modal-header"><div><span class="eyebrow">HIRING</span><h2>Post a new job</h2><p>Add a role to your dashboard preview.</p></div><button type="button" class="icon-btn modal-close" data-close="jobModal" aria-label="Close"><i data-lucide="x"></i></button></div>
+      <div class="form-grid">
+        <label class="field-wide">Job title<input id="jobTitleInput" required maxlength="120" placeholder="e.g. Backend Developer"></label>
+        <label>Work type<select id="jobTypeInput"><option>Full-time</option><option>Part-time</option><option>Contract</option><option>Internship</option></select></label>
+        <label>Location<input id="jobLocationInput" maxlength="120" placeholder="Bengaluru / Remote"></label>
+        <label>Number of openings<input id="jobOpeningsInput" type="number" min="1" max="500" value="1"></label>
+        <label>Experience level<select id="jobLevelInput"><option>Entry level</option><option>Mid level</option><option>Senior level</option><option>Lead</option></select></label>
+        <label class="field-wide">Short description<textarea id="jobDescriptionInput" rows="3" maxlength="1000" placeholder="Describe the role and key responsibilities…"></textarea></label>
+      </div>
+      <div class="modal-footer"><span class="spacer"></span><button type="button" class="btn btn-ghost" data-close="jobModal">Cancel</button><button type="submit" class="btn btn-primary"><i data-lucide="plus"></i> Add job to demo</button></div>
+      <p class="modal-note"><i data-lucide="info"></i> This creates a local preview item. A backend is required to publish real jobs.</p>
+    </form>
+  </dialog>
+
+  <!-- Generic preview / action dialog -->
+  <dialog class="modal preview-modal" id="previewModal">
+    <div class="modal-header"><div><span class="eyebrow">PREVIEW</span><h2 id="previewTitle">Company profile preview</h2><p id="previewSubtitle">A preview of what other users might see.</p></div><button type="button" class="icon-btn modal-close" data-close="previewModal" aria-label="Close"><i data-lucide="x"></i></button></div>
+    <div id="previewBody" class="preview-body"></div>
+    <div class="modal-footer"><span class="spacer"></span><button type="button" class="btn btn-primary" data-close="previewModal">Done</button></div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="../../js/core/motion.js"></script>
+
+  <script src="../../js/dashboard/jerry-guide/jerry-site.js" data-jerry-image="../../images/jerry-mascot.png"></script>
+<script src="../../js/core/site-experience.js"></script>
+  </body>
+</html>

@@ -1,0 +1,210 @@
+﻿:root {
+ --tb:#315F80;
+ --tb-dark:#193B55;
+ --tb-light:#65BDEB;
+ --tb-text:#18354D;
+}
+
+html, body, #container, #content {
+ color:var(--tb-text)!important;
+ background:#EAF3FA!important;
+ font-family:"Segoe UI",Arial,sans-serif!important;
+}
+
+#header {
+ background:var(--tb-dark)!important;
+ color:white!important;
+ border-bottom:3px solid var(--tb-light)!important;
+}
+
+#header a, #header #user-tools,
+#header #user-tools a {
+ color:white!important;
+}
+
+.breadcrumbs {
+ background:#D5EAF7!important;
+ color:#18354D!important;
+}
+
+h1,h2,h3,h4,label,p,li,
+.help,.helptext,.form-row {
+ color:var(--tb-text)!important;
+}
+
+a:link,a:visited {
+ color:var(--tb)!important;
+}
+
+a:hover {
+ color:#087DBB!important;
+}
+
+.module,.inline-group,#changelist,
+#changelist-form,.results {
+ background:#FFFFFF!important;
+ border:1px solid #B9D4E6!important;
+ border-radius:12px!important;
+ overflow:hidden;
+}
+
+.module caption,.module h2,
+#changelist-filter h2 {
+ background:var(--tb)!important;
+ color:#FFFFFF!important;
+}
+
+#result_list thead th,
+#changelist table thead th {
+ background:#D5EAF7!important;
+ color:#17354D!important;
+}
+
+#result_list td,#result_list th,
+.module td,.module th {
+ color:#17354D!important;
+ border-color:#D2E2ED!important;
+}
+
+.button,input[type=submit],
+input[type=button],button,
+.submit-row input,.object-tools a {
+ background:var(--tb)!important;
+ color:#FFFFFF!important;
+ border:1px solid var(--tb)!important;
+ border-radius:8px!important;
+ padding:8px 14px!important;
+}
+
+.button:hover,input[type=submit]:hover,
+button:hover {
+ background:var(--tb-dark)!important;
+ color:white!important;
+}
+
+input,select,textarea {
+ color:#17354D!important;
+ background:#FFFFFF!important;
+ border:1px solid #A9C8DD!important;
+ border-radius:7px!important;
+}
+
+#nav-sidebar {
+ background:#E0EFF8!important;
+}
+
+#nav-sidebar a,#nav-sidebar th,
+#nav-sidebar td {
+ color:#18354D!important;
+}
+
+#nav-sidebar .current-model {
+ background:#C3E5F7!important;
+}
+
+.login {
+ background:
+ linear-gradient(rgba(20,57,85,.24),rgba(20,57,85,.24)),
+ url("../img/talentbridge-office.jpg")
+ center center/cover fixed no-repeat!important;
+}
+
+.login #container {
+ background:rgba(255,255,255,.96)!important;
+ border:1px solid #9CCBE6!important;
+ border-radius:17px!important;
+ box-shadow:0 18px 55px rgba(15,48,72,.25)!important;
+ overflow:hidden;
+}
+
+.login #header {
+ background:var(--tb-dark)!important;
+ border-bottom:3px solid var(--tb-light)!important;
+}
+
+.login #content {
+ background:transparent!important;
+}
+
+.login #content h1,
+.login label {
+ color:#18354D!important;
+}
+
+.login .submit-row {
+ background:transparent!important;
+}
+
+/* TalentBridge login background */
+body.login {
+  background-color: #244765 !important;
+  background-image:
+    linear-gradient(rgba(36,71,101,.28),rgba(36,71,101,.28)),
+    url("/static/admin/img/talentbridge-login-office.png") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-attachment: fixed !important;
+  background-repeat: no-repeat !important;
+}
+body.login #container {
+  background: rgba(255,255,255,.94) !important;
+  border: 1px solid #65BDEB !important;
+  border-radius: 16px !important;
+  box-shadow: 0 15px 45px rgba(0,0,0,.22) !important;
+}
+body.login #header {
+  background: #244765 !important;
+  color: white !important;
+}
+body.login label, body.login h1, body.login p {
+  color: #244765 !important;
+}
+body.login input[type="text"], body.login input[type="password"] {
+  border: 1px solid #65BDEB !important;
+  border-radius: 8px !important;
+}
+body.login input[type="submit"] {
+  background: #244765 !important;
+  color: white !important;
+  border-radius: 8px !important;
+}
+
+/* TalentBridge AI - Login Background Image */
+body.login {
+    background:
+      linear-gradient(rgba(255,255,255,.12),rgba(255,255,255,.12)),
+      url("/static/admin/img/talentbridge-login-bg.png?v=2")
+      center center / cover fixed no-repeat !important;
+    background-color: #244765 !important;
+}
+body.login #container {
+    background: rgba(255,255,255,.94) !important;
+    border: 1px solid #65BDEB !important;
+    border-radius: 18px !important;
+    box-shadow: 0 15px 45px rgba(0,0,0,.18) !important;
+}
+
+
+
+
+
+/* TB_LOGIN_BACKGROUND_START */
+body.login {
+    background-image: url('/static/admin/images/Loginpage.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+}
+/* TB_LOGIN_BACKGROUND_END */
+
+
+/* TalentBridge Admin Login Wallpaper */
+body.login {
+    background-image: linear-gradient(rgba(20, 40, 55, 0.12), rgba(20, 40, 55, 0.12)), url("../images/Loginpage.jpg") !important;
+    background-position: center center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+    background-color: #244765 !important;
+}

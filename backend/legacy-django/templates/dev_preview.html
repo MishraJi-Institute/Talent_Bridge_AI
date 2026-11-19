@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TalentBridgeAI | Live Development Preview</title>
+  <link rel="stylesheet" href="/css/components/dev-preview.css">
+  <script src="/js/core/dev-preview.js" defer></script>
+</head>
+<body data-live-preview="true">
+  <main class="preview-shell">
+    <header class="preview-heading">
+      <a class="brand" href="/">TalentBridge<span>AI</span></a>
+      <span class="mode-badge">Local development</span>
+      <h1>Live preview</h1>
+      <p>Save a source file to preview it. Django restarts itself when backend code changes.</p>
+    </header>
+
+    <section class="status-grid" aria-label="Development status">
+      <article class="status-card">
+        <h2>Server</h2>
+        <p id="server-status" class="status-value" aria-live="polite">Checking…</p>
+      </article>
+      <article class="status-card">
+        <h2>Website URL</h2>
+        <a id="website-url" class="status-value" href="/">http://127.0.0.1:8000/</a>
+      </article>
+      <article class="status-card">
+        <h2>Development mode</h2>
+        <p id="development-mode" class="status-value">Checking…</p>
+      </article>
+      <article class="status-card">
+        <h2>Last successful reload / server start</h2>
+        <p id="last-reload" class="status-value">Checking…</p>
+      </article>
+      <article class="status-card">
+        <h2>Backend</h2>
+        <p id="backend-status" class="status-value">Checking…</p>
+      </article>
+      <article class="status-card">
+        <h2>Frontend</h2>
+        <p id="frontend-status" class="status-value">Checking…</p>
+      </article>
+    </section>
+
+    <section class="error-card" aria-labelledby="error-heading">
+      <h2 id="error-heading">Current errors</h2>
+      <ul id="current-errors" aria-live="polite"><li>Checking application and asset status…</li></ul>
+    </section>
+
+    <footer>
+      <a href="/">Open the TalentBridgeAI website</a>
+      <span>Refresh checks run automatically while this page is open.</span>
+    </footer>
+  </main>
+</body>
+</html>

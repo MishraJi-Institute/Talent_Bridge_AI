@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Review the profile details employers may use to understand your experience and interests.">
+<title>My Profile | TalentBridge AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base/portal-pages.css">
+  <link rel="stylesheet" href="../css/base/redesign.css">
+<link rel="stylesheet" href="../css/components/site-experience.css">
+  <style id="fix-all-navbar-strikethrough">
+header a,
+header nav a,
+nav a,
+.navbar a,
+.nav-links a,
+.site-header a,
+header a *,
+nav a *,
+.navbar a *,
+.nav-links a *,
+.site-header a * {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    text-decoration-style: none !important;
+}
+</style>
+</head>
+<body>
+<div class="tb-wrap" aria-live="polite">{% if messages %}{% for message in messages %}<div class="tb-alert tb-alert--{{ message.tags|default:'info' }}" role="status">{{ message }}</div>{% endfor %}{% endif %}</div>
+
+<header class="tb-header"><div class="tb-nav"><a class="tb-brand" href="../index.html">TalentBridge AI<span>:</span></a><nav class="tb-links" aria-label="Main navigation"><a href="../index.html">Home</a><a href="job-listings.html">Browse Jobs</a><a href="categories.html">Categories</a><a href="about.html">About</a><a href="help.html">Help</a><a href="login.html">Sign in</a><a class="tb-button" href="signup-role.html">Get started</a></nav></div></header>
+<main><div class="tb-wrap auth-messages" role="status"><p></p></div><section class="tb-hero"><div class="tb-wrap"><span class="tb-eyebrow">YOUR TALENTBRIDGE PROFILE</span><h1>Your professional story, in one place.</h1><p>Review and update your professional details.</p></div></section>
+<section class="tb-content"><div class="tb-wrap">
+<div class="tb-grid"><article class="tb-card"><h2>Lead with your focus</h2><p>Use a concise headline that tells employers what you do and what kinds of roles interest you.</p></article><article class="tb-card"><h2>Show evidence</h2><p>Describe relevant experience and add specific skills you can demonstrate in a conversation or work sample.</p></article><article class="tb-card"><h2>Protect your privacy</h2><p>Share only the contact and career information you want included. Never put passwords or sensitive identity details in your public profile.</p></article></div>
+<div class="tb-card tb-demo-form-card" style="margin-top:20px"><form class="tb-form" method="post" action="{% url 'profile' %}">{% csrf_token %}<div class="tb-two"><label>Full name<input name="full_name" value="{{ profile.full_name|default:request.user.get_full_name }}" autocomplete="name" maxlength="100" required></label><label>Email address<input name="email" type="email" value="{{ request.user.email }}" autocomplete="email" required></label></div><div class="tb-two"><label>Location<input name="location" value="{{ profile.location|default:'' }}" autocomplete="address-level2" maxlength="100"></label><label>Professional headline<input name="headline" value="{{ profile.headline|default:'' }}" maxlength="200"></label></div><div class="tb-two"><label>Experience<input name="experience" value="{{ profile.experience|default:'' }}" maxlength="100"></label><label>Skills<input name="skills" value="{{ profile.skills|default:'' }}" maxlength="200"></label></div><label>Education<textarea name="education" maxlength="2000" rows="3" placeholder="Add qualifications or courses, one per line">{{ education }}</textarea></label><label>Professional summary<textarea name="description" maxlength="5000">{{ profile.bio|default:'' }}</textarea></label><div class="tb-workspace-actions"><button class="tb-button" type="submit">Save profile changes</button><a class="tb-button secondary" href="jobseeker-signup.html">Create a job seeker account</a></div></form></div>
+</div></section></main>
+<footer class="tb-footer"><div class="tb-wrap tb-footer-inner"><span>© TalentBridge AI. Built to connect people with opportunity.</span><span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a></span></div></footer>
+<script src="../js/core/site-experience.js"></script>
+  </body></html>

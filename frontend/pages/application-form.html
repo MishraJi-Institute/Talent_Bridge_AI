@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Preview the application steps and prepare information for an opportunity.">
+<title>Apply for {{ job.title|default:"a job" }} | TalentBridge AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base/portal-pages.css">
+  <link rel="stylesheet" href="../css/base/redesign.css">
+<link rel="stylesheet" href="../css/components/site-experience.css">
+  <style id="fix-all-navbar-strikethrough">
+header a,
+header nav a,
+nav a,
+.navbar a,
+.nav-links a,
+.site-header a,
+header a *,
+nav a *,
+.navbar a *,
+.nav-links a *,
+.site-header a * {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    text-decoration-style: none !important;
+}
+</style>
+</head>
+<body>
+<div class="tb-wrap" aria-live="polite">{% if messages %}{% for message in messages %}<div class="tb-alert tb-alert--{{ message.tags|default:'info' }}" role="status">{{ message }}</div>{% endfor %}{% endif %}</div>
+
+<header class="tb-header"><div class="tb-nav"><a class="tb-brand" href="../index.html">TalentBridge AI<span>:</span></a><nav class="tb-links" aria-label="Main navigation"><a href="../index.html">Home</a><a href="job-listings.html">Browse Jobs</a><a href="categories.html">Categories</a><a href="about.html">About</a><a href="help.html">Help</a><a href="login.html">Sign in</a><a class="tb-button" href="signup-role.html">Get started</a></nav></div></header>
+<main><div class="tb-wrap auth-messages" role="status">{% if form_notice %}<p>{{ form_notice }}</p>{% endif %}</div><section class="tb-hero"><div class="tb-wrap"><span class="tb-eyebrow">TALENTBRIDGE APPLICATION</span><h1>Apply for {{ job.title|default:"this opportunity" }}</h1><p>Review the role and submit your application securely.</p></div></section>
+<section class="tb-content"><div class="tb-wrap">
+{% if demo_role %}<div class="tb-demo-notice" role="note"><span class="tb-demo-notice__icon" aria-hidden="true">i</span><div><strong>Sample application preview</strong>This illustrative form will not send or save an application. Use a live job listing to apply.</div></div>{% endif %}
+<div class="tb-grid">
+<article class="tb-card"><span class="tb-pill">01 · Review</span><h2>Check the opportunity</h2><p>Confirm the role title, location, work arrangement, and required skills. Ask the employer to clarify anything that is not described.</p></article>
+<article class="tb-card"><span class="tb-pill">02 · Prepare</span><h2>Share relevant experience</h2><p>Use a concise cover note to connect your experience with the work. Avoid including passwords, identity numbers, or other sensitive information.</p></article>
+<article class="tb-card"><span class="tb-pill">03 · Submit</span><h2>Keep a record</h2><p>In a connected service, review your details and look for a confirmation from the application system before assuming a submission is complete.</p></article>
+</div>
+<div class="tb-card" style="margin-top:20px">{% if job %}<div class="tb-demo-record__top"><div><span class="tb-pill">Selected opportunity</span><h2>{{ job.title }}</h2><p>{{ job.company.name }} · {{ job.location }} · {{ job.get_work_mode_display|default:job.work_mode }}</p></div></div>{% elif demo_role %}<div class="tb-demo-record__top"><div><span class="tb-pill">Sample opportunity</span><h2>{{ demo_role|title }}</h2></div></div>{% endif %}<form class="tb-form" method="post" action="{% if job %}{% url 'apply_job' job.id %}{% else %}#{% endif %}">{% csrf_token %}<input type="hidden" name="confirm" value="yes"><label>Full name<input autocomplete="name" value="{{ request.user.get_full_name }}" disabled></label><label>Email address<input type="email" autocomplete="email" value="{{ request.user.email }}" disabled></label><label>Cover note<textarea name="cover_note" maxlength="5000" placeholder="Briefly explain why you are a good fit."></textarea></label><p class="tb-small" data-application-context>{% if demo_role %}This preview does not save or send your information.{% else %}Your application will be associated with your signed-in account.{% endif %}</p><div class="tb-workspace-actions"><a class="tb-button secondary" data-review-job-details href="{% if job %}{% url 'job_detail' job.id %}{% elif demo_role %}job-detail.html?role={{ demo_role }}{% else %}{% url 'jobs' %}{% endif %}">Review job details</a><button class="tb-button" type="submit">{% if demo_role %}Preview application{% else %}Submit application{% endif %}</button></div></form></div>{% if demo_role %}<script src="../js/core/demo-forms.js"></script>{% endif %}
+</div></section></main>
+<footer class="tb-footer"><div class="tb-wrap tb-footer-inner"><span>© TalentBridge AI. Built to connect people with opportunity.</span><span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a></span></div></footer>
+<script src="../js/jobs/job-preview.js"></script>
+<script src="../js/core/site-experience.js"></script>
+  </body></html>

@@ -1,0 +1,19 @@
+TALENTBRIDGE AI UPDATE VALIDATION
+
+PASS: Python compilation - 41 files, 0 syntax errors.
+PASS: JavaScript syntax - js/demo-forms.js, site/js/demo-forms.js,
+      js/dashboard-guard.js, site/js/dashboard-guard.js.
+PASS: Static references - 55 HTML files and 33 CSS files, no missing local references.
+
+CHANGES:
+1. Demo authentication on the Live Server/static preview no longer silently logs users in.
+   Static preview directs authentication attempts to the Django server.
+2. Browser-only demo authentication now requires explicit ?demo=1.
+3. Dashboard guard only restores demo session when ?demo=1 is explicitly present.
+4. Google OAuth now requests prompt=select_account.
+5. Existing .env and SQLite database are intentionally excluded from this update archive
+   to protect credentials and preserve existing user/admin data when merged over the project.
+
+NOT CLAIMED:
+- Django runtime/tests and external Google OAuth cannot be executed in this packaging environment.
+- Real Google account sign-in still depends on a valid Google Cloud OAuth Web Client and redirect URI.

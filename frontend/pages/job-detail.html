@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Review the role, responsibilities and qualifications before deciding whether to apply.">
+  <title>Job Details | TalentBridge AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/components/site-header.css?v=20261118-jobs2">
+  <link rel="stylesheet" href="/css/base/portal-pages.css">
+  <link rel="stylesheet" href="/css/base/tb-foundation.css">
+  <style>
+    .logo a:has(img)::before { content: none !important; display: none !important; }
+    .logo a img { display: block; width: 36px; height: 36px; border-radius: 10px; }
+    .job-detail-card {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 28px;
+      border: 1px solid #e4eaf3;
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 12px 32px rgba(16, 42, 86, .06);
+    }
+    .job-detail-card h2 {
+      margin: 0;
+      font-size: clamp(1.45rem, 2.4vw, 2rem);
+      letter-spacing: -.03em;
+    }
+    .job-detail-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 4px 0 8px;
+    }
+    .job-detail-meta span {
+      display: inline-flex;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #f1f5f9;
+      color: #334155;
+      font-size: .82rem;
+      font-weight: 650;
+    }
+    .job-detail-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+  </style>
+</head>
+<body data-public-page>
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <a href="/">
+          <img src="/images/talentbridge-mark.svg" width="36" height="36" alt="">
+          <span>TalentBridge<span class="logo-accent">AI</span></span>
+        </a>
+      </div>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="/jobs/" aria-current="page">Jobs</a>
+        <a href="/companies/">Companies</a>
+        <a href="/pages/employer.html">For Employers</a>
+        <a href="/careers/">Resources</a>
+        <a href="/pages/jobseaker.html">For Job Seekers</a>
+        <a href="/pricing/">Pricing</a>
+      </nav>
+      <div class="auth-actions">
+        <a href="/login/" class="auth-btn auth-signin">Sign In</a>
+        <a href="/signup/" class="auth-btn auth-signup">Sign Up</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="tb-hero">
+      <div class="tb-wrap">
+        <span class="tb-eyebrow">{% if job.is_demo %}Illustrative listing{% else %}Opportunity details{% endif %}</span>
+        <h1>Understand the role before you apply.</h1>
+        <p>Review responsibilities, skills, and expectations to decide whether this opportunity fits your goals.</p>
+      </div>
+    </section>
+
+    {% if not job %}
+    <section class="tb-content">
+      <div class="tb-wrap">
+        <div class="tb-demo-notice" role="note">
+          <span class="tb-demo-notice__icon" aria-hidden="true">i</span>
+          <div><strong>Illustrative listing.</strong> This preview shows how a role page looks. It is not a live vacancy.</div>
+        </div>
+        <article class="job-detail-card">
+          <span class="tb-pill" data-job-detail-category>Technology</span>
+          <h2 data-job-detail-title>Frontend Developer</h2>
+          <p data-job-detail-message>Build accessible, responsive product interfaces with a collaborative design and engineering team.</p>
+          <div class="job-detail-meta">
+            <span data-job-detail-company>Example employer</span>
+            <span data-job-detail-location>Remote</span>
+          </div>
+          <h3>What you may work on</h3>
+          <ul class="tb-workspace-list" data-job-detail-responsibilities>
+            <li>Build accessible, responsive product interfaces.</li>
+            <li>Collaborate with design and API teams to deliver features.</li>
+            <li>Review code and improve front-end quality.</li>
+          </ul>
+          <h3>Skills to review</h3>
+          <div data-job-detail-skills>
+            <span class="tb-pill">JavaScript</span>
+            <span class="tb-pill">React</span>
+            <span class="tb-pill">CSS</span>
+          </div>
+          <div class="job-detail-actions">
+            <a class="tb-button" href="/jobs/">Back to jobs</a>
+            <a class="tb-button secondary" href="/signup/">Create an account</a>
+          </div>
+        </article>
+      </div>
+    </section>
+    {% endif %}
+
+    {% if job %}
+    <section class="tb-content">
+      <div class="tb-wrap">
+        {% if job.is_demo %}
+        <div class="tb-demo-notice" role="note">
+          <span class="tb-demo-notice__icon" aria-hidden="true">i</span>
+          <div><strong>Illustrative listing.</strong> Demonstration data only — applications are disabled.</div>
+        </div>
+        {% endif %}
+        <article class="job-detail-card">
+          <div class="job-detail-meta">
+            <span>{{ job.get_job_type_display }}</span>
+            <span>{{ job.work_mode }}</span>
+            {% if job.location %}<span>{{ job.location }}</span>{% endif %}
+          </div>
+          <h2>{{ job.title }}</h2>
+          <p><strong>{{ job.company.name }}</strong>{% if job.location %} · {{ job.location }}{% endif %}</p>
+          <p>{{ job.description }}</p>
+          {% if job.requirements %}<h3>Requirements</h3><p>{{ job.requirements }}</p>{% endif %}
+          {% if job.skills %}<h3>Skills</h3><p>{{ job.skills }}</p>{% endif %}
+          {% if job.salary %}<p><strong>Salary:</strong> {{ job.salary }}</p>{% endif %}
+          <div class="job-detail-actions">
+            {% if job.is_demo %}
+            <span class="tb-small">Applications are disabled for illustrative listings.</span>
+            {% else %}
+            <a class="tb-button" href="{% url 'apply_job' job.id %}">Apply now</a>
+            {% endif %}
+            {% if user.is_authenticated and not job.is_demo %}
+            <form method="post" action="{% url 'toggle-saved-job' job.id %}">
+              {% csrf_token %}
+              <input type="hidden" name="next" value="{{ request.path }}">
+              <button class="tb-button secondary" type="submit">Save job</button>
+            </form>
+            {% endif %}
+            <a class="tb-button secondary" href="{% url 'jobs' %}">Back to jobs</a>
+          </div>
+        </article>
+      </div>
+    </section>
+    {% endif %}
+  </main>
+
+  <footer class="tb-footer">
+    <div class="tb-wrap tb-footer-inner">
+      <span>© TalentBridge AI.</span>
+      <span><a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · <a href="/contact/">Contact</a></span>
+    </div>
+  </footer>
+  <script src="/js/jobs/job-preview.js"></script>
+  <script src="/js/core/site-experience.js?v=20261118-dir2"></script>
+</body>
+</html>

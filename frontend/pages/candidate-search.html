@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Search applicants to your company's approved job listings.">
+  <title>Candidate Search | TalentBridge AI</title>
+  <link rel="stylesheet" href="../css/base/portal-pages.css">
+  <link rel="stylesheet" href="../css/base/redesign.css">
+  <link rel="stylesheet" href="../css/components/site-experience.css">
+  <style>
+    .candidate-search { max-width: 1080px; margin: 32px auto; padding: 0 20px; color: #17233d; }
+    .candidate-search__panel { padding: 24px; border: 1px solid #e2e8f0; border-radius: 16px; background: #fff; box-shadow: 0 8px 28px rgba(20,40,80,.06); }
+    .candidate-search__form { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0; }
+    .candidate-search__form input { flex: 1 1 260px; min-width: 0; padding: 12px 14px; border: 1px solid #cbd5e1; border-radius: 9px; font: inherit; }
+    .candidate-search__button { padding: 12px 18px; border: 0; border-radius: 9px; background: #145cff; color: #fff; font: inherit; font-weight: 700; cursor: pointer; }
+    .candidate-search__notice { padding: 14px 16px; border-left: 4px solid #145cff; border-radius: 8px; background: #eff6ff; line-height: 1.55; }
+    .candidate-search__table-wrap { overflow-x: auto; margin-top: 20px; }
+    .candidate-search__table { width: 100%; min-width: 680px; border-collapse: collapse; }
+    .candidate-search__table th, .candidate-search__table td { padding: 13px 12px; border-bottom: 1px solid #e5eaf2; text-align: left; vertical-align: top; }
+    .candidate-search__table th { color: #475569; font-size: .9rem; }
+    .candidate-search__muted { color: #64748b; font-size: .92rem; }
+    .candidate-search__empty { padding: 22px; border-radius: 12px; background: #f8fafc; color: #64748b; }
+    .candidate-search__pagination { display: flex; justify-content: space-between; gap: 12px; margin-top: 20px; }
+    .candidate-search__pagination a { color: #145cff; font-weight: 650; }
+    @media (max-width: 600px) { .candidate-search__panel { padding: 18px; } }
+  </style>
+</head>
+<body>
+  <header class="tb-header">
+    <div class="tb-nav">
+      <a class="tb-brand" href="../index.html">TalentBridge AI<span>:</span></a>
+      <nav class="tb-links" aria-label="Main navigation">
+        <a href="../index.html">Home</a>
+        <a href="/manage-applications/">Applications</a>
+        <a href="/manage-jobs/">Manage jobs</a>
+        <a href="/account-security/">Account security</a>
+      </nav>
+    </div>
+  </header>
+  <main class="candidate-search">
+    <section class="candidate-search__panel">
+      <p class="tb-eyebrow">EMPLOYER WORKSPACE</p>
+      <h1>Search your applicants</h1>
+      <p>Find applicants to your company’s non-demo jobs, or search profiles that job seekers have chosen to make discoverable.</p>
+      <p class="candidate-search__notice">
+        Applicant results belong to your own approved company. The profile directory below contains only job seekers
+        who explicitly opted in; their contact details and resumes are never shown there.
+      </p>
+      <form class="candidate-search__form" method="get" action="{% url 'candidate-search' %}">
+        <label class="sr-only" for="candidate-query">Search applicants and discoverable profiles</label>
+        <input id="candidate-query" type="search" name="q" value="{{ query }}" maxlength="100"
+               placeholder="Name, skill, location, email, or role" autocomplete="off">
+        <button class="candidate-search__button" type="submit">Search candidates</button>
+      </form>
+      {% if applications %}
+        <p class="candidate-search__muted">
+          {{ page_obj.paginator.count }} matching application{{ page_obj.paginator.count|pluralize }}.
+        </p>
+        <div class="candidate-search__table-wrap">
+          <table class="candidate-search__table">
+            <thead>
+              <tr><th scope="col">Candidate</th><th scope="col">Role</th><th scope="col">Skills</th><th scope="col">Status</th><th scope="col">Action</th></tr>
+            </thead>
+            <tbody>
+              {% for application in applications %}
+                <tr>
+                  <td>
+                    <strong>{% if application.applicant.profile.full_name %}{{ application.applicant.profile.full_name }}{% else %}{{ application.applicant.get_full_name|default:application.applicant.email }}{% endif %}</strong>
+                    <br><span class="candidate-search__muted">{{ application.applicant.email }}</span>
+                  </td>
+                  <td>{{ application.job.title }}</td>
+                  <td>{{ application.applicant.profile.skills|default:"Not provided" }}</td>
+                  <td>{{ application.get_status_display }}</td>
+                  <td><a href="{% url 'candidate-details' %}?application_id={{ application.id }}">Review application</a></td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% if page_obj.has_other_pages %}
+          <nav class="candidate-search__pagination" aria-label="Search result pages">
+            {% if page_obj.has_previous %}
+              <a href="?q={{ query|urlencode }}&amp;page={{ page_obj.previous_page_number }}">Previous</a>
+            {% else %}<span></span>{% endif %}
+            <span class="candidate-search__muted">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+            {% if page_obj.has_next %}
+              <a href="?q={{ query|urlencode }}&amp;page={{ page_obj.next_page_number }}">Next</a>
+            {% else %}<span></span>{% endif %}
+          </nav>
+        {% endif %}
+      {% else %}
+        <div class="candidate-search__empty">
+          {% if query %}No applications matched “{{ query }}”. Try another search term or clear your search.{% else %}No candidates have applied to your non-demo jobs yet.{% endif %}
+        </div>
+      {% endif %}
+      <section aria-labelledby="discoverable-heading">
+        <h2 id="discoverable-heading">Profiles open to discovery</h2>
+        <p class="candidate-search__muted">
+          These job seekers opted in to appear here. Only their name, headline, skills, experience, location, and summary are shown.
+        </p>
+        {% if discoverable_profiles %}
+          <div class="candidate-search__table-wrap">
+            {% for profile in discoverable_profiles %}
+              <article class="candidate-search__empty">
+                <h3>{% if profile.full_name %}{{ profile.full_name }}{% else %}Job seeker{% endif %}</h3>
+                {% if profile.headline %}<p><strong>{{ profile.headline }}</strong></p>{% endif %}
+                {% if profile.skills %}<p><strong>Skills:</strong> {{ profile.skills }}</p>{% endif %}
+                {% if profile.experience %}<p><strong>Experience:</strong> {{ profile.experience }}</p>{% endif %}
+                {% if profile.location %}<p><strong>Location:</strong> {{ profile.location }}</p>{% endif %}
+                {% if profile.bio %}<p>{{ profile.bio }}</p>{% endif %}
+              </article>
+            {% endfor %}
+          </div>
+          {% if profile_page_obj.has_other_pages %}
+            <nav class="candidate-search__pagination" aria-label="Discoverable profile pages">
+              {% if profile_page_obj.has_previous %}
+                <a href="?q={{ query|urlencode }}&amp;profile_page={{ profile_page_obj.previous_page_number }}">Previous profiles</a>
+              {% else %}<span></span>{% endif %}
+              <span class="candidate-search__muted">Page {{ profile_page_obj.number }} of {{ profile_page_obj.paginator.num_pages }}</span>
+              {% if profile_page_obj.has_next %}
+                <a href="?q={{ query|urlencode }}&amp;profile_page={{ profile_page_obj.next_page_number }}">Next profiles</a>
+              {% else %}<span></span>{% endif %}
+            </nav>
+          {% endif %}
+        {% else %}
+          <div class="candidate-search__empty">
+            {% if query %}No opted-in profiles matched “{{ query }}”.{% else %}No job seekers have opted in to profile discovery yet.{% endif %}
+          </div>
+        {% endif %}
+      </section>
+      <p><a href="/manage-applications/">Back to application management</a></p>
+    </section>
+  </main>
+  <script src="../js/core/site-experience.js"></script>
+</body>
+</html>

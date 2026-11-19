@@ -1,0 +1,253 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [ 6 0 R 8 0 R 10 0 R 12 0 R 14 0 R 16 0 R ] /Count 6 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+5 0 obj
+<< /Length 3003 >>
+stream
+0.055 0.145 0.330 rg 0 742 612 50 re f
+0.760 0.870 1.000 rg BT /F2 8 Tf 1 0 0 1 52.0 762.0 Tm (TALENTBRIDGE AI  |  BEGINNER GUIDE) Tj ET
+1.000 1.000 1.000 rg BT /F2 17 Tf 1 0 0 1 52.0 738.0 Tm (TalentBridge AI: A Beginner Guide) Tj ET
+0.080 0.310 0.680 rg BT /F2 12 Tf 1 0 0 1 52.0 707.0 Tm (The project journey, in order) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 689.0 Tm (You began by asking to remove the Django setup so the website could run on static services) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 676.0 Tm (  such as GitHub Pages or Netlify, while keeping Google sign-in.) Tj ET
+0.925 0.957 1 rg 47 616 518 45 re f
+0.120 0.250 0.420 rg BT /F2 9.5 Tf 1 0 0 1 57.0 657.0 Tm (In plain English: Django normally runs a server that builds pages. A static site is made) Tj ET
+0.120 0.250 0.420 rg BT /F2 9.5 Tf 1 0 0 1 57.0 646.0 Tm (   of ready-to-serve HTML, CSS, and JavaScript files. A static host serves those files) Tj ET
+0.120 0.250 0.420 rg BT /F2 9.5 Tf 1 0 0 1 57.0 635.0 Tm (   without running Django.) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 616.0 Tm (1. Keep the existing site and its local Django work safe while making a static version.) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 600.0 Tm (2. Connect sign-in to Supabase Auth, then configure Google as a Supabase provider.) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 584.0 Tm (3. Improve the sign-in and dashboard experience, and keep dashboards behind login.) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 568.0 Tm (4. Diagnose the Google return flow before publishing.) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 552.0 Tm (5. Prepare a beginner-friendly checklist for local testing and later deployment.) Tj ET
+0.080 0.310 0.680 rg BT /F2 12 Tf 1 0 0 1 52.0 533.0 Tm (What this guide covers) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 515.0 Tm (The guide follows those steps and explains which settings live in Supabase, which live in) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 502.0 Tm (  Google Cloud, how to start the local preview, what the app does after sign-in, and what) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 489.0 Tm (  remains to verify.) Tj ET
+0.925 0.957 1 rg 47 429 518 45 re f
+0.120 0.250 0.420 rg BT /F2 9.5 Tf 1 0 0 1 57.0 470.0 Tm (You do not need to understand Django or OAuth internals to follow the setup. Use the) Tj ET
+0.120 0.250 0.420 rg BT /F2 9.5 Tf 1 0 0 1 57.0 459.0 Tm (   exact URLs below and remember that Google Cloud and Supabase use two different) Tj ET
+0.120 0.250 0.420 rg BT /F2 9.5 Tf 1 0 0 1 57.0 448.0 Tm (   redirect URLs.) Tj ET
+0.78 0.83 0.90 RG 52 42 m 560 42 l S
+0.360 0.420 0.520 rg BT /F1 8 Tf 1 0 0 1 52.0 26.0 Tm (TalentBridge AI | Setup guide for beginners) Tj ET
+0.360 0.420 0.520 rg BT /F1 8 Tf 1 0 0 1 500.0 26.0 Tm (Page 1 of 6) Tj ET
+0.360 0.420 0.520 rg BT /F1 9 Tf 1 0 0 1 52 720 Tm (What you asked for, what changed, and how to run and publish it) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 5 0 R >>
+endobj
+7 0 obj
+<< /Length 2883 >>
+stream
+0.055 0.145 0.330 rg 0 742 612 50 re f
+0.760 0.870 1.000 rg BT /F2 8 Tf 1 0 0 1 52.0 762.0 Tm (TALENTBRIDGE AI  |  BEGINNER GUIDE) Tj ET
+1.000 1.000 1.000 rg BT /F2 17 Tf 1 0 0 1 52.0 738.0 Tm (1. From Django to a static website) Tj ET
+0.080 0.310 0.680 rg BT /F2 12 Tf 1 0 0 1 52.0 707.0 Tm (What changed) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 689.0 Tm (The website pages are now ordinary static files. The build helper is build_static.py, and) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 676.0 Tm (  it copies public HTML, CSS, JavaScript, and images into a folder named site. GitHub Pages) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 663.0 Tm (  and Netlify publish that folder.) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 646.0 Tm (The old Django code was moved into legacy-django/ rather than thrown away. This keeps it) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 633.0 Tm (  out of the static build while preserving the previous backend and local edits.) Tj ET
+0.080 0.310 0.680 rg BT /F2 12 Tf 1 0 0 1 52.0 613.0 Tm (What static hosting does not do) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 595.0 Tm (It does not run Django, Python server routes, or the old SQLite database.) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 578.0 Tm (Supabase Auth handles account sign-in. Job, application, profile, employer-management, and) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 565.0 Tm (  contact workflows are demonstrations for now; they do not save records to a production) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 552.0 Tm (  database.) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 535.0 Tm (Old Django accounts and SQLite records are not automatically copied to Supabase.) Tj ET
+0.080 0.310 0.680 rg BT /F2 12 Tf 1 0 0 1 52.0 515.0 Tm (Dashboard privacy) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 497.0 Tm (The dashboard pages check for a valid Supabase session. If a visitor is not signed in, the) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 484.0 Tm (  site sends them to the login page instead of showing the dashboard.) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 467.0 Tm (A dashboard guard bug was found during sign-in testing: it replaced the entire page body) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 454.0 Tm (  with the account email. That behavior was removed so it updates only the small account-) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 441.0 Tm (  email label.) Tj ET
+0.78 0.83 0.90 RG 52 42 m 560 42 l S
+0.360 0.420 0.520 rg BT /F1 8 Tf 1 0 0 1 52.0 26.0 Tm (TalentBridge AI | Setup guide for beginners) Tj ET
+0.360 0.420 0.520 rg BT /F1 8 Tf 1 0 0 1 500.0 26.0 Tm (Page 2 of 6) Tj ET
+0.360 0.420 0.520 rg BT /F1 9 Tf 1 0 0 1 52 720 Tm (Why the project can run on GitHub Pages or Netlify) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 7 0 R >>
+endobj
+9 0 obj
+<< /Length 3424 >>
+stream
+0.055 0.145 0.330 rg 0 742 612 50 re f
+0.760 0.870 1.000 rg BT /F2 8 Tf 1 0 0 1 52.0 762.0 Tm (TALENTBRIDGE AI  |  BEGINNER GUIDE) Tj ET
+1.000 1.000 1.000 rg BT /F2 17 Tf 1 0 0 1 52.0 738.0 Tm (2. Connect Supabase and Google) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 710.0 Tm (1. In Supabase, open your project and go to Authentication, then Sign In / Providers.) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 697.0 Tm (   Enable Google.) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 681.0 Tm (2. In Google Cloud, create an OAuth client with application type Web application. Copy the) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 668.0 Tm (   client ID and client secret into the Google provider settings in Supabase. Do not put) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 655.0 Tm (   the Google secret into website files.) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 639.0 Tm (3. In Google Cloud, add this Supabase callback as an Authorized redirect URI:) Tj ET
+0.925 0.957 1 rg 47 602 518 23 re f
+0.120 0.250 0.420 rg BT /F2 9.5 Tf 1 0 0 1 57.0 621.0 Tm (https://mfjutlfnpteswhivcmwh.supabase.co/auth/v1/callback) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 602.0 Tm (4. In Supabase, open Authentication, then URL Configuration. For local testing, use Site) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 589.0 Tm (   URL http://127.0.0.1:8765.) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 573.0 Tm (5. In Supabase Redirect URLs, allow the local login callback:) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 560.0 Tm (   http://127.0.0.1:8765/pages/login.html. If Supabase rejects a callback because a path or) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 547.0 Tm (   query varies, allow local preview paths with http://127.0.0.1:8765/**.) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 531.0 Tm (6. The app configuration in js/supabase-config.js needs the Supabase project URL and) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 518.0 Tm (   browser-safe publishable key. These let the sign-in page contact Supabase.) Tj ET
+0.080 0.310 0.680 rg BT /F2 12 Tf 1 0 0 1 52.0 499.0 Tm (Do not mix up these URLs) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 481.0 Tm (Google Cloud Authorized redirect URI: the Supabase /auth/v1/callback address above.) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 464.0 Tm (Supabase Redirect URLs: the website login page, such as) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 451.0 Tm (  http://127.0.0.1:8765/pages/login.html.) Tj ET
+0.925 0.957 1 rg 47 391 518 45 re f
+0.120 0.250 0.420 rg BT /F2 9.5 Tf 1 0 0 1 57.0 432.0 Tm (Never put a Supabase service-role key, database password, or Google OAuth client secret) Tj ET
+0.120 0.250 0.420 rg BT /F2 9.5 Tf 1 0 0 1 57.0 421.0 Tm (   in JavaScript, HTML, or a public repository. The publishable key is intended for) Tj ET
+0.120 0.250 0.420 rg BT /F2 9.5 Tf 1 0 0 1 57.0 410.0 Tm (   browser use; protect database access with Supabase policies.) Tj ET
+0.78 0.83 0.90 RG 52 42 m 560 42 l S
+0.360 0.420 0.520 rg BT /F1 8 Tf 1 0 0 1 52.0 26.0 Tm (TalentBridge AI | Setup guide for beginners) Tj ET
+0.360 0.420 0.520 rg BT /F1 8 Tf 1 0 0 1 500.0 26.0 Tm (Page 3 of 6) Tj ET
+0.360 0.420 0.520 rg BT /F1 9 Tf 1 0 0 1 52 720 Tm (Follow these steps in order; the two callback URLs are different) Tj ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 9 0 R >>
+endobj
+11 0 obj
+<< /Length 2713 >>
+stream
+0.055 0.145 0.330 rg 0 742 612 50 re f
+0.760 0.870 1.000 rg BT /F2 8 Tf 1 0 0 1 52.0 762.0 Tm (TALENTBRIDGE AI  |  BEGINNER GUIDE) Tj ET
+1.000 1.000 1.000 rg BT /F2 17 Tf 1 0 0 1 52.0 738.0 Tm (3. Run and test it on your computer) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 710.0 Tm (1. Open a terminal in the project folder: TalentBridgeAI.) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 694.0 Tm (2. Build the static copy by running: python build_static.py) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 678.0 Tm (3. Start the preview server by running: python -m http.server 8765 --directory site) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 662.0 Tm (Leave that terminal open while testing. The preview address is http://127.0.0.1:8765 and) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 649.0 Tm (  the login page is http://127.0.0.1:8765/pages/login.html.) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 632.0 Tm (4. Open the login page, then click Continue with Google. Complete Google sign-in in the) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 619.0 Tm (   browser yourself.) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 603.0 Tm (5. Google returns to Supabase first. Supabase then returns to the website login callback.) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 590.0 Tm (   The app reads the session and sends the signed-in user to the chosen dashboard.) Tj ET
+0.080 0.310 0.680 rg BT /F2 12 Tf 1 0 0 1 52.0 571.0 Tm (What successful sign-in should look like) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 553.0 Tm (Candidate account: candidate dashboard.) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 536.0 Tm (Employer account: employer dashboard.) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 519.0 Tm (A dashboard opened directly without a session: sent back to login.) Tj ET
+0.925 0.957 1 rg 47 459 518 45 re f
+0.120 0.250 0.420 rg BT /F2 9.5 Tf 1 0 0 1 57.0 500.0 Tm (If the page says connection refused, the local preview server is stopped. Run the server) Tj ET
+0.120 0.250 0.420 rg BT /F2 9.5 Tf 1 0 0 1 57.0 489.0 Tm (   command again. The address uses 127.0.0.1; localhost is a different hostname for) Tj ET
+0.120 0.250 0.420 rg BT /F2 9.5 Tf 1 0 0 1 57.0 478.0 Tm (   redirect matching, so keep the hostname consistent.) Tj ET
+0.78 0.83 0.90 RG 52 42 m 560 42 l S
+0.360 0.420 0.520 rg BT /F1 8 Tf 1 0 0 1 52.0 26.0 Tm (TalentBridge AI | Setup guide for beginners) Tj ET
+0.360 0.420 0.520 rg BT /F1 8 Tf 1 0 0 1 500.0 26.0 Tm (Page 4 of 6) Tj ET
+0.360 0.420 0.520 rg BT /F1 9 Tf 1 0 0 1 52 720 Tm (A local web server is required; opening the HTML file directly is not enough) Tj ET
+endstream
+endobj
+12 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 11 0 R >>
+endobj
+13 0 obj
+<< /Length 3264 >>
+stream
+0.055 0.145 0.330 rg 0 742 612 50 re f
+0.760 0.870 1.000 rg BT /F2 8 Tf 1 0 0 1 52.0 762.0 Tm (TALENTBRIDGE AI  |  BEGINNER GUIDE) Tj ET
+1.000 1.000 1.000 rg BT /F2 17 Tf 1 0 0 1 52.0 738.0 Tm (4. Publish with GitHub Pages or Netlify) Tj ET
+0.080 0.310 0.680 rg BT /F2 12 Tf 1 0 0 1 52.0 707.0 Tm (GitHub Pages) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 689.0 Tm (The workflow in .github/workflows/static.yml builds the static site and publishes site/) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 676.0 Tm (  when changes are pushed to the main branch. GitHub Pages must be configured to deploy) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 663.0 Tm (  using GitHub Actions.) Tj ET
+0.080 0.310 0.680 rg BT /F2 12 Tf 1 0 0 1 52.0 643.0 Tm (Netlify) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 625.0 Tm (The netlify.toml file tells Netlify to run python build_static.py and publish site/.) Tj ET
+0.080 0.310 0.680 rg BT /F2 12 Tf 1 0 0 1 52.0 605.0 Tm (Before testing a deployed website) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 587.0 Tm (1. Deploy the site and copy its public login-page address.) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 571.0 Tm (2. Add that exact website address to Supabase Authentication URL Configuration Redirect) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 558.0 Tm (   URLs.) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 542.0 Tm (3. Set the Supabase Site URL to the deployed site root when you are ready to use that site) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 529.0 Tm (   as the main destination.) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 513.0 Tm (4. Keep Google Cloud Authorized redirect URI set to the Supabase callback. It normally) Tj ET
+0.120 0.170 0.260 rg BT /F2 9.5 Tf 1 0 0 1 52.0 500.0 Tm (   stays the same when you change from local hosting to GitHub Pages or Netlify.) Tj ET
+0.925 0.957 1 rg 47 441 518 45 re f
+0.120 0.250 0.420 rg BT /F2 9.5 Tf 1 0 0 1 57.0 482.0 Tm (GitHub Pages project sites include a repository path. Use the real deployed login URL,) Tj ET
+0.120 0.250 0.420 rg BT /F2 9.5 Tf 1 0 0 1 57.0 471.0 Tm (   including /repository-name/pages/login.html. A Netlify site uses its own domain. Do) Tj ET
+0.120 0.250 0.420 rg BT /F2 9.5 Tf 1 0 0 1 57.0 460.0 Tm (   not substitute either website address for the Google Cloud Supabase callback.) Tj ET
+0.080 0.310 0.680 rg BT /F2 12 Tf 1 0 0 1 52.0 438.0 Tm (Publishing status) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 420.0 Tm (No commit or push was made during this work. The repository has many uncommitted changes,) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 407.0 Tm (  so review them before publishing. The static workflow can deploy the built site once the) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 394.0 Tm (  intended changes are committed and pushed.) Tj ET
+0.78 0.83 0.90 RG 52 42 m 560 42 l S
+0.360 0.420 0.520 rg BT /F1 8 Tf 1 0 0 1 52.0 26.0 Tm (TalentBridge AI | Setup guide for beginners) Tj ET
+0.360 0.420 0.520 rg BT /F1 8 Tf 1 0 0 1 500.0 26.0 Tm (Page 5 of 6) Tj ET
+0.360 0.420 0.520 rg BT /F1 9 Tf 1 0 0 1 52 720 Tm (Authentication works online only after production URLs are allowed) Tj ET
+endstream
+endobj
+14 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 13 0 R >>
+endobj
+15 0 obj
+<< /Length 3917 >>
+stream
+0.055 0.145 0.330 rg 0 742 612 50 re f
+0.760 0.870 1.000 rg BT /F2 8 Tf 1 0 0 1 52.0 762.0 Tm (TALENTBRIDGE AI  |  BEGINNER GUIDE) Tj ET
+1.000 1.000 1.000 rg BT /F2 17 Tf 1 0 0 1 52.0 738.0 Tm (5. Troubleshooting and current progress) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 710.0 Tm ("Provider not given / not supported": confirm Google is enabled under Supabase) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 697.0 Tm (  Authentication providers. The project was checked and Google is currently enabled.) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 680.0 Tm ("redirect_uri_mismatch" on Google: check the Google Cloud OAuth client. Its Authorized) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 667.0 Tm (  redirect URI must be https://mfjutlfnpteswhivcmwh.supabase.co/auth/v1/callback.) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 650.0 Tm ("URL not allowed" from Supabase: add the website callback to Supabase Authentication URL) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 637.0 Tm (  Configuration Redirect URLs. Local address: http://127.0.0.1:8765/pages/login.html.) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 620.0 Tm (Google returns to the login page but there is no session: check the Supabase redirect) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 607.0 Tm (  allow-list and confirm the URL contains /pages/login.html. The updated page shows an) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 594.0 Tm (  error instead of silently appearing stuck.) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 577.0 Tm (Dashboard looks blank: reload the new page. The dashboard guard no longer overwrites the) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 564.0 Tm (  page body, and its script URL has a version suffix to avoid reusing a stale cached copy.) Tj ET
+0.080 0.310 0.680 rg BT /F2 12 Tf 1 0 0 1 52.0 544.0 Tm (What has been checked) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 526.0 Tm (The Supabase project reports Google enabled. The local sign-in page loaded, and the Google) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 513.0 Tm (  button opened Google using the Supabase callback. A simulated signed-in callback was used) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 500.0 Tm (  to test the dashboard handoff. The local static build and link checker passed.) Tj ET
+0.925 0.957 1 rg 47 440 518 45 re f
+0.120 0.250 0.420 rg BT /F2 9.5 Tf 1 0 0 1 57.0 481.0 Tm (The actual Google account sign-in must still be completed in your browser to confirm the) Tj ET
+0.120 0.250 0.420 rg BT /F2 9.5 Tf 1 0 0 1 57.0 470.0 Tm (   final end-to-end result. Do not share your Google password or OAuth client secret in) Tj ET
+0.120 0.250 0.420 rg BT /F2 9.5 Tf 1 0 0 1 57.0 459.0 Tm (   chat.) Tj ET
+0.080 0.310 0.680 rg BT /F2 12 Tf 1 0 0 1 52.0 437.0 Tm (Quick checklist) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 419.0 Tm (Supabase Google provider enabled; client ID and secret stored only in Supabase.) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 402.0 Tm (Google Cloud redirect URI is the Supabase callback; Supabase Redirect URLs contain your) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 389.0 Tm (  website callback.) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 372.0 Tm (Local server is running at http://127.0.0.1:8765; test from /pages/login.html.) Tj ET
+0.120 0.170 0.260 rg BT /F1 9.5 Tf 1 0 0 1 54.0 355.0 Tm (After deployment, add the deployed login URL to Supabase and test sign-in again.) Tj ET
+0.78 0.83 0.90 RG 52 42 m 560 42 l S
+0.360 0.420 0.520 rg BT /F1 8 Tf 1 0 0 1 52.0 26.0 Tm (TalentBridge AI | Setup guide for beginners) Tj ET
+0.360 0.420 0.520 rg BT /F1 8 Tf 1 0 0 1 500.0 26.0 Tm (Page 6 of 6) Tj ET
+0.360 0.420 0.520 rg BT /F1 9 Tf 1 0 0 1 52 720 Tm (Use the error wording to find the setting that needs attention) Tj ET
+endstream
+endobj
+16 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 15 0 R >>
+endobj
+xref
+0 17
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000157 00000 n 
+0000000227 00000 n 
+0000000302 00000 n 
+0000003356 00000 n 
+0000003492 00000 n 
+0000006426 00000 n 
+0000006562 00000 n 
+0000010037 00000 n 
+0000010174 00000 n 
+0000012939 00000 n 
+0000013077 00000 n 
+0000016393 00000 n 
+0000016531 00000 n 
+0000020500 00000 n 
+trailer
+<< /Size 17 /Root 1 0 R >>
+startxref
+20638
+%%EOF

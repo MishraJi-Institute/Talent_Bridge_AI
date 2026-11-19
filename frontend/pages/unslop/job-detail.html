@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Backup redesign · Job details | TalentBridge AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/unslop/unslop.css">
+</head>
+<body>
+  <div class="banner">
+    <div><strong>Backup redesign · job detail</strong><span class="quiet"> · Live site unchanged</span></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <a href="/pages/unslop/index.html">Backup hub</a>
+      <a href="/job-detail/?role=frontend-developer">Open live detail</a>
+    </div>
+  </div>
+  <header class="nav enter" style="--i:0">
+    <div class="nav-inner">
+      <a class="brand" href="/pages/unslop/homepage.html"><img src="/images/talentbridge-mark.svg" alt="">TalentBridge<span>AI</span></a>
+      <nav class="nav-links" aria-label="Main">
+        <a href="/pages/unslop/jobs.html" aria-current="page">Jobs</a>
+        <a href="/pages/unslop/companies.html">Companies</a>
+        <a href="/pages/unslop/employer.html">For employers</a>
+        <a href="/pages/unslop/jobseaker.html">For job seekers</a>
+        <a href="/pages/unslop/pricing.html">Pricing</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="signin" href="/pages/unslop/login.html">Sign in</a>
+        <a class="signup" href="/signup/">Sign up</a>
+      </div>
+    </div>
+  </header>
+  <main class="wrap">
+    <section class="page-hero">
+      <p class="eyebrow enter" style="--i:1">Illustrative listing</p>
+      <h1 class="enter" style="--i:2">Understand the role before you apply</h1>
+      <p class="enter" style="--i:3">Review responsibilities, skills, and expectations. Demo roles cannot be submitted as live applications.</p>
+    </section>
+    <section class="section reveal">
+      <article class="card detail-card">
+        <div class="job-meta" style="margin-bottom:12px">
+          <span data-type>Full-time</span>
+          <span data-mode>Remote</span>
+          <span data-location>Remote</span>
+        </div>
+        <h2 data-title>Frontend Developer</h2>
+        <p><strong data-company>Google</strong></p>
+        <p data-desc class="prose" style="max-width:none">Build accessible, responsive product interfaces with a collaborative design and engineering team.</p>
+        <h3 style="margin:24px 0 8px;font-size:16px;font-weight:500">Skills</h3>
+        <p data-skills style="margin:0;color:var(--secondary)">JavaScript, React, CSS</p>
+        <div class="detail-actions">
+          <a class="btn btn-secondary" href="/pages/unslop/jobs.html">Back to jobs</a>
+          <a class="btn btn-primary" href="/signup/">Create an account</a>
+        </div>
+        <p class="note" style="margin-top:16px">Illustrative listing · not an active opening</p>
+      </article>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="wrap credit">Backup Unslop job detail · live job-detail unchanged</div></footer>
+  <script>
+    const catalog = {
+      "frontend-developer": { title: "Frontend Developer", company: "Google", location: "Remote", mode: "Remote", type: "Full-time", skills: "JavaScript, React, CSS", desc: "Build accessible, responsive product interfaces with a collaborative design and engineering team." },
+      "ui-ux-designer": { title: "UI/UX Designer", company: "Northstar Studio", location: "Bhopal", mode: "Hybrid", type: "Full-time", skills: "Figma, UI/UX, Design research", desc: "Shape thoughtful product journeys from early research through high-fidelity design." },
+      "software-engineer-intern": { title: "Software Engineer Intern", company: "Orbit Systems", location: "Remote", mode: "Remote", type: "Internship", skills: "Python, APIs, Git", desc: "Learn by contributing to product engineering tasks with support from experienced engineers." }
+    };
+    const role = new URLSearchParams(location.search).get("role") || "frontend-developer";
+    const job = catalog[role] || catalog["frontend-developer"];
+    document.querySelector("[data-title]").textContent = job.title;
+    document.querySelector("[data-company]").textContent = job.company;
+    document.querySelector("[data-desc]").textContent = job.desc;
+    document.querySelector("[data-skills]").textContent = job.skills;
+    document.querySelector("[data-type]").textContent = job.type;
+    document.querySelector("[data-mode]").textContent = job.mode;
+    document.querySelector("[data-location]").textContent = job.location;
+    document.title = `Backup redesign · ${job.title} | TalentBridge AI`;
+  </script>
+  <script src="/js/unslop/unslop.js"></script>
+</body>
+</html>

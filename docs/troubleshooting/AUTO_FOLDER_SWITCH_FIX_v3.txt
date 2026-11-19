@@ -1,0 +1,17 @@
+TalentBridgeAI folder-switch server fix v3
+
+Fixes the false "unverified process" refusal seen when a previous TalentBridgeAI
+checkout owns port 8000. The listener process is now verified by:
+- python/pythonw process name
+- command line containing a Django manage.py path
+- path belonging to a TalentBridgeAI\legacy-django checkout
+
+Only the process that is actually listening on port 8000 is considered.
+Unrelated processes are not terminated.
+
+Open this extracted TalentBridgeAI folder in VS Code. The workspace auto-start
+task invokes .vscode\start-talentbridge.ps1.
+
+Note: This is a script-level correction; it has not been executed on your Windows
+PC. If the process command line is hidden by Windows permissions, it will still
+refuse to terminate it rather than killing an unknown process.

@@ -1,0 +1,23 @@
+TALENTBRIDGEAI AUTOMATIC FOLDER-SWITCH STARTUP
+
+What changed
+- The VS Code folder-open task starts this checkout automatically (after you trust the workspace and allow automatic tasks).
+- Before startup, it checks port 8000. If the listener is a confirmed TalentBridgeAI Django runserver from another extracted TalentBridgeAI folder, it stops that old project process tree and starts the currently opened folder.
+- It will NOT stop an unrelated process or another project just because it uses port 8000. In that case it reports the PID rather than killing it.
+- No database, user, superuser, password, or .env values are intentionally deleted by this folder-switch feature.
+
+Switching folders
+1. Open the desired extracted TalentBridgeAI folder as the VS Code workspace (File > Open Folder).
+2. On the first open, choose Trust this folder and Allow Automatic Tasks if VS Code asks.
+3. The folder-open task starts that folder's Django server. Switching to another TalentBridgeAI checkout makes the newly opened checkout take over port 8000.
+4. If two workspaces are open simultaneously, the last one whose startup task runs owns port 8000; switching back and reopening/reloading that workspace runs its startup task again.
+
+Using this ZIP on another PC
+- The launcher uses project-relative paths, so it does not depend on this PC's E: drive or user profile path.
+- The other PC still needs Windows, Python 3.11-3.13 available on PATH or via the py launcher, and internet access for first-time dependency installation if its project virtual environment is absent.
+- VS Code must trust the folder and automatic tasks must be allowed.
+- Local database contents, uploaded media, .env secrets, Google OAuth credentials, SMTP credentials, and user accounts are machine/project data; they do not magically synchronize between PCs. Keep .env private and configure valid OAuth redirect URIs for the host/port you use.
+- Do not copy a Windows .venv from one PC to another; let the project recreate it on the new PC.
+
+Safety note
+Port 8000 processes are only stopped when their process command line clearly identifies a TalentBridgeAI Django runserver under legacy-django. Unrecognized listeners are left untouched. This avoids terminating unrelated software.

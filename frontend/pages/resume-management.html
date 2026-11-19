@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Upload and manage the private resume associated with your TalentBridge AI profile.">
+  <title>Resume Management | TalentBridge AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/base/portal-pages.css">
+  <link rel="stylesheet" href="../css/base/redesign.css">
+  <link rel="stylesheet" href="../css/components/site-experience.css">
+<link rel="stylesheet" href="/css/components/reference-image-integration.css">
+</head>
+<body>
+  <div class="tb-wrap" aria-live="polite">
+    {% if messages %}
+      {% for message in messages %}
+        <div class="tb-alert tb-alert--{{ message.tags|default:'info' }}" role="status">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  <header class="tb-header">
+    <div class="tb-nav">
+      <a class="tb-brand" href="../index.html">TalentBridge AI<span>:</span></a>
+      <nav class="tb-links" aria-label="Main navigation">
+        <a href="../index.html">Home</a>
+        <a href="job-listings.html">Browse Jobs</a>
+        <a href="categories.html">Categories</a>
+        <a href="about.html">About</a>
+        <a href="help.html">Help</a>
+        {% if user.is_authenticated %}
+          <a href="/dashboard/">My dashboard</a>
+          <form class="tb-logout-form" method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button class="tb-logout-button" type="submit">Sign out</button>
+          </form>
+        {% else %}
+          <a href="login.html">Sign in</a>
+          <a class="tb-button" href="signup-role.html">Get started</a>
+        {% endif %}
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="tb-hero">
+      <div class="tb-wrap">
+        <span class="tb-eyebrow">YOUR PRIVATE WORKSPACE</span>
+        <h1>Manage your resume</h1>
+        <p>Upload one current resume to your account. Preview PDFs, download your file, replace it, or delete it whenever you need.</p>
+      </div>
+    </section>
+
+    <section class="tb-content">
+      <div class="tb-wrap">
+        {% if profile.resume %}
+          <div class="tb-demo-record" style="margin-bottom:18px">
+            <span class="tb-pill">Your current resume</span>
+            <h2>{{ profile.resume.name|cut:"resumes/" }}</h2>
+            <p>This file is stored privately with your profile.</p>
+            <div class="tb-workspace-actions">
+              <a class="tb-button" href="/resume-builder/">Build a resume</a>
+              <a class="tb-button secondary" href="{% url 'resume_download' %}">Download your resume</a>
+              {% if resume_is_pdf %}
+                <a class="tb-button secondary" href="{% url 'resume_preview' %}" target="_blank" rel="noopener">Preview PDF</a>
+              {% else %}
+                <span class="tb-small">Browser preview is available for PDF files. Download this document to preview it with a compatible app.</span>
+              {% endif %}
+              <form method="post" action="{% url 'resume_delete' %}" onsubmit="return confirm('Delete your current resume?');">
+                {% csrf_token %}
+                <button class="tb-button secondary" type="submit">Delete resume</button>
+              </form>
+            </div>
+          </div>
+          {% if resume_is_pdf %}
+            <section class="tb-demo-record" aria-label="PDF resume preview" style="margin-bottom:18px">
+              <h2>Resume preview</h2>
+              <iframe title="PDF resume preview" src="{% url 'resume_preview' %}" width="100%" height="640" loading="lazy"></iframe>
+            </section>
+          {% endif %}
+        {% else %}
+          <div class="tb-demo-record" style="margin-bottom:18px">
+            <span class="tb-pill">Resume status</span>
+            <h2>No resume uploaded yet</h2>
+            <p>Choose a PDF, DOC, or DOCX file below to add one to your private profile.</p>
+          </div>
+        {% endif %}
+
+        <div class="tb-card tb-demo-form-card">
+          <div class="tb-workspace-actions" style="margin-bottom:16px">
+            <a class="tb-button" href="/resume-builder/">Open Resume Builder</a>
+          </div>
+          <h2>Upload a resume</h2>
+          <p>Accepted formats: PDF, DOC, and DOCX. Maximum file size: 5 MB. Uploading a new file replaces your current resume.</p>
+          <form class="tb-form" method="post" enctype="multipart/form-data" action="{% url 'resume-management' %}">
+            {% csrf_token %}
+            <label for="resume-file">Choose your resume</label>
+            <input id="resume-file" type="file" name="resume" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" aria-describedby="resume-file-note" required>
+            <p class="tb-small" id="resume-file-note">The server checks the file format and size before saving it to your account.</p>
+            <button class="tb-button" type="submit">Upload resume</button>
+          </form>
+          <p style="margin:18px 0 0"><a href="profile.html">Review your professional profile</a></p>
+        </div>
+
+        <div class="tb-demo-record" style="margin-top:18px">
+          <span class="tb-pill">Resume checklist</span>
+          <div class="tb-workflow-grid" style="margin-top:12px">
+            <article class="tb-workflow-card">
+              <span class="tb-workflow-card__number">01</span>
+              <h3>Choose a clear filename</h3>
+              <p>Use your name and a short description so the correct version is easy to identify.</p>
+            </article>
+            <article class="tb-workflow-card">
+              <span class="tb-workflow-card__number">02</span>
+              <h3>Keep it focused</h3>
+              <p>Highlight experience and skills that relate to the opportunity you want.</p>
+            </article>
+            <article class="tb-workflow-card">
+              <span class="tb-workflow-card__number">03</span>
+              <h3>Check before sharing</h3>
+              <p>Review contact details and remove information you do not want to share.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="tb-footer">
+    <div class="tb-wrap tb-footer-inner">
+      <span>© TalentBridge AI. Built to connect people with opportunity.</span>
+      <span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a></span>
+    </div>
+  </footer>
+  <script src="../js/core/site-experience.js"></script>
+</body>
+</html>

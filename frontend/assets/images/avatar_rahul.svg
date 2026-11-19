@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+  <title id="title">Illustrative candidate portrait</title>
+  <desc id="desc">Friendly professional illustrated portrait on a soft blue circular background.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eaf3ff"/><stop offset="1" stop-color="#b8d7ff"/>
+    </linearGradient>
+    <linearGradient id="shirt" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2677f5"/><stop offset="1" stop-color="#1247b8"/>
+    </linearGradient>
+  </defs>
+  <circle cx="80" cy="80" r="80" fill="url(#bg)"/>
+  <circle cx="80" cy="63" r="39" fill="#f1c5a5"/>
+  <path d="M41 63c-1-29 16-48 40-48 25 0 42 18 40 48-7-5-13-15-16-24-13 12-34 17-61 16z" fill="#23344d"/>
+  <path d="M55 69c3 23 13 35 25 35 13 0 24-13 26-35-7 5-15 8-25 8-11 0-19-3-26-8z" fill="#f1c5a5"/>
+  <ellipse cx="66" cy="67" rx="3" ry="4" fill="#24364b"/><ellipse cx="95" cy="67" rx="3" ry="4" fill="#24364b"/>
+  <path d="M72 87c5 5 12 5 17 0" fill="none" stroke="#a94f4d" stroke-width="3" stroke-linecap="round"/>
+  <path d="M25 160c5-29 25-45 55-45s50 16 55 45" fill="url(#shirt)"/>
+  <path d="M64 112l16 18 16-18" fill="#fff" opacity=".95"/>
+  <path d="M80 130l-8 30h16z" fill="#dbeafe"/>
+</svg>

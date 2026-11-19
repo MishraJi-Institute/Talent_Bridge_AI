@@ -1,0 +1,586 @@
+/* TalentBridge homepage attractiveness polish
+   Palette: #102A56 #2563EB #0EA5E9 #EFF6FF #FFFFFF
+   Scope: section framing, icon wells, cards, FAQ, success stories, footer */
+
+:root {
+  --tb-navy: #142B4D;
+  --tb-royal: #2563EB;
+  --tb-bright: #0EA5E9;
+  --tb-soft: #EFF6FF;
+  --tb-white: #FFFFFF;
+  --tb-muted: #687B93;
+  --tb-line: #E2E8F0;
+  --tb-shadow: 0 14px 36px rgba(20, 43, 77, .10);
+  --tb-shadow-hover: 0 22px 48px rgba(37, 99, 235, .14);
+}
+
+/* ---------- Shared section atmosphere ---------- */
+.employers-section,
+.jobseekers-section,
+.success-stories-section,
+.faq-section,
+.footer-section {
+  position: relative;
+}
+
+.employers-section {
+  background:
+    radial-gradient(ellipse at 12% 18%, rgba(14, 165, 233, .14), transparent 42%),
+    radial-gradient(ellipse at 88% 78%, rgba(37, 99, 235, .12), transparent 44%),
+    linear-gradient(160deg, #fff 0%, #f8fbff 48%, #eff6ff 100%);
+}
+
+.jobseekers-section {
+  background:
+    radial-gradient(ellipse at 85% 12%, rgba(37, 99, 235, .12), transparent 40%),
+    radial-gradient(ellipse at 8% 88%, rgba(14, 165, 233, .12), transparent 38%),
+    linear-gradient(145deg, #fff 0%, #f7faff 52%, #eef6ff 100%);
+}
+
+.success-stories-section {
+  background:
+    radial-gradient(ellipse at 0% 0%, rgba(191, 219, 254, .55), transparent 38%),
+    radial-gradient(ellipse at 100% 100%, rgba(14, 165, 233, .12), transparent 40%),
+    linear-gradient(135deg, #eff6ff, #fff 55%, #eff6ff);
+}
+
+.faq-section {
+  background:
+    radial-gradient(circle at 10% 20%, rgba(239, 246, 255, .9) 0%, transparent 42%),
+    radial-gradient(circle at 90% 85%, rgba(219, 234, 254, .55) 0%, transparent 45%),
+    linear-gradient(160deg, #fff 0%, #f8fbff 50%, #eff6ff 100%);
+}
+
+.employers-eyebrow,
+.success-eyebrow,
+.faq-eyebrow,
+.jobseekers-eyebrow,
+.faq-support-eyebrow {
+  color: var(--tb-royal) !important;
+  background: var(--tb-soft);
+  border: 1px solid var(--tb-line);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, .08);
+}
+
+.jobseekers-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 800;
+  letter-spacing: .08em;
+}
+
+.jobseekers-eyebrow-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  color: transparent;
+  background: linear-gradient(135deg, #2563EB, #0EA5E9);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, .14);
+  font-size: 0;
+}
+
+.employers-title,
+.success-stories-heading h2,
+.faq-main-title,
+.jobseekers-copy h2 {
+  color: var(--tb-navy) !important;
+  letter-spacing: -.03em;
+}
+
+.title-accent-blue,
+.success-stories-heading h2 span,
+.footer-title-accent {
+  color: transparent !important;
+  background: linear-gradient(105deg, #2563EB 0%, #0EA5E9 60%, #2563EB 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* ---------- Employer feature icons ---------- */
+.feature-card-emp {
+  padding: 14px 12px;
+  border: 1px solid transparent;
+  border-radius: 16px;
+  transition: background .22s ease, border-color .22s ease, transform .22s ease, box-shadow .22s ease;
+}
+
+.feature-card-emp:hover {
+  border-color: var(--tb-line);
+  background: rgba(255, 255, 255, .9);
+  box-shadow: var(--tb-shadow);
+  transform: translateY(-2px);
+}
+
+.feature-icon-box-emp {
+  width: 52px !important;
+  height: 52px !important;
+  min-width: 52px !important;
+  border-radius: 16px !important;
+  color: var(--tb-royal) !important;
+  background:
+    linear-gradient(145deg, #fff 0%, #eff6ff 55%, #dbeafe 100%) !important;
+  border: 1px solid #cfe0ff;
+  box-shadow:
+    0 10px 22px rgba(37, 99, 235, .12),
+    inset 0 1px 0 rgba(255, 255, 255, .9);
+}
+
+.feature-card-emp:hover .feature-icon-box-emp {
+  transform: translateY(-2px) scale(1.04);
+  background: linear-gradient(145deg, #eff6ff 0%, #dbeafe 100%) !important;
+  box-shadow:
+    0 14px 28px rgba(37, 99, 235, .18),
+    0 0 0 5px rgba(37, 99, 235, .08);
+}
+
+.feature-icon-box-emp svg {
+  width: 22px;
+  height: 22px;
+  stroke-width: 1.9;
+}
+
+.feature-info-emp h3 {
+  color: var(--tb-navy) !important;
+}
+
+.btn-employer-primary {
+  background: linear-gradient(135deg, #2563EB 0%, #1d4ed8 100%) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 12px 28px rgba(37, 99, 235, .22) !important;
+}
+
+.btn-employer-primary:hover {
+  background: #1d4ed8 !important;
+}
+
+.dashboard-scene,
+.job-card-preview,
+.applicants-panel {
+  border-radius: 22px;
+}
+
+/* ---------- Job seekers flow icons + card ---------- */
+.jobseekers-flow-step {
+  border: 1px solid var(--tb-line) !important;
+  border-radius: 16px !important;
+  background: rgba(255, 255, 255, .96) !important;
+  box-shadow: 0 12px 28px rgba(16, 42, 86, .08);
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+
+.jobseekers-flow-step:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--tb-shadow-hover);
+}
+
+.jobseekers-flow-icon {
+  width: 44px !important;
+  height: 44px !important;
+  flex-basis: 44px !important;
+  border-radius: 14px !important;
+  color: var(--tb-royal) !important;
+  background:
+    linear-gradient(145deg, #fff 0%, #eff6ff 60%, #dbeafe 100%) !important;
+  border: 1px solid #cfe0ff;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, .12);
+  font-size: 14px !important;
+}
+
+.jobseekers-flow-step-ai .jobseekers-flow-icon {
+  color: var(--tb-white) !important;
+  background: linear-gradient(145deg, #2563EB 0%, #0EA5E9 100%) !important;
+  border-color: transparent;
+  box-shadow:
+    0 12px 26px rgba(37, 99, 235, .28),
+    0 0 0 6px rgba(37, 99, 235, .1);
+}
+
+.jobseekers-profile-card {
+  border-radius: 24px !important;
+  border-color: var(--tb-line) !important;
+  box-shadow: var(--tb-shadow) !important;
+  overflow: hidden;
+}
+
+.jobseekers-card-header {
+  background: linear-gradient(135deg, #2563EB 0%, #1d4ed8 55%, #0EA5E9 120%) !important;
+}
+
+.jobseekers-avatar {
+  border: 3px solid rgba(255, 255, 255, .9) !important;
+  box-shadow: 0 10px 24px rgba(16, 42, 86, .22);
+  object-fit: cover;
+  object-position: center 15%;
+}
+
+.jobseekers-skills a,
+.jobseekers-certificate-list a {
+  border-radius: 999px !important;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+
+.jobseekers-skills a:hover,
+.jobseekers-certificate-list a:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(37, 99, 235, .12);
+}
+
+/* ---------- Success stories ---------- */
+.success-story-card {
+  border: 1px solid var(--tb-line) !important;
+  border-radius: 24px !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .98) 0%, #f8fbff 100%) !important;
+  box-shadow: 0 14px 36px rgba(16, 42, 86, .1) !important;
+}
+
+.success-story-card:hover {
+  transform: translateY(-7px) !important;
+  box-shadow: var(--tb-shadow-hover) !important;
+  border-color: #bfdbfe !important;
+}
+
+.success-person > img {
+  border: 3px solid #fff !important;
+  box-shadow:
+    0 0 0 2px #bfdbfe,
+    0 10px 20px rgba(16, 42, 86, .14);
+}
+
+.success-stage {
+  border-radius: 999px !important;
+  font-weight: 750;
+  letter-spacing: .02em;
+}
+
+.success-skills span {
+  border: 1px solid #dbeafe !important;
+  border-radius: 999px !important;
+  color: #1d4ed8 !important;
+  background: var(--tb-soft) !important;
+  font-weight: 700;
+  transition: transform .18s ease, background .18s ease;
+}
+
+.success-story-card:hover .success-skills span {
+  background: #dbeafe !important;
+}
+
+.success-story-footer {
+  border-top: 1px solid #e8eef8;
+  padding-top: 12px;
+}
+
+.success-stat svg {
+  width: 18px;
+  height: 18px;
+  padding: 7px;
+  box-sizing: content-box;
+  border-radius: 12px;
+  color: var(--tb-royal);
+  background: linear-gradient(145deg, #fff, #eff6ff);
+  border: 1px solid #dbeafe;
+  fill: currentColor;
+}
+
+.success-nav-btn,
+.success-carousel button {
+  border-radius: 14px !important;
+  border-color: var(--tb-line) !important;
+  background: #fff !important;
+  box-shadow: 0 8px 18px rgba(16, 42, 86, .08);
+}
+
+/* ---------- FAQ icons + items ---------- */
+.faq-item {
+  border: 1px solid #e8eef8 !important;
+  border-radius: 16px !important;
+  background: rgba(255, 255, 255, .96) !important;
+  box-shadow: 0 8px 20px rgba(16, 42, 86, .05) !important;
+}
+
+.faq-item:hover {
+  border-color: #bfdbfe !important;
+  box-shadow: 0 12px 28px rgba(37, 99, 235, .1) !important;
+}
+
+.faq-item.active {
+  border-color: #93c5fd !important;
+  background:
+    linear-gradient(180deg, #f8fbff 0%, #fff 100%) !important;
+  box-shadow: 0 16px 34px rgba(37, 99, 235, .12) !important;
+}
+
+.faq-num {
+  background: var(--tb-soft) !important;
+  color: var(--tb-royal) !important;
+  border: 1px solid #dbeafe;
+}
+
+.faq-item.active .faq-num {
+  background: linear-gradient(135deg, #2563EB, #0EA5E9) !important;
+  color: #fff !important;
+  border-color: transparent;
+}
+
+.faq-toggle-icon {
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  border-radius: 12px !important;
+  color: var(--tb-royal) !important;
+  background: linear-gradient(145deg, #fff, #eff6ff);
+  border: 1px solid #dbeafe;
+  box-shadow: 0 6px 14px rgba(37, 99, 235, .1);
+  transition: transform .22s ease, background .22s ease, color .22s ease;
+}
+
+.faq-item:hover .faq-toggle-icon {
+  transform: scale(1.05);
+}
+
+.faq-item.active .faq-toggle-icon {
+  color: #fff !important;
+  background: linear-gradient(135deg, #2563EB, #1d4ed8);
+  border-color: transparent;
+}
+
+.faq-support-card {
+  border-radius: 22px !important;
+  border: 1px solid var(--tb-line) !important;
+  background:
+    linear-gradient(180deg, #fff 0%, #f8fbff 100%) !important;
+  box-shadow: var(--tb-shadow) !important;
+}
+
+.faq-support-title {
+  color: var(--tb-navy) !important;
+}
+
+.faq-pillar-item {
+  border-radius: 14px !important;
+  border-color: #e4eefc !important;
+  background: linear-gradient(180deg, #fff, #f8fbff) !important;
+}
+
+.faq-pillar-item:hover {
+  border-color: #bfdbfe !important;
+  box-shadow: 0 10px 22px rgba(37, 99, 235, .1);
+}
+
+.faq-pillar-icon {
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+  border-radius: 14px !important;
+  color: var(--tb-royal) !important;
+  background: linear-gradient(145deg, #fff 0%, #eff6ff 55%, #dbeafe 100%) !important;
+  border: 1px solid #cfe0ff;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, .12) !important;
+}
+
+.faq-pillar-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.faq-pillar-item:hover .faq-pillar-icon {
+  transform: translateY(-1px) scale(1.05);
+  box-shadow:
+    0 12px 24px rgba(37, 99, 235, .16),
+    0 0 0 4px rgba(37, 99, 235, .08) !important;
+}
+
+.jobseekers-btn-primary {
+  background: linear-gradient(135deg, #2563EB 0%, #1d4ed8 100%) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 12px 28px rgba(37, 99, 235, .22) !important;
+}
+
+.jobseekers-btn-secondary {
+  border: 1px solid var(--tb-line) !important;
+  border-radius: 14px !important;
+  background: #fff !important;
+  box-shadow: 0 8px 18px rgba(16, 42, 86, .06);
+}
+
+.jobseekers-play {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin-right: 6px;
+  border-radius: 50%;
+  color: var(--tb-royal);
+  background: var(--tb-soft);
+  border: 1px solid #dbeafe;
+  font-size: .7rem;
+}
+
+.jobseekers-benefits li::before,
+.jobseekers-benefits li::marker {
+  color: var(--tb-royal);
+}
+
+/* ---------- Footer / next-move CTA (light) ---------- */
+.footer-section {
+  background:
+    radial-gradient(ellipse at 50% 8%, rgba(14, 165, 233, .12), transparent 48%),
+    radial-gradient(ellipse at 92% 82%, rgba(37, 99, 235, .1), transparent 42%),
+    linear-gradient(180deg, #FFFFFF 0%, #F8FBFF 48%, #EFF6FF 100%) !important;
+  color: var(--tb-navy) !important;
+  border-top: 1px solid var(--tb-line) !important;
+}
+
+.footer-section a {
+  transition: color .18s ease, transform .18s ease;
+}
+
+.footer-section a:hover {
+  color: var(--tb-royal) !important;
+}
+
+.footer-cta-title {
+  color: var(--tb-navy) !important;
+}
+
+.footer-cta-subtitle,
+.footer-brand-desc,
+.footer-links-list li a,
+.footer-bottom-bar p {
+  color: var(--tb-muted) !important;
+}
+
+.footer-logo,
+.footer-col-title {
+  color: var(--tb-navy) !important;
+}
+
+.footer-divider,
+.footer-bottom-bar {
+  border-color: #e8eef8 !important;
+  background-color: transparent;
+}
+
+.footer-divider {
+  background: #e2e8f0 !important;
+}
+
+.btn-footer-primary {
+  background: linear-gradient(135deg, #2563EB 0%, #1d4ed8 100%) !important;
+  color: #fff !important;
+  border-radius: 14px !important;
+  box-shadow: 0 12px 28px rgba(37, 99, 235, .22) !important;
+}
+
+.btn-footer-secondary {
+  background: #fff !important;
+  color: var(--tb-royal) !important;
+  border: 1.5px solid var(--tb-line) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 8px 18px rgba(16, 42, 86, .06) !important;
+}
+
+.btn-footer-secondary:hover {
+  background: #f8fbff !important;
+  border-color: #93c5fd !important;
+}
+
+.footer-social-tag {
+  background: #fff !important;
+  border: 1px solid var(--tb-line) !important;
+  color: var(--tb-royal) !important;
+  box-shadow: 0 6px 14px rgba(37, 99, 235, .08);
+}
+
+.footer-social-tag:hover {
+  background: var(--tb-royal) !important;
+  color: #fff !important;
+  border-color: var(--tb-royal) !important;
+}
+
+.footer-brand-mark,
+.footer-logo img {
+  filter: none;
+}
+
+/* ---------- Soft decorative orbs (non-interactive) ---------- */
+.employers-section::after,
+.jobseekers-section::after,
+.success-stories-section::after,
+.faq-section::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(37, 99, 235, .12), transparent 68%);
+  filter: blur(2px);
+}
+
+.employers-section::after { top: 12%; right: 6%; }
+.jobseekers-section::after { bottom: 10%; left: 4%; width: 180px; height: 180px; }
+.success-stories-section::after { top: 18%; left: 8%; }
+.faq-section::after { bottom: 8%; right: 10%; width: 200px; height: 200px; }
+
+.employers-container,
+.jobseekers-layout,
+.success-stories-container,
+.faq-container,
+.footer-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Subtle motion ---------- */
+@media (hover: hover) and (pointer: fine) {
+  .feature-icon-box-emp,
+  .jobseekers-flow-icon,
+  .faq-toggle-icon,
+  .success-stat svg {
+    transition: transform .22s ease, box-shadow .22s ease, background .22s ease, color .22s ease;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feature-card-emp,
+  .feature-icon-box-emp,
+  .jobseekers-flow-step,
+  .jobseekers-flow-icon,
+  .success-story-card,
+  .faq-toggle-icon,
+  .jobseekers-skills a,
+  .jobseekers-certificate-list a {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .feature-icon-box-emp {
+    width: 46px !important;
+    height: 46px !important;
+    min-width: 46px !important;
+  }
+  .jobseekers-flow-icon {
+    width: 40px !important;
+    height: 40px !important;
+    flex-basis: 40px !important;
+  }
+  .employers-section::after,
+  .jobseekers-section::after,
+  .success-stories-section::after,
+  .faq-section::after {
+    opacity: .55;
+    width: 140px;
+    height: 140px;
+  }
+}

@@ -1,0 +1,453 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Search current job opportunities and find a role that fits your skills with TalentBridge AI.">
+  <title>{{ page_title|default:"Find Jobs" }} | TalentBridge AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/components/site-header.css?v=20261118-jobs2">
+  <link rel="stylesheet" href="/css/components/motion.css">
+  <link rel="stylesheet" href="/css/components/dark-mode.css">
+  <link rel="stylesheet" href="/css/responsive/responsive-fixes.css">
+  <link rel="stylesheet" href="/css/responsive/responsive-all.css">
+  <link rel="stylesheet" href="/css/base/tb-premium-system.css?v=1">
+  <link rel="stylesheet" href="/css/dashboard/jerry-guide/jerry-guide.css">
+  <script src="/js/core/dark-mode.js"></script>
+  <style>
+    :root {
+      --tb-bg: #f5f8fc;
+      --tb-surface: #fff;
+      --tb-border: #e4eaf3;
+      --tb-ink: #102a56;
+      --tb-muted: #667085;
+      --tb-primary: #2563eb;
+      --tb-primary-hover: #1d4ed8;
+      --tb-soft: #eff6ff;
+    }
+    * { box-sizing: border-box; }
+    .logo a:has(img)::before { content: none !important; display: none !important; }
+    .logo a img { display: block; width: 36px; height: 36px; border-radius: 10px; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--tb-bg);
+      color: var(--tb-ink);
+      font-family: Inter, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .jobs-hero {
+      padding: clamp(36px, 5vw, 64px) 0 40px;
+      background:
+        radial-gradient(ellipse at 85% 0%, rgba(37, 99, 235, .14), transparent 42%),
+        linear-gradient(180deg, #f8fbff 0%, #f5f8fc 100%);
+    }
+    .jobs-hero-inner,
+    .jobs-results {
+      width: min(1180px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+    .jobs-eyebrow {
+      display: inline-flex;
+      padding: 7px 12px;
+      border: 1px solid #d7e5ff;
+      border-radius: 999px;
+      background: var(--tb-soft);
+      color: #1849a9;
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .jobs-hero h1 {
+      margin: 14px 0 10px;
+      max-width: 16ch;
+      font-size: clamp(2.1rem, 4vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -.045em;
+      line-height: 1.08;
+    }
+    .jobs-hero > .jobs-hero-inner > p {
+      margin: 0;
+      max-width: 42rem;
+      color: var(--tb-muted);
+      font-size: 1.05rem;
+      line-height: 1.65;
+    }
+    .jobs-search {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 28px;
+      padding: 16px;
+      border: 1px solid var(--tb-border);
+      border-radius: 18px;
+      background: var(--tb-surface);
+      box-shadow: 0 16px 40px rgba(16, 42, 86, .07);
+    }
+    .jobs-search input,
+    .jobs-search select {
+      width: 100%;
+      min-height: 48px;
+      padding: 0 14px;
+      border: 1px solid #dbe3ef;
+      border-radius: 12px;
+      background: #fff;
+      color: var(--tb-ink);
+      font: inherit;
+      font-weight: 500;
+    }
+    .jobs-search input:focus-visible,
+    .jobs-search select:focus-visible {
+      outline: 3px solid rgba(37, 99, 235, .2);
+      border-color: var(--tb-primary);
+    }
+    .jobs-search__actions {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 4px;
+    }
+    .jobs-search__hint {
+      color: var(--tb-muted);
+      font-size: .88rem;
+    }
+    .jobs-search button {
+      min-height: 48px;
+      padding: 0 22px;
+      border: 0;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #fff;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 10px 22px rgba(37, 99, 235, .22);
+    }
+    .jobs-search button:hover { background: var(--tb-primary-hover); }
+    .jobs-results { padding: 36px 0 72px; }
+    .jobs-results-heading {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .jobs-results-heading p {
+      margin: 0 0 6px;
+      color: var(--tb-primary);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .jobs-results-heading h2 {
+      margin: 0;
+      font-size: clamp(1.5rem, 2.2vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -.03em;
+    }
+    .jobs-count {
+      color: var(--tb-muted);
+      font-size: .9rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    a.jobs-count:hover { color: var(--tb-primary); }
+    .jobs-demo-banner {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin: 0 0 18px;
+      padding: 14px 16px;
+      border: 1px solid #dbeafe;
+      border-radius: 14px;
+      background: linear-gradient(120deg, #f8fbff, #fff);
+      color: #334155;
+      font-size: .92rem;
+      line-height: 1.55;
+    }
+    .jobs-demo-banner strong { color: #1849a9; }
+    .jobs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .job-card {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 22px;
+      border: 1px solid var(--tb-border);
+      border-radius: 18px;
+      background: var(--tb-surface);
+      box-shadow: 0 10px 28px rgba(16, 42, 86, .05);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .job-card:hover {
+      transform: translateY(-2px);
+      border-color: #cfe0ff;
+      box-shadow: 0 16px 36px rgba(37, 99, 235, .1);
+    }
+    .job-card__badge {
+      display: inline-flex;
+      width: fit-content;
+      margin-bottom: 8px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #eff6ff;
+      color: #1e40af;
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .job-card h3 {
+      margin: 0;
+      font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+      font-weight: 800;
+      letter-spacing: -.02em;
+      line-height: 1.25;
+    }
+    .job-card h3 a { color: inherit; text-decoration: none; }
+    .job-card h3 a:hover { color: var(--tb-primary); }
+    .job-company {
+      margin-top: 4px;
+      color: #475467;
+      font-weight: 650;
+    }
+    .job-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 14px 0;
+    }
+    .job-meta span {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #f1f5f9;
+      color: #334155;
+      font-size: .75rem;
+      font-weight: 600;
+    }
+    .job-description {
+      margin: 0;
+      color: var(--tb-muted);
+      font-size: .95rem;
+      line-height: 1.65;
+    }
+    .job-skills {
+      margin: 12px 0 0;
+      color: #344054;
+      font-size: .84rem;
+    }
+    .job-card__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      margin-top: auto;
+      padding: 10px 0 0;
+      color: var(--tb-primary);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .job-card__cta:hover { color: var(--tb-primary-hover); }
+    .empty-jobs {
+      grid-column: 1 / -1;
+      padding: 40px 24px;
+      border: 1px dashed var(--tb-border);
+      border-radius: 18px;
+      background: #fff;
+      text-align: center;
+      color: var(--tb-muted);
+    }
+    .empty-jobs a { color: var(--tb-primary); font-weight: 700; }
+    .filter-error {
+      margin: 0 0 14px;
+      color: #9a3412;
+      font-weight: 600;
+    }
+    .jobs-pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 28px;
+      color: var(--tb-muted);
+    }
+    .jobs-pagination a {
+      color: var(--tb-primary);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    @media (max-width: 900px) {
+      .jobs-search { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .jobs-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .jobs-hero-inner,
+      .jobs-results { width: calc(100% - 32px); }
+      .jobs-search { grid-template-columns: 1fr; }
+      .jobs-search__actions { flex-direction: column; align-items: stretch; }
+      .jobs-search button { width: 100%; }
+      .jobs-results-heading { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body data-public-page>
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <a href="/">
+          <img src="/images/talentbridge-mark.svg" width="36" height="36" alt="">
+          <span>TalentBridge<span class="logo-accent">AI</span></span>
+        </a>
+      </div>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="/jobs/" aria-current="page">Jobs</a>
+        <a href="/companies/">Companies</a>
+        <a href="/pages/employer.html">For Employers</a>
+        <a href="/careers/">Resources</a>
+        <a href="/pages/jobseaker.html">For Job Seekers</a>
+        <a href="{% url 'startup-jobs' %}">Startup Jobs</a>
+        <a href="{% url 'remote-jobs' %}">Remote Jobs</a>
+        <a href="/pages/pricing.html">Pricing</a>
+      </nav>
+      <div class="auth-actions">
+        {% if request.user.is_authenticated %}
+        <a href="/dashboard/" class="auth-btn auth-dashboard">Dashboard</a>
+        {% else %}
+        <a href="/login/" class="auth-btn auth-signin">Sign In</a>
+        <a href="/signup/" class="auth-btn auth-signup">Sign Up</a>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="jobs-hero">
+      <div class="jobs-hero-inner">
+        <span class="jobs-eyebrow">Your next career starts here</span>
+        <h1>{{ page_heading|default:"Find work that fits." }}</h1>
+        <p>{{ page_description|default:"Search opportunities by role, skills, or location." }}</p>
+        <form class="jobs-search" method="get" action="{{ listing_url|default:'/jobs/' }}">
+          <input type="search" name="keyword" value="{{ keyword }}" aria-label="Search title, company, skills or description" placeholder="Any keyword">
+          <input type="search" name="title" value="{{ title }}" aria-label="Job title" placeholder="Job title">
+          <input type="search" name="company" value="{{ company_query }}" aria-label="Company" placeholder="Company">
+          <input type="search" name="location" value="{{ location }}" aria-label="City or location" placeholder="Location">
+          <input type="search" name="skills" value="{{ skills_query }}" aria-label="Required skills" placeholder="Skills">
+          <input type="search" name="experience" value="{{ experience_query }}" aria-label="Experience requirement" placeholder="Experience">
+          <select name="job_type" aria-label="Job type">
+            <option value="">Any job type</option>
+            {% for value, label in job_types %}<option value="{{ value }}" {% if selected_job_type == value %}selected{% endif %}>{{ label }}</option>{% endfor %}
+          </select>
+          <select name="work_mode" aria-label="Work mode">
+            <option value="">Any work mode</option>
+            {% for value, label in work_modes %}<option value="{{ value }}" {% if selected_work_mode == value %}selected{% endif %}>{{ label }}</option>{% endfor %}
+          </select>
+          <select name="sort" aria-label="Sort jobs">
+            <option value="newest" {% if selected_sort == "newest" %}selected{% endif %}>Newest first</option>
+            <option value="relevant" {% if selected_sort == "relevant" %}selected{% endif %}>Most relevant</option>
+          </select>
+          <div class="jobs-search__actions">
+            <span class="jobs-search__hint">Filter by role, skills, location, and work mode.</span>
+            <button type="submit">Search jobs</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="jobs-results" aria-labelledby="jobs-heading">
+      <div class="jobs-results-heading">
+        <div>
+          <p>TalentBridge opportunities</p>
+          <h2 id="jobs-heading">{{ page_title|default:"Latest jobs" }}</h2>
+        </div>
+        <div>
+          {% if demo_roles %}
+          <span class="jobs-count">{{ demo_roles|length }} illustrative roles</span>
+          {% else %}
+          <span class="jobs-count">{{ page_obj.paginator.count }} role{{ page_obj.paginator.count|pluralize }}</span>
+          {% endif %}
+          {% if has_filters %} · <a class="jobs-count" href="{{ listing_url }}">Clear filters</a>{% endif %}
+        </div>
+      </div>
+
+      {% if demo_roles %}
+      <aside class="jobs-demo-banner" role="note">
+        <div>
+          <strong>Development preview</strong>
+          No live vacancies match right now, so illustrative example roles are shown for preview. They are not real openings and cannot be applied to.
+        </div>
+      </aside>
+      {% endif %}
+
+      {% for error in filter_errors %}<p class="filter-error" role="alert">{{ error }}</p>{% endfor %}
+
+      <div class="jobs-grid">
+        {% if demo_roles %}
+          {% for job in demo_roles %}
+            <article class="job-card" data-demo-role="{{ job.slug }}">
+              <span class="job-card__badge">Illustrative example</span>
+              <h3><a href="/job-detail/?role={{ job.slug }}">{{ job.title }}</a></h3>
+              <div class="job-company">{{ job.company }}</div>
+              <div class="job-meta">
+                {% if job.location and job.location != job.work_mode %}<span>{{ job.location }}</span>{% endif %}
+                <span>{{ job.job_type }}</span>
+                <span>{{ job.work_mode }}</span>
+                <span>{{ job.experience }}</span>
+                {% if job.salary %}<span>{{ job.salary }}</span>{% endif %}
+              </div>
+              <p class="job-description">{{ job.description }}</p>
+              <p class="job-skills"><strong>Skills:</strong> {{ job.skills }}</p>
+              <a class="job-card__cta" href="/job-detail/?role={{ job.slug }}" aria-label="View details for {{ job.title }}">View details <span aria-hidden="true">→</span></a>
+            </article>
+          {% endfor %}
+        {% else %}
+          {% for job in jobs %}
+            <article class="job-card">
+              {% if job.is_demo %}<span class="job-card__badge">Illustrative example</span>{% endif %}
+              <h3><a href="{% url 'job_detail' job.id %}">{{ job.title }}</a></h3>
+              <div class="job-company">{{ job.company.name }}</div>
+              <div class="job-meta">
+                {% if job.location and job.location != job.get_work_mode_display %}<span>{{ job.location }}</span>{% endif %}
+                <span>{{ job.get_job_type_display }}</span>
+                <span>{{ job.get_work_mode_display }}</span>
+                {% if job.experience %}<span>{{ job.experience }}</span>{% endif %}
+                {% if job.salary %}<span>{{ job.salary }}</span>{% endif %}
+              </div>
+              <p class="job-description">{{ job.description|truncatewords:34 }}</p>
+              {% if job.skills %}<p class="job-skills"><strong>Skills:</strong> {{ job.skills }}</p>{% endif %}
+              <a class="job-card__cta" href="{% url 'job_detail' job.id %}" aria-label="View details for {{ job.title }}">View details <span aria-hidden="true">→</span></a>
+            </article>
+          {% empty %}
+            <div class="empty-jobs">
+              <p>No matching jobs found{% if has_filters %} for your search{% endif %}.</p>
+              {% if has_filters %}<a href="{{ listing_url|default:'/jobs/' }}">Clear filters</a>{% else %}<p>Check back soon for new opportunities.</p>{% endif %}
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+
+      {% if not demo_roles and page_obj.paginator.num_pages > 1 %}
+        <nav class="jobs-pagination" aria-label="Job result pages">
+          {% if page_obj.has_previous %}<a href="{{ previous_page_url }}">Previous</a>{% endif %}
+          <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+          {% if page_obj.has_next %}<a href="{{ next_page_url }}">Next</a>{% endif %}
+        </nav>
+      {% endif %}
+    </section>
+  </main>
+
+  <script src="/js/core/motion.js"></script>
+  <script src="/js/core/site-experience.js?v=20261118-dir2"></script>
+  <script src="/js/dashboard/jerry-guide/jerry-site.js?v=20261118-jerry2" data-jerry-image="/images/jerry-mascot.png"></script>
+</body>
+</html>

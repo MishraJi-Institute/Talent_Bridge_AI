@@ -1,0 +1,54 @@
+/* TalentBridge AI — audited responsive safeguards.
+   Intentionally avoids forcing every input to 100% or every table to a fixed width,
+   because those rules can break checkboxes, inline controls, and existing layouts. */
+*, *::before, *::after { box-sizing: border-box; }
+html { max-width: 100%; -webkit-text-size-adjust: 100%; }
+body { max-width: 100%; }
+img, video, canvas, iframe { max-width: 100%; height: auto; }
+svg { max-width: 100%; }
+:where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]), select, textarea) {
+  max-width: 100%;
+}
+:where(.container, .section-container, .content-container, main, .page-container, .dashboard-content, .dashboard-main) {
+  min-width: 0;
+}
+:where(pre, code) { overflow-wrap: anywhere; }
+:where(.table-responsive, .table-wrap, .table-container) {
+  max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;
+}
+:where(.grid, .cards-grid, .jobs-grid, .features-grid, .dashboard-grid, .pricing-grid) {
+  min-width: 0;
+}
+@media (max-width: 760px) {
+  :where(.container, .section-container, .content-container, .page-container) {
+    max-width: 100%;
+  }
+  :where(.form-row, .name-row, .input-row, .two-column, .form-grid) {
+    min-width: 0;
+  }
+  :where(.form-row, .name-row, .input-row, .two-column, .form-grid) > * {
+    min-width: 0;
+    max-width: 100%;
+  }
+  :where(.btn-group, .button-group, .cta-group, .auth-actions) {
+    flex-wrap: wrap;
+  }
+  :where(.dashboard-layout, .dashboard-container, .sidebar-layout) {
+    min-width: 0;
+  }
+  :where(.sidebar, .dashboard-sidebar) { max-width: 100%; }
+}
+@media (max-width: 420px) {
+  :where(.container, .section-container, .content-container, .page-container) {
+    padding-left: max(12px, env(safe-area-inset-left));
+    padding-right: max(12px, env(safe-area-inset-right));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}

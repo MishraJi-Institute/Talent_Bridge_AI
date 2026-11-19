@@ -1,4 +1,4 @@
-# TalentBridge AI
+﻿# TalentBridge AI
 
 TalentBridge AI uses Django for server-side authentication, Google sign-in, user/profile data, and job workflows. Run the Django server and configure Google's OAuth app for working social sign-in. Static output is a demo preview and does not provide server-backed authentication or account data.
 

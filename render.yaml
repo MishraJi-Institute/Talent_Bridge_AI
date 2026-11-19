@@ -1,0 +1,29 @@
+# Deploy TalentBridgeAI Django for REAL Google OAuth (GitHub Pages cannot finish OAuth).
+# In Render: New → Blueprint → connect this repo → set env secrets in the dashboard.
+services:
+  - type: web
+    name: talentbridge-ai
+    runtime: python
+    plan: free
+    rootDir: backend/legacy-django
+    buildCommand: pip install -r requirements.txt && python manage.py migrate --noinput && python manage.py collectstatic --noinput
+    startCommand: gunicorn config.wsgi:application --bind 0.0.0.0:$PORT
+    envVars:
+      - key: DJANGO_ENV
+        value: production
+      - key: DJANGO_DEBUG
+        value: "false"
+      - key: DJANGO_ALLOWED_HOSTS
+        sync: false
+      - key: DJANGO_CSRF_TRUSTED_ORIGINS
+        sync: false
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: GOOGLE_OAUTH_CLIENT_ID
+        sync: false
+      - key: GOOGLE_OAUTH_CLIENT_SECRET
+        sync: false
+      - key: GOOGLE_OAUTH_REDIRECT_ORIGIN
+        sync: false
+      - key: PYTHON_VERSION
+        value: "3.12.8"

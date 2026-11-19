@@ -356,20 +356,32 @@ def build():
     # Pretty URL folders so /login/, /jobs/, /employer/, etc. work on GitHub Pages.
     _write_pretty_route_indexes()
 
-    # Mark every HTML page as a static preview (auth/OAuth cannot hit Django here).
+    # Mark static Pages HTML + optional real Django origin for Google OAuth handoff.
+    django_origin = os.environ.get("TALENTBRIDGE_DJANGO_ORIGIN", "").strip().rstrip("/")
+    origin_meta = (
+        f'<meta name="talentbridge-django-origin" content="{django_origin}">\n'
+        if django_origin
+        else ""
+    )
     for html_file in OUTPUT.rglob("*.html"):
         text = html_file.read_text(encoding="utf-8-sig")
-        if "data-static-preview" in text:
-            continue
-        updated = re.sub(
-            r"<html\b([^>]*)>",
-            r'<html\1 data-static-preview="1">',
-            text,
-            count=1,
-            flags=re.IGNORECASE,
-        )
-        if updated != text:
-            html_file.write_text(updated, encoding="utf-8")
+        if "data-static-preview" not in text:
+            text = re.sub(
+                r"<html\b([^>]*)>",
+                r'<html\1 data-static-preview="1">',
+                text,
+                count=1,
+                flags=re.IGNORECASE,
+            )
+        if origin_meta and 'name="talentbridge-django-origin"' not in text:
+            text = re.sub(
+                r"<head\b([^>]*)>",
+                r"<head\1>\n" + origin_meta,
+                text,
+                count=1,
+                flags=re.IGNORECASE,
+            )
+        html_file.write_text(text, encoding="utf-8")
 
     # Custom domain for GitHub Pages (committed at repo root; copied into publish output).
     cname_src = ROOT / "CNAME"

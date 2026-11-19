@@ -85,7 +85,21 @@ STATIC_PATH_PAGES = {
     "/companies/": "pages/companies.html",
     "/login/": "pages/login.html",
     "/jobs/": "pages/job-listings.html",
+    "/remote-jobs/": "pages/job-listings.html",
+    "/startup-jobs/": "pages/job-listings.html",
     "/jobseaker/": "pages/jobseaker.html",
+    "/job-seekers/": "pages/jobseaker.html",
+    "/for-job-seekers/": "pages/jobseaker.html",
+    "/employer/": "pages/employer.html",
+    "/employers/": "pages/employer.html",
+    "/for-employers/": "pages/employer.html",
+    "/pricing/": "pages/pricing.html",
+    "/careers/": "pages/careers.html",
+    "/resources/": "pages/careers.html",
+    "/about/": "pages/about.html",
+    "/blog/": "pages/blog.html",
+    "/faq/": "pages/faq.html",
+    "/signup/": "pages/signup-role.html",
     "/signup/job-seeker/": "pages/jobseeker-signup.html",
     "/signup/employer/": "pages/company-signup.html",
     "/forgot-password/": "pages/forgot-password.html",
@@ -94,6 +108,9 @@ STATIC_PATH_PAGES = {
     "/privacy/": "pages/privacy.html",
     "/terms/": "pages/terms.html",
     "/contact/": "pages/contact.html",
+    "/auth/social/google/": "pages/login.html",
+    "/accounts/google/login/": "pages/login.html",
+    "/accounts/google/login/callback/": "pages/login.html",
 }
 TEMPLATE_TOKEN = re.compile(r"(\{%.*?%\}|{{.*?}})", re.DOTALL)
 STATIC_TEMPLATE_VALUES = {
@@ -310,6 +327,24 @@ def build():
         else:
             html_file.write_text(text, encoding="utf-8")
 
+    # Pretty URL folders so /login/, /jobs/, /employer/, etc. work on GitHub Pages.
+    _write_pretty_route_indexes()
+
+    # Mark every HTML page as a static preview (auth/OAuth cannot hit Django here).
+    for html_file in OUTPUT.rglob("*.html"):
+        text = html_file.read_text(encoding="utf-8-sig")
+        if "data-static-preview" in text:
+            continue
+        updated = re.sub(
+            r"<html\b([^>]*)>",
+            r'<html\1 data-static-preview="1">',
+            text,
+            count=1,
+            flags=re.IGNORECASE,
+        )
+        if updated != text:
+            html_file.write_text(updated, encoding="utf-8")
+
     # Custom domain for GitHub Pages (committed at repo root; copied into publish output).
     cname_src = ROOT / "CNAME"
     if cname_src.is_file():
@@ -318,6 +353,33 @@ def build():
     (OUTPUT / ".nojekyll").write_text("", encoding="utf-8")
 
     print(f"Static site built in {OUTPUT.relative_to(ROOT)}")
+
+
+def _write_pretty_route_indexes():
+    """Create /route/index.html redirects for GitHub Pages pretty URLs."""
+    for route_path, target in STATIC_PATH_PAGES.items():
+        slug = route_path.strip("/")
+        if not slug:
+            continue
+        dest_dir = OUTPUT / Path(slug)
+        dest_dir.mkdir(parents=True, exist_ok=True)
+        relative = os.path.relpath(OUTPUT / target, dest_dir).replace("\\", "/")
+        (dest_dir / "index.html").write_text(
+            (
+                "<!DOCTYPE html>\n"
+                '<html lang="en" data-static-preview="1">\n'
+                "<head>\n"
+                '  <meta charset="utf-8">\n'
+                f'  <meta http-equiv="refresh" content="0; url={relative}">\n'
+                f'  <link rel="canonical" href="/{target}">\n'
+                f"  <script>location.replace({relative!r});</script>\n"
+                "  <title>Redirecting…</title>\n"
+                "</head>\n"
+                f'<body><p><a href="{relative}">Continue to TalentBridge AI</a></p></body>\n'
+                "</html>\n"
+            ),
+            encoding="utf-8",
+        )
 
 
 if __name__ == "__main__":

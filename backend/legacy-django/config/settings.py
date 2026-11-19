@@ -63,10 +63,67 @@ DEBUG = (
     and os.environ.get('DJANGO_DEBUG', 'false').lower() in {'1', 'true', 'yes', 'on'}
 )
 
+def _split_env_list(name: str, default: str = "") -> list[str]:
+    return [
+        item.strip()
+        for item in os.environ.get(name, default).split(",")
+        if item.strip()
+    ]
+
+
+def _render_hosts_and_origins() -> tuple[list[str], list[str], str]:
+    """Auto-detect Render public hostname/origin so deploy needs fewer manual env vars."""
+    hosts: list[str] = []
+    origins: list[str] = []
+    redirect_origin = ""
+
+    render_url = os.environ.get("RENDER_EXTERNAL_URL", "").strip().rstrip("/")
+    render_host = os.environ.get("RENDER_EXTERNAL_HOSTNAME", "").strip()
+    if render_url:
+        parsed = urlparse(render_url)
+        if parsed.hostname:
+            hosts.append(parsed.hostname)
+        origins.append(render_url)
+        redirect_origin = render_url
+    if render_host:
+        hosts.append(render_host)
+        origins.append(f"https://{render_host}")
+        if not redirect_origin:
+            redirect_origin = f"https://{render_host}"
+
+    # Optional public product domain (GitHub Pages / custom DNS later pointed at Django).
+    for host in ("talentbridge.qd.je", "www.talentbridge.qd.je"):
+        hosts.append(host)
+        origins.append(f"https://{host}")
+        origins.append(f"http://{host}")
+
+    # De-dupe while preserving order.
+    def unique(items: list[str]) -> list[str]:
+        seen: set[str] = set()
+        out: list[str] = []
+        for item in items:
+            key = item.lower()
+            if key in seen:
+                continue
+            seen.add(key)
+            out.append(item)
+        return out
+
+    return unique(hosts), unique(origins), redirect_origin
+
+
+_RENDER_HOSTS, _RENDER_ORIGINS, _RENDER_REDIRECT_ORIGIN = _render_hosts_and_origins()
+
+ALLOWED_HOSTS = _split_env_list(
+    "DJANGO_ALLOWED_HOSTS",
+    "localhost,127.0.0.1,[::1]",
+) + _RENDER_HOSTS
+# Keep unique hosts for Django.
+_seen_hosts: set[str] = set()
 ALLOWED_HOSTS = [
-    host.strip()
-    for host in os.environ.get('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1,[::1]').split(',')
-    if host.strip()
+    host
+    for host in ALLOWED_HOSTS
+    if not (host.lower() in _seen_hosts or _seen_hosts.add(host.lower()))
 ]
 
 
@@ -149,8 +206,11 @@ SOCIALACCOUNT_PROVIDERS = {}
 GOOGLE_OAUTH_CLIENT_ID = os.environ.get('GOOGLE_OAUTH_CLIENT_ID', '').strip()
 GOOGLE_OAUTH_CLIENT_SECRET = os.environ.get('GOOGLE_OAUTH_CLIENT_SECRET', '').strip()
 # Optional absolute origin for Google redirect_uri (e.g. http://127.0.0.1:8000).
-# When empty, local Site.domain from prepare_local_auth is used.
-GOOGLE_OAUTH_REDIRECT_ORIGIN = os.environ.get('GOOGLE_OAUTH_REDIRECT_ORIGIN', '').strip().rstrip('/')
+# When empty on Render, auto-use RENDER_EXTERNAL_URL / hostname.
+GOOGLE_OAUTH_REDIRECT_ORIGIN = (
+    os.environ.get('GOOGLE_OAUTH_REDIRECT_ORIGIN', '').strip().rstrip('/')
+    or _RENDER_REDIRECT_ORIGIN
+)
 # A missing half of the OAuth pair must not prevent the rest of the site from
 # starting. Google sign-in stays disabled until both private values are present;
 # the check_google_oauth management command reports which value is missing.
@@ -285,13 +345,15 @@ SESSION_COOKIE_AGE = int(os.environ.get('SESSION_COOKIE_AGE', '1209600'))
 SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SAMESITE = 'Lax'
 CSRF_COOKIE_SAMESITE = 'Lax'
+CSRF_TRUSTED_ORIGINS = _split_env_list(
+    'DJANGO_CSRF_TRUSTED_ORIGINS',
+    'http://127.0.0.1:8000,http://127.0.0.1:8001,http://localhost:8000,http://localhost:8001',
+) + _RENDER_ORIGINS
+_seen_origins: set[str] = set()
 CSRF_TRUSTED_ORIGINS = [
-    origin.strip()
-    for origin in os.environ.get(
-        'DJANGO_CSRF_TRUSTED_ORIGINS',
-        'http://127.0.0.1:8000,http://127.0.0.1:8001,http://localhost:8000,http://localhost:8001',
-    ).split(',')
-    if origin.strip()
+    origin
+    for origin in CSRF_TRUSTED_ORIGINS
+    if not (origin.lower() in _seen_origins or _seen_origins.add(origin.lower()))
 ]
 
 

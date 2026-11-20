@@ -182,6 +182,41 @@ def ensure_env():
 
 
 
+def register_portable_launcher():
+    """Copy START_TALENTBRIDGEAI.bat to Desktop/Start Menu so it runs from anywhere."""
+    if os.name != 'nt':
+        return
+    GLOBAL_STATE.mkdir(parents=True, exist_ok=True)
+    src = ROOT / 'START_TALENTBRIDGEAI.bat'
+    if not src.is_file():
+        log('START_TALENTBRIDGEAI.bat missing at project root; portable shortcuts skipped.')
+        return
+    cached = GLOBAL_STATE / 'START_TALENTBRIDGEAI.bat'
+    shutil.copy2(src, cached)
+    targets = []
+    profile = os.environ.get('USERPROFILE', '').strip()
+    if profile:
+        desktop = Path(profile) / 'Desktop'
+        if desktop.is_dir():
+            targets.append(desktop / 'TalentBridgeAI START (Auto Install).bat')
+        onedrive = os.environ.get('OneDrive', '').strip()
+        if onedrive:
+            od_desktop = Path(onedrive) / 'Desktop'
+            if od_desktop.is_dir():
+                targets.append(od_desktop / 'TalentBridgeAI START (Auto Install).bat')
+    appdata = os.environ.get('APPDATA', '').strip()
+    if appdata:
+        menu = Path(appdata) / 'Microsoft' / 'Windows' / 'Start Menu' / 'Programs' / 'TalentBridgeAI'
+        menu.mkdir(parents=True, exist_ok=True)
+        targets.append(menu / 'Start TalentBridgeAI (Auto Install).bat')
+    for target in targets:
+        try:
+            shutil.copy2(src, target)
+        except OSError as exc:
+            log(f'Could not copy launcher to {target}: {exc}')
+    log(f'Portable launcher updated ({len(targets)} shortcut(s); also {cached}).')
+
+
 def register_user_startup():
     """Register a simple per-user CMD launcher (avoids fragile VBScript startup files)."""
     if os.name != 'nt':
@@ -769,6 +804,7 @@ def install():
     django_checks(py,migrate=True,collect=True,env=env)
     prepare_local_auth(py, env)
     register_user_startup()
+    register_portable_launcher()
     remember_active_checkout()
     run_smoke_qa(py, env)
     log('INSTALLATION CHECKS COMPLETED. Existing database and user rows were not reset.')
@@ -790,6 +826,7 @@ def start():
     django_checks(py,migrate=True,collect=True,env=env)
     prepare_local_auth(py, env)
     register_user_startup()
+    register_portable_launcher()
     if port_open():
         pid=owned_pid()
         if not pid: raise RuntimeError(f'Port {PORT} became occupied by another process during startup. It was NOT terminated; retry to select another port.')

@@ -7,11 +7,7 @@ services:
     runtime: python
     plan: free
     rootDir: .
-    buildCommand: |
-      pip install -r backend/legacy-django/requirements.txt
-      chmod +x backend/legacy-django/scripts/render_start.sh
-      cd backend/legacy-django
-      python manage.py collectstatic --noinput
+    buildCommand: bash backend/legacy-django/scripts/render_build.sh
     startCommand: bash backend/legacy-django/scripts/render_start.sh
     autoDeploy: true
     envVars:

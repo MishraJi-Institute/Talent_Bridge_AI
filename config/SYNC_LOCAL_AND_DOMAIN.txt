@@ -1,0 +1,20 @@
+# How changes reach localhost vs domain
+#
+# LOCALHOST (database + full Django)
+#   Run: START_TALENTBRIDGEAI.bat
+#   URL: http://127.0.0.1:8000
+#   DB:  database/TalentBridgeAI.sqlite3
+#   Edits in frontend/ or backend/ apply on save (Django reload).
+#
+# DOMAIN (after git push to main)
+#   Static marketing: https://talentbridge.qd.je  (GitHub Actions from tools/build_static.py)
+#   Full app + DB:    https://app.talentbridge.qd.je (Render + Postgres; see render.yaml)
+#
+# SYNC WORKFLOW
+#   1. Work locally on port 8000
+#   2. Run: scripts\deploy\GITHUB_DOMAIN_SYNC.bat
+#      (pull, optional auto-commit, build, push -> updates domain)
+#   Or: commit in Cursor + push; START.bat also runs publish when AUTO_PUBLISH=1
+#
+# GitHub remote (must match):
+#   https://github.com/MishraJi-Institute/Talent_Bridge_AI.git

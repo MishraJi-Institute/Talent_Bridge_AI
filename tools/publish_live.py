@@ -155,6 +155,7 @@ def main() -> int:
     if auto in {"0", "false", "no", "off"}:
         _log("TALENTBRIDGEAI_AUTO_PUBLISH is off; publish steps skipped.")
         return 0
+    _run([sys.executable, str(ROOT / "tools" / "ensure_github_remote.py")])
     build_static_site()
     git_push_if_ahead()
     render_sync_from_env()

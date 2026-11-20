@@ -1,0 +1,8 @@
+{
+  "task.allowAutomaticTasks": "on",
+  "liveServer.settings.root": "/site",
+  "liveServer.settings.port": 5500,
+  "liveServer.settings.noBrowser": true,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "python.terminal.useEnvFile": true
+}

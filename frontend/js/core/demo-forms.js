@@ -1,33 +1,11 @@
-/* TalentBridge AI — static frontend → real Django OAuth (no demo sessions).
-   Local Django (:8000 / :8001): exit; server handles forms and Google. */
+/* Static / Live Server / GitHub → real Django OAuth (no demo sessions). */
 (() => {
-  const localHosts = new Set(["localhost", "127.0.0.1", "[::1]", "::1"]);
-  const host = (window.location.hostname || "").toLowerCase();
-  const port = window.location.port || "";
-  const isDjangoLocal = localHosts.has(host) && (port === "8000" || port === "8001");
+  const rt = window.TalentBridge && window.TalentBridge.runtime;
+  if (!rt) return;
+  if (rt.mode() === "django") return;
+  if (!rt.isStaticPreview()) return;
 
-  if (isDjangoLocal) return;
-
-  const markedStatic =
-    document.documentElement.getAttribute("data-static-preview") === "1" ||
-    document.body?.hasAttribute("data-static-preview");
-  const isStaticHost =
-    window.location.protocol === "file:" ||
-    markedStatic ||
-    !localHosts.has(host);
-
-  if (!isStaticHost) return;
-
-  function djangoOrigin() {
-    const meta = document.querySelector('meta[name="talentbridge-django-origin"]');
-    const fromMeta = (meta && meta.getAttribute("content") || "").trim().replace(/\/$/, "");
-    if (fromMeta && !fromMeta.includes("127.0.0.1")) return fromMeta;
-    const fromWindow = (window.TALENTBRIDGE_DJANGO_ORIGIN || "").trim().replace(/\/$/, "");
-    if (fromWindow && !fromWindow.includes("127.0.0.1")) return fromWindow;
-    return "";
-  }
-
-  function showConfigError() {
+  function showConfigError(originMissing) {
     let note = document.getElementById("tb-real-oauth-notice");
     if (!note) {
       note = document.createElement("div");
@@ -46,17 +24,30 @@
         document.body.prepend(note);
       }
     }
-    note.textContent =
-      "Google sign-in is not wired yet: deploy the Django backend and set config/talentbridge_django_origin.txt (or TALENTBRIDGE_DJANGO_ORIGIN in GitHub Actions) to that HTTPS URL, then redeploy Pages.";
+    if (rt.mode() === "static-local") {
+      note.textContent =
+        "Django is not reachable. Double-click START_TALENTBRIDGEAI.bat (keeps port 8000 open), then reload this page.";
+    } else if (originMissing) {
+      note.textContent =
+        "Google sign-in needs a live Django host. Set config/talentbridge_django_origin.txt and push to GitHub, or use local START_TALENTBRIDGEAI.bat + Live Server on site/.";
+    } else {
+      note.textContent = "Sign-in redirect failed. Check that Django is deployed and healthy.";
+    }
     note.focus();
   }
 
-  function startRealGoogle(form) {
-    const origin = djangoOrigin();
+  function resolveOrigin() {
+    const origin = rt.backendOrigin();
     if (!origin) {
-      showConfigError();
-      return;
+      showConfigError(true);
+      return "";
     }
+    return origin;
+  }
+
+  function startRealGoogle(form) {
+    const origin = resolveOrigin();
+    if (!origin) return;
     const role = form.querySelector('input[name="role"]')?.value || "choose";
     const next = form.querySelector('input[name="next"]')?.value || "";
     const params = new URLSearchParams();
@@ -75,11 +66,8 @@
   }
 
   function startRealBackend(form) {
-    const origin = djangoOrigin();
-    if (!origin) {
-      showConfigError();
-      return;
-    }
+    const origin = resolveOrigin();
+    if (!origin) return;
     window.location.assign(origin + signupPathForForm(form));
   }
 

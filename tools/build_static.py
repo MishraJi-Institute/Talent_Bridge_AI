@@ -363,16 +363,18 @@ def build():
             script = f'<script src="{relative_script.as_posix()}"></script>\n'
             text = re.sub(r"</body>", script + "</body>", text, count=1, flags=re.IGNORECASE)
 
-        if "</body>" in text and "js/core/demo-forms.js" not in text:
-            relative_script = Path("js/core/demo-forms.js")
-            script_path = Path(
-                *([".."] * len(from_page.parent.parts)), relative_script
-            )
-            bust = "20261120-perm-oauth"
-            text = text.replace(
-                "</body>",
-                f'<script src="{script_path.as_posix()}?v={bust}"></script>\n</body>',
-            )
+        if "</body>" in text and "js/core/host-runtime.js" not in text:
+            depth = [".."] * len(from_page.parent.parts)
+            bust = "20261120-universal"
+            host_path = Path(*depth, "js/core/host-runtime.js")
+            demo_path = Path(*depth, "js/core/demo-forms.js")
+            scripts = ""
+            if "js/core/demo-forms.js" not in text:
+                scripts = (
+                    f'<script src="{host_path.as_posix()}?v={bust}"></script>\n'
+                    f'<script src="{demo_path.as_posix()}?v={bust}"></script>\n'
+                )
+            text = text.replace("</body>", scripts + "</body>")
             html_file.write_text(text, encoding="utf-8")
         else:
             html_file.write_text(text, encoding="utf-8")
@@ -390,10 +392,12 @@ def build():
     else:
         print(f"Django OAuth handoff origin: {django_origin}")
 
-    origin_block = ""
+    origin_block = (
+        '<meta name="talentbridge-django-origin-local" content="http://127.0.0.1:8000">\n'
+    )
     if django_origin:
         safe_js = django_origin.replace("\\", "\\\\").replace('"', '\\"')
-        origin_block = (
+        origin_block += (
             f'<meta name="talentbridge-django-origin" content="{django_origin}">\n'
             f'<script>window.TALENTBRIDGE_DJANGO_ORIGIN="{safe_js}";</script>\n'
         )
@@ -408,7 +412,7 @@ def build():
                 count=1,
                 flags=re.IGNORECASE,
             )
-        if origin_block and 'name="talentbridge-django-origin"' not in text:
+        if origin_block and 'name="talentbridge-django-origin-local"' not in text:
             text = re.sub(
                 r"<head\b([^>]*)>",
                 r"<head\1>\n" + origin_block,

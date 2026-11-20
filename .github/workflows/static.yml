@@ -43,8 +43,10 @@ jobs:
           test -f site/index.html
           test -f site/CNAME
           test -f site/.nojekyll
+          grep -q 'name="talentbridge-django-origin-local"' site/index.html
           grep -q 'name="talentbridge-django-origin"' site/index.html
-          grep -q 'name="talentbridge-django-origin"' site/pages/jobseeker-signup.html
+          grep -q 'name="talentbridge-django-origin-local"' site/pages/jobseeker-signup.html
+          grep -q 'js/core/host-runtime.js' site/pages/jobseeker-signup.html
           grep -q 'js/core/demo-forms.js' site/pages/jobseeker-signup.html
           echo "Static build OK (Django OAuth handoff verified)"
       - name: Setup Pages

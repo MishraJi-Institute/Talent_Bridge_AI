@@ -367,11 +367,12 @@ def build():
 
         if "</body>" in text:
             depth = [".."] * len(from_page.parent.parts)
-            bust = "20261121-pages-google"
+            bust = "20261121-auth-chrome"
             host_path = Path(*depth, "js/core/host-runtime.js")
             demo_path = Path(*depth, "js/core/demo-forms.js")
             gsi_path = Path(*depth, "js/core/google-pages-signin.js")
             guard_path = Path(*depth, "js/core/static-post-guard.js")
+            chrome_path = Path(*depth, "js/core/pages-auth-chrome.js")
             success_path = Path(*depth, "js/core/pages-google-success.js")
             scripts = ""
             if "js/core/host-runtime.js" not in text:
@@ -382,6 +383,8 @@ def build():
                 scripts += f'<script src="{gsi_path.as_posix()}?v={bust}"></script>\n'
             if "js/core/static-post-guard.js" not in text:
                 scripts += f'<script src="{guard_path.as_posix()}?v={bust}"></script>\n'
+            if "js/core/pages-auth-chrome.js" not in text:
+                scripts += f'<script src="{chrome_path.as_posix()}?v={bust}"></script>\n'
             if "pages-google-success.js" not in text and from_page.name == "application-success.html":
                 scripts += f'<script src="{success_path.as_posix()}?v={bust}"></script>\n'
             if scripts:

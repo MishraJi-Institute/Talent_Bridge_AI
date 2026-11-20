@@ -10,8 +10,9 @@ staticfiles/
 media/
 /site/
 
-# Local configuration and secrets
+# Local configuration and secrets (never remove — .env must not reach GitHub)
 .env
+.env.local
 .env.*
 !.env.example
 

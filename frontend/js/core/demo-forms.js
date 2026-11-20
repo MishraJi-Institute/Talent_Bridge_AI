@@ -1,11 +1,17 @@
-/* Static / Live Server / GitHub → real Django OAuth (no demo sessions). */
+/* Local static → Django; GitHub Pages → Google client ID (google-pages-signin.js). */
 (() => {
   const rt = window.TalentBridge && window.TalentBridge.runtime;
   if (!rt) return;
   if (rt.mode() === "django") return;
   if (!rt.isStaticPreview()) return;
 
-  function showConfigError(originMissing) {
+  const pagesGoogle =
+    rt.mode() === "static-live" &&
+    !!document.querySelector('meta[name="google-oauth-client-id"]')?.getAttribute("content");
+
+  if (pagesGoogle) return;
+
+  function showConfigError() {
     let note = document.getElementById("tb-real-oauth-notice");
     if (!note) {
       note = document.createElement("div");
@@ -26,12 +32,10 @@
     }
     if (rt.mode() === "static-local") {
       note.textContent =
-        "Django is not reachable. Double-click START_TALENTBRIDGEAI.bat (keeps port 8000 open), then reload this page.";
-    } else if (originMissing) {
-      note.textContent =
-        "Live sign-in uses app.talentbridge.qd.je (Django + database). Run scripts\\deploy\\SETUP_DOMAIN_LIKE_LOCAL.bat once, or use local START_TALENTBRIDGEAI.bat at http://127.0.0.1:8000";
+        "Start Django first: double-click START_TALENTBRIDGEAI.bat, then use http://127.0.0.1:8000/login/";
     } else {
-      note.textContent = "Sign-in redirect failed. Check that Django is deployed and healthy.";
+      note.textContent =
+        "Set GOOGLE_OAUTH_CLIENT_ID in GitHub repo Variables (Settings → Secrets and variables → Actions), then push main to rebuild Pages.";
     }
     note.focus();
   }
@@ -39,7 +43,7 @@
   function resolveOrigin() {
     const origin = rt.backendOrigin();
     if (!origin) {
-      showConfigError(true);
+      showConfigError();
       return "";
     }
     return origin;

@@ -256,7 +256,7 @@ def ensure_private_env():
                 '\n# One-click launcher defaults (see tools/windows_manager.py auto)\n'
                 'TALENTBRIDGEAI_AUTO_PUBLISH=1\n'
             )
-        log('Created .env from .env.example (AUTO_PUBLISH enabled). Add Google OAuth + optional RENDER_API_KEY.')
+        log('Created .env from .env.example (AUTO_PUBLISH enabled). Add Google OAuth + GitHub Variable for Pages.')
     text = env.read_text(encoding='utf-8-sig')
     import secrets
     lines = text.splitlines()

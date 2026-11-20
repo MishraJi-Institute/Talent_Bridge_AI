@@ -1,20 +1,18 @@
-# How changes reach localhost vs domain
+# LOCAL vs DOMAIN (GitHub Pages only — no Render)
 #
-# LOCALHOST (database + full Django)
-#   Run: START_TALENTBRIDGEAI.bat
-#   URL: http://127.0.0.1:8000
-#   DB:  database/TalentBridgeAI.sqlite3
-#   Edits in frontend/ or backend/ apply on save (Django reload).
+# LOCAL (full app + SQLite database)
+#   START_TALENTBRIDGEAI.bat  →  http://127.0.0.1:8000
+#   Google OAuth: .env GOOGLE_OAUTH_CLIENT_ID + SECRET (Django allauth)
 #
-# DOMAIN (after git push to main)
-#   Static marketing: https://talentbridge.qd.je  (GitHub Actions from tools/build_static.py)
-#   Full app + DB:    https://app.talentbridge.qd.je (Render + Postgres; see render.yaml)
+# DOMAIN
+#   https://talentbridge.qd.je  →  GitHub Pages (push main)
+#   Google OAuth on domain: public GOOGLE_OAUTH_CLIENT_ID only
+#   Set GitHub: Settings → Secrets and variables → Actions → Variables
+#   Name: GOOGLE_OAUTH_CLIENT_ID  (same client ID as local; secret stays in .env only)
 #
-# SYNC WORKFLOW
-#   1. Work locally on port 8000
-#   2. Run: scripts\deploy\GITHUB_DOMAIN_SYNC.bat
-#      (pull, optional auto-commit, build, push -> updates domain)
-#   Or: commit in Cursor + push; START.bat also runs publish when AUTO_PUBLISH=1
+# Google Cloud Console → Authorized JavaScript origins:
+#   https://talentbridge.qd.je
+#   https://www.talentbridge.qd.je
+#   http://127.0.0.1:8000
 #
-# GitHub remote (must match):
-#   https://github.com/MishraJi-Institute/Talent_Bridge_AI.git
+# SYNC: scripts\deploy\GITHUB_DOMAIN_SYNC.bat  (after you commit changes)

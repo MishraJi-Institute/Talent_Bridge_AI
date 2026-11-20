@@ -2,12 +2,7 @@ from pathlib import Path
 import os
 import re
 import shutil
-import sys
 from urllib.parse import urlsplit
-
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from backend_health import origin_is_healthy  # noqa: E402
-
 
 ROOT = Path(__file__).resolve().parents[1]  # repo root (script lives in tools/)
 OUTPUT = ROOT / "site"
@@ -150,31 +145,27 @@ STATIC_TEMPLATE_VALUES = {
 }
 
 
-def _resolve_django_origin() -> str:
-    """Production Django HTTPS origin for static→OAuth handoff (not localhost)."""
-    origin = os.environ.get("TALENTBRIDGE_DJANGO_ORIGIN", "").strip()
-    if not origin:
-        cfg = ROOT / "config" / "talentbridge_django_origin.txt"
+def _resolve_google_client_id() -> str:
+    """Public client ID for GitHub Pages (Google Identity Services). Secret stays in .env only."""
+    client_id = os.environ.get("GOOGLE_OAUTH_CLIENT_ID", "").strip()
+    if not client_id:
+        env_path = ROOT / ".env"
+        if env_path.is_file():
+            for raw in env_path.read_text(encoding="utf-8-sig").splitlines():
+                line = raw.strip()
+                if line.startswith("GOOGLE_OAUTH_CLIENT_ID="):
+                    client_id = line.split("=", 1)[1].strip().strip('"').strip("'")
+                    break
+    if not client_id:
+        cfg = ROOT / "config" / "google_oauth_client_id.txt"
         if cfg.is_file():
             for line in cfg.read_text(encoding="utf-8").splitlines():
                 line = line.strip()
                 if not line or line.startswith("#"):
                     continue
-                origin = line
+                client_id = line
                 break
-    origin = origin.rstrip("/")
-    if origin and ("127.0.0.1" in origin or "localhost" in origin.lower()):
-        raise RuntimeError(
-            "TALENTBRIDGE_DJANGO_ORIGIN must be the public HTTPS Django host, not localhost."
-        )
-    if origin and not origin_is_healthy(origin):
-        print(
-            f"WARN: {origin} is not the TalentBridge Django app "
-            f"(missing {origin}/__deploy__/health/). "
-            "Omitting production OAuth meta until Render deploys this repo."
-        )
-        return ""
-    return origin
+    return client_id.strip()
 
 
 def _static_link(target, from_page):
@@ -376,14 +367,16 @@ def build():
 
         if "</body>" in text and "js/core/host-runtime.js" not in text:
             depth = [".."] * len(from_page.parent.parts)
-            bust = "20261120-universal"
+            bust = "20261121-pages-google"
             host_path = Path(*depth, "js/core/host-runtime.js")
             demo_path = Path(*depth, "js/core/demo-forms.js")
+            gsi_path = Path(*depth, "js/core/google-pages-signin.js")
             scripts = ""
             if "js/core/demo-forms.js" not in text:
                 scripts = (
                     f'<script src="{host_path.as_posix()}?v={bust}"></script>\n'
                     f'<script src="{demo_path.as_posix()}?v={bust}"></script>\n'
+                    f'<script src="{gsi_path.as_posix()}?v={bust}"></script>\n'
                 )
             text = text.replace("</body>", scripts + "</body>")
             html_file.write_text(text, encoding="utf-8")
@@ -393,25 +386,21 @@ def build():
     # Pretty URL folders so /login/, /jobs/, /employer/, etc. work on GitHub Pages.
     _write_pretty_route_indexes()
 
-    # Mark static Pages HTML + inject production Django origin for real Google OAuth.
-    django_origin = _resolve_django_origin()
-    if not django_origin:
-        print(
-            "WARN: No TALENTBRIDGE_DJANGO_ORIGIN — Pages Google sign-in will show config error "
-            "until config/talentbridge_django_origin.txt is set."
-        )
+    google_client_id = _resolve_google_client_id()
+    if google_client_id:
+        print("GitHub Pages Google OAuth: client ID will be embedded (public ID only).")
     else:
-        print(f"Django OAuth handoff origin: {django_origin}")
+        print(
+            "WARN: No GOOGLE_OAUTH_CLIENT_ID — set GitHub Actions variable "
+            "or config/google_oauth_client_id.txt for talentbridge.qd.je Google sign-in."
+        )
 
     origin_block = (
         '<meta name="talentbridge-django-origin-local" content="http://127.0.0.1:8000">\n'
     )
-    if django_origin:
-        safe_js = django_origin.replace("\\", "\\\\").replace('"', '\\"')
-        origin_block += (
-            f'<meta name="talentbridge-django-origin" content="{django_origin}">\n'
-            f'<script>window.TALENTBRIDGE_DJANGO_ORIGIN="{safe_js}";</script>\n'
-        )
+    if google_client_id:
+        safe_attr = google_client_id.replace("&", "&amp;").replace('"', "&quot;")
+        origin_block += f'<meta name="google-oauth-client-id" content="{safe_attr}">\n'
 
     for html_file in OUTPUT.rglob("*.html"):
         text = html_file.read_text(encoding="utf-8-sig")

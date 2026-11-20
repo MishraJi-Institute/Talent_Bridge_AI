@@ -1,4 +1,3 @@
-# Live Django (same code as local) — Postgres DB on server, not your PC SQLite file.
-# DNS: CNAME app.talentbridge.qd.je → your Render hostname (see docs/setup/DOMAIN_LIKE_LOCAL.md).
-# Until DNS works, use https://talentbridge-ai.onrender.com on this line instead.
-https://app.talentbridge.qd.je
+# GitHub Pages only — no external Django / Render host.
+# Local full app: START_TALENTBRIDGEAI.bat → http://127.0.0.1:8000
+# Live Google sign-in on domain: GOOGLE_OAUTH_CLIENT_ID (GitHub Actions variable + build_static)

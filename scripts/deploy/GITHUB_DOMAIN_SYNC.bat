@@ -29,5 +29,5 @@ echo [4/4] Build static + push if ahead (triggers talentbridge.qd.je)...
 if errorlevel 1 exit /b 1
 
 echo.
-echo Done. Local = http://127.0.0.1:8000  ^|  Domain static = talentbridge.qd.je  ^|  Live app = app.talentbridge.qd.je
+echo Done. Local Django = http://127.0.0.1:8000  ^|  Domain = https://talentbridge.qd.je (GitHub Pages)
 exit /b 0

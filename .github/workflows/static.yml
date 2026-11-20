@@ -1,28 +1,21 @@
-# Simple workflow for deploying static content to GitHub Pages
+# Deploy static content to GitHub Pages (talentbridge.qd.je)
 name: Deploy static content to Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "pages"
   cancel-in-progress: true
 
 jobs:
-  # Single deploy job since we're just deploying
   deploy:
     environment:
       name: github-pages
@@ -37,18 +30,21 @@ jobs:
           python-version: "3.x"
       - name: Build static site
         env:
-          TALENTBRIDGE_DJANGO_ORIGIN: ${{ vars.TALENTBRIDGE_DJANGO_ORIGIN }}
+          GOOGLE_OAUTH_CLIENT_ID: ${{ vars.GOOGLE_OAUTH_CLIENT_ID }}
         run: |
           python tools/build_static.py
           test -f site/index.html
           test -f site/CNAME
           test -f site/.nojekyll
           grep -q 'name="talentbridge-django-origin-local"' site/index.html
-          test "$(grep -c 'name=\"talentbridge-django-origin\"' site/index.html || true)" -le 1
-          grep -q 'name="talentbridge-django-origin-local"' site/pages/jobseeker-signup.html
-          grep -q 'js/core/host-runtime.js' site/pages/jobseeker-signup.html
-          grep -q 'js/core/demo-forms.js' site/pages/jobseeker-signup.html
-          echo "Static build OK (Django OAuth handoff verified)"
+          grep -q 'js/core/host-runtime.js' site/pages/login.html
+          grep -q 'js/core/google-pages-signin.js' site/pages/login.html
+          if [ -n "${GOOGLE_OAUTH_CLIENT_ID:-}" ]; then
+            grep -q 'name="google-oauth-client-id"' site/pages/login.html
+            echo "Google client ID embedded for Pages"
+          else
+            echo "WARN: Set repository variable GOOGLE_OAUTH_CLIENT_ID for live Google sign-in"
+          fi
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact

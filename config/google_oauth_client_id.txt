@@ -1,0 +1,3 @@
+# Public Google OAuth Client ID for talentbridge.qd.je (GitHub Pages).
+# Same value as .env GOOGLE_OAUTH_CLIENT_ID — NEVER put the secret here.
+# Override in CI with repository variable GOOGLE_OAUTH_CLIENT_ID.

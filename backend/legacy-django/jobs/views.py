@@ -2467,3 +2467,14 @@ def approve_company(request, company_id):
         )
     messages.success(request, f"{company.name} has been approved.")
     return redirect("admin-dashboard")
+
+
+def deploy_health(request):
+    """Public health marker so Pages builds and humans can detect the real TalentBridge app."""
+    return JsonResponse(
+        {
+            "app": "talentbridge-ai-legacy",
+            "google_oauth_path": "/auth/social/google/",
+            "login_path": "/login/",
+        }
+    )

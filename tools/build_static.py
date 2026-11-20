@@ -2,7 +2,11 @@ from pathlib import Path
 import os
 import re
 import shutil
+import sys
 from urllib.parse import urlsplit
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from backend_health import origin_is_healthy  # noqa: E402
 
 
 ROOT = Path(__file__).resolve().parents[1]  # repo root (script lives in tools/)
@@ -163,6 +167,13 @@ def _resolve_django_origin() -> str:
         raise RuntimeError(
             "TALENTBRIDGE_DJANGO_ORIGIN must be the public HTTPS Django host, not localhost."
         )
+    if origin and not origin_is_healthy(origin):
+        print(
+            f"WARN: {origin} is not the TalentBridge Django app "
+            f"(missing {origin}/__deploy__/health/). "
+            "Omitting production OAuth meta until Render deploys this repo."
+        )
+        return ""
     return origin
 
 

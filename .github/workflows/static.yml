@@ -44,7 +44,7 @@ jobs:
           test -f site/CNAME
           test -f site/.nojekyll
           grep -q 'name="talentbridge-django-origin-local"' site/index.html
-          grep -q 'name="talentbridge-django-origin"' site/index.html
+          test "$(grep -c 'name=\"talentbridge-django-origin\"' site/index.html || true)" -le 1
           grep -q 'name="talentbridge-django-origin-local"' site/pages/jobseeker-signup.html
           grep -q 'js/core/host-runtime.js' site/pages/jobseeker-signup.html
           grep -q 'js/core/demo-forms.js' site/pages/jobseeker-signup.html

@@ -11,6 +11,8 @@ import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "tools"))
+from backend_health import origin_is_healthy  # noqa: E402
 
 
 def _log(msg: str) -> None:
@@ -39,6 +41,17 @@ def _parsed_env() -> dict[str, str]:
 
 
 def build_static_site() -> None:
+    cfg_path = ROOT / "config" / "talentbridge_django_origin.txt"
+    if cfg_path.is_file():
+        for line in cfg_path.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if line and not line.startswith("#"):
+                if not origin_is_healthy(line):
+                    _log(
+                        f"LIVE WARNING: {line} is not TalentBridge Django "
+                        "(run scripts\\deploy\\FIX_LIVE_WEBSITE_NOW.bat once)."
+                    )
+                break
     _log("Building static site (GitHub Pages artifact)...")
     _run([sys.executable, str(ROOT / "tools" / "build_static.py")])
 

@@ -6,9 +6,12 @@ services:
     name: talentbridge-ai
     runtime: python
     plan: free
+    repo: https://github.com/MishraJi-Institute/Talent_Bridge_AI
+    branch: main
     rootDir: .
     buildCommand: bash backend/legacy-django/scripts/render_build.sh
     startCommand: bash backend/legacy-django/scripts/render_start.sh
+    healthCheckPath: /__deploy__/health/
     autoDeploy: true
     envVars:
       - key: PYTHON_VERSION

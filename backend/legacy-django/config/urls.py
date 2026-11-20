@@ -175,6 +175,7 @@ PAGES = {
 }
 
 urlpatterns = [
+    path("__deploy__/health/", views.deploy_health, name="deploy-health"),
     path('__dev__/', dev_preview_views.dev_preview_dashboard, name='dev-preview-dashboard'),
     path('__dev__/state/', dev_preview_views.dev_preview_state, name='dev-preview-state'),
     path('admin/', admin.site.urls),

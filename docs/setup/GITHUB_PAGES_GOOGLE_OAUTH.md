@@ -5,13 +5,20 @@ Live domain uses **Google Identity Services** with your **public Client ID** bak
 ## One-time setup
 
 1. Google Cloud → same OAuth client as local.
-2. **Authorized JavaScript origins:**
+2. **Authorized JavaScript origins** (must match the browser URL exactly — scheme matters):
    - `https://talentbridge.qd.je`
    - `https://www.talentbridge.qd.je`
-   - `http://127.0.0.1:8000` (local Django)
-3. GitHub repo → **Settings → Secrets and variables → Actions → Variables**:
+   - `https://mishraji-institute.github.io` (valid HTTPS while custom-domain TLS is pending)
+   - `http://127.0.0.1:8000` (local Django only)
+
+   **Do not use** `http://talentbridge.qd.je` — Google rejects it → **Error 400: origin_mismatch**.
+
+3. Fix custom-domain **HTTPS** (required for Google on `talentbridge.qd.je`):
+   - GitHub repo → **Settings → Pages** → Custom domain `talentbridge.qd.je` → wait for certificate → **Enforce HTTPS**.
+   - Until then, open the site with **`https://`**, not `http://` (after cert is green).
+4. GitHub repo → **Settings → Secrets and variables → Actions → Variables**:
    - `GOOGLE_OAUTH_CLIENT_ID` = your client ID (not the secret)
-4. Push `main` → Actions rebuilds Pages.
+5. Push `main` → Actions rebuilds Pages.
 
 ## Local vs live
 

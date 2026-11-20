@@ -7,6 +7,11 @@
   const clientId = (meta && meta.getAttribute("content") || "").trim();
   if (!clientId) return;
 
+  const LIVE_HOSTS = new Set(["talentbridge.qd.je", "www.talentbridge.qd.je"]);
+  const onLiveHttp =
+    window.location.protocol === "http:" &&
+    LIVE_HOSTS.has((window.location.hostname || "").toLowerCase());
+
   function loadGsi(done) {
     if (window.google && window.google.accounts) {
       done();
@@ -61,6 +66,14 @@
   }
 
   function startGoogleSignIn() {
+    if (onLiveHttp) {
+      showErr(
+        "Google blocked sign-in (origin_mismatch): this site is open on http://. " +
+          "Google only allows https://talentbridge.qd.je (enable TLS in GitHub → Settings → Pages). " +
+          "Until HTTPS works, use: https://mishraji-institute.github.io/Talent_Bridge_AI/pages/login.html"
+      );
+      return;
+    }
     loadGsi(() => {
       try {
         window.google.accounts.id.initialize({

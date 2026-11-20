@@ -1,0 +1,26 @@
+---
+description: Ask before syncing local work to GitHub Pages / talentbridge.qd.je
+alwaysApply: true
+---
+
+# Local first, domain only after user confirms
+
+The user edits **one project** (`TalentBridgeAI`). Local full app = Django on `http://127.0.0.1:8000` (SQLite, `.env` secrets). Live = GitHub Pages at `https://talentbridge.qd.je` via `main` + `tools/build_static.py` → `site/`.
+
+## After completing a task or feature
+
+1. **Always ask** (in clear, short Hindi/English): whether to update **domain + GitHub** with the same changes.
+2. **Do not** commit, push, run `GITHUB_DOMAIN_SYNC.bat`, or `publish_live.py` for live until the user says **yes** (e.g. haan / domain pe bhejo).
+3. If **no** or silence on sync: leave git/publish untouched; local work only.
+
+## When user says yes
+
+1. Ensure changes work for **both** profiles: `host-runtime.js` modes (`django` vs `static-live`), GIS on Pages, Django/allauth locally.
+2. Run or guide: `tools/build_static.py`, commit relevant files (never `.env` or secrets), push `main` or `scripts/deploy/GITHUB_DOMAIN_SYNC.bat`.
+3. Remind if needed: GitHub Actions variable `GOOGLE_OAUTH_CLIENT_ID`; secrets stay local only.
+
+## Never
+
+- Duplicate the repo into two folders for sync.
+- Auto-commit (`TALENTBRIDGEAI_AUTO_COMMIT=1`) unless the user explicitly enables it.
+- Deploy backend (e.g. Render); live is **GitHub Pages only** per user choice.

@@ -17,7 +17,8 @@ The user edits **one project** (`TalentBridgeAI`). Local full app = Django on `h
 
 1. Ensure changes work for **both** profiles: `host-runtime.js` modes (`django` vs `static-live`), GIS on Pages, Django/allauth locally.
 2. Run or guide: `tools/build_static.py`, commit relevant files (never `.env` or secrets), push `main` or `scripts/deploy/GITHUB_DOMAIN_SYNC.bat`.
-3. Remind if needed: GitHub Actions variable `GOOGLE_OAUTH_CLIENT_ID`; secrets stay local only.
+3. **Before telling the user to check**, run all three: `python tools/build_static.py`, `python tools/audit_all_html.py`, `python tools/audit_three_hosts.py` (Django must be up for local checks). Report failures; only ask user to verify when code-side checks pass (TLS/GitHub Pages cert may still be user-side).
+4. Remind if needed: GitHub Actions variable `GOOGLE_OAUTH_CLIENT_ID`; secrets stay local only.
 
 ## Never
 

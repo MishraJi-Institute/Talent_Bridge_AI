@@ -4,10 +4,11 @@
 {% block content %}
 <h1>{% trans "Google sign-in could not finish" %}</h1>
 <p>{% trans "Google sent you back, but Django could not complete the login." %}</p>
+<p>{% trans "Your Client ID and secret are usually fine if Google showed your account — try again from Sign In (do not bookmark the callback URL)." %}</p>
 <ul>
-  <li>{% trans "In Google Cloud Console, redirect URI must be exactly:" %} <code>http://127.0.0.1:8000/accounts/google/login/callback/</code></li>
-  <li>{% trans "In your private .env, GOOGLE_OAUTH_CLIENT_SECRET must match that same OAuth client (no extra spaces)." %}</li>
-  <li>{% trans "Restart with START_TALENTBRIDGEAI.bat after changing .env." %}</li>
+  <li>{% trans "Redirect URI in Google Cloud Console:" %} <code>http://127.0.0.1:8000/accounts/google/login/callback/</code></li>
+  <li>{% trans "First time with Google? Pick Job seeker or Employer on signup, then use Continue with Google." %}</li>
+  <li>{% trans "After changing .env, restart START_TALENTBRIDGEAI.bat." %}</li>
 </ul>
 <p><a href="{% url 'login' %}">{% trans "Back to sign in" %}</a></p>
 {% endblock %}

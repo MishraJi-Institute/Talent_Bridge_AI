@@ -11,6 +11,16 @@
   const onLiveHttp =
     window.location.protocol === "http:" &&
     LIVE_HOSTS.has((window.location.hostname || "").toLowerCase());
+  const SECURE_PAGES =
+    "https://mishraji-institute.github.io/Talent_Bridge_AI";
+
+  function secureMirrorUrl() {
+    const path = window.location.pathname || "/pages/login.html";
+    if (path.startsWith("/pages/")) return `${SECURE_PAGES}${path}`;
+    const slug = path.replace(/^\//, "").replace(/\/$/, "");
+    if (!slug) return `${SECURE_PAGES}/pages/login.html`;
+    return `${SECURE_PAGES}/pages/${slug}.html`;
+  }
 
   function loadGsi(done) {
     if (window.google && window.google.accounts) {
@@ -70,10 +80,8 @@
 
   function startGoogleSignIn() {
     if (onLiveHttp) {
-      showErr(
-        "Google blocked sign-in (origin_mismatch): this site is open on http://. " +
-          "Google only allows https://talentbridge.qd.je (enable TLS in GitHub → Settings → Pages). " +
-          "Until HTTPS works, use: https://mishraji-institute.github.io/Talent_Bridge_AI/pages/login.html"
+      window.location.assign(
+        secureMirrorUrl() + window.location.search + window.location.hash
       );
       return;
     }

@@ -3,6 +3,24 @@
   const rt = window.TalentBridge && window.TalentBridge.runtime;
   if (!rt || rt.mode() !== "static-live") return;
 
+  const LIVE = new Set(["talentbridge.qd.je", "www.talentbridge.qd.je"]);
+  const onDomainHttp =
+    window.location.protocol === "http:" &&
+    LIVE.has((window.location.hostname || "").toLowerCase());
+  if (onDomainHttp) {
+    let bar = document.getElementById("tb-http-tls-banner");
+    if (!bar) {
+      bar = document.createElement("p");
+      bar.id = "tb-http-tls-banner";
+      bar.setAttribute("role", "status");
+      bar.style.cssText =
+        "margin:0;padding:10px 16px;background:#eff6ff;border-bottom:1px solid #93c5fd;color:#1e3a8a;font:500 14px/1.4 system-ui,sans-serif;text-align:center;";
+      bar.textContent =
+        "Google sign-in: Continue with Google opens our secure HTTPS page until talentbridge.qd.je certificate is ready.";
+      document.body.prepend(bar);
+    }
+  }
+
   function readProfile() {
     try {
       return JSON.parse(sessionStorage.getItem("tb_pages_google_profile") || "null");

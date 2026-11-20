@@ -365,23 +365,22 @@ def build():
             script = f'<script src="{relative_script.as_posix()}"></script>\n'
             text = re.sub(r"</body>", script + "</body>", text, count=1, flags=re.IGNORECASE)
 
-        if "</body>" in text and "js/core/host-runtime.js" not in text:
+        if "</body>" in text:
             depth = [".."] * len(from_page.parent.parts)
             bust = "20261121-pages-google"
             host_path = Path(*depth, "js/core/host-runtime.js")
             demo_path = Path(*depth, "js/core/demo-forms.js")
             gsi_path = Path(*depth, "js/core/google-pages-signin.js")
             scripts = ""
+            if "js/core/host-runtime.js" not in text:
+                scripts += f'<script src="{host_path.as_posix()}?v={bust}"></script>\n'
             if "js/core/demo-forms.js" not in text:
-                scripts = (
-                    f'<script src="{host_path.as_posix()}?v={bust}"></script>\n'
-                    f'<script src="{demo_path.as_posix()}?v={bust}"></script>\n'
-                    f'<script src="{gsi_path.as_posix()}?v={bust}"></script>\n'
-                )
-            text = text.replace("</body>", scripts + "</body>")
-            html_file.write_text(text, encoding="utf-8")
-        else:
-            html_file.write_text(text, encoding="utf-8")
+                scripts += f'<script src="{demo_path.as_posix()}?v={bust}"></script>\n'
+            if "js/core/google-pages-signin.js" not in text:
+                scripts += f'<script src="{gsi_path.as_posix()}?v={bust}"></script>\n'
+            if scripts:
+                text = text.replace("</body>", scripts + "</body>", 1)
+        html_file.write_text(text, encoding="utf-8")
 
     # Pretty URL folders so /login/, /jobs/, /employer/, etc. work on GitHub Pages.
     _write_pretty_route_indexes()

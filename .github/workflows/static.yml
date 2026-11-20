@@ -36,6 +36,8 @@ jobs:
         with:
           python-version: "3.x"
       - name: Build static site
+        env:
+          TALENTBRIDGE_DJANGO_ORIGIN: ${{ vars.TALENTBRIDGE_DJANGO_ORIGIN }}
         run: |
           python tools/build_static.py
           test -f site/index.html

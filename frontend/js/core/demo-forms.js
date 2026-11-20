@@ -1,7 +1,5 @@
-/* TalentBridge AI auth bridge — REAL Google OAuth only (no demo login).
-   - Local Django (:8000 / :8001): do nothing; allauth handles Google.
-   - GitHub Pages / static: send the browser to the real Django app origin
-     for /accounts/google/login/ (server-side OAuth). Never invent a session. */
+/* TalentBridge AI — static frontend → real Django OAuth (no demo sessions).
+   Local Django (:8000 / :8001): exit; server handles forms and Google. */
 (() => {
   const localHosts = new Set(["localhost", "127.0.0.1", "[::1]", "::1"]);
   const host = (window.location.hostname || "").toLowerCase();
@@ -23,25 +21,24 @@
   function djangoOrigin() {
     const meta = document.querySelector('meta[name="talentbridge-django-origin"]');
     const fromMeta = (meta && meta.getAttribute("content") || "").trim().replace(/\/$/, "");
-    if (fromMeta) return fromMeta;
-    // Optional runtime override for deploys that inject window config.
+    if (fromMeta && !fromMeta.includes("127.0.0.1")) return fromMeta;
     const fromWindow = (window.TALENTBRIDGE_DJANGO_ORIGIN || "").trim().replace(/\/$/, "");
-    return fromWindow;
+    if (fromWindow && !fromWindow.includes("127.0.0.1")) return fromWindow;
+    return "";
   }
 
-  function showRealOauthNotice() {
+  function showConfigError() {
     let note = document.getElementById("tb-real-oauth-notice");
     if (!note) {
       note = document.createElement("div");
       note.id = "tb-real-oauth-notice";
-      note.setAttribute("role", "status");
+      note.setAttribute("role", "alert");
       note.tabIndex = -1;
       note.style.cssText =
         "margin:12px 0;padding:12px 14px;border-radius:12px;background:#fff7ed;border:1px solid #fdba74;color:#9a3412;font:500 14px/1.45 system-ui,sans-serif;";
       const anchor =
         document.querySelector("form[data-oauth-provider='google']") ||
         document.querySelector("form[data-auth-login]") ||
-        document.querySelector(".login-content") ||
         document.querySelector("main");
       if (anchor && anchor.parentNode) {
         anchor.parentNode.insertBefore(note, anchor);
@@ -49,18 +46,15 @@
         document.body.prepend(note);
       }
     }
-    note.innerHTML =
-      "<strong>Real Google sign-in needs the Django app server.</strong> " +
-      "This GitHub Pages site is static and cannot finish OAuth. " +
-      'Use <a href="http://127.0.0.1:8000/login/">http://127.0.0.1:8000/login/</a> from this project folder, ' +
-      "or set <code>TALENTBRIDGE_DJANGO_ORIGIN</code> to your deployed Django HTTPS URL.";
+    note.textContent =
+      "Google sign-in is not wired yet: deploy the Django backend and set config/talentbridge_django_origin.txt (or TALENTBRIDGE_DJANGO_ORIGIN in GitHub Actions) to that HTTPS URL, then redeploy Pages.";
     note.focus();
   }
 
   function startRealGoogle(form) {
     const origin = djangoOrigin();
     if (!origin) {
-      showRealOauthNotice();
+      showConfigError();
       return;
     }
     const role = form.querySelector('input[name="role"]')?.value || "choose";
@@ -69,19 +63,24 @@
     if (role) params.set("role", role);
     if (next) params.set("next", next);
     const qs = params.toString();
-    // allauth Google login (GET) starts the real authorization-code flow.
     window.location.assign(
-      origin + "/accounts/google/login/" + (qs ? "?" + qs : "")
+      origin + "/auth/social/google/" + (qs ? "?" + qs : "")
     );
   }
 
-  function startRealLoginPage() {
+  function signupPathForForm(form) {
+    if (form.id === "employerForm") return "/signup/employer/";
+    if (form.id === "jobSeekerForm") return "/signup/job-seeker/";
+    return "/login/";
+  }
+
+  function startRealBackend(form) {
     const origin = djangoOrigin();
     if (!origin) {
-      showRealOauthNotice();
+      showConfigError();
       return;
     }
-    window.location.assign(origin + "/login/");
+    window.location.assign(origin + signupPathForForm(form));
   }
 
   document.addEventListener(
@@ -97,12 +96,10 @@
         return;
       }
 
-      // Email/password on static cannot authenticate against Django without CORS+API.
-      // Send the user to the real login page instead of inventing a demo session.
       if (form.matches("[data-auth-login], #jobSeekerForm, #employerForm")) {
         event.preventDefault();
         event.stopPropagation();
-        startRealLoginPage();
+        startRealBackend(form);
       }
     },
     true

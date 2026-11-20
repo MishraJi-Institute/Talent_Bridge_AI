@@ -146,6 +146,26 @@ STATIC_TEMPLATE_VALUES = {
 }
 
 
+def _resolve_django_origin() -> str:
+    """Production Django HTTPS origin for static→OAuth handoff (not localhost)."""
+    origin = os.environ.get("TALENTBRIDGE_DJANGO_ORIGIN", "").strip()
+    if not origin:
+        cfg = ROOT / "config" / "talentbridge_django_origin.txt"
+        if cfg.is_file():
+            for line in cfg.read_text(encoding="utf-8").splitlines():
+                line = line.strip()
+                if not line or line.startswith("#"):
+                    continue
+                origin = line
+                break
+    origin = origin.rstrip("/")
+    if origin and ("127.0.0.1" in origin or "localhost" in origin.lower()):
+        raise RuntimeError(
+            "TALENTBRIDGE_DJANGO_ORIGIN must be the public HTTPS Django host, not localhost."
+        )
+    return origin
+
+
 def _static_link(target, from_page):
     destination = OUTPUT / target
     relative = os.path.relpath(destination, (OUTPUT / from_page).parent)
@@ -348,7 +368,11 @@ def build():
             script_path = Path(
                 *([".."] * len(from_page.parent.parts)), relative_script
             )
-            text = text.replace("</body>", f'<script src="{script_path.as_posix()}"></script>\n</body>')
+            bust = "20261120-perm-oauth"
+            text = text.replace(
+                "</body>",
+                f'<script src="{script_path.as_posix()}?v={bust}"></script>\n</body>',
+            )
             html_file.write_text(text, encoding="utf-8")
         else:
             html_file.write_text(text, encoding="utf-8")
@@ -356,13 +380,24 @@ def build():
     # Pretty URL folders so /login/, /jobs/, /employer/, etc. work on GitHub Pages.
     _write_pretty_route_indexes()
 
-    # Mark static Pages HTML + optional real Django origin for Google OAuth handoff.
-    django_origin = os.environ.get("TALENTBRIDGE_DJANGO_ORIGIN", "").strip().rstrip("/")
-    origin_meta = (
-        f'<meta name="talentbridge-django-origin" content="{django_origin}">\n'
-        if django_origin
-        else ""
-    )
+    # Mark static Pages HTML + inject production Django origin for real Google OAuth.
+    django_origin = _resolve_django_origin()
+    if not django_origin:
+        print(
+            "WARN: No TALENTBRIDGE_DJANGO_ORIGIN — Pages Google sign-in will show config error "
+            "until config/talentbridge_django_origin.txt is set."
+        )
+    else:
+        print(f"Django OAuth handoff origin: {django_origin}")
+
+    origin_block = ""
+    if django_origin:
+        safe_js = django_origin.replace("\\", "\\\\").replace('"', '\\"')
+        origin_block = (
+            f'<meta name="talentbridge-django-origin" content="{django_origin}">\n'
+            f'<script>window.TALENTBRIDGE_DJANGO_ORIGIN="{safe_js}";</script>\n'
+        )
+
     for html_file in OUTPUT.rglob("*.html"):
         text = html_file.read_text(encoding="utf-8-sig")
         if "data-static-preview" not in text:
@@ -373,10 +408,10 @@ def build():
                 count=1,
                 flags=re.IGNORECASE,
             )
-        if origin_meta and 'name="talentbridge-django-origin"' not in text:
+        if origin_block and 'name="talentbridge-django-origin"' not in text:
             text = re.sub(
                 r"<head\b([^>]*)>",
-                r"<head\1>\n" + origin_meta,
+                r"<head\1>\n" + origin_block,
                 text,
                 count=1,
                 flags=re.IGNORECASE,

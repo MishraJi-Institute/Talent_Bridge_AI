@@ -1,0 +1,6 @@
+# Public HTTPS origin of the live Django app (real Google OAuth runs here).
+# Update this to your Render/host URL after first deploy, e.g.:
+# https://talentbridge-ai.onrender.com
+#
+# Override at build time with env TALENTBRIDGE_DJANGO_ORIGIN (GitHub Actions / local).
+https://talentbridge-ai.onrender.com

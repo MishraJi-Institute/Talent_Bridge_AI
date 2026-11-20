@@ -216,7 +216,12 @@ def ensure_private_env():
     if not env.exists():
         if not example.exists(): raise RuntimeError('.env.example is missing; cannot initialize local configuration.')
         shutil.copyfile(example, env)
-        log('Created .env from .env.example. OAuth/email credentials can be added later.')
+        with env.open('a', encoding='utf-8') as f:
+            f.write(
+                '\n# One-click launcher defaults (see tools/windows_manager.py auto)\n'
+                'TALENTBRIDGEAI_AUTO_PUBLISH=1\n'
+            )
+        log('Created .env from .env.example (AUTO_PUBLISH enabled). Add Google OAuth + optional RENDER_API_KEY.')
     text = env.read_text(encoding='utf-8-sig')
     import secrets
     lines = text.splitlines()
@@ -271,13 +276,25 @@ def launcher_env():
     return env
 
 
+REQ_STAMP = VENV / '.requirements.sha256'
+
+
+def _requirements_digest():
+    import hashlib
+    return hashlib.sha256(REQ.read_bytes()).hexdigest()
+
+
 def pip_ready(py):
-    log('Verifying required Python packages...')
-    probe = subprocess.run([str(py), '-c', 'import django, allauth, dotenv, PIL, pymysql'],
-                           cwd=DJANGO, capture_output=True, text=True)
-    if probe.returncode:
-        log('One or more dependencies are missing; installing from requirements.txt...')
+    log('Verifying required Python packages (full requirements.txt)...')
+    digest = _requirements_digest()
+    stamp = REQ_STAMP.read_text(encoding='ascii').strip() if REQ_STAMP.is_file() else ''
+    imports = 'import django, allauth, dotenv, PIL, pymysql, whitenoise, gunicorn'
+    probe = subprocess.run([str(py), '-c', imports], cwd=DJANGO, capture_output=True, text=True)
+    if probe.returncode or stamp != digest:
+        log('Installing or refreshing dependencies from requirements.txt...')
+        run([str(py), '-m', 'pip', 'install', '--upgrade', 'pip'], check=False)
         run([str(py), '-m', 'pip', 'install', '-r', str(REQ)])
+        REQ_STAMP.write_text(digest, encoding='ascii')
     run([str(py), '-m', 'pip', 'check'])
 
 
@@ -728,6 +745,24 @@ def terminate_process_tree(proc):
         proc.wait()
 
 
+def run_smoke_qa(py, env):
+    """Fast local QA on every automated run (full test suite stays optional)."""
+    run([str(py), 'manage.py', 'check'], cwd=DJANGO, env=env)
+    if (parsed_private_env().get('TALENTBRIDGEAI_FULL_TESTS') or '').strip() == '1':
+        log('TALENTBRIDGEAI_FULL_TESTS=1 — running Django jobs tests (may take several minutes)...')
+        run([str(py), 'manage.py', 'test', 'jobs', '--verbosity', '1'], cwd=DJANGO, env=env)
+    else:
+        log('Smoke QA: system check only (set TALENTBRIDGEAI_FULL_TESTS=1 in .env for full tests).')
+
+
+def publish():
+    script = ROOT / 'tools' / 'publish_live.py'
+    if not script.is_file():
+        log('publish_live.py missing; skipping live publish step.')
+        return
+    run([sys.executable, str(script)], cwd=ROOT)
+
+
 def install():
     sync_previous_checkout_data()
     ensure_private_env(); validate_private_env(); py=ensure_env(); env=launcher_env(); pip_ready(py)
@@ -735,7 +770,15 @@ def install():
     prepare_local_auth(py, env)
     register_user_startup()
     remember_active_checkout()
+    run_smoke_qa(py, env)
     log('INSTALLATION CHECKS COMPLETED. Existing database and user rows were not reset.')
+
+
+def auto():
+    """One-shot: install, publish live assets, start Django (no extra prompts)."""
+    install()
+    publish()
+    start()
 
 
 def start():
@@ -934,7 +977,7 @@ def update():
 
 
 def main():
-    ap=argparse.ArgumentParser(); ap.add_argument('action',choices=['install','start','stop','restart','status','repair','update','open','bridge']); a=ap.parse_args()
+    ap=argparse.ArgumentParser(); ap.add_argument('action',choices=['install','start','stop','restart','status','repair','update','open','bridge','publish','auto']); a=ap.parse_args()
     try:
         configure_server_port(a.action)
         if a.action == 'open':

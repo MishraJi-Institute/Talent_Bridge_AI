@@ -3,7 +3,7 @@ setlocal
 cd /d "%~dp0..\.."
 set "PY=python"
 where py >nul 2>nul && set "PY=py"
-%PY% tools\windows_manager.py start
+%PY% tools\windows_manager.py auto
 if errorlevel 1 (
   echo.
   echo ============================================================

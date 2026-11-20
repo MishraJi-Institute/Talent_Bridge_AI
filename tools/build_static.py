@@ -371,6 +371,8 @@ def build():
             host_path = Path(*depth, "js/core/host-runtime.js")
             demo_path = Path(*depth, "js/core/demo-forms.js")
             gsi_path = Path(*depth, "js/core/google-pages-signin.js")
+            guard_path = Path(*depth, "js/core/static-post-guard.js")
+            success_path = Path(*depth, "js/core/pages-google-success.js")
             scripts = ""
             if "js/core/host-runtime.js" not in text:
                 scripts += f'<script src="{host_path.as_posix()}?v={bust}"></script>\n'
@@ -378,6 +380,10 @@ def build():
                 scripts += f'<script src="{demo_path.as_posix()}?v={bust}"></script>\n'
             if "js/core/google-pages-signin.js" not in text:
                 scripts += f'<script src="{gsi_path.as_posix()}?v={bust}"></script>\n'
+            if "js/core/static-post-guard.js" not in text:
+                scripts += f'<script src="{guard_path.as_posix()}?v={bust}"></script>\n'
+            if "pages-google-success.js" not in text and from_page.name == "application-success.html":
+                scripts += f'<script src="{success_path.as_posix()}?v={bust}"></script>\n'
             if scripts:
                 text = text.replace("</body>", scripts + "</body>", 1)
         html_file.write_text(text, encoding="utf-8")

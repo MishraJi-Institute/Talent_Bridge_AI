@@ -60,9 +60,12 @@
     } catch (_) {
       /* still store credential */
     }
+    const qsNext = new URLSearchParams(window.location.search).get("next") || "";
+    const safeDefault = "/pages/application-success.html?signed_in=google";
+    const blocked = /profile\.html/i.test(qsNext);
     const next =
-      new URLSearchParams(window.location.search).get("next") || "/pages/profile.html";
-    window.location.assign(next.startsWith("/") ? next : "/pages/profile.html");
+      qsNext.startsWith("/") && !blocked ? qsNext : safeDefault;
+    window.location.assign(next);
   }
 
   function startGoogleSignIn() {

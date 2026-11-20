@@ -9,7 +9,21 @@
     rt.mode() === "static-live" &&
     !!document.querySelector('meta[name="google-oauth-client-id"]')?.getAttribute("content");
 
-  if (pagesGoogle) return;
+  function showStaticLivePreview() {
+    let note = document.getElementById("tb-real-oauth-notice");
+    if (!note) {
+      note = document.createElement("div");
+      note.id = "tb-real-oauth-notice";
+      note.setAttribute("role", "alert");
+      note.style.cssText =
+        "margin:12px 0;padding:12px 14px;border-radius:12px;background:#fff7ed;border:1px solid #fdba74;color:#9a3412;font:500 14px/1.45 system-ui,sans-serif;";
+      const anchor = document.querySelector("main") || document.body;
+      anchor.prepend(note);
+    }
+    note.textContent =
+      "Full signup and login save on local Django only (START_TALENTBRIDGEAI.bat → http://127.0.0.1:8000). This domain is a static preview.";
+    note.focus();
+  }
 
   function showConfigError() {
     let note = document.getElementById("tb-real-oauth-notice");
@@ -82,6 +96,7 @@
       if (!(form instanceof HTMLFormElement)) return;
 
       if (form.dataset.oauthProvider === "google") {
+        if (pagesGoogle) return;
         event.preventDefault();
         event.stopPropagation();
         if (rt.mode() === "static-live") {
@@ -95,6 +110,10 @@
       if (form.matches("[data-auth-login], #jobSeekerForm, #employerForm")) {
         event.preventDefault();
         event.stopPropagation();
+        if (rt.mode() === "static-live") {
+          showStaticLivePreview();
+          return;
+        }
         startRealBackend(form);
       }
     },

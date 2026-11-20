@@ -1,0 +1,13 @@
+{% extends "account/base_entrance.html" %}
+{% load i18n %}
+{% block head_title %}{% trans "Sign-in problem" %}{% endblock %}
+{% block content %}
+<h1>{% trans "Google sign-in could not finish" %}</h1>
+<p>{% trans "Google sent you back, but Django could not complete the login." %}</p>
+<ul>
+  <li>{% trans "In Google Cloud Console, redirect URI must be exactly:" %} <code>http://127.0.0.1:8000/accounts/google/login/callback/</code></li>
+  <li>{% trans "In your private .env, GOOGLE_OAUTH_CLIENT_SECRET must match that same OAuth client (no extra spaces)." %}</li>
+  <li>{% trans "Restart with START_TALENTBRIDGEAI.bat after changing .env." %}</li>
+</ul>
+<p><a href="{% url 'login' %}">{% trans "Back to sign in" %}</a></p>
+{% endblock %}

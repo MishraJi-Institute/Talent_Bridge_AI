@@ -29,7 +29,7 @@
         "Django is not reachable. Double-click START_TALENTBRIDGEAI.bat (keeps port 8000 open), then reload this page.";
     } else if (originMissing) {
       note.textContent =
-        "Google sign-in needs a live Django host. Set config/talentbridge_django_origin.txt and push to GitHub, or use local START_TALENTBRIDGEAI.bat + Live Server on site/.";
+        "Live sign-in uses app.talentbridge.qd.je (Django + database). Run scripts\\deploy\\SETUP_DOMAIN_LIKE_LOCAL.bat once, or use local START_TALENTBRIDGEAI.bat at http://127.0.0.1:8000";
     } else {
       note.textContent = "Sign-in redirect failed. Check that Django is deployed and healthy.";
     }

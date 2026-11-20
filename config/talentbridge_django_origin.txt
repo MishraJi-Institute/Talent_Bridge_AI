@@ -1,6 +1,4 @@
-# Public HTTPS origin of the live Django app (real Google OAuth runs here).
-# Update this to your Render/host URL after first deploy, e.g.:
-# https://talentbridge-ai.onrender.com
-#
-# Override at build time with env TALENTBRIDGE_DJANGO_ORIGIN (GitHub Actions / local).
-https://talentbridge-ai.onrender.com
+# Live Django (same code as local) — Postgres DB on server, not your PC SQLite file.
+# DNS: CNAME app.talentbridge.qd.je → your Render hostname (see docs/setup/DOMAIN_LIKE_LOCAL.md).
+# Until DNS works, use https://talentbridge-ai.onrender.com on this line instead.
+https://app.talentbridge.qd.je

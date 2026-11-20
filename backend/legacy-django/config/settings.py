@@ -230,12 +230,21 @@ if GOOGLE_OAUTH_CLIENT_ID and GOOGLE_OAUTH_CLIENT_SECRET:
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
 
 
-# Database configuration:
-# SQLite works out of the box. To use MySQL, set DB_ENGINE=mysql and
-# provide DB_NAME, DB_USER, DB_PASSWORD, DB_HOST and DB_PORT in .env.
+# Local: SQLite (database/TalentBridgeAI.sqlite3). Live server: DATABASE_URL (Postgres on Render).
 DB_ENGINE = os.environ.get('DB_ENGINE', 'sqlite').strip().lower()
 DB_NAME = os.environ.get('DB_NAME', 'TalentBridgeAI').strip() or 'TalentBridgeAI'
-if DB_ENGINE == 'mysql':
+_DATABASE_URL = os.environ.get('DATABASE_URL', '').strip()
+if _DATABASE_URL:
+    import dj_database_url
+
+    DATABASES = {
+        'default': dj_database_url.config(
+            _DATABASE_URL,
+            conn_max_age=600,
+            ssl_require=_DATABASE_URL.startswith('postgres'),
+        )
+    }
+elif DB_ENGINE == 'mysql':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
@@ -249,7 +258,6 @@ if DB_ENGINE == 'mysql':
         }
     }
 elif DB_ENGINE == 'sqlite':
-    # A single clearly named local database; migrations create every table.
     SQLITE_DIR = PROJECT_ROOT / 'database'
     SQLITE_DIR.mkdir(parents=True, exist_ok=True)
     DATABASES = {

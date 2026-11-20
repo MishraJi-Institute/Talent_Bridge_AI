@@ -39,12 +39,8 @@ jobs:
           grep -q 'name="talentbridge-django-origin-local"' site/index.html
           grep -q 'js/core/host-runtime.js' site/pages/login.html
           grep -q 'js/core/google-pages-signin.js' site/pages/login.html
-          if [ -n "${GOOGLE_OAUTH_CLIENT_ID:-}" ]; then
-            grep -q 'name="google-oauth-client-id"' site/pages/login.html
-            echo "Google client ID embedded for Pages"
-          else
-            echo "WARN: Set repository variable GOOGLE_OAUTH_CLIENT_ID for live Google sign-in"
-          fi
+          grep -q 'name="google-oauth-client-id"' site/pages/login.html
+          echo "Google client ID embedded for Pages"
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact

@@ -84,6 +84,10 @@
       if (form.dataset.oauthProvider === "google") {
         event.preventDefault();
         event.stopPropagation();
+        if (rt.mode() === "static-live") {
+          showConfigError();
+          return;
+        }
         startRealGoogle(form);
         return;
       }

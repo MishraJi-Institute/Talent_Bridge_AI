@@ -1,7 +1,10 @@
+from django.contrib import messages
+from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.http import url_has_allowed_host_and_scheme
 
 from allauth.account.adapter import DefaultAccountAdapter
+from allauth.core.exceptions import ImmediateHttpResponse
 from allauth.socialaccount.adapter import DefaultSocialAccountAdapter
 
 from .google_oauth import google_apps_from_settings
@@ -39,6 +42,41 @@ class TalentBridgeAccountAdapter(DefaultAccountAdapter):
 
 
 class TalentBridgeSocialAccountAdapter(DefaultSocialAccountAdapter):
+    def on_authentication_error(
+        self,
+        request,
+        provider,
+        error=None,
+        exception=None,
+        extra_context=None,
+    ):
+        extra_context = extra_context or {}
+        if getattr(provider, "id", "") == "google":
+            if extra_context.get("state_id") and exception is None:
+                messages.error(
+                    request,
+                    "Google login session was lost. Use Chrome at "
+                    "http://127.0.0.1:8000/login/ (not VS Code preview) and try again.",
+                )
+                raise ImmediateHttpResponse(redirect(reverse("login")))
+            if exception is not None:
+                detail = str(exception).strip() or exception.__class__.__name__
+                if len(detail) > 240:
+                    detail = detail[:240] + "…"
+                if "invalid_client" in detail:
+                    messages.error(
+                        request,
+                        "Google rejected the client secret in .env (invalid_client). "
+                        "Copy a fresh secret from Google Cloud Console into GOOGLE_OAUTH_CLIENT_SECRET, "
+                        "then RESTART_TALENTBRIDGEAI.bat.",
+                    )
+                else:
+                    messages.error(request, f"Google sign-in failed: {detail}")
+                raise ImmediateHttpResponse(redirect(reverse("login")))
+        super().on_authentication_error(
+            request, provider, error=error, exception=exception, extra_context=extra_context
+        )
+
     def list_apps(self, request, provider=None, client_id=None):
         if provider == "google":
             settings_apps = google_apps_from_settings(client_id=client_id)

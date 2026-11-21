@@ -94,13 +94,13 @@ h1{text-align:center;font-size:34px;margin:8px 0;color:#19365B}
   <form method="post" action="{% url 'admin:login' %}">
    {% csrf_token %}
    <input type="hidden" name="next" value="{{ next }}">
-   <label for="id_username">Username</label>
-   {{ form.username }}
+   <label for="id_username">Username or email</label>
+   <input type="text" name="username" autofocus autocapitalize="none" autocomplete="username" maxlength="150" required id="id_username" value="{{ form.username.value|default_if_none:'' }}">
    <label for="id_password">Password</label>
-   {{ form.password }}
+   <input type="password" name="password" autocomplete="current-password" required id="id_password">
    <button class="tb-submit" type="submit">Sign In →</button>
   </form>
-  <div class="tb-footer">Secure Admin Access · TalentBridge AI</div>
+  <div class="tb-footer">Secure Admin Access · TalentBridge AI<br>Local dev: password is set in <code>.env</code> as <code>LOCAL_ADMIN_BOOTSTRAP_PASSWORD</code> (synced on RESTART).</div>
  </section>
 </main>
 

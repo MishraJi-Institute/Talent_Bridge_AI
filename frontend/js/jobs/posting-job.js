@@ -175,8 +175,8 @@
     event.preventDefault();
     const form = event.currentTarget;
     if (!form.reportValidity()) return;
-    $('#demo-status').textContent = 'Thanks — the sample form is complete. Connect a backend to receive real demo requests.';
-    toast('Demo request validated. Connect a backend to send it to your team.');
+    $('#demo-status').textContent = 'Use the Contact page on the live Django site to reach the team, or complete employer signup to post a real job.';
+    toast('Sample only. Post jobs via /posting-job/ when your employer account is approved.');
     form.reset();
   });
 

@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import compileall
 import os
+import secrets
 import subprocess
 import sys
 import tempfile
@@ -199,7 +200,7 @@ def test_extracted_copy(archive_path: Path, python_executable: str) -> None:
         env.update({
             "DJANGO_ENV": "development",
             "DJANGO_DEBUG": "true",
-            "DJANGO_SECRET_KEY": "portable-release-verification-only",
+            "DJANGO_SECRET_KEY": secrets.token_urlsafe(48),
             "DJANGO_ALLOWED_HOSTS": "localhost,127.0.0.1,[::1]",
             "DB_ENGINE": "sqlite",
             "DB_NAME": "release_verification_never_migrated",

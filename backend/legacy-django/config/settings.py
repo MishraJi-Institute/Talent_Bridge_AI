@@ -37,7 +37,8 @@ def _resolve_repo_root(django_base: Path) -> Path:
 
 PROJECT_ROOT = _resolve_repo_root(BASE_DIR)  # Repository root (.env, database, frontend)
 FRONTEND_ROOT = PROJECT_ROOT / "frontend"
-load_dotenv(PROJECT_ROOT / ".env")
+# override=True so project-root .env wins over stale Windows user env vars.
+load_dotenv(PROJECT_ROOT / ".env", override=True)
 
 
 # Quick-start development settings - unsuitable for production
@@ -203,6 +204,11 @@ LOGIN_REDIRECT_URL = '/dashboard/'
 
 SOCIALACCOUNT_PROVIDERS = {}
 
+# Local admin login (SQLite dev only): synced on every START/RESTART via prepare_local_auth.
+# Keep these only in private .env — never commit. Remove bootstrap password on shared machines.
+LOCAL_ADMIN_USERNAME = os.environ.get("LOCAL_ADMIN_USERNAME", "mishraji").strip()
+LOCAL_ADMIN_BOOTSTRAP_PASSWORD = os.environ.get("LOCAL_ADMIN_BOOTSTRAP_PASSWORD", "").strip()
+
 GOOGLE_OAUTH_CLIENT_ID = os.environ.get('GOOGLE_OAUTH_CLIENT_ID', '').strip()
 GOOGLE_OAUTH_CLIENT_SECRET = os.environ.get('GOOGLE_OAUTH_CLIENT_SECRET', '').strip()
 # Optional absolute origin for Google redirect_uri (e.g. http://127.0.0.1:8000).
@@ -326,6 +332,23 @@ STORAGES = {
     },
 }
 MEDIA_ROOT = PROJECT_ROOT / "private_media"
+# Resumes are not served from a public URL; downloads use authenticated views only.
+MEDIA_URL = ""
+
+# Resume uploads allow up to 5 MB in views; request body limit must be >= file size.
+_DATA_UPLOAD_MAX = int(os.environ.get("DJANGO_DATA_UPLOAD_MAX_MEMORY_SIZE", str(6 * 1024 * 1024)))
+DATA_UPLOAD_MAX_MEMORY_SIZE = _DATA_UPLOAD_MAX
+FILE_UPLOAD_MAX_MEMORY_SIZE = _DATA_UPLOAD_MAX
+
+TALENTBRIDGE_REQUIRE_EMAIL_VERIFICATION = os.environ.get(
+    "TALENTBRIDGE_REQUIRE_EMAIL_VERIFICATION", "0"
+).strip().lower() in {"1", "true", "yes", "on"}
+LOGIN_RATE_LIMIT_ENABLED = os.environ.get("LOGIN_RATE_LIMIT_ENABLED", "1").strip().lower() not in {
+    "0",
+    "false",
+    "no",
+    "off",
+}
 
 
 # Email
@@ -373,8 +396,20 @@ AUTHENTICATION_BACKENDS = [
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
-# TalentBridgeAI Google Login compatibility
-SOCIALACCOUNT_LOGIN_ON_GET = True
+# Google OAuth initiation: GET allowed in local DEBUG; production can force POST via env.
+SOCIALACCOUNT_LOGIN_ON_GET = os.environ.get(
+    "SOCIALACCOUNT_LOGIN_ON_GET",
+    "true" if DEBUG else "false",
+).strip().lower() in {"1", "true", "yes", "on"}
+
+if not DEBUG:
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    SECURE_BROWSER_XSS_FILTER = True
+    X_FRAME_OPTIONS = "DENY"
+    if os.environ.get("DJANGO_ENABLE_HSTS", "").strip().lower() in {"1", "true", "yes", "on"}:
+        SECURE_HSTS_SECONDS = int(os.environ.get("DJANGO_HSTS_SECONDS", "31536000"))
+        SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+        SECURE_HSTS_PRELOAD = False
 
 # Render / reverse-proxy HTTPS termination
 if os.environ.get("RENDER") or os.environ.get("DJANGO_BEHIND_PROXY", "").lower() in {

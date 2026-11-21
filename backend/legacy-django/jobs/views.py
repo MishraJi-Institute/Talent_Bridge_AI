@@ -27,6 +27,12 @@ from django.utils.dateparse import parse_datetime
 from django.utils import timezone
 from django.views.decorators.http import require_POST, require_http_methods
 from .forms import JobAlertPreferenceForm, ResumeBuilderForm
+from .contact_protection import contact_blocked_message, record_contact_submission
+from .login_protection import (
+    clear_login_attempts,
+    login_blocked_message,
+    record_failed_login,
+)
 from .google_oauth import (
     google_oauth_configured,
     google_oauth_public_origin,
@@ -280,6 +286,39 @@ def _account_profile_completion(user, profile, education):
     ]
 
 
+def _dashboard_live_jobs(limit=24):
+    """Serialize approved active jobs for the seeker dashboard (Naukri-style browse in-app)."""
+    rows = []
+    queryset = (
+        Job.objects.filter(
+            is_active=True,
+            is_demo=False,
+            company__is_approved=True,
+        )
+        .select_related("company")
+        .order_by("-posted_at")[:limit]
+    )
+    for job in queryset:
+        skills = [part.strip() for part in job.skills.split(",") if part.strip()][:6]
+        location = job.location.strip() or job.work_mode or "India"
+        rows.append(
+            {
+                "id": str(job.pk),
+                "live": True,
+                "title": job.title,
+                "company": job.company.name,
+                "mark": (job.company.name[:1] or "J").upper(),
+                "location": location,
+                "type": job.job_type,
+                "salary": job.salary.strip() or "Not disclosed",
+                "tags": skills or ["Open role"],
+                "detailUrl": reverse("job_detail", args=[job.pk]),
+                "applyUrl": reverse("apply_job", args=[job.pk]),
+            }
+        )
+    return rows
+
+
 def _application_form(request):
     job_id = request.GET.get("job_id")
     if job_id and job_id.isdecimal():
@@ -524,6 +563,7 @@ def page_file(request, path):
         context["account_applications"] = account_applications
         context["account_application_count"] = account_applications.count()
         context["account_saved_count"] = SavedJob.objects.filter(user=request.user).count()
+        context["account_live_jobs"] = _dashboard_live_jobs()
     elif path == "dashboard/cdashboard.html":
         company = Company.objects.filter(owner=request.user).first()
         all_owned_jobs = Job.objects.filter(company__owner=request.user, is_demo=False)
@@ -631,7 +671,9 @@ def home(request):
 
 def company_directory(request):
     companies = Company.objects.filter(is_approved=True).order_by("name")
-    demo_companies = () if companies.exists() else DEMO_COMPANIES
+    demo_companies = ()
+    if not companies.exists() and settings.DEBUG:
+        demo_companies = DEMO_COMPANIES
     return _render_page(
         request,
         "companies/list.html",
@@ -1702,6 +1744,10 @@ def company_profile_view(request):
 
 def contact_page(request):
     if request.method == "POST":
+        blocked = contact_blocked_message(request)
+        if blocked:
+            messages.error(request, blocked)
+            return redirect("contact")
         name = request.POST.get("name", "").strip()
         email = request.POST.get("email", "").strip().lower()
         topic = request.POST.get("topic", "")
@@ -1716,6 +1762,7 @@ def contact_page(request):
             messages.error(request, "Complete each field using valid information.")
             return redirect("contact")
         ContactInquiry.objects.create(name=name, email=email, topic=topic, message=body)
+        record_contact_submission(request)
         messages.success(request, "Thanks for reaching out. Your message has been recorded for our team.")
         return redirect("contact")
     return _render_page(request, "contact.html")
@@ -1935,7 +1982,35 @@ def verify_email(request, uidb64, token):
 
 
 def resend_verification(request):
-    messages.info(request, "Email verification is temporarily disabled. You can sign in without verifying your email.")
+    if not getattr(settings, "TALENTBRIDGE_REQUIRE_EMAIL_VERIFICATION", False):
+        messages.info(request, "Email verification is not required for this site.")
+        return redirect("login")
+    email = (request.POST.get("email") or request.GET.get("email") or "").strip().lower()
+    if not email:
+        messages.error(request, "Enter the email address used during registration.")
+        return redirect("login")
+    user = User.objects.filter(email__iexact=email).first()
+    if user is None:
+        messages.success(
+            request,
+            "If an account exists for that email, a new verification message has been sent.",
+        )
+        return redirect("login")
+    record = SignupRecord.objects.filter(user=user, signup_method="email_password").first()
+    if record is None or record.email_verified:
+        messages.success(
+            request,
+            "If an account exists for that email, a new verification message has been sent.",
+        )
+        return redirect("login")
+    try:
+        _send_signup_verification(request, user)
+        messages.success(request, "A new verification email has been sent. Check your inbox.")
+    except Exception:
+        messages.error(
+            request,
+            "Verification email could not be sent. Configure SMTP in your environment or contact support.",
+        )
     return redirect("login")
 
 
@@ -1993,11 +2068,22 @@ def _register(request, role):
             # model does not enforce unique email addresses.
             if User.objects.filter(email__iexact=email).exists():
                 raise IntegrityError("This email is already registered.")
-            user = User.objects.create_user(username=email, email=email, password=password,
-                                            first_name=first_name, last_name=last_name)
+            require_verify = getattr(settings, "TALENTBRIDGE_REQUIRE_EMAIL_VERIFICATION", False)
+            seeker_must_verify = require_verify and role != "employer"
+            user = User.objects.create_user(
+                username=email,
+                email=email,
+                password=password,
+                first_name=first_name,
+                last_name=last_name,
+                is_active=not seeker_must_verify,
+            )
             SignupRecord.objects.create(
-                user=user, email=email, signup_method="email_password",
-                role=role, email_verified=False,
+                user=user,
+                email=email,
+                signup_method="email_password",
+                role=role,
+                email_verified=False,
             )
             Profile.objects.create(user=user, role=role, phone=phone,
                                    full_name=f"{first_name} {last_name}".strip())
@@ -2011,6 +2097,20 @@ def _register(request, role):
         login(request, user)
         messages.success(request, "Employer account created. Complete your company setup.")
         return redirect("employer_pending")
+    if getattr(settings, "TALENTBRIDGE_REQUIRE_EMAIL_VERIFICATION", False):
+        try:
+            _send_signup_verification(request, user)
+            messages.success(
+                request,
+                "Account created. Check your email and verify your address before signing in.",
+            )
+        except Exception:
+            messages.warning(
+                request,
+                "Account created, but verification email could not be sent. "
+                "Configure SMTP or ask an administrator to activate your account.",
+            )
+        return redirect("login")
     messages.success(request, "Account created. You can now sign in.")
     return redirect("login")
 
@@ -2047,31 +2147,47 @@ def login_view(request):
             "pages/login.html",
             {"next": next_url, "google_login_enabled": google_oauth_configured()},
         )
+    blocked = login_blocked_message(request, email)
+    if blocked:
+        messages.error(request, blocked)
+        return _render_page(
+            request,
+            "pages/login.html",
+            {"next": next_url, "google_login_enabled": google_oauth_configured()},
+        )
     candidate = User.objects.filter(email__iexact=email).first()
-    if candidate and not candidate.is_superuser:
-        signup_record = SignupRecord.objects.filter(user=candidate).first()
+    if candidate and not candidate.is_active:
+        record = SignupRecord.objects.filter(user=candidate).first()
         if (
-            signup_record
-            and signup_record.signup_method == "email_password"
-            and not signup_record.email_verified
-            and not candidate.is_active
-            and candidate.check_password(password)
+            record
+            and record.signup_method == "email_password"
+            and not record.email_verified
+            and getattr(settings, "TALENTBRIDGE_REQUIRE_EMAIL_VERIFICATION", False)
         ):
-            candidate.is_active = True
-            candidate.save(update_fields=["is_active"])
-        if not candidate.is_active:
+            messages.error(
+                request,
+                "Verify your email address before signing in. Use the link we sent or resend verification.",
+            )
+        else:
             messages.error(request, "This account is inactive. Contact support or an administrator.")
-            return _render_page(request, "pages/login.html", {"next": next_url, "google_login_enabled": google_oauth_configured()})
+        record_failed_login(request, email)
+        return _render_page(
+            request,
+            "pages/login.html",
+            {"next": next_url, "google_login_enabled": google_oauth_configured()},
+        )
     # Pass the email directly to the email-aware backend. Do not choose the
     # first account when legacy data contains duplicate email addresses.
     user = authenticate(request, username=email, password=password)
     if user is None:
+        record_failed_login(request, email)
         messages.error(request, "Email or password is incorrect.")
         return _render_page(
             request,
             "pages/login.html",
             {"next": next_url, "google_login_enabled": google_oauth_configured()},
         )
+    clear_login_attempts(request, email)
     login(request, user)
     return redirect(next_url or settings.LOGIN_REDIRECT_URL)
 

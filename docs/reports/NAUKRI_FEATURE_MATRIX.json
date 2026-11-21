@@ -1,0 +1,65 @@
+{
+  "base": "http://127.0.0.1:8000",
+  "routes": [
+    {
+      "feature": "Home",
+      "path": "/",
+      "http": 200,
+      "detail": "http://127.0.0.1:8000/"
+    },
+    {
+      "feature": "Browse jobs",
+      "path": "/jobs/",
+      "http": 200,
+      "detail": "http://127.0.0.1:8000/jobs/"
+    },
+    {
+      "feature": "Companies",
+      "path": "/companies/",
+      "http": 200,
+      "detail": "http://127.0.0.1:8000/companies/"
+    },
+    {
+      "feature": "Login",
+      "path": "/login/",
+      "http": 200,
+      "detail": "http://127.0.0.1:8000/login/"
+    },
+    {
+      "feature": "Resume library",
+      "path": "/resume-management/",
+      "http": 200,
+      "detail": "http://127.0.0.1:8000/resume-management/"
+    },
+    {
+      "feature": "Apply flow entry",
+      "path": "/applied-jobs/",
+      "http": 200,
+      "detail": "http://127.0.0.1:8000/applied-jobs/"
+    },
+    {
+      "feature": "Employer post job",
+      "path": "/posting-job/",
+      "http": 200,
+      "detail": "http://127.0.0.1:8000/posting-job/"
+    },
+    {
+      "feature": "Seeker dashboard",
+      "path": "/pages/dashboard/jdashboard.html",
+      "http": 200,
+      "detail": "http://127.0.0.1:8000/pages/dashboard/jdashboard.html"
+    },
+    {
+      "feature": "Contact",
+      "path": "/contact/",
+      "http": 200,
+      "detail": "http://127.0.0.1:8000/contact/"
+    },
+    {
+      "feature": "Admin login",
+      "path": "/admin/login/",
+      "http": 200,
+      "detail": "http://127.0.0.1:8000/admin/login/"
+    }
+  ]
+}

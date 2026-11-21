@@ -36,6 +36,7 @@ nav a *,
 </head>
 <body data-jobseeker-dashboard data-auth-user-id="{{ request.user.pk }}" data-auth-email="{{ request.user.email }}" data-auth-name="{{ request.user.get_full_name|default:request.user.email }}" data-account-name="{{ account_profile.full_name|default:request.user.get_full_name }}" data-account-headline="{{ account_profile.headline }}" data-account-location="{{ account_profile.location }}" data-account-skills="{{ account_profile.skills }}" data-account-experience="{{ account_profile.experience }}" data-account-education="{{ account_education }}" data-account-bio="{{ account_profile.bio }}" data-account-applications="{{ account_application_count }}" data-account-saved="{{ account_saved_count }}" data-account-application-rows="1">
   {{ account_profile_completion|json_script:"accountProfileCompletion" }}
+  {{ account_live_jobs|json_script:"accountLiveJobs" }}
   <aside class="sidebar" id="sidebar">
     <a class="brand" href="#page-home" data-page="home"><span class="brand-symbol">✳</span> TalentBridge <b>AI</b></a>
     <p class="nav-label">WORKSPACE</p>
@@ -89,7 +90,7 @@ nav a *,
       </div>
 
       <aside class="dashboard-data-notice" role="note" aria-label="Dashboard account and demo data">
-        <div><strong>Account profile and counts, labelled sample content</strong><p>Your name, headline, location, skills, education, experience, summary, application count, and saved-job count come from your account. Job cards and the separate sample tracker are demonstration data kept in this browser.</p></div>
+        <div><strong>Account-backed workspace</strong><p>Your name, headline, counts, and application list come from your TalentBridge account. {% if account_live_jobs %}Job cards below are <strong>live openings</strong> from the database—Apply opens the real application flow (like Naukri Quick Apply).{% else %}No live jobs are published yet—use <a href="/jobs/">Browse jobs</a> on the main site; sample cards stay for layout practice only.{% endif %} The separate “Sample tracker” panel is browser-only and does not contact employers.</p></div>
         <div class="dashboard-data-links"><a href="/jobs/">Browse jobs</a><a href="/recommended-jobs/">Recommended jobs</a><a href="/saved-jobs/">Saved jobs</a><a href="/applied-jobs/">Applications</a><a href="/profile/">Profile</a><a href="/resume-management/">Resume Library</a><a href="/resume-builder/">Build a resume</a><a href="/privacy-settings/">Privacy and discovery</a><a href="/account-security/">Account security</a></div>
       </aside>
 
@@ -124,7 +125,7 @@ nav a *,
       </section>
       <div class="content-grid">
         <section class="panel">
-          <div class="panel-head"><div><h2>Jobs to explore</h2><p>Sample roles to help you test the dashboard.</p></div><button class="text-button" data-page="jobs">View all →</button></div>
+          <div class="panel-head"><div><h2>Jobs to explore</h2><p>{% if account_live_jobs %}Live roles from approved employers.{% else %}Sample roles until employers post live jobs—<a href="/jobs/">browse all openings</a>.{% endif %}</p></div><button class="text-button" data-page="jobs">View all →</button></div>
           <div id="homeJobs" class="job-list"></div>
         </section>
         <section class="panel card-summary">

@@ -642,7 +642,11 @@ class SocialAuthenticationTests(TestCase):
             reverse("google_callback"),
             {"code": "not-a-real-authorization-code", "state": "invalid-state"},
         )
-        self.assertEqual(invalid_state_response.status_code, 401)
+        self.assertRedirects(
+            invalid_state_response,
+            reverse("login"),
+            fetch_redirect_response=False,
+        )
         self.assertNotIn("_auth_user_id", self.client.session)
 
     def test_social_signup_page_renders_account_setup_form(self):
@@ -1171,7 +1175,7 @@ class SocialAuthenticationTests(TestCase):
         self.assertTrue(User.objects.get(email="audit.candidate@example.com").is_active)
         self.assertEqual(len(mail.outbox), 0)
 
-    def test_unverified_email_signup_can_sign_in_without_verification(self):
+    def test_unverified_inactive_account_cannot_sign_in(self):
         user = User.objects.create_user(
             username="unverified@example.com",
             email="unverified@example.com",
@@ -1191,10 +1195,10 @@ class SocialAuthenticationTests(TestCase):
             {"email": user.email, "password": "SecurePass123!"},
         )
 
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(self.client.session["_auth_user_id"], str(user.pk))
+        self.assertEqual(response.status_code, 200)
+        self.assertNotIn("_auth_user_id", self.client.session)
         user.refresh_from_db()
-        self.assertTrue(user.is_active)
+        self.assertFalse(user.is_active)
 
     def test_resend_verification_does_not_change_account_or_send_email(self):
         user = User.objects.create_user(
@@ -1393,7 +1397,8 @@ class LandingPageTests(TestCase):
         self.assertContains(response, "Find work that fits.")
         self.assertContains(response, 'value="designer"')
         self.assertContains(response, f'action="{reverse("jobs")}"')
-        self.assertContains(response, 'href="/">TalentBridge AI</a>')
+        self.assertContains(response, 'href="/"')
+        self.assertContains(response, "talentbridge-mark.svg")
         self.assertNotContains(response, 'href="/index.html"')
         self.assertNotContains(response, 'class="auth-btn auth-dashboard"')
 
@@ -3067,9 +3072,8 @@ class SuppliedReferenceImageIntegrationTests(TestCase):
     def test_homepage_renders_supplied_candidate_and_office_assets(self):
         response = self.client.get(reverse("home"))
         self.assertEqual(response.status_code, 200)
-        # Homepage hero/smart-card assets currently in use (kept labelled DEMO where applicable).
-        self.assertContains(response, "/images/tb-hero-candidate.jpg")
-        self.assertContains(response, "/images/rahul-sharma.jpg")
+        # Homepage hero / match showcase assets currently in use.
+        self.assertContains(response, "/images/tb-match-rahil.jpg")
         self.assertContains(response, "/images/talentbridge-mark.svg")
 
     def test_login_renders_local_office_visual_and_real_django_form(self):
@@ -3096,3 +3100,55 @@ class SuppliedReferenceImageIntegrationTests(TestCase):
                 self.assertEqual(response.status_code, 200)
                 body = b"".join(response.streaming_content) if getattr(response, "streaming", False) else response.content
                 self.assertGreater(len(body), 100)
+
+
+class LoginProtectionTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username="rate-limit@example.com",
+            email="rate-limit@example.com",
+            password="Correct-Pass-2026!",
+        )
+
+    @override_settings(LOGIN_RATE_LIMIT_ENABLED=True)
+    def test_failed_login_increments_generic_error(self):
+        response = self.client.post(
+            reverse("login"),
+            {"email": "rate-limit@example.com", "password": "wrong"},
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Email or password is incorrect.")
+
+    @override_settings(LOGIN_RATE_LIMIT_ENABLED=True)
+    def test_successful_login_clears_failed_attempts(self):
+        self.client.post(
+            reverse("login"),
+            {"email": "rate-limit@example.com", "password": "wrong"},
+        )
+        response = self.client.post(
+            reverse("login"),
+            {"email": "rate-limit@example.com", "password": "Correct-Pass-2026!"},
+        )
+        self.assertRedirects(response, reverse("dashboard"), fetch_redirect_response=False)
+
+
+class ResumeUploadLimitSettingsTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username="resume-limit@example.com",
+            email="resume-limit@example.com",
+            password="Correct-Pass-2026!",
+        )
+        Profile.objects.create(user=self.user, full_name="Resume Limit", role="job_seeker")
+
+    def test_three_megabyte_pdf_upload_accepted_when_limit_is_six_megabytes(self):
+        self.client.force_login(self.user)
+        payload = SimpleUploadedFile(
+            "large-resume.pdf",
+            b"%PDF-1.4\n" + (b"x" * (3 * 1024 * 1024)),
+            content_type="application/pdf",
+        )
+        response = self.client.post(reverse("resume-management"), {"resume": payload})
+        self.assertRedirects(response, reverse("resume-management"), fetch_redirect_response=False)
+        profile = Profile.objects.get(user=self.user)
+        self.assertTrue(profile.resume.name)

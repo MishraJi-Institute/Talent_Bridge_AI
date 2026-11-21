@@ -6,6 +6,7 @@ from django.contrib.sites.models import Site
 from django.core.management.base import BaseCommand, CommandError
 from django.urls import reverse
 
+from jobs.admin_sync import sync_local_admin_password
 from jobs.google_oauth import google_oauth_configured, sync_google_social_app
 
 
@@ -52,10 +53,22 @@ class Command(BaseCommand):
         else:
             sync_state = "skipped"
 
+        admin_sync = sync_local_admin_password()
         superuser_present = get_user_model().objects.filter(is_superuser=True).exists()
         self.stdout.write(f"Local site domain: {site.domain} ({site_state})")
         self.stdout.write(f"Google callback path: {callback}")
         self.stdout.write(f"Google OAuth loaded: {'yes' if oauth_loaded else 'no'}")
         self.stdout.write(f"Google provider sync: {sync_state}")
         self.stdout.write(f"Superuser present: {'yes' if superuser_present else 'no'}")
-        self.stdout.write("No passwords or OAuth secrets were printed. No user account was modified.")
+        if admin_sync.get("synced"):
+            self.stdout.write(
+                f"Local admin password synced for user {admin_sync.get('username')} "
+                f"(from .env LOCAL_ADMIN_BOOTSTRAP_PASSWORD)."
+            )
+        elif (getattr(settings, "LOCAL_ADMIN_BOOTSTRAP_PASSWORD", "") or "").strip():
+            self.stdout.write(
+                self.style.WARNING(
+                    f"Local admin password not synced ({admin_sync.get('reason', 'unknown')})."
+                )
+            )
+        self.stdout.write("No passwords or OAuth secrets were printed in this log.")
